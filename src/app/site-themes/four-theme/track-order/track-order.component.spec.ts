@@ -8,8 +8,8 @@ describe('TrackOrderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TrackOrderComponent ]
-    })
+    declarations: [TrackOrderComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(TrackOrderComponent);

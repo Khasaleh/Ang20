@@ -11,8 +11,8 @@ describe('AddShippingAddressComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddShippingAddressComponent ]
-    })
+    declarations: [AddShippingAddressComponent]
+})
     .compileComponents();
   }));
 

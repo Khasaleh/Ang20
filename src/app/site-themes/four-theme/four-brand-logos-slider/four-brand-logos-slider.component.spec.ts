@@ -11,8 +11,8 @@ describe('FourBrandLogosSliderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FourBrandLogosSliderComponent ]
-    })
+    declarations: [FourBrandLogosSliderComponent]
+})
     .compileComponents();
   }));
 

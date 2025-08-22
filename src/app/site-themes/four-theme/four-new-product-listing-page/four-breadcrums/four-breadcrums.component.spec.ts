@@ -11,8 +11,8 @@ describe('FourBreadcrumsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FourBreadcrumsComponent ]
-    })
+    declarations: [FourBreadcrumsComponent]
+})
     .compileComponents();
   }));
 

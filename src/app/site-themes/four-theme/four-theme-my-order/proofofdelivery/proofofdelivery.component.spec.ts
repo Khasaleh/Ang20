@@ -11,8 +11,8 @@ describe('ProofofdeliveryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProofofdeliveryComponent ]
-    })
+    declarations: [ProofofdeliveryComponent]
+})
     .compileComponents();
   }));
 

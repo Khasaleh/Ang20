@@ -11,8 +11,8 @@ describe('ShippingAddressPopupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShippingAddressPopupComponent ]
-    })
+    declarations: [ShippingAddressPopupComponent]
+})
     .compileComponents();
   }));
 

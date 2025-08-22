@@ -11,8 +11,8 @@ describe('ViewReturnImagesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewReturnImagesComponent ]
-    })
+    declarations: [ViewReturnImagesComponent]
+})
     .compileComponents();
   }));
 

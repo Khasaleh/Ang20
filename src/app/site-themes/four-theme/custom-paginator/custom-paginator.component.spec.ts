@@ -11,8 +11,8 @@ describe('CustomPaginatorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomPaginatorComponent ]
-    })
+    declarations: [CustomPaginatorComponent]
+})
     .compileComponents();
   }));
 

@@ -11,8 +11,8 @@ describe('ViewQrCodeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewQrCodeComponent ]
-    })
+    declarations: [ViewQrCodeComponent]
+})
     .compileComponents();
   }));
 

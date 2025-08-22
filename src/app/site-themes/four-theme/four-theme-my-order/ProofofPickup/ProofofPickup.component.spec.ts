@@ -11,8 +11,8 @@ describe('ProofofPickupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProofofPickupComponent ]
-    })
+    declarations: [ProofofPickupComponent]
+})
     .compileComponents();
   }));
 

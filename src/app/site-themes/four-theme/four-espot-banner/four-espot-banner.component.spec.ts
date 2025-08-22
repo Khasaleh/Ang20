@@ -11,8 +11,8 @@ describe('FourEspotBannerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FourEspotBannerComponent ]
-    })
+    declarations: [FourEspotBannerComponent]
+})
     .compileComponents();
   }));
 

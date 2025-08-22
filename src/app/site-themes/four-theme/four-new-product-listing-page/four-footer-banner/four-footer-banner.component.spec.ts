@@ -11,8 +11,8 @@ describe('FourFooterBannerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FourFooterBannerComponent ]
-    })
+    declarations: [FourFooterBannerComponent]
+})
     .compileComponents();
   }));
 

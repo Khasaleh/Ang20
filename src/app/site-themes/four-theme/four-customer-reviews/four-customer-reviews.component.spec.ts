@@ -11,8 +11,8 @@ describe('FourCustomerReviewsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FourCustomerReviewsComponent ]
-    })
+    declarations: [FourCustomerReviewsComponent]
+})
     .compileComponents();
   }));
 

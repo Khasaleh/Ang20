@@ -11,8 +11,8 @@ describe('ThemeProductCarouselComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ThemeProductCarouselComponent ]
-    })
+    declarations: [ThemeProductCarouselComponent]
+})
     .compileComponents();
   }));
 

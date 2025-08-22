@@ -8,8 +8,8 @@ describe('SignupModalCheckoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SignupModalCheckoutComponent ]
-    })
+    declarations: [SignupModalCheckoutComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(SignupModalCheckoutComponent);
