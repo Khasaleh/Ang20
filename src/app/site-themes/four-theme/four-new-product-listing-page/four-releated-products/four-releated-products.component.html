@@ -1,0 +1,56 @@
+<!-- Related Products for PLP Starts Here -->
+<ng-container *ngIf="pageType === 'plp-page'"  >
+  <div *ngIf="productResponse.relatedProductsEnabled">
+  <div class="new-container1 mx-auto p-4 rounded-1  mt-5 theme_create_slider" *ngIf="productResponse.relatedProducts.length > 0">
+        <h1 class="text-20 font-weight-600 text-black text-center pb-3" *ngIf="productResponse.relatedProductsHeadingEnabled"> {{productResponse.relatedProductHeading | titlecase}} </h1>
+   <div class="row w-100 justify-content-center">
+    <div class="col-12" [ngClass]="{
+      'col-lg-3 col-md-3 col-sm-4': productResponse.relatedProducts.length === 1,
+      'col-lg-6 col-md-6 col-sm-8': productResponse.relatedProducts.length === 2,
+      'col-lg-9 col-md-9 col-sm-12': productResponse.relatedProducts.length === 3
+    }">
+    <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+    [ngClass]="{ 
+        'arrows-style-consistent': productResponse.relatedProductSliderStyle  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  productResponse.relatedProductSliderStyle === 'DOTS',
+        'slider-style-nothing':  productResponse.relatedProductSliderStyle  === 'NO_ARROWS_NO_DOTS'
+         }">
+      <ng-template carouselSlide  *ngFor="let product of productResponse.relatedProducts">
+       <div class="d-block w-100 px-3 h-100">
+         <app-product-box [activeTheme]="themeName"  [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+         </div>
+      </ng-template>
+   </owl-carousel-o>
+    </div>
+   </div>
+  </div>
+</div>
+  </ng-container>
+<!-- Related Products for PLP Ends Here -->
+
+<!-- Related Products for PDP Starts Here -->
+<ng-container *ngIf="pageType === 'pdp-page'"  >
+  <div class="new-container1 mx-auto p-4 rounded-1  mt-5 theme_create_slider"   *ngIf="productPdpResponse.showRelatedProducts">
+        <h1 class="text-20 font-weight-600 text-black text-center pb-3" *ngIf="productPdpResponse.showRelatedProductsHeading"> {{productPdpResponse.relatedProductsHeading}} </h1>
+   <div class="row">
+    <div class="col-12" [ngClass]="{
+      'col-lg-3 col-md-3 col-sm-4': productPdpResponse.pdpRelatedProducts.length === 1,
+      'col-lg-6 col-md-6 col-sm-8': productPdpResponse.pdpRelatedProducts.length === 2,
+      'col-lg-9 col-md-9 col-sm-12': productPdpResponse.pdpRelatedProducts.length === 3}">
+    <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+    [ngClass]="{ 
+        'arrows-style-consistent': pdpContent.relatedProductSliderStyle  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  pdpContent.relatedProductSliderStyle === 'DOTS',
+        'slider-style-nothing':  pdpContent.relatedProductSliderStyle  === 'NO_ARROWS_NO_DOTS'
+         }" >
+      <ng-template carouselSlide  *ngFor="let product of  productPdpResponse.pdpRelatedProducts">
+       <div class="d-block w-100 px-3 h-100">
+         <app-product-box [activeTheme]="themeName" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+         </div>
+      </ng-template>
+   </owl-carousel-o>
+    </div>
+    </div>
+  </div>
+  </ng-container>
+<!-- Related Products for PDP Ends Here -->

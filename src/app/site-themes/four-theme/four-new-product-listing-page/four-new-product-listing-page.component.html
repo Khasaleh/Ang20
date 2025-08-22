@@ -1,0 +1,37 @@
+<section class="new-product-listing-page" *ngIf="plpResponse">
+  <ng-container>
+    <!-- <app-four-breadcrums  [data]="plpResponse" *ngIf="plpResponse.breadcrumbsEnabled" ></app-four-breadcrums> -->
+    <app-four-content-area [data]="plpResponse"></app-four-content-area>
+    <app-four-recently-viewed *ngIf="plpResponse.recentlyViewedEnabled" [data]="plpResponse.bestSellerProducts"    [pageType]= "'plp-page'"  [activeTheme]='plpResponse.themeName'></app-four-recently-viewed>
+    <app-four-footer-banner *ngIf="plpResponse.footerBannerEnabled" [data]="plpResponse" [activeTheme]='plpResponse.themeName'></app-four-footer-banner>
+  </ng-container>
+</section>
+
+
+<!-- Skeleton Loader Starts Here --> 
+ <section class="py-5 my-2 plp_pr_section bg-white" *ngIf="!plpResponse" >
+  <div class="new-container1">
+    <div class="skeleton-wrapper row">  
+  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-lg-block d-md-block d-sm-none d-none">
+    <div class="skeleton-box mb-3 h-40-px" style="width: 80%;"></div>
+    <div class="skeleton-box mb-3 h-60-px" style="width: 70%;"></div>
+    <div class="skeleton-box mb-3 h-40-px" style="width: 60%;"></div>
+    <div class="skeleton-box mb-3 h-40-px" style="width: 50%;"></div>
+    <div class="skeleton-box mb-3 h-40-px" style="width: 80%;"></div>
+  </div>
+  <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-6 mb-3" *ngFor="let item of skeletonArray">
+        <div class="skeleton-card">
+          <div class="skeleton-box mb-2 h-200-px" style="width: 100%;"></div>
+          <div class="skeleton-box h-20-px mb-2" style="width: 80%;"></div>
+          <div class="skeleton-box h-20-px mb-2" style="width: 60%;"></div>
+          <div class="skeleton-box h-20-px mb-2" style="width: 40%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+ </section>
+<!-- Skeleton Loader Ends Here -->

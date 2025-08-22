@@ -1,0 +1,40 @@
+<section class="d-block w-100 popup-parent-rtl">
+  <div class="d-block w-100">
+
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-4 py-3">
+    <div class="d-inline-block">
+    <h3 class="text-black text-18 m-0 p-0 font-weight-600">  {{'REVIEW_IMAGE'|translate}}  </h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-20 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="d-block w-100 py-4 px-3">
+    <div class="d-block w-100 mb-3">
+      <div class="d-flex w-100 align-items-center justify-content-start">
+        <div class="d-inline-block min-width-clear">
+          <img class="w-80-px h-80-px rounded-2 object-fit-cover" src="{{data?.product?.mainImageUrl}}"
+          onerror="this.src='./assets/img/default-product.png'">
+        </div>
+        <div class="d-inline-block ps-3">
+          <h4 class="text-black font-weight-600 text-15 mt-0 mb-2">{{data?.product?.productName | titlecase}} </h4>
+          <p class="text-black font-weight-400 text-14 mt-0 mb-0"> {{data?.returnQuantity}}  </p>
+        </div>
+      </div>
+    </div>
+    <div class="d-block w-100 arrows-style2  text-center">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let image of data?.returnImages">
+         <img src="{{awsURL}}{{image}}"
+         onerror="this.src='./assets/img/default-product.png'" class="object-fit-contain h-300-px w-100 rounded-2" alt=" {{'BRAND'| translate}}">
+        </ng-template>
+     </owl-carousel-o>
+    </div>
+
+  </div>
+
+  </div>
+</section>

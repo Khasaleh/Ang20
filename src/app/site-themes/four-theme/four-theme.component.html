@@ -1,0 +1,38 @@
+<body 
+  [ngClass]="{
+    'theme2-body-main': themeName === 'RetailTheme2',
+    'theme3-body-main': themeName === 'RetailTheme3', 
+    'theme4-body-main': themeName === 'RetailTheme4', 
+    'theme5-body-main': themeName === 'RetailTheme5', 
+    'theme6-body-main': themeName === 'RetailTheme6', 
+    'theme7-body-main': themeName === 'RetailTheme7', 
+    'theme8-body-main': themeName === 'RetailTheme8', 
+    'theme9-body-main': themeName === 'RetailTheme9', 
+    'theme10-body-main': themeName === 'RetailTheme10', 
+    'theme11-body-main': themeName === 'RetailTheme11', 
+    'theme12-body-main': themeName === 'RetailTheme12', 
+    'theme13-body-main': themeName === 'RetailTheme13', 
+    'theme14-body-main': themeName === 'RetailTheme14',
+    'theme15-body-main': themeName === 'RetailTheme15',
+    'theme16-body-main': themeName === 'RetailTheme16',
+    'theme17-body-main': themeName === 'RetailTheme17',
+    'theme18-body-main': themeName === 'RetailTheme18',
+    'theme19-body-main': themeName === 'RetailTheme19',
+    'theme20-body-main': themeName === 'RetailTheme20',
+    'theme21-body-main': themeName === 'RetailTheme21'
+  }" 
+  *ngIf="dashboardContent" 
+  [class.rtl]="translateSiteService.rtlFlag.value">
+     <app-four-header class="hide-on-print cst-site-header" [footObject]="footer" [socialLinks]="dashboardContent.footer" [announcementBar]="dashboardContent!.announcementBar" [activeTheme]="dashboardContent.themeName"
+    [categories]="categories"></app-four-header>  
+    
+
+  <router-outlet></router-outlet>
+  <app-four-footer [data]="footer" [socialLinks]="dashboardContent.footer"></app-four-footer>
+  <div class="d-block position-sticky bottom-0 z-index-999">
+  <app-chat-widget [chatSettings]="dashboardContent.chatSettingResponse"></app-chat-widget>
+  </div>
+  <div class="d-block position-fixed bottom-0 z-index-99 w-100 start-0">
+    <app-cookiesbar></app-cookiesbar>
+  </div>
+</body>

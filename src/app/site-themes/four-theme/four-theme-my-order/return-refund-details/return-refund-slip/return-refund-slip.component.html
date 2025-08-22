@@ -1,0 +1,151 @@
+<section class="py-4">
+  <div class="new-container1">
+
+    <div class="row">
+
+      <div class="col-lg-2 col-md-3 col-sm-2">
+      <div class="border rounded-2 px-2 py-4 h-100 text-center">
+        <img class="h-120-px w-auto d-inline-block" [src]="qrCodeImage">
+      </div>
+      </div>
+
+      <div class="col-lg-5 col-md-5 col-sm-5">
+        <div class="border rounded-2 px-2 py-4 h-100">
+          <h4 class="font-weight-700 text-16 mt-0 mb-3">
+             {{'RETURNDETAIL'|translate}}
+          </h4>
+          <div class="d-block w-100">
+            <h5 class="text-black text-15 font-weight-400 mb-2"> 
+              {{'RETURN_ID'|translate}}:  {{order?.returnOrderId}} 
+            </h5>
+            <h5 class="text-black text-15 font-weight-400 mb-2"> 
+              {{'RETURN_BY'|translate}}:   {{order?.orderAddressResponse?.firstName}} {{order?.orderAddressResponse?.lastName}} 
+            </h5>
+            <h5 class="text-black text-15 font-weight-400 mb-2"> 
+              {{'ITEMS_IN_RETURN'|translate}}:  {{order?.orderDetails?.length}} 
+            </h5>
+            <h5 class="text-black text-15 font-weight-400 mb-2"> 
+              {{'PREFERRED_RESOLUTION'|translate}}: {{order?.returnResolutionType |translate}}  
+            </h5>
+            <h5 class="text-black text-15 font-weight-400 m-0"> 
+              {{'DELIVERY_OPTIONS'|translate}}: {{order?.returnDeliveryType |translate}} 
+            </h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5 col-md-5 col-sm-5">
+        <div class="border rounded-2 px-2 py-4 h-100">
+          <h4 class="font-weight-700 text-16 mt-0 mb-3">
+             {{'SHIPPED_TO'|translate}}
+          </h4>
+          <div class="d-block w-100" *ngFor="let address of businessAddresses">
+            <h5 class="text-black text-15 font-weight-400 mb-2"> {{businessDetails.businessName}} </h5>
+            <h5 class="text-black text-15 font-weight-400 mb-2"> {{businessDetails.email}} </h5>
+            <h5 class="text-black text-15 font-weight-400 mb-2"> {{businessDetails.contactNo}} </h5>
+            <h5 class="text-black text-15 font-weight-400 m-0"> {{address?.addressLineOne}} {{address?.state}}
+              {{address?.country}} </h5>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="d-block w-100 pt-3">
+      <div class="d-block w-100 px-2 py-4">
+        <h4 class="text-black font-weight-600 text-17 m-0">
+          {{'LIST_OF_RETURN_ITEMS'|translate}}
+        </h4>
+      </div>
+      <div class="table-responsive w-100 border rounded-3">
+        <table class="w-100">
+          <thead>
+            <tr>
+              <th class="bg-grey2 px-2 py-3 border border-color-silver">
+                <span class="d-block w-100 font-weight-600 text-15">
+                   {{'BARCODE' | translate}}
+                </span>
+              </th>
+              <th class="bg-grey2 px-2 py-3 border border-color-silver">
+                <span class="d-block w-100 font-weight-600 text-15">
+                   {{'PRODUCTDETAILS' | translate}}
+                </span>
+              </th>
+              <th class="bg-grey2 px-2 py-3 border border-color-silver">
+                <span class="d-block w-100 font-weight-600 text-15">
+                   {{'RETURN_IMAGES'|translate}}
+                </span>
+              </th>
+              <th class="bg-grey2 px-2 py-3 border border-color-silver">
+                <span class="d-block w-100 font-weight-600 text-15">
+                   {{'RETURN_DETAILS' | translate}}
+                  </span>
+              </th>
+              <th class="bg-grey2 px-2 py-3 border border-color-silver">
+                <span class="d-block w-100 font-weight-600 text-15">
+                       {{'RETURN_POLICY_AND_FEES'|translate}}
+                  </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prod of order?.orderDetails">
+              <td class="px-2 py-3 border">
+                <img class="h-auto min-w-150-px 150-px rounded-0" *ngIf="prod.product.barcode"
+                [src]="'data:image/png;base64,' + prod.product.barcode"
+                alt="{{'BARCODE'|translate}}" />
+              </td>
+              <td class="px-2 py-3 border ">
+                <div class="d-flex">
+                  <div class="d-inline-block mb-2">
+                    <img class="w-80-px h-80-px object-fit-cover rounded-2 border border-color-silver" src="{{prod?.product?.mainImageUrl}}"
+                    onerror="this.src='./assets/img/default-product.png'">
+                  </div>
+                  <div class="d-inline-block">
+                    <h5 class="text-15 font-weight-600 mt-0 mb-1"> {{prod?.product?.productName | titlecase}} </h5>
+                    <p *ngIf="prod?.skuId" class="text-14 font-weight-500 mt-0 mb-1"> {{'SKUID'|translate}}: {{prod?.skuId}} </p>
+                    <p *ngIf="!prod?.skuId" class="text-14 font-weight-500 mt-0 mb-0"> {{'ADD_PRODUCT_ID'|translate}}:  {{prod?.product?.id}}</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-2 py-3 border tab-wid-20">
+                <div class="d-flex align-items-center justify-content-start">
+                  <div class="d-inline-block me-1 mb-1 cursor-pointer"  *ngFor="let image of prod?.returnImages">
+                    <img class="w-50-px h-50-px object-fit-cover rounded-2 border border-color-silver" src="{{awsURL}}{{image}}"
+                    onerror="this.src='./assets/img/default-product.png'">
+                  </div>
+                </div>
+              </td>
+              <td class="px-2 py-3 border">
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{'RETURN_TIME' | translate}}: {{order.returnInitiated | FormattedDatePipe}}</p>
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{'QUANTITY_FOR_RETURN' | translate}}: {{prod?.returnQuantity}}  </p>
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize">   {{ 'PACKAGING_TYPE' | translate }}: {{ (prod?.returnPackagingType ?? '') | translate }} </p>
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{ 'RETURN_REASON_TYPE' | translate }}: {{ (prod?.returnReasonType ?? '') | translate }}</p>
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{'RETURN_REASON' | translate}}: {{prod?.returnReason}} </p>
+
+              </td>
+              <td class="px-2 py-2">
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{'RETURN_POLICY' | translate}}: {{prod?.returnPolicyType  | translate}}</p>
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{'Time_Period_Return' | translate}}: {{prod?.timePeriodReturn}} </p>
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{'RESTOCKING_FEE' | translate}}: {{currency}}  {{prod?.applicableRestockingFee?.toFixed(2)}} </p>
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{'Grace_Period_Return' | translate}}: {{prod?.gracePeriodReturn}}</p>
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{'Return_Fee' | translate}}: {{currency}}  {{prod?.returnFee?.toFixed(2)}} {{'PER_ITEM' | translate}}</p>
+                <p class="text-14 font-weight-500 mt-0 mb-2 text-capitalize"> {{'Return_Fee_Type' | translate}}: {{prod?.returnFeeType  | translate}} </p>
+              </td>
+            </tr>
+         </tbody>
+        </table>
+    </div>
+    </div>
+
+    <div class="w-100 pt-4 mt-3 on-print-hide">
+      <button (click)="print_slip()" class="px-4 py-2 text-15 font-weight-500 text-white bg-theme-dark-color rounded-2">
+         {{'PRINT_SLIP'|translate}}
+      </button>
+    </div>
+
+
+  </div>
+</section>

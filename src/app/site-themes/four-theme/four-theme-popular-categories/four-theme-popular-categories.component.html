@@ -1,0 +1,1173 @@
+<!-- Master Theme Code Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'FourthTheme'">
+  <div class="mb-5 max-w-1000 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+    <ng-container *ngIf="threeInOneEnableHeadline">
+    <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+      {{threeInOneSliderHeadline | titlecase }}</h1>
+    </ng-container>
+    </div>
+     <!-- Categories Title Ends Here -->
+
+     <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data">
+            <div class="position-relative overflow-hidden w-100">
+              <img [src]="awsUrl+product?.imageUrl" alt="{{product?.imageTitle}}" class="position-relative d-block w-100 mob-h-250-px h-350-px object-fit-cover">
+              <div class="position-absolute start-0 bottom-0 w-100 py-5 px-4 d-flex flex-column justify-content-end gap-3">
+                <a
+                routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'
+                class="m-0 px-4 py-2  text-center text-color-w bg-theme-dark-color w-100"
+                [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }">
+                {{product?.actionButtonText | titlecase }}
+                </a>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+</section>
+<!-- Master Theme Code Ends Here -->
+
+<!-- Retail Theme 2 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme2'">
+  <div class="mb-5 max-w-1000 mx-auto">
+    
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data">
+          <div class="position-relative overflow-hidden w-100">
+            <img [src]="awsUrl+product?.imageUrl" alt="{{product?.imageTitle}}" class="position-relative d-block w-100 mob-h-250-px h-350-px object-fit-cover">
+            <div class="category-box bg-transparent  d-flex flex-column justify-content-end gap-3">
+              <a
+              routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'
+              class="m-0 px-4 py-2  text-center text-color-w bg-theme-dark-color w-100"
+              [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': product?.actionButtonBold,
+                'font-weight-400': !product?.actionButtonBold,
+                'font-italic': product?.actionButtonItalic
+              }">
+                {{product?.actionButtonText | titlecase }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+</section>
+<!-- Retail Theme 2 Ends Here -->
+
+<!-- Retail Theme 3 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme3'">
+  <div class="mb-5 max-w-1000 mx-auto">
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+    
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data">
+          <div class="position-relative overflow-hidden w-100">
+            <img [src]="awsUrl+product?.imageUrl" alt="{{product?.imageTitle}}" class="position-relative d-block w-100 mob-h-250-px h-350-px object-fit-cover">
+            <div class="category-box bg-transparent  d-flex flex-column justify-content-end gap-3">
+              <a
+              routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'
+              class="m-0 px-4 py-2  text-center text-color-w bg-theme-dark-color w-100"
+              [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': product?.actionButtonBold,
+                'font-weight-400': !product?.actionButtonBold,
+                'font-italic': product?.actionButtonItalic
+              }">
+                 {{product?.actionButtonText | titlecase }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+</section>
+<!-- Retail Theme 3 Ends Here -->
+
+<!-- Retail Theme 4 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme4'">
+  <div class="new-container1">
+  <div class="mb-5 max-w-1000 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+    
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data">
+          <div class="position-relative w-100 border-dark-color border rounded-2">
+            <img [src]="awsUrl+product?.imageUrl" alt="{{product?.imageTitle}}" class="position-relative d-block w-100 mob-h-250-px h-350-px object-fit-cover rounded-2">
+            <div class="w-100 bg-transparent  d-flex justify-content-center align-items-center position-absolute bottom-0">
+              <a
+              routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'
+              class="m-0 px-3 py-2  text-center text-color-w bg-theme-dark-color "
+              [attr.style]="'border-radius: ' + product?.actionButtonRedius + 'px' + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product?.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': product?.actionButtonBold,
+                'font-weight-400': !product?.actionButtonBold,
+                'font-italic': product?.actionButtonItalic
+              }">
+                 {{product?.actionButtonText | titlecase }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 4 Ends Here -->
+
+<!-- Retail Theme 5 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme5'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data"> 
+          <div class="bg-grey2 rounded-2 overflow-hidden border">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-4 col-sm-5 col-12">
+                  <div class="d-block w-100 px-2">
+                    <a
+              routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'
+              class="m-0 py-1 d-inline-block word-break-break-word text-color-dark  w-100"
+              [attr.style]="'border-radius: ' + product?.actionButtonRedius +  'px' + ' !important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product?.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': product?.actionButtonBold,
+                'font-weight-400': !product?.actionButtonBold,
+                'font-italic': product?.actionButtonItalic
+              }">
+                 {{product?.actionButtonText | titlecase }}
+              </a>
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-7 col-12">
+                  <img [src]="awsUrl+product?.imageUrl" alt="{{product?.imageTitle}}" class="position-relative d-block w-100 h-250-px object-fit-contain">
+                </div>
+            </div>  
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 5 Ends Here -->
+
+<!-- Retail Theme 6 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme6'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+    
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data"> 
+          <div class="bg-grey2 rounded-2 overflow-hidden border">
+            <div class="row align-items-center">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 position-relative">
+                  <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-300-px object-fit-cover">
+                  <div class="d-block w-100 gradient-cover-1 px-4 py-4 d-flex align-items-start justify-content-start text-start position-absolute top-0 start-0 w-100 h-100">
+                    <a
+              routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'
+              class="m-0 py-1 d-inline-block word-break-break-word text-color-w text-capitalize w-100"
+              [attr.style]="'font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product?.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': product?.actionButtonBold,
+                'font-weight-400': !product?.actionButtonBold,
+                'font-italic': product?.actionButtonItalic
+              }">
+                 {{product?.actionButtonText | titlecase }}
+              </a>
+                  </div>
+                </div>
+            </div>  
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 6 Ends Here -->
+
+<!-- Retail Theme 7 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme7'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data"> 
+          <div class="bg-grey2 rounded-2 overflow-hidden border">
+            <div class="row align-items-center">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12 position-relative">
+                  <div class="d-block w-100  border border-dark-color rounded-2 overflow-hidden">
+                  <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-300-px object-fit-cover">
+                  <div class="d-block w-100">
+                    <a
+              routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'
+              class="m-0 py-3 d-block text-center word-break-break-word text-color-w bg-theme-dark-color text-capitalize w-100"
+              [attr.style]="'font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product?.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': product?.actionButtonBold,
+                'font-weight-400': !product?.actionButtonBold,
+                'font-italic': product?.actionButtonItalic
+              }">
+                 {{product?.actionButtonText | titlecase }}
+              </a>
+              </div>
+                  </div>
+                </div>
+            </div>  
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 7 Ends Here -->
+
+<!-- Retail Theme 8 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme8'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data"> 
+          <div class="d-block w-100 bg-grey2 bg-theme-dark-color-hover transition-all p-3 cursor-pointer" routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'>
+            <div class="d-block w-100 py-4 bg-white">
+              <a
+              class="mb-0 mt-4 p-0 d-inline-block word-break-break-word text-capitalize w-100 text-color-dark text-center"
+              [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': product?.actionButtonBold,
+                'font-weight-400': !product?.actionButtonBold,
+                'font-italic': product?.actionButtonItalic
+              }"
+               >
+                 {{product?.actionButtonText | titlecase }}
+              </a>
+              <img [src]="awsUrl+product?.imageUrl" class="position-relative mt-4 mb-4 d-block w-100 h-300-px object-fit-contain">
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 8 Ends Here -->
+
+<!-- Retail Theme 9 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme9'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+    
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data"> 
+          <div class="d-block w-100 bg-theme-light-color border border-dark-color rounded-2 cursor-pointer position-relative overflow-hidden mb-lg-3 mb-md-3 mb-3" routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'>
+            <div class="d-block w-100 py-3">
+              <div class="row align-items-center">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                  <a class="px-3 py-4 d-inline-block word-break-break-word text-capitalize text-black w-100 text-lg-start text-md-start text-sm-center text-center"
+                  [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': product?.actionButtonBold,
+                    'font-weight-400': !product?.actionButtonBold,
+                    'font-italic': product?.actionButtonItalic
+                  }"
+                   >
+                 {{product?.actionButtonText | titlecase }}
+              </a>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+                  <img [src]="awsUrl+product?.imageUrl" class="w-100 h-202-px object-fit-contain">
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 9 Ends Here -->
+
+<!-- Retail Theme 10 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3" *ngIf="activeTheme == 'RetailTheme10'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 p-0" *ngFor="let product of data?.data; let i = index"> 
+          <div class="d-block w-100 cursor-pointer" routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'>
+            <div class="d-block w-100 bg-white position-relative">
+              <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-250-px object-fit-cover">
+              <div
+              [ngClass]="{
+                'category-box-14-dark': i === 0 || i === 2,
+                'category-box-14-light': i === 1
+              }"
+               class="d-flex category-box-14-inner bg-theme-light-color-hover border border-dark-color-hover w-100 align-items-center justify-content-center position-absolute top-0 p-3 start-0 w-100 h-100">
+               <div class="d-flex border border-2 border-color-transparent w-100 h-100 align-items-center justify-content-center">
+                <a class="d-inline-block word-break-break-word text-capitalize w-100 text-center"
+                [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }"
+                >
+                   {{product?.actionButtonText | titlecase }}
+                </a> 
+               </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 10 Ends Here -->
+
+<!-- Retail Theme 11 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme11'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data"> 
+          <div class="d-block w-100 bg-grey2 px-2 py-3 rounded-1">
+            <div class="row align-items-center">
+              <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+                <h4 class="text-color-dark mt-0 mb-3"
+                [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }">
+                  {{product?.actionButtonText | titlecase }}
+                </h4>
+                <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' class="bg-black cursor-pointer px-4 py-2 text-white text-14 rounded-0">
+                   {{'SHOPNOW'|translate}}
+                </button>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-7 col-7">
+                <div class="d-block w-100">
+                  <img [src]="awsUrl+product?.imageUrl" class="d-block w-100 h-300-px object-fit-contain">
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 11 Ends Here -->
+
+<!-- Retail Theme 12 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme12'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+    
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data; let i = index"> 
+          <div class="d-block w-100 bg-grey2 px-2 py-3 rounded-1">
+            <div class="row align-items-center">
+              <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+                <h5 *ngIf="i === 0" class="text-black font-weight-500 text-16 mt-0 mb-3">
+                    {{'TOP_PRODUCTS'|translate}}
+                </h5>
+                <h5 *ngIf="i === 1" class="text-black font-weight-500 text-16 mt-0 mb-3">
+                   {{'BIG_SALE_PRODUCTS'|translate}}
+                </h5>
+                <h5 *ngIf="i === 2" class="text-black font-weight-500 text-16 mt-0 mb-3">
+                      {{'MOST_AMAZING'|translate}}
+                </h5>
+                <h4 class="text-black mt-0 mb-4"
+                [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }">
+                  {{product?.actionButtonText | titlecase }}
+                </h4>
+                <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' class="cursor-pointer py-2 px-0 text-black text-15 font-weight-700 border-bottom border-dark-color border border-2 border-top-0 border-start-0 border-end-0 rounded-0">
+                   {{'SHOPNOW'|translate}}
+                </button>
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-7 col-7">
+                <div class="d-block w-100">
+                  <img [src]="awsUrl+product?.imageUrl" class="d-block w-100 h-300-px object-fit-contain">
+                </div>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 12 Ends Here -->
+
+<!-- Retail Theme 13 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme13'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data; let i = index"> 
+          <div class="d-block w-100 bg-grey2 px-2 py-3 rounded-1">
+            <div class="row align-items-center">
+              <div class="col-lg-7 col-md-7 col-sm-7 col-7">
+                <div class="d-block w-100">
+                  <img [src]="awsUrl+product?.imageUrl" class="d-block w-100 h-300-px object-fit-contain">
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+                <h4 class="text-black mt-0 mb-4"
+                [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }">
+
+                  {{product?.actionButtonText | titlecase }}
+                </h4>
+                <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' 
+                class="d-flex align-items-center justify-content-start cursor-pointer py-2 px-0 text-black text-15 font-weight-700 border-bottom border-dark-color border border-2 border-top-0 border-start-0 border-end-0 rounded-0">
+                 <span class="d-inline-block font-weight-500 text-black text-14">
+                  {{'SHOPNOW'|translate}}
+                 </span>  
+                 <i class="bi bi-arrow-right-circle-fill text-black ms-2 text-15"></i>
+                </button>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 13 Ends Here -->
+
+<!-- Retail Theme 14 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme14'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data"> 
+          <div class="d-block w-100 rounded-3 overflow-hidden position-relative">
+            <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-180-px object-fit-cover">
+            <div routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' class="position-absolute cursor-pointer bg-black-80 bg-theme-dark-color-hover top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+              <a
+              class="d-inline-block word-break-break-word text-capitalize w-100 text-white text-center"
+              [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }"
+               >
+                 {{product?.actionButtonText | titlecase }}
+              </a>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 14 Ends Here -->
+
+<!-- Retail Theme 15 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme15'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-3" *ngFor="let product of data?.data; let i = index"> 
+          <div class="d-block w-100 bg-white shadow-md px-2 py-3">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div 
+                  class="d-block mb-lg-0 mb-md-0 mb-sm-2 mb-2 w-100 text-lg-start text-md-start text-sm-center text-center">
+                    <h5 *ngIf="i === 0" class="text-black font-weight-500 text-16 mt-0 mb-3 w-100">
+                      {{'TOP_PRODUCTS'|translate}}
+                  </h5>
+                  <h5 *ngIf="i === 1" class="text-black font-weight-500 text-16 mt-0 mb-3 w-100">
+                     {{'BIG_SALE_PRODUCTS'|translate}}
+                  </h5>
+                  <h5 *ngIf="i === 2" class="text-black font-weight-500 text-16 mt-0 mb-3 w-100">
+                        {{'MOST_AMAZING'|translate}}
+                  </h5>
+
+                       <h3 class="text-black mt-0 mb-3 w-100"
+                       [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }">
+                        {{product?.actionButtonText | titlecase }}
+                       </h3>
+                      <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' 
+                      class="d-inline-block cursor-pointer p-0 text-14 font-weight-500 rounded-2"> 
+                      <span class="d-inline-block font-weight-600 text-color-dark text-15">
+                        {{'SHOPNOW'|translate}}
+                       </span>  
+                      </button>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="d-block w-100">
+                    <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-180-px object-fit-cover">
+                  </div>
+                </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 15 Ends Here -->
+
+<!-- Retail Theme 16 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme16'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data"> 
+          <div class="d-block w-100 rounded-3 overflow-hidden position-relative">
+            <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-280-px object-fit-cover">
+            <div routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' 
+            class="position-absolute cursor-pointer  top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+              <a
+              class="bg-theme-dark-color-hover text-color-hover-white bg-white text-black px-4 py-2 d-inline-block word-break-break-word text-white text-center"
+              [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }"
+               >
+                 {{product?.actionButtonText | titlecase }}
+              </a>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 16 Ends Here -->
+
+<!-- Retail Theme 17 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme17'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data; let i = index">
+          <div 
+            class="d-block w-100 px-2 py-3 theme17-category-box mb-lg-0 mb-md-0 mb-sm-0 mb-3"
+            [ngClass]="{
+              'bg-theme-dark-color': i === 0 || i === 2,
+              'bg-grey2': i === 1
+            }"
+          >
+            <div class="row align-items-center">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="d-flex flex-wrap align-items-center justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center w-100 text-lg-start text-md-start text-sm-center text-center">
+                  <h3 class="mt-0 mb-3 w-100" 
+                  [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic,
+                  'text-white': i === 0 || i === 2,
+                    'text-black': i === 1
+                }">
+                    {{ product?.actionButtonText | titlecase  }}
+                  </h3>
+                  <button
+                  routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}'
+                    class="d-flex mb-lg-0 mb-md-0 mb-sm-0 mb-3 align-items-center justify-content-start cursor-pointer py-1 text-14 font-weight-500 rounded-2"
+                    [ngClass]="{
+                      'text-white': i === 0 || i === 2,
+                      'text-black': i === 1
+                    }"
+                  >
+                    <span class="d-inline-block font-weight-400text-14">
+                      {{ 'VIEW_DISCOUNTS' | translate }}
+                    </span> 
+                    <i class="bi bi-chevron-right lh-tiny ms-2 text-15"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="d-block w-100">
+                  <img
+                    [src]="awsUrl + product?.imageUrl"
+                    class="position-relative d-block w-100 h-180-px object-fit-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 17 Ends Here -->
+
+
+<!-- Retail Theme 18 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme18'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+    
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-3" *ngFor="let product of data?.data"> 
+          <div class="d-block w-100 bg-white shadow-md px-2 py-3">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="d-flex flex-wrap mb-lg-0 mb-md-0 mb-sm-3 mb-3 align-items-center justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center w-100">
+                       <h3 class="text-black mt-0 mb-3 w-100 text-lg-start text-md-start text-sm-center text-center"
+                       [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }"
+                >
+                        {{product?.actionButtonText | titlecase }}
+                       </h3>
+                      <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' 
+                      class="d-flex align-items-center justify-content-start cursor-pointer py-2 px-3 bg-theme-dark-color text-14 font-weight-500 rounded-2">
+                      <i class="bi bi-cart-plus-fill text-white me-2 text-15"></i> 
+                      <span class="d-inline-block font-weight-400 text-white text-14">
+                        {{'SHOPNOW'|translate}}
+                       </span>  
+                      </button>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="d-block w-100">
+                    <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-180-px object-fit-cover">
+                  </div>
+                </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 18 Ends Here -->
+
+<!-- Retail Theme 19 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme19'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12" > 
+
+          <div class="d-block w-100" *ngFor="let product of data?.data; let i = index">
+          <!-- Category box 1 Starts Here -->
+          <div *ngIf="i === 0"  class="d-block w-100 mb-4">
+            <div class="d-block w-100 bg-grey2 rounded-2">
+              <div class="row align-items-center">
+                <div class="col-lg-5 col-md-5 col-sm-6 col-12">
+                  <div class="d-block w-100 px-3">
+                    <div class="d-block w-100 py-lg-0 py-md-0 py-sm-3 py-3  text-lg-start text-md-start text-sm-center text-center">
+                      <h3 class="text-black mt-0 mb-3"
+                      [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }">
+                      {{product?.actionButtonText | titlecase }}
+                      </h3>
+                    <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' 
+                    class="d-inline-block cursor-pointer py-2 px-4 bg-black text-14 font-weight-500 rounded-pill">
+                    <span class="d-inline-block font-weight-400 text-white text-14 py-1">
+                      {{'SHOPNOW'|translate}}
+                      </span>  
+                    </button>
+                </div>
+                  </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-6 col-12">
+                    <div class="d-block w-100">
+                      <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-200-px mob-h-250-px object-fit-cover">
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+          <!-- Category box 1 Ends Here -->
+
+           <!-- Category box 2 Starts Here -->
+           <div *ngIf="i === 1"  class="d-block w-100">
+            <div class="d-block w-100 bg-grey2 rounded-2">
+              <div class="row align-items-center">
+                <div class="col-lg-5 col-md-5 col-sm-6 col-12">
+                  <div class="d-block w-100 px-3">
+                    <div class="d-block w-100 py-lg-0 py-md-0 py-sm-3 py-3  text-lg-start text-md-start text-sm-center text-center">
+                      <h3 class="text-black mt-0 mb-3"
+                      [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }">
+                      {{product?.actionButtonText | titlecase }}
+                      </h3>
+                    <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' 
+                    class="d-inline-block cursor-pointer py-2 px-4 bg-black text-14 font-weight-500 rounded-pill">
+                    <span class="d-inline-block font-weight-400 text-white text-14 py-1">
+                      {{'SHOPNOW'|translate}}
+                      </span>  
+                    </button>
+                </div>
+                  </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-6 col-12">
+                    <div class="d-block w-100">
+                      <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-200-px mob-h-250-px object-fit-cover">
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+          <!-- Category box 2 Ends Here -->
+          </div>
+         
+
+
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12" > 
+
+
+          <div *ngFor="let product of data?.data; let i = index">
+
+
+          <!-- Category box 3 Starts Here -->
+          <div *ngIf="i === 2"  class="d-block w-100 mb-4">
+            <div class="d-block w-100 bg-grey2 rounded-2">
+              <div class="row align-items-center"> 
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="d-block w-100 position-relative">
+                      <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-430-px mob-h-250-px object-fit-cover">
+
+                      <div class="d-flex align-items-center justify-content-start w-100 px-4 position-absolute top-0 start-0 bg-white-80 top-0 start-0 h-100">
+                        <div class="d-block w-100 text-lg-start text-md-start text-sm-center text-center">
+                          <h3 class="text-black mt-0 mb-3"
+                          [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }">
+                          {{product?.actionButtonText | titlecase }}
+                          </h3>
+                        <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' 
+                        class="d-inline-block cursor-pointer py-2 px-4 bg-black text-14 font-weight-500 rounded-pill">
+                        <span class="d-inline-block font-weight-400 text-white text-14 py-1">
+                          {{'SHOPNOW'|translate}}
+                          </span>  
+                        </button>
+                    </div>
+                      </div>
+
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+          <!-- Category box 3 Ends Here -->
+
+          </div>
+          </div>
+
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 19 Ends Here -->
+
+<!-- Retail Theme 20 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme20'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12" *ngFor="let product of data?.data"> 
+          <div class="d-block w-100 position-relative rounded-4 shadow-sm border">
+            <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-400-px mob-h-250-px object-fit-cover rounded-4">
+            <div class="position-absolute bottom-0 start-0 w-100 d-flex align-items-center justify-content-center pb-4">
+              <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' 
+            class="bg-white rounded-3 px-5 py-2 transition-all bg-hover-black text-hover-white"> 
+            <span class="d-inline-block text-black  text-capitalize"
+            [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }">
+              {{product?.actionButtonText | titlecase }}
+             </span>  
+            </button>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 20 Ends Here -->
+
+<!-- Retail Theme 21 Starts Here -->
+<section class="px-lg-0 px-md-0 px-sm-0 px-3 pt-5" *ngIf="activeTheme == 'RetailTheme21'">
+  <div class="new-container1">
+  <div class="mb-5 w-100 mx-auto">
+
+    <!-- Categories Title Starts Here -->
+    <div class="d-block w-100">
+      <ng-container *ngIf="threeInOneEnableHeadline">
+      <h1 class="text-20 text-black text-center pt-5 font-weight-700 mt-0 pb-0 mb-5" >
+        {{threeInOneSliderHeadline | titlecase }}</h1>
+      </ng-container>
+    </div>
+    <!-- Categories Title Ends Here -->
+
+    <!-- Categories Boxes Starts Here -->
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-3" *ngFor="let product of data?.data; let i = index"> 
+          <div class="d-block w-100 bg-white border px-2 py-3">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div 
+                  class="d-block mb-lg-0 mb-md-0 mb-sm-2 mb-2 w-100 text-lg-start text-md-start text-sm-center text-center">
+                    
+
+                       <h3 class="text-black mt-0 mb-4 w-100"
+                       [attr.style]="'border-radius: ' + product?.actionButtonRedius + '!important; font-family: ' + product?.actionButtonFont + ' !important; font-size: ' + product.actionButtonFontSize + ' !important '"
+                [ngClass]="{
+                  'font-weight-700': product?.actionButtonBold,
+                  'font-weight-400': !product?.actionButtonBold,
+                  'font-italic': product?.actionButtonItalic
+                }"
+                >
+                        {{product?.actionButtonText | titlecase }}
+                       </h3>
+                      <button routerLink='/{{subdomain}}/category/{{product?.url}}/{{product?.categoryId}}' 
+                      class="d-inline-block cursor-pointer p-0 text-14 font-weight-500 rounded-2"> 
+                      <span class="d-inline-block font-weight-600 text-color-dark text-15 text-capitalize">
+                        {{'VIEW_IMG'|translate}}
+                       </span>  
+                       <i class="bi bi-chevron-right lh-tiny text-color-dark text-13 ms-2"></i>
+
+                      </button>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                  <div class="d-block w-100">
+                    <img [src]="awsUrl+product?.imageUrl" class="position-relative d-block w-100 h-180-px object-fit-cover">
+                  </div>
+                </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    </div>
+    <!-- Categories Boxes Ends Here -->
+    
+  </div>
+  </div>
+</section>
+<!-- Retail Theme 21 Ends Here -->

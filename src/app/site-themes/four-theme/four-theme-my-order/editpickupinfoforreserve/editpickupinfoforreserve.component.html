@@ -1,0 +1,63 @@
+<section class="w-100 d-block popup-parent-rtl">
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-3 py-3">
+    <div class="d-inline-block">
+    <h3 class="text-black text-18 m-0 p-0 font-weight-600">   {{'UPDATE_PICKUP_INFORMATION'|translate}}   </h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-block w-100 py-4 px-3">
+
+    <div class="row align-items-center mb-3">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0">        {{'PICKUP_DATE'| translate}}  </h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12" [formGroup]="pickupDetails">
+        <mat-form-field class="w-100 field-style-date">
+          <mat-label class="text-12 font-weight-400 text-color-999EA8 ms-2">{{'CHOOSEADATE'|translate}}</mat-label>
+          <mat-datepicker-toggle matSuffix [for]="picker">
+          </mat-datepicker-toggle>
+          <input matInput [matDatepicker]="picker" class="h-30-px" placeholder="MM/DD/YYYY"
+           formControlName="pickupDate" [matDatepickerFilter]="filterDates">
+          <mat-datepicker #picker>
+              <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel class="border text-black w-50">{{'CANCEL'|translate}}</button>
+                 <button mat-raised-button class="bg-theme-dark-color text-color-w text-first-light-c w-50 text-center" matDatepickerApply>
+                  {{'APPLY'|translate}}</button>
+              </mat-datepicker-actions>
+          </mat-datepicker>
+      </mat-form-field>
+      <div *ngIf="(getControl['pickupDate'].touched && getControl['pickupDate'].invalid) || (getControl['pickupDate'].untouched && addCustomerInfo)" class="text-danger pt-2">
+        <div *ngIf="getControl['pickupDate'].errors?.['required']">{{'PICKUP_DATE_IS_REQUIRED'| translate}}</div>
+    </div>
+      </div>
+     </div>
+
+
+     <div class="row align-items-center mb-3" [formGroup]="pickupDetails">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0">       {{'PICKUP_TIME'| translate}}  </h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+        <input type="time" formControlName="pickupTime"
+        class="text-black border-1-DDDDDD bg-white rounded-2 w-100 px-2 h-50-px" />
+        <div *ngIf="(getControl['pickupTime'].touched && getControl['pickupTime'].invalid) || (getControl['pickupTime'].untouched && addCustomerInfo)" class="text-danger d-block w-100 text-start pt-2">
+          <p class="m-0 text-14 text-danger text-start" *ngIf="getControl['pickupTime'].errors?.['required']">
+            {{'PICKUP_TIME_IS_REQUIRED'| translate}}
+          </p>
+       </div>
+     </div>
+     </div>
+
+
+     <div class="d-block w-100 text-end mt-4">
+      <button [disabled]="addCustomerInfo"  (click)="updatePickupInfo()" class="px-3 py-2 text-14 bg-theme-dark-color rounded-2 text-color-w">
+          {{'UPDATE_DETAILS'|translate}}
+      </button>
+    </div>
+
+  </div>
+</section>

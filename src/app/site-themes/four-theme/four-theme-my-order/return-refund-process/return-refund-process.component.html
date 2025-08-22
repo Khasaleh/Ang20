@@ -1,0 +1,466 @@
+<section class="py-3 bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-700 text-22 m-0 p-0">   {{'RETURNREFUND'|translate}}  </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-transparent p-0 m-0 border-0">
+                  <li class="breadcrumb-item breadcrumb-slash-off">
+                      <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                        {{'HOME'|translate}}
+                        </button>
+                      <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                  </li>
+                  <li class="breadcrumb-item breadcrumb-slash-off">
+                    <button routerLink="../../my-order" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                      {{'ORDERS'|translate}}
+                      </button>
+                    <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                </li>
+                  <li class="breadcrumb-item breadcrumb-slash-off" aria-current="page">
+                      <b class="text-14 font-weight-400 cursor-default text-black">
+                        {{'RETURNREFUND'|translate}}
+                      </b>
+                  </li>
+              </ol>
+          </nav>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 my-lg-5 my-md-5 my-sm-3 my-0"  *ngIf="order && order?.orderDetails?.length === 0">
+  <div class="new-container1">
+      <div class="d-block w-100 text-center py-4">
+        <img class="w-auto h-250-px" src="./assets/img/not-return-available.jpg">
+        <h5 class="text-black font-weight-500 text-16 mt-0 mb-2">
+          This order cannot be returned as a return request has already been submitted.
+          </h5>
+      </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="new-container1" *ngIf="order && order?.orderDetails?.length! > 0">
+
+    <div class="row align-items-start">
+
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+
+      <!-- Items Return Reasons Starts Here -->
+      <div class="d-block w-100 border mb-2">
+        <div class="d-flex w-100 px-3 align-items-center justify-content-between py-3  bg-grey2">
+          <div class="d-inline-block">
+          <h4 class="text-black font-weight-600 text-17 m-0">    {{'CHOOSE_ITEMS_TO_RETURN'|translate}} </h4>
+          </div>
+        </div>
+        <div class="d-block w-100 px-3 py-3">
+
+          <!-- Single Order Block Starts Here -->
+          <div class="d-block w-100 pb-2 mb-2" *ngFor="let prod of order?.orderDetails; let i = index"
+          [ngClass]="{'border-bottom border-color-silver': order.orderDetails.length > 1}">
+            <div class="row" [ngClass]="{'align-items-center':  prod?.returnPolicyType?.toString() === 'SALES_ARE_FINAL' || calculateTimePeriodDifference(prod, order)}">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+                <div class="d-block w-100">
+                  <table class="w-100">
+                    <tbody>
+                      <tr >
+                        <td class="px-2 py-2" style="width:10% !important;">
+                          <mat-checkbox *ngIf="!(prod?.returnPolicyType?.toString() === 'SALES_ARE_FINAL' || calculateTimePeriodDifference(prod, order))"
+                           [(ngModel)]="prod.isSelected" (change)="toggleCheckbox(prod, $event)" class="checkbox-style1">
+                          </mat-checkbox>
+                          <i *ngIf="prod?.returnPolicyType?.toString() === 'SALES_ARE_FINAL' || calculateTimePeriodDifference(prod, order)" class="bi bi-exclamation-triangle-fill lh-tiny text-18 text-danger no-min-height no-min-width"></i>
+                        </td>
+                        <td class="px-2 py-2" style="width:32% !important;">
+                          <img class="w-100-px h-100-px object-fit-cover rounded-2 border border-color-silver"
+                          [src]="prod?.product?.mainImageUrl" onerror= "this.src='./assets/img/default-product.png'">
+                        </td>
+                        <td class="px-2 py-2"  style="width:60% !important;">
+                          <h5 class="text-15 font-weight-600 mt-0 mb-1"> {{prod?.product?.productName | titlecase}} </h5>
+                          <p class="text-14 font-weight-400 mt-0 mb-1" *ngFor="let attr of prod?.itemVariantList">
+                             {{attr.attributeName}}: {{attr.attributeValue}}
+                            </p>
+                          <p class="text-14 font-weight-400 m-0"> {{currency}} {{prod?.price}}</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+                  <!-- Return Options Available Starts Here -->
+                    <div *ngIf="!(prod?.returnPolicyType?.toString() === 'SALES_ARE_FINAL' || calculateTimePeriodDifference(prod, order))" class="d-block w-100 px-2">
+                      <div class="d-block w-100 mb-4">
+                        <mat-form-field appearance="fill" class="w-200-px field-style-drop-small">
+                          <mat-label class="text-black text-14 font-weight-500">
+                            {{'QUANTITY_FOR_RETURN' | translate}}
+                          </mat-label>
+                          <mat-select [disabled]="!prod.isSelected" class="h-30-px" [(value)]="prod.returnQuantity" (valueChange)="onActionChange(prod)" [disableOptionCentering]="true">
+                            <mat-option *ngFor="let qty of getQuantityOptions(prod.quantity)"
+                              [value]="qty"
+                              class="font-weight-600 text-14 text-capitalize">
+                              {{ qty }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="d-block w-100 mb-4">
+                        <h4 class="text-black text-15 font-weight-600 mt-0 mb-2"> {{'WHY_ARE_YOU_RETURNING_THIS' | translate}}    </h4>
+                        <p  class="text-black text-14 font-weight-400 mt-0 mb-3"> {{'SELECTING_THE_MOST_ACCURATE_REASON_FOR_YOUR_RETURN_HELP_US_GATHER' | translate}}   </p>
+                        <mat-form-field appearance="fill" class="w-100 field-style-drop-small">
+                          <mat-label class="text-black text-14 font-weight-500">    {{'REASON_FOR_RETURN' | translate}}     </mat-label>
+                          <mat-select class="h-30-px" [disabled]="!prod.isSelected" [(value)]="prod.returnReasonType" [disableOptionCentering]="true" panelClass="field-exact-dropdown-width">
+                            <mat-option value="ITEM_HAS_DAMAGES_OR_SCRATCHES" class="font-weight-600 text-14 text-capitalize"> {{'ITEM_HAS_DAMAGED_BROKEN_DENT' | translate}}     </mat-option>
+                            <mat-option value="ITEM_NOT_WORKING" class="font-weight-600 text-14 text-capitalize"> {{'ITEM_IS_NOT_WORKING' | translate}}  </mat-option>
+                            <mat-option value="COMPONENTS_OR_ACCESSORY_MISSING_FROM_BOX" class="font-weight-600 text-14 text-capitalize"> {{'COMPONENTS_OR_ACCESSORY_IS_MISSING_FROM_BOX' | translate}}   </mat-option>
+                            <mat-option value="ITEM_DOES_NOT_MATCH_DESCRIPTION" class="font-weight-600 text-14 text-capitalize"> {{'ITEM_DOES_NOT_MATCH_DESCRIPTION' | translate}}    </mat-option>
+                            <mat-option value="PRODUCT_SIZE_IS_WRONG" class="font-weight-600 text-14 text-capitalize"> {{'PRODUCT_SIZE_IS_WRONG' | translate}}   </mat-option>
+                            <mat-option value="RECEIVED_WRONG_ITEM" class="font-weight-600 text-14 text-capitalize"> {{'I_RECIEVED_THE_WRONG_ITEM' | translate}}  </mat-option>
+                            <mat-option value="DONT_WANT_ITEM_ANYMORE" class="font-weight-600 text-14 text-capitalize"> {{'DONT_WANT_THE_ITEM_ANYMORE' | translate}}  </mat-option>
+                            <mat-option value="THE_PRODUCT_IS_FAKE" class="font-weight-600 text-14 text-capitalize"> {{'THE_PRODUCT_IS_FAKE' | translate}}  </mat-option>
+                            <mat-option value="OTHER" class="font-weight-600 text-14 text-capitalize"> {{'OTHER' | translate}}   </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="d-block w-100 mb-4">
+                        <h4 class="text-black text-15 font-weight-600 mt-0 mb-2"> {{'PRODUCT_PACKAGING' | translate}}    </h4>
+                        <p  class="text-black text-14 font-weight-400 mt-0 mb-3"> {{'HAS_THE_PRODUCT_BEEN_REMOVED_FROMITS_ORIGINAL_PACKAGING' | translate}}     </p>
+                        <mat-form-field appearance="fill" class="w-100 field-style-drop-small">
+                          <mat-label class="text-black text-14 font-weight-500">    {{'PACKAGING_CONDITION' | translate}}     </mat-label>
+                          <mat-select class="h-30-px" [disabled]="!prod.isSelected" [(value)]="prod.returnPackagingType" [disableOptionCentering]="true">
+                            <mat-option value="PACKAGE_OPEN_PRODUCT_UNUSED" class="font-weight-600 text-14 text-capitalize"> {{'PACKAGE_OPENED_PRODUCT_UNUSED' | translate}}     </mat-option>
+                            <mat-option value="UNSURE_ABOUT_THE_PACKAGING_CONDITION" class="font-weight-600 text-14 text-capitalize"> {{'UNSURE_ABOUT_THE_PACKAGING_CONDITION' | translate}}  </mat-option>
+                            <mat-option value="PACKAGE_UNOPENED" class="font-weight-600 text-14 text-capitalize"> {{'PACKAGE_UNOPENED' | translate}}   </mat-option>
+                            <mat-option value="PREFER_NOT_TO_ANSWER" class="font-weight-600 text-14 text-capitalize"> {{'PREFER_NOT_TO_ANSWER' | translate}}    </mat-option>
+                            <mat-option value="PACKAGE_OPEN_PRODUCT_USED" class="font-weight-600 text-14 text-capitalize"> {{'PACKAGE_OPENED_AND_PRODUCT_USED' | translate}}   </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+
+                      <div class="d-block w-100 mb-4">
+                        <h4 class="text-black text-15 font-weight-600 mt-0 mb-2"> {{'UPLOAD_IMAGES_ONLY' | translate}}     </h4>
+                        <p  class="text-black text-14 font-weight-400 mt-0 mb-3"> {{'UPLOAD_IMAGES_AS_A_PROOF_OF_YOUR_RETURN_REASONS' | translate}}    </p>
+                        <div class="image-uploader">
+
+                          <div *ngIf="prod.returnImages.length === 0" class="d-flex w-100 align-items-center justify-content-center position-relative">
+                            <button
+                              [disabled]="!prod.isSelected"
+                              type="button"
+                              class="d-flex bg-white border border-color-silver font-weight-600 rounded-3 py-4 w-100 align-items-center justify-content-center flex-column">
+                              <i class="bi bi-cloud-upload lh-tiny text-black text-18 mb-2"></i>
+                              {{ 'UPLOAD_IMAGES_ONLY' | translate }}
+                            </button>
+                            <input
+                              [disabled]="!prod.isSelected"
+                              type="file"
+                              id="fileInput"
+                              (change)="onFileSelected($event, prod)"
+                              multiple
+                              accept="image/*"
+                              class="position-absolute top-0 start-0 w-100 h-100 opacity-0 cursor-pointer"
+                            />
+                          </div>
+
+                          <!-- Preview Section -->
+                          <div class="d-block w-100" *ngIf="prod.returnImages.length > 0">
+                            <!-- Existing Images -->
+                            <div
+                              *ngFor="let image of prod.returnImages; let i = index"
+                              class="d-inline-block position-relative me-2 mb-2">
+                              <img
+                                class="w-100-px h-100-px object-fit-cover rounded-2 border border-color-silver"
+                                [src]="awsUrl + image"
+                                [alt]="'Image ' + (i + 1)" />
+                              <button
+                                type="button"
+                                class="bg-white d-flex align-items-center justify-content-center rounded-circle p-2 position-absolute top-0 end-0"
+                                (click)="removeImage(prod, i)">
+                                <i class="bi bi-trash-fill text-15 text-black"></i>
+                              </button>
+                            </div>
+
+                            <!-- Upload More Images -->
+                            <div class="d-inline-block position-relative me-2 mb-2">
+                              <button
+                                [disabled]="!prod.isSelected"
+                                type="button"
+                                class="border border-color-silver rounded-2 px-3 h-100 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cloud-upload lh-tiny text-black text-15 mb-2"></i>
+                                <span class="d-block w-100 text-14 text-black font-weight-500">
+                                  {{ 'UPLOAD_HERE' | translate }}
+                                </span>
+                              </button>
+                              <input
+                                [disabled]="!prod.isSelected"
+                                type="file"
+                                (change)="onFileSelected($event, prod)"
+                                multiple
+                                accept="image/*"
+                                class="position-absolute top-0 start-0 w-100 h-100 opacity-0 cursor-pointer"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="d-block w-100 mb-4">
+                        <h4 class="text-black text-15 font-weight-600 mt-0 mb-2"> {{'TELL_US_MORE' | translate}}      </h4>
+                        <p  class="text-black text-14 font-weight-400 mt-0 mb-3"> {{'ABOUT_WHY_YOU_ARE_RETURNING_THIS_ITEM' | translate}}     </p>
+                        <mat-form-field appearance="fill" class="w-100 field-style2 mb-2">
+                          <textarea matInput [(ngModel)]="prod.returnReason" class="w-100 text-14 text-black h-100-px"></textarea>
+                        </mat-form-field>
+                        <p class="text-12 text-black font-weight-400">   {{'NOTE_WE_WERENT_ABLE_TO_OFFER_POLICY_EXCEPTIONS_IN_RESPONSE_TO_COMMENTS' | translate}}   </p>
+                      </div>
+
+
+
+                    </div>
+                  <!-- Return Options Available Ends Here -->
+
+                  <!-- Return Options Not Available Starts Here -->
+                  <div *ngIf="prod?.returnPolicyType?.toString() === 'SALES_ARE_FINAL' || calculateTimePeriodDifference(prod, order)" class="d-block w-0">
+                  <div class="d-flex w-100 align-items-center justify-content-center w-100 bg-danger-subtle px-2 py-2 rounded-2">
+                      <i class="bi bi-exclamation-triangle-fill lh-tiny text-14 text-black ms-0 me-2 p-0"></i>
+                      <span class="text-14 font-weight-400"> {{'THE_RETURN_POLICY_HAS_EXPIRED_THEREFORE_THIS_ITEM_CANT_BE_RETURN'|translate}}  </span>
+                  </div>
+                  </div>
+                  <!-- Return Options Not Available Ends Here -->
+
+                </div>
+            </div>
+          </div>
+          <!-- Single Order Block Ends Here -->
+        </div>
+      </div>
+      <!-- Items Return Ends Starts Here -->
+
+
+      <!-- Preferred Resolution Starts Here -->
+      <div class="d-block w-100 border mb-2">
+
+        <div class="d-flex w-100 px-3 align-items-center justify-content-between py-3  bg-grey2">
+          <div class="d-inline-block">
+          <h4 class="text-black font-weight-600 text-17 m-0">  {{'PREFERRED_RESOLUTION'|translate}}   </h4>
+          </div>
+        </div>
+
+        <div class="d-block w-100 py-2 px-3">
+
+          <div class="d-block w-100 pt-3 pb-1">
+          <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+                <div class="row" *ngFor="let resolution of returnResolutionTypes">
+                  <div class="col-lg-7 col-md-8 col-sm-12 col-12 mb-2" >
+                    <mat-radio-group [(ngModel)]="RefundOptions" >
+                    <!-- <mat-radio-button *ngIf="resolution == 'GIFT_CARD'" value="GIFT_CARD" class="d-flex align-items-center justify-content-start border border-color-silver px-2 py-2 rounded-2 w-100">
+                      <div class="d-block w-100 ps-2">
+                        <img class="w-auto h-40-px mb-2" src="../../../assets/img/by-gift-icon.png">
+                        <span class="text-black font-weight-600 text-15 d-block w-100">  {{'BY_GIFT_CARD' | translate}}  </span>
+                      </div>
+                    </mat-radio-button> -->
+                    <mat-radio-button *ngIf="resolution == 'CREDIT_CARD'" value="CREDIT_CARD" class="d-flex align-items-center justify-content-start border border-color-silver px-2 py-2 rounded-2 w-100 mb-2" >
+                      <div class="d-block w-100 ps-2">
+                      <img *ngIf="order?.brand === 'VISA'" class="h-40-px w-auto mb-2" src="../../../assets/img/card-visa-icon.png">
+                      <img *ngIf="order?.brand === 'AMERICAN_EXPRESS'" class="h-40-px w-auto mb-2" src="../../../assets/img/card-american-icon.png">
+                      <img *ngIf="order?.brand === 'MASTERCARD'" class="h-40-px w-auto mb-2" src="../../../assets/img/card-mastercard-icon.jpg">
+                      <img *ngIf="order?.brand === 'DISCOVER'" class="h-40-px w-auto mb-2" src="../../../assets/img/card-discover-icon.png">
+                      <!-- <img class="h-40-px w-auto mb-2" src="../../../assets/img/hsa-fsa-card.png"> -->
+                      <span class="text-black font-weight-600 text-15 d-block w-100">  {{order?.maskedCardNumber}} </span>
+                      <span class="text-black font-weight-600 text-15 d-block w-100">  {{'BY_CREDIT_CARD' | translate}} </span>
+                      </div>
+                    </mat-radio-button>
+                    <mat-radio-button *ngIf="resolution == 'CASH'" value="CASH" class="d-flex align-items-center justify-content-start border border-color-silver px-2 py-2 rounded-2 w-100 mb-2">
+                      <div class="d-block w-100 ps-2">
+                      <img class="h-40-px w-auto mb-3" src="../../../assets/img/by-cash-icon.png">
+                      <span class="text-black font-weight-600 text-15 d-block w-100">   {{'BY_CASH' | translate}} </span>
+                      </div>
+                    </mat-radio-button>
+                    <mat-radio-button *ngIf="resolution == 'PAYPAL'" value="PAYPAL" class="d-flex align-items-center justify-content-start border border-color-silver px-2 py-2 rounded-2 w-100 mb-2" >
+                      <div class="d-block w-100 ps-2">
+                      <img class="h-35-px w-auto mb-3" src="../../../assets/img/paypal-logo.png">
+                      <span class="text-black font-weight-600 text-15 d-block w-100">   {{'BY_PAYPAL' | translate}} </span>
+                      </div>
+                    </mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+          </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- Preferred Resolution Ends Here -->
+
+
+
+      <!-- Options for Delivery Starts Here -->
+      <div class="d-block w-100 border mb-2">
+
+        <div class="d-flex w-100 px-3 align-items-center justify-content-between py-3  bg-grey2">
+          <div class="d-inline-block">
+          <h4 class="text-black font-weight-600 text-17 m-0">  {{'OPTIONS_FOR_DELIVERY'|translate}}    </h4>
+          </div>
+        </div>
+
+
+        <div class="d-block w-100 py-2">
+          <div class="row">
+              <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+                <div class="d-block w-100">
+                    <mat-radio-group [(ngModel)]="DeliveryOptions">
+                      <mat-radio-button class="d-block w-100 mb-2 radio-style2" value="STORE_DROP_OFF">
+                       <span class="text-15 font-weight-500 d-inline-block">    {{'STORE_DROP_OFF'|translate}} </span>
+                      </mat-radio-button>
+                      <div class="d-block w-100 py-3" *ngIf="DeliveryOptions === 'STORE_DROP_OFF'">
+                        <div class="row" >
+
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-12" *ngFor="let address of businessAddresses">
+                            <div class="d-block w-100 bg-white px-3 py-3 border border-color-silver rounded-2">
+                            <h4 class="text-black font-weight-600 mt-0 mb-3">  {{'STORELOCATION'|translate}} </h4>
+                            {{address?.addressLineOne}} , {{address?.state}} {{address?.zipCode}} ,
+
+                            <p class="text-black text-14 font-weight-400 mb-1"> {{address?.addressLineOne}} <br/>{{address?.state}} <br/> {{address?.country}}  </p>
+                            <p *ngIf="address.phoneNumberOne" class="text-black text-14 font-weight-400 mb-1"> {{address?.phoneNumberOne}}  </p>
+                            <p class="text-black text-14 font-weight-400 mb-1" [innerHTML]="getOpenCloseMessage()"></p>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="d-flex align-items-center justify-content-start w-100 mt-2 px-2">
+                          <span class="d-inline-block text-black text-14 font-weight-500">
+                             Note: Return via
+                          </span>
+                            <button (click)="viewStoreHours()" class="px-3 font-weight-600 text-14 text-0083EA">
+                              Store Hours
+                            </button>
+                        </div>
+                      </div>
+
+                      <mat-radio-button class="d-block w-100 mb-2 radio-style2"  value="REQUEST_SHIPPING_LABEL">
+                        <span class="text-15 font-weight-500 d-inline-block">  {{'REQUEST_SHIPPING_LABEL_FROM_SELLER'|translate}}    </span>
+                      </mat-radio-button>
+
+                      <mat-radio-button class="d-block w-100 mb-2 radio-style2"  value="OWN_SHIPPING">
+                        <span class="text-15 font-weight-500 d-inline-block"> {{'I_WILL_MANAGE_SHIPPING_ON_MY_OWN'|translate}}    </span>
+                      </mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+              </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      <!-- Options for Delivery Ends Here -->
+
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12 sticky-top top-10-px z-index-99">
+      <div class="d-block w-100 bg-white border rounded-2">
+        <div class="d-block w-100 px-3 py-3 border-bottom bg-grey2">
+          <h4 class="text-black font-weight-600 text-16 m-0">   {{'REFUND_SUMMARY'|translate}} </h4>
+        </div>
+        <div class="d-block w-100 position-relative">
+        <div class="d-block w-100 px-3 py-4">
+          <div class="d-block w-100 mb-4">
+            <table class="w-100">
+              <tbody>
+                <tr>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400"> {{'REFUND_SUBTOTAL_FOR'|translate}}  {{imagesObject.length}}   {{'ITEMS'|translate}}  </td>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400">
+                    <span class="d-inline-block min-width-clear">  {{currency}} {{refundSubTotal.toFixed(2)}}  </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400"> {{'TOTAL_TAX_REFUND'|translate}}  (+)</td>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400">
+                    <span class="d-inline-block min-width-clear">   {{currency}} {{taxRefund.toFixed(2)}}  </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400"> {{'SHIPPING_AND_HANDLING_REFUND'|translate}}  (+)</td>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400">
+                    <span class="d-inline-block min-width-clear"> {{currency}} {{shippingAndHandling.toFixed(2)}}  </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400"> {{'RESTOCKING_FEE'|translate}}  (-)</td>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400">
+                    <span class="d-inline-block min-width-clear">   {{currency}} {{restockingFee.toFixed(2)}} </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400">   {{'TOTAL_ESTIMATED_REFUND'|translate}} </td>
+                  <td class="px-2 py-1 border text-black text-14 font-weight-400">
+                    <span class="d-inline-block min-width-clear">   {{currency}} {{totalEstimatedRefund.toFixed(2)}}  </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="d-block w-100 mb-3">
+            <h4 class="text-black font-weight-600 text-15 m-0">  {{'ITEMS_YOU_ARE_RETURNING'|translate}}  </h4>
+          </div>
+          <div class="d-block w-100">
+            <div class="d-flex w-100 align-items-start justify-content-start">
+              <div class="d-inline-block me-2 position-relative" *ngFor="let image of imagesObject">
+                  <img class="w-80-px h-80-px object-fit-cover rounded-2 border border-color-silver" onerror= "this.src='./assets/img/default-product.png'"
+                   [src]="image.image">
+                  <span class="text-center py-1 px-2 mb-1 me-1 bg-white rounded-circle border border-color-silver text-black position-absolute bottom-0 end-0"> {{image.quantity}} </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-block w-100 px-3 py-3 border-top">
+          <button [disabled]="imagesObject.length === 0 || disableButton" (click)="initiateReturn(order.id, RefundOptions, DeliveryOptions)" class="bg-0BA5EC w-100 rounded-pill text-white py-2 text-15 px-2 font-weight-500 lh-lg">
+             {{'CONFIRM_YOUR_RETURN'|translate}}
+          </button>
+          <p class="mt-2 mb-0 text-13 text-black font-weight-400 text-center">   {{'RETURN_ELIGIBLE_BY'|translate}} {{updatedDate | FormattedDatePipe}} </p>
+        </div>
+        <div *ngIf="isReturning" class="position-absolute top-0 start-0 z-index-9 w-100 h-100 d-flex align-items-center justify-content-center bg-white-80">
+          <div class="d-block w-100 text-center">
+            <img class="mb-3 h-50-px w-auto spinner-border border-0" src="./assets/img/spinner-icon1.png" alt="{{'INITIALIZING_RETURN'|translate}}">
+           <p class="text-black text-15 text-center font-weight-500">    {{'INITIALIZING_RETURN' | translate}} </p>
+          </div>
+        </div>
+        </div>
+
+      </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div *ngIf="noOrdersAvailable" class="d-block w-100 py-5 px-4">
+    <div class="d-block w-100 text-center">
+      <img class="h-150-px object-fit-contain mb-3" src="./assets/img/no-orders-available.jpg" alt="{{'NO_ORDERS_AVAILABLE'|translate}}">
+      <p class="text-15 text-black text-center m-0 p-0 w-100">  {{'NO_ORDERS_AVAILABLE'|translate}} </p>
+    </div>
+</div>
+<!-- No Orders Available Ends Here -->
+
+<!-- Loading Animation Starts Here -->
+<div class="d-block w-100 text-center" *ngIf="loadingOrders">
+  <img class="h-400-px h-250-px w-100 object-fit-contain mb-4" src="./assets/img/products-loading.jpg" alt="{{'ORDERS_ARE_LOADING'|translate}}">
+  <div class="d-flex align-items-center justify-content-center w-100">
+    <div class="d-inline-block">
+      <img class="h-20-px w-auto spinner-border border-0" src="./assets/img/spinner-icon.png" >
+    </div>
+    <div class="d-inline-block ps-3">
+      <h4 class="text-black text-16 font-weight-500 m-0"> {{'ORDERS_ARE_LOADING'|translate}} </h4>
+    </div>
+  </div>
+</div>
+</section>
