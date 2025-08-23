@@ -1,0 +1,75 @@
+<div *ngIf="commentRequired">
+  <div class="d-block w-100 px-3 sticky-top border-bottom bg-black">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <div class="d-inline-block w-100 py-3" (click)="$event.stopPropagation()">
+        <div class="d-flex w-100 align-items-center justify-content-start">
+          <div class="d-inline-block ps-3 w-100">
+            <h4 class="text-white text-16 font-weight-600 mt-0 mb-1">{{ 'FILL_THE_FORM_TO_START_CHAT' | translate }}
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block min-width-clear py-3">
+        <button class="d-flex align-items-center justify-content-center p-1 border rounded-2">
+          <mat-icon class="no-min-height no-min-width text-20 text-white">keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="d-block w-100 px-3 py-2">
+  <div (click)="$event.stopPropagation()" *ngIf="user">
+    <div class="d-block w-100 mb-2">
+      <div class="w-100 field-style2 mb-1">
+        {{'HI' | translate}} {{user.firstName}} {{user.lastName}} {{'ADD_YOUR_COMMENT' | translate}}
+      </div>
+    </div>
+  </div>
+  <div class="d-block w-100 mt-4">
+    <textarea #commentInput class="w-100 field-style2 mb-1" [(ngModel)]="commentText"
+      placeholder="{{'ADD_COMMENT_HERE' | translate}}" (keydown)="$event.stopPropagation();" (click)="$event.stopPropagation();"
+      [required]="commentRequired"></textarea>
+    <button (click)="$event.stopPropagation(); sendComment(commentInput.value);"
+      class="d-inline-block px-3 py-2 border-1-6941C6 rounded-2 text-color-6941C6 text-13 font-weight-500 bg-hover-6941C6 text-hover-white">
+        {{'START_CHAT' | translate}}
+    </button>
+  </div>
+  </div>
+</div>
+
+<div *ngIf="!linkingToEmployeeInProgress && !commentRequired">
+  <div class="d-block w-100 px-3 sticky-top border-bottom bg-black">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <div class="d-inline-block w-100 py-3" (click)="$event.stopPropagation()">
+        <div class="d-flex w-100 align-items-center justify-content-start">
+          <div class="d-inline-block ps-3 w-100">
+            <h4 class="text-white text-16 font-weight-600 mt-0 mb-1">{{ 'SELECT_QUESTION' | translate }}
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block min-width-clear py-3">
+        <button class="d-flex align-items-center justify-content-center p-1 border rounded-2">
+          <mat-icon class="no-min-height no-min-width text-20 text-white">keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="d-block w-100 px-3 py-2">
+  <div (click)="$event.stopPropagation()" *ngIf="user">
+    <div class="d-block w-100 mb-2">
+      <div class="w-100 field-style2 mb-1">
+        {{'HI' | translate}} {{user.firstName}} {{user.lastName}} {{'HOW_CAN_I_HELP_YOU' | translate}}
+      </div>
+    </div>
+  </div>
+  <div class="d-block w-100 mt-4"
+    *ngIf="!commentRequired || ((user && !user.isSubscribed && commentSent) || (user && user.isSubscribed && !commentSent)) && questions.length > 0">
+    <div class="d-block text-end mb-2" *ngFor="let question of questions">
+      <button (click)="$event.stopPropagation(); selectQuestion(question);"
+        class="d-inline-block px-3 py-2 border-1-6941C6 rounded-2 text-color-6941C6 text-13 font-weight-500 bg-hover-6941C6 text-hover-white">
+        {{question.question}}
+      </button>
+    </div>
+  </div>
+  </div>
+</div>
