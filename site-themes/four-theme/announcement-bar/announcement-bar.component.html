@@ -1,0 +1,38 @@
+<div class="announcement-bar-element-top border-0 d-block w-100"
+  role="alert" *ngIf="showalerttop && announcementBar && announcementBar?.annoucementBarStatus">
+  <div class="new-container1">
+    <div class="d-block w-100">
+      <div class="d-flex align-items-center justify-content-between flex-lg-row flex-md-row flex-sm-row flex-column-reverse">
+        <div class="d-inline-block w-100 px-1">
+          <!-- Plain Text Starts Here -->
+    <div *ngIf="!announcementBar?.scrollDown" class="d-flex w-100 align-items-center justify-content-start">
+      <p class="mb-0 text-16 font-weight-500 mob-text-12 pe-3 w-100 text-center text-white announcement-bar-textarea" [innerHTML]="announcementBar?.description|stripHtmlTags">
+      </p> 
+    </div>
+    <!-- Plain Text Ends Here -->
+    <!-- Scrolling Text Starts Here -->
+    <div *ngIf="announcementBar?.scrollDown" class="d-flex w-100 align-items-center justify-content-start">
+      <marquee behavior="scroll" direction="left">
+        <p class="mb-0 text-16 font-weight-500 mob-text-12 pe-3 w-100 text-center text-white announcement-bar-textarea"  [innerHTML]="announcementBar?.description|stripHtmlTags">
+        </p>
+      </marquee> 
+    </div>
+    <!-- Scrolling Text Ends Here -->
+        </div>
+        <div *ngIf="userInfo != null" class="min-width-clear d-inline-block px-1 mb-lg-0 mb-md-0 mb-sm-0 mb-1">
+          <div class="d-flex align-items-center justify-content-start">
+            <i class="bi bi-person text-16 me-2 lh-tiny text-white"></i>
+            <span class="text-14 font-weight-500 d-inline-block text-start text-white">  {{'HI'|translate}} {{userInfo?.firstName + ' ' + userInfo?.lastName}} </span>
+          </div>
+        </div>
+        <div *ngIf="sessionUser && !userInfo" class="min-width-clear d-inline-block px-1 mb-lg-0 mb-md-0 mb-sm-0 mb-1">
+          <div class="d-flex align-items-center justify-content-start">
+            <i class="bi bi-person text-16 me-2 lh-tiny text-white"></i>
+            <span class="text-14 font-weight-500 d-inline-block text-start text-white">  {{'WELCOME_BACK'|translate}} {{sessionUser}} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

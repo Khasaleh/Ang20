@@ -1,0 +1,86 @@
+<section class="w-100 d-block popup-parent-rtl">
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-3 py-3">
+    <div class="d-inline-block">
+    <h3 class="text-black text-18 m-0 p-0 font-weight-600">   {{'WHO-WILL-PICKUP-THE-ORDER'|translate}}   </h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-block w-100 py-4 px-3">
+    <form class="d-block w-100" [formGroup]="pickupDetails">
+      <div class="row mb-3">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+              <mat-form-field appearance="fill" class="w-100 field-style2">
+                <mat-label class="text-muted text-13"> {{ 'SIGNUP_INPUTPLACEHOLDFSTNAME'| translate }} </mat-label>
+                  <input  matInput  type="text" formControlName="firstName"
+                    class="form-control text-black text-15 h-30-px"  />
+              </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                  <mat-form-field appearance="fill" class="w-100 field-style2">
+                    <mat-label class="text-muted text-13"> {{'SIGNUP_INPUTPLACEHOLDLSTNAME'|translate}} </mat-label>
+                      <input  matInput  type="text" formControlName="lastName"
+                        class="form-control text-black text-15 h-30-px"  />
+                  </mat-form-field>
+          </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                  <mat-form-field appearance="fill" class="w-100 field-style2">
+                    <mat-label class="text-muted text-13"> {{'EMAIL'|translate}} </mat-label>
+                      <input  matInput  type="text" formControlName="email"
+                        class="form-control text-black text-15 h-30-px"  />
+                  </mat-form-field>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+            <div class="d-flex w-100 align-items-center justify-content-start border border-color-silver rounded-2">
+              <span [matMenuTriggerFor]="mobilecodemenu" class="input-group-text bg-white border-0">
+              <span>+{{phoneCode}}</span>
+              <span>
+                <img src="../../../../assets/img/chevron-down.svg" class="w-15-px h-15-px"
+                  alt="{{'ICONIMAGES'|translate}}">
+              </span>
+              </span>
+              <div class="custom-wrapper">
+              <mat-menu #mobilecodemenu="matMenu" (closed)="onMenuClosedCountry()" class="bottom-menu" yPosition="below"
+                [overlapTrigger]="false">
+                <div class="menu-content-countrycode">
+                  <form class="w-100">
+                    <div class="w-100 my-3 px-2">
+                      <input (click)="onMenuItemClick($event)" type="text" [(ngModel)]="searchText"
+                        class="w-100 border rounded-3 px-2 h-44-px" placeholder="{{'SEARCHCOUNTRY'|translate}}" />
+                    </div>
+                    <ul class="w-100 p-0 m-0 list-unstyled">
+                      <li class="p-2 border-bottom-0" *ngFor="let country of countries | countrysearch:searchText"
+                        (click)="selectCode(country.code)">
+                        <span>+ {{country.code}} {{country.countryKey | translate}}</span>
+                      </li>
+                    </ul>
+                  </form>
+                </div>
+              </mat-menu>
+              </div>
+              <input type="text" class="errow_hide px-2 w-75 h-48-px bg-white border-0 rounded-0"
+              placeholder="{{'PHONE_NUMBER'|translate}}"
+              formControlName="phoneNumber" />
+              </div>
+              </div>
+          </div>
+
+
+
+      <div class="row">
+          <div class="col-md-12 d-flex justify-content-end">
+              <button type="button" (click)="savePerson()"
+                  class="border-0 px-4 rounded-2 bg-theme-dark-color text-color-w text-first-light-color py-2 text-16 font-weight-400">
+                  {{'ADD_PICKUP_PERSON'|translate}}
+              </button>
+          </div>
+      </div>
+    </form>
+  </div>
+
+</section>

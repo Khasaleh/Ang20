@@ -1,0 +1,35 @@
+<section class="w-100 d-block popup-parent-rtl">
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-3 py-3">
+    <div class="d-inline-block">
+    <h3 class="text-black text-18 m-0 p-0 font-weight-600">   {{'PROOF_OF_DELIVERY'|translate}}   </h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-block w-100 py-4 px-3">
+
+  <div class="d-block w-100 mb-4">
+    <div class="d-block w-100 mb-3">
+      <h4 class="text-black font-weight-600 text-14 m-0"> Delivered </h4>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-5 py-2">
+      <div class="d-block w-100">
+        <h5 class="text-black font-weight-500 text-14"> {{order.deliverDate | FormattedDatePipe}} </h5>
+      </div>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-8 col-7 py-2 border-start border-color-silver border-end-0 border-top-0 border-bottom-0">
+        <div class="d-block w-100 px-lg-2 px-md-2 px-sm-0 px-0">
+          <h5 class="text-black font-weight-500 text-14 mt-0 mb-2"> Package has been delivered at doorstep. </h5>
+          <h5 class="text-black font-weight-500 text-14 mt-0 mb-2">  {{'PROOF_OF_DELIVERY'|translate}} </h5>
+          <img src="{{awsUrl}}{{order.deliveredOrderImageUrl}}" class="w-auto h-150-px">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</section>

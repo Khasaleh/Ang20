@@ -1,0 +1,1384 @@
+<!-- Master Theme Code Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'FourthTheme'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-black1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-color-dark"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+                  
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-white mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-white mb-5 mt-0 mob-text-14 text-capitalize">
+                    {{ slide.imageDescription }}
+                   </p>
+                   <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Master Theme Code Ends Here -->
+
+<!-- Retail Theme 2 Starts Here -->
+<section class="d-block banner-theme2-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme2'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="text-color-dark d-inline-block mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-color-b mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-color-dark mb-5 mt-0 mob-text-14 ">
+                     {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}' 
+                  type="button"
+                  class="border-0 bg-theme-dark-color text-color-w px-4 lh-lg text-15 font-weight-400 mt-3"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 2 Ends Here -->
+
+<!-- Retail Theme 3 Starts Here -->
+<section class="d-block banner-theme2-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme3'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div class="d-flex flex-wrap align-items-center justify-content-start w-100" [ngClass]="{'text-center justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span 
+                  class="text-color-b d-flex align-items-center justify-content-start bg-theme-light-color mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">  
+                 {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-color-dark mb-4 mt-0 w-100" 
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                     {{ slide.imageTagline}}
+                    </h2>
+                  <!-- Tagline Ends Here -->
+
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600 text-color-b mb-5 mt-0 mob-text-14 w-100">
+                    {{ slide.imageDescription }}
+                  </p>
+                   <!-- Description Ends Here -->
+                 
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}' 
+                  type="button" 
+                  class="d-flex align-items-center justify-content-start border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }"> 
+                    {{ slide.actionButtonText }}
+                  </button>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 3 Ends Here -->
+
+<!-- Retail Theme 4 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme4'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-color-dark"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+                  
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-color-b mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-color-dark mb-5 mt-0 mob-text-14 text-capitalize">
+                    {{ slide.imageDescription }}
+                   </p>
+                   <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 4 Ends Here -->
+
+<!-- Retail Theme 5 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme5'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-color-dark"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-color-b mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-color-dark mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 5 Ends Here -->
+
+<!-- Retail Theme 6 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme6'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-black1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 text-white"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-white mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-white mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-white text-black shadow-sm px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 6 Ends Here -->
+
+<!-- Retail Theme 7 Starts Here -->
+<section class="d-block banner-theme7-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme7'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-black1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-white"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-white mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-white mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-white text-black shadow-sm px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 7 Ends Here -->
+
+<!-- Retail Theme 8 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme8'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black  mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 8 Ends Here -->
+
+<!-- Retail Theme 9 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme9'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="d-block w-100 bg-grey2">
+          <div class="row align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12 order-lg-1 order-md-1 order-sm-2 order-2 p-0">
+            <div class="d-flex align-items-center justify-content-lg-end justify-content-md-end justify-content-sm-center justify-content-center w-100">
+              <div class="detail-block-cont-width py-5 my-3 px-4">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+  
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+    
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12 order-lg-2 order-md-2 order-sm-1 order-1 p-0">
+            <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="h-600-px mob-h-300-px w-100 object-fit-cover" [alt]="slide.imageTagline">
+          </div> 
+          </div>
+        </div> 
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 9 Ends Here -->
+
+<!-- Retail Theme 10 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme10'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 10 Ends Here -->
+
+<!-- Retail Theme 11 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme11'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 11 Ends Here -->
+
+<!-- Retail Theme 12 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme12'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 12 Ends Here -->
+
+<!-- Retail Theme 13 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme13'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 13 Ends Here -->
+
+<!-- Retail Theme 14 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme14'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 14 Ends Here -->
+
+<!-- Retail Theme 15 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme15'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 15 Ends Here -->
+
+<!-- Retail Theme 16 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme16'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 16 Ends Here -->
+
+<!-- Retail Theme 17 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme17'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 17 Ends Here -->
+
+<!-- Retail Theme 18 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme18'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 18 Ends Here -->
+
+<!-- Retail Theme 19 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme19'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 19 Ends Here -->
+
+<!-- Retail Theme 20 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme20'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 20 Ends Here -->
+
+<!-- Retail Theme 21 Starts Here -->
+<section class="d-block banner-theme4-sec w-100" *ngIf="data.length > 0 && activeTheme == 'RetailTheme21'">
+  <div class="arrows-style2 forced-ltr bullets-style3" [ngClass]="{'hide-banner-arrows': data.length === 1}">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let slide of data; let i = index">
+        <div class="row">
+          <div class="col-12 mb-md-0 mb-sm-3 mb-3 mb-lg-0">
+            <div class="card border-0 overflow-hidden h-100 theme2-overlay-white1 theme2-banner-image-height d-flex align-items-center justify-content-center">
+              <img [src]="slide.imageUrl.startsWith('http') ? slide.imageUrl : awsURL+slide.imageUrl" class="banner-img-style2" [alt]="slide.imageTagline">
+              <div class="new-container1">
+              <div class="d-flex w-100" [ngClass]="{'justify-content-start': slide.mainBannerDesign == 'TEXT_LEFT','justify-content-end': slide.mainBannerDesign == 'TEXT_RIGHT','justify-content-center': slide.mainBannerDesign == 'TEXT_CENTER'}">
+                <div [ngClass]="{'text-center': slide.mainBannerDesign == 'TEXT_CENTER','text-end': slide.mainBannerDesign == 'TEXT_RIGHT'}">
+
+                  <!-- Title Starts Here -->
+                  <span class="mb-4 mt-0 d-inline-block text-black"
+                  [ngClass]="{
+                    'font-weight-700': slide.titleBold, 
+                    'font-weight-400': !slide.titleBold,
+                    'font-italic': slide.titleItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                    {{ slide.imageTitle}}
+                  </span>
+                  <!-- Title Ends Here -->
+
+                  <!-- Tagline Starts Here -->
+                  <h2 class="text-black mb-4 mt-0"
+                  [ngClass]="{
+                    'font-weight-700': slide.taglineBold, 
+                    'font-weight-400': !slide.taglineBold,
+                    'font-italic': slide.taglineItalic
+                  }"
+                  [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '"> 
+                    {{ slide.imageTagline}}
+                  </h2>
+                  <!-- Tagline Ends Here -->
+                  <!-- Description Starts Here -->
+                  <p class="text-18 font-weight-600  text-black mb-5 mt-0 mob-text-14 text-capitalize">
+                   {{ slide.imageDescription }}
+                  </p>
+                  <!-- Description Ends Here -->
+                  <button 
+                  routerLink='/{{subdomain}}/category/{{slide.categoryId}}'
+                  type="button"  
+                  class="border-0 bg-theme-dark-color text-color-w px-4 py-2 lh-lg text-15 mt-3 font-weight-400"
+                  [attr.style]="'border-radius: ' + slide.actionButtonRedius + '!important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+                  [ngClass]="{
+                    'font-weight-700': slide.actionButtonBold, 
+                    'font-weight-400': !slide.actionButtonBold,
+                    'font-italic': slide.actionButtonItalic
+                  }">
+                    {{ slide.actionButtonText }}
+                  </button>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
+</section>
+<!-- Retail Theme 21 Ends Here -->
+
+
+<!-- Stay Tuned Banner Starts Here -->
+<section *ngIf="data.length === 0" class="d-block w-100 bg-theme-light-color py-5">
+<div class="new-container1">
+<div class="d-block text-center w-100 text-center py-lg-5 py-md-5 py-sm-0 py-0 my-5">
+  <img class="h-250-px mob-h-200-px w-auto rounded-2" src="./assets/img/stay-tuned-banner.jpg">
+</div>
+</div>
+</section>
+<!-- Stay Tuned Banner Ends Here -->

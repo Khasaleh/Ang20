@@ -1,0 +1,401 @@
+<div class="w-100 px-3">
+
+  <!-- Product Name Starts Here -->
+  <div class="d-block w-100 mb-2">
+    <h5 class="text-black text-15 font-weight-400 mb-3">  {{'CATEGORY_ONLY'|translate}}:  {{product?.categoryName | titlecase}}</h5>
+        <h2 class="text-25 font-weight-700 text-black mob-text-20">{{product?.productName | titlecase}}</h2>
+  </div>
+  <!-- Product Name Ends Here -->
+
+    <!-- Product Price Starts Here -->
+    <div class="d-flex align-items-center justify-content-start w-100 mb-3" *ngIf="data.showProductPrice">
+      <div class="d-flex align-items-center justify-content-start" *ngIf="salePrice && salePrice !== price && product.minPrice == null && product?.maxPrice == null">
+        <s class="text-28 font-weight-400 text-color-626262 mob-text-20 mb-0 d-inline-block"> {{currency}}{{price}}</s>
+        <h3 class="d-inline-block ps-3 text-35 font-weight-600 text-danger mob-text-20 m-0"> {{currency}}{{salePrice}}</h3>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="!salePrice">
+        <h3 class="d-inline-block text-35 font-weight-600 text-black mob-text-20 m-0"> {{currency}}{{price}}</h3>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="salePrice && salePrice == price">
+        <h3 class="d-inline-block text-35 font-weight-600 text-black mob-text-20 m-0"> {{currency}}{{price}}</h3>
+      </div>
+  
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product.minPrice >= 0 && product?.maxPrice">
+        <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-color-626262 m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div>
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+        <div class="d-inline-block">
+        <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+            <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+              {{'PRICES_VARY_PER_ITEM'|translate}}
+          </h5>
+        </div>
+      </div>
+  
+        <!-- Sold Out Tag Text Starts Here -->
+    <div *ngIf="product?.inStock == false" class="d-flex align-items-center justify-content-start ms-3">
+      <img class="h-40-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme17-1.png">
+    </div>
+    <!-- Sold Out Tag Text Ends Here -->
+    </div>
+    <!-- Product Price Ends Here -->
+
+  <!-- Product Rating Starts Here -->
+  <div class="d-block w-100  mb-3" *ngIf="data.showRating">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-start">
+        <div class="d-flex align-items-center justify-content-start cursor-pointer" (click)="scrollToSection('reviews-sec')">
+         <div class="me-2">
+          <ngb-rating class="rating-star" [max]="5" [rate]="product.averageRating" [readonly]="true"></ngb-rating>
+         </div>
+         <div class="me-2">
+            <span class="me-1">
+            <small class="text-16 font-weight-400 text-black">{{product.averageRating.toFixed(1)}} -</small>
+            <small class="text-16 font-weight-400 text-color-dark text-first-light-color">
+            {{product?.reviewCount}}   {{'REVIEWS_ONLY'|translate}}
+          </small>
+            </span>
+         </div>
+         </div>
+      </div>
+   </div>
+  </div>
+  <!--Product Rating Ends Here -->
+
+
+  <!-- Product SKU Starts Here -->
+  <div class="d-block w-100" *ngIf="data.showSKU">
+    <div class="row mb-3">
+      <div class="col-md-12">
+          <ul class="list-unstyled">
+            <li class="border-0 mb-1">
+                <span class="text-color-626262 text-14 font-weight-400"> {{'SKU'|translate}}  :</span>
+                  <span *ngIf="!selectedMainSku && !selectedSku" class="text-black text-15 font-weight-400 ms-1">{{product?.id}}</span>
+                  <span *ngIf="selectedMainSku && !selectedSku"class="text-black text-15 font-weight-400 ms-1">{{selectedMainSku?.skuId}}</span>
+                  <span *ngIf="selectedSku" class="text-black text-15 font-weight-400 ms-1">{{selectedSku?.skuId}}</span>
+            </li>
+            <li class="border-0 mb-1">
+                <span
+                  class="text-color-626262 text-14 font-weight-400"> {{'AVAILABILITY'|translate}} : </span>
+                  <span *ngIf="!selectedMainSku && !selectedSku" class="text-black text-15 font-weight-400 ms-1">{{product?.availableQuantity}} {{'INSTOCK'|translate}}</span>
+                  <span *ngIf="selectedMainSku && !selectedSku"class="text-black text-15 font-weight-400 ms-1">{{selectedMainSku?.availableQuantity}} {{'INSTOCK'|translate}}</span>
+                  <span *ngIf="selectedSku" class="text-black text-15 font-weight-400 ms-1">{{selectedSku?.availableQuantity}} {{'INSTOCK'|translate}}</span>
+            </li>
+            <li class="border-0 mb-1">
+                <span class="text-color-626262 text-15 font-weight-400"> {{'PRODUCTTYPE'|translate}} : </span>
+                <span class="text-black text-15 font-weight-400 ms-1">{{product?.categoryName | titlecase}}</span>
+            </li>
+            <li class="border-0 mb-1" *ngIf="!selectedMainSku && !selectedSku && product?.salePrice">
+              <span class="text-color-626262 text-15 font-weight-400"> {{'DISCOUNT_T'|translate}} : </span>
+              <span class="text-color-dark text-15 font-weight-400 ms-1">{{currency}}{{(product.price - product.salePrice) | number:'1.2-2'}}</span>
+            </li>
+            <li class="border-0 mb-1" *ngIf="selectedMainSku && !selectedSku && selectedMainSku?.salePrice">
+              <span class="text-color-626262 text-15 font-weight-400"> {{'DISCOUNT_T'|translate}} : </span>
+              <span class="text-color-dark text-15 font-weight-400 ms-1">{{currency}}{{(selectedMainSku.price - selectedMainSku.salePrice) | number:'1.2-2'}}</span>
+            </li>
+            <li class="border-0 mb-1" *ngIf="selectedSku && selectedSku?.salePrice">
+              <span class="text-color-626262 text-15 font-weight-400"> {{'DISCOUNT_T'|translate}} : </span>
+              <span class="text-color-dark text-15 font-weight-400 ms-1">{{currency}}{{(selectedSku.price - selectedSku.salePrice) | number:'1.2-2'}}</span>
+            </li>
+            <li *ngIf="product?.isbn || product?.upc || product?.ean || product?.mpn" class="border-0">
+   <table class="w-250-px mt-2">
+      <tbody>
+         <tr>
+            <td class="px-2 py-1 bg-grey2 border border-color-silver" colspan='2'>
+               <span class="text-black text-14 font-weight-500"> {{'PRODUCT_IDENTIFIERS'|translate}} </span>
+            </td>
+         </tr>
+         <tr *ngIf="product?.isbn">
+            <td class="px-2 py-1 border border-color-silver">
+               <span class="text-black text-13 font-weight-500 d-inline-block">
+                  ISBN
+               </span>
+            </td>
+            <td class="px-2 py-1 border border-color-silver">
+               <span class="text-black text-13 font-weight-500 d-inline-block">
+                  {{product?.isbn }}
+               </span>
+         </tr>
+         <tr *ngIf="product?.upc">
+            <td class="px-2 py-1 border border-color-silver">
+               <span class="text-black text-13 font-weight-500 d-inline-block">
+                  UPC
+               </span>
+            </td>
+            <td class="px-2 py-1 border border-color-silver">
+               <span class="text-black text-13 font-weight-500 d-inline-block">
+                  {{product?.upc }}
+               </span>
+         </tr>
+         <tr *ngIf="product?.ean">
+            <td class="px-2 py-1 border border-color-silver">
+               <span class="text-black text-13 font-weight-500 d-inline-block">
+                  EAN
+               </span>
+            </td>
+            <td class="px-2 py-1 border border-color-silver">
+               <span class="text-black text-13 font-weight-500 d-inline-block">
+                  {{product?.ean }}
+               </span>
+         </tr>
+         <tr *ngIf="product?.mpn">
+            <td class="px-2 py-1 border border-color-silver">
+               <span class="text-black text-13 font-weight-500 d-inline-block">
+                  MPN
+               </span>
+            </td>
+            <td class="px-2 py-1 border border-color-silver">
+               <span class="text-black text-13 font-weight-500 d-inline-block">
+                  {{product?.mpn }}
+               </span>
+         </tr>
+
+      </tbody>
+   </table>
+</li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <!-- Product SKU Ends Here -->
+
+  <!-- Product Attribute Filters Starts Here -->
+  <div class="d-block w-100">
+    <div class="row mb-3">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+          <div class="mb-3">
+            <div class="col-md-12 pb-2 px-0" *ngIf="product && product.mainAttributeDtos.length > 0">
+              <div class="d-flex w-100 align-items-center justify-content-start flex-wrap">
+                <div class="d-block w-100 mb-3">
+                  <h5 class="text-16 font-weight-600 text-black m-0 text-capitalize">
+                    {{product.mainAttributeDtos[0].attributeDTO.attributeName}} :
+                    <span class="d-inline-block ps-3"> {{ currentAttribute }} </span>
+                  </h5>
+                </div>
+                  <div class="d-block w-100">
+                <div *ngIf="product.mainAttributeDtos[0].attributeDTO.isColor" class="d-flex list-unstyled flex-wrap color_list">
+                  <div class="container_colors w-auto h-auto me-2 mb-2 custom-attr-filter1" *ngFor="let sku of product?.mainAttributeDtos">
+                    <div class="round w-100" (click)="selectedColorAttribute(sku, sku.attributeDTO.attributeValueName)" [ngClass]="{
+                      'disabled-click': !sku?.active
+                    }">
+                      <input type="hidden" id="{{sku.attributeDTO.attributeValueId}}" [checked]="sku.isShowEdit" />
+                      <label *ngIf="!sku?.attributeDTO?.imageUrl"
+                        class="position-static cursor-pointer w-42-px h-42-px  border border-color-silver rounded-circle"
+                        for="{{sku.attributeDTO.attributeValueId}}"
+                        [style.backgroundColor]="sku.attributeDTO.attributeValue"
+                        [ngClass]="{
+                          'attribute-border-white-outline-black': selectedMainSku === sku,
+                          'strike-through-disabled-color': !sku?.active
+                        }">
+                      </label>
+                      <div class="d-block w-100 rounded-circle" [ngClass]="{
+                        'attribute-border-white-outline-black': selectedMainSku === sku,
+                        'strike-through-disabled-color': !sku?.active
+                      }" *ngIf="sku?.attributeDTO?.imageUrl">
+                        <img [src]="sku?.attributeDTO?.imageUrl" alt="{{'PRODUCT_IMAGE' | translate}}"
+                          class="w-36-px h-36-px object-fit-cover rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="!product.mainAttributeDtos[0].attributeDTO.isColor" class="d-flex list-unstyled flex-wrap border-bottom pb-2">
+                  <div class="container_colors h-auto rounded-2 custom-attr-filter2 cursor-pointer product-intro__size-radio-spopover me-2 mb-2 w-auto size_item bg-white border d-flex align-items-center justify-content-center"
+                       *ngFor="let sku of product?.mainAttributeDtos"
+                       [ngClass]="{
+                          'attribute-bg-black-color-white': sku?.skuId === selectedMainSku?.skuId,
+                          'strike-through-disabled': !sku?.active
+                       }">
+                      <div class="d-flex align-items-center justify-content-center"
+                           (click)="selectedColorAttribute(sku, sku.attributeDTO.attributeValue)">
+                          <input  *ngIf="!sku?.attributeDTO?.imageUrl" class="w-0-px h-0-px overflow-hidden d-none"
+                                 type="checkbox"
+                                 id="{{sku?.attributeDTO?.attributeValueId}}" />
+                          <span *ngIf="!sku?.attributeDTO?.imageUrl" class="font-weight-600 px-3 py-2 text-black text-14">
+                              {{ sku.attributeDTO.attributeValue }}
+                          </span>
+                          <div class="d-block w-100" *ngIf="sku?.attributeDTO?.imageUrl">
+                              <img [ngClass]="{'filter-color-selected': sku?.skuId === selectedMainSku?.skuId}" matTooltip="{{sku.attributeDTO.attributeValue}}"  matTooltipPosition="below"
+                              matTooltipClass="bg-black text-white text-12 rounded-2" [src]="sku?.attributeDTO?.imageUrl"
+                                   alt="{{'PRODUCT_IMAGE' | translate}}"
+                                   class="w-36-px h-36-px object-fit-cover rounded-2">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                  </div>
+              </div>
+            </div>
+              <div *ngIf="selectedMainSku && product.otherSelectedProductAttributes.length > 0 && secondAttributesList.length > 0" class="border-bottom pb-2 mb-2">
+              <div class="d-flex align-items-center justify-content-start flex-wrap">
+                <div class="d-block w-100 mb-3">
+                  <h5 class="text-16 font-weight-600 text-black text-capitalize m-0">{{secondAttributesList[0].productAttribute.attributeName}}:
+                    <span class="d-inline-block ps-3">  {{secondAttribute}} </span>
+                  </h5>
+                </div>
+                <div class="d-block w-100">
+                  <div class="d-flex list-unstyled flex-wrap ">
+                    <div
+                    class="container_colors h-auto cursor-pointer custom-attr-filter3 rounded-3 py-2 product-intro__size-radio-spopover me-2 mb-2 size_item w-auto px-3 bg-white border d-flex align-items-center justify-content-center"
+                    *ngFor="let attr of secondAttributesList"
+                    [ngClass]="{
+                      'attribute-bg-black-color-white':selectedSecondAttributeId === attr.productAttribute.id,
+                      'strike-through-disabled': attr?.active == null ? false : !attr?.active
+                    }"
+                    (click)="selectedOtherAttribute(attr, 'second')"
+                  >
+                    <div class="d-flex align-items-center justify-content-center">
+                      <input class="w-0-px h-0-px overflow-hidden d-none" type="checkbox" id="{{attr.productAttribute.attributeValue}}" />
+                      <label
+                        class="position-static w-100 h-auto cursor-pointer"
+                        for="{{attr.productAttribute.attributeValue}}"
+                      >
+                        {{attr.productAttribute.attributeValue}}
+                      </label>
+                      <div class="d-block w-100" *ngIf="attr.productAttribute.imageUrl">
+                        <img [src]="attr.productAttribute.imageUrl" alt="{{'PRODUCT_IMAGE'|translate}}"
+                          class="w-42-px h-42-px object-fit-cover rounded-circle">
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <div *ngIf="product.otherSelectedProductAttributes.length > 0 && firstTimeThirdAttributes.length > 0" class="border-bottom pb-2">
+                <div class="d-flex align-items-center justify-content-start flex-wrap">
+                  <div class="d-block w-100 mb-3">
+                    <h5 class="text-16 font-weight-500 text-black">{{firstTimeThirdAttributes[0].attributeName}}:
+                      <span class="d-inline-block ps-3">  {{secondAttribute}}  </span> 
+                    </h5>
+                  </div>
+                  <div class="d-block w-100">
+                    <div class="d-flex list-unstyled flex-wrap ">
+                      <div class="container_colors h-auto cursor-pointer custom-attr-filter4 rounded-3 py-2 product-intro__size-radio-spopover cursor-pointer me-2 mb-2 h-auto rounded-3 size_item w-auto px-3 bg-white border border-color-silver rounded-3 d-flex align-items-center justify-content-center"
+                      *ngFor="let attr of firstTimeThirdAttributes" >
+                          <div class="d-flex align-items-center justify-content-center">
+                              <input class="w-0-px h-0-px overflow-hidden d-none" type="checkbox" id="{{attr.attributeValueName}}" />
+                              <label
+                              class="position-static w-100 h-auto cursor-pointer text-capitalize"
+                              for="{{attr.attributeValueName}}"
+                            >
+                              {{attr.attributeValueName}}
+                            </label>
+                            <div class="d-block w-100" *ngIf="attr.imageUrl">
+                              <img [src]="attr.imageUrl" alt="{{'PRODUCT_IMAGE'|translate}}"
+                                class="w-40-px h-40-px w-100 object-fit-contain object-position-center">
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="selectedMainSku && product.otherSelectedProductAttributes.length > 0 && thirdAttributesList.length > 0" class="border-bottom pb-2">
+                <div class="d-flex align-items-center justify-content-start flex-wrap">
+                  <div class="d-block w-100 mb-3">
+                    <h5 class="text-16 font-weight-500 text-black">{{thirdAttributesList[0]?.productAttribute?.attributeName}}:
+                      <span class="d-inline-block ps-3">  {{thirdAttribute}}  </span>
+                    </h5>
+                  </div>
+                  <div class="d-block w-100">
+                    <div class="d-flex list-unstyled flex-wrap ">
+                      <div class="container_colors h-auto cursor-pointer custom-attr-filter5 rounded-3 py-2 product-intro__size-radio-spopover cursor-pointer me-2 mb-2 h-auto rounded-3 size_item w-auto px-3 bg-white border border-color-silver rounded-3 d-flex align-items-center justify-content-center"
+                      *ngFor="let attr of thirdAttributesList"
+                      [ngClass]="{'attribute-bg-black-color-white': selectedThirdAttributeId === attr?.productAttribute?.id}"
+                      [ngClass]="{'strike-through-disabled': !attr?.active}"
+                       (click)="selectedOtherAttribute(attr, 'third')">
+                          <div class="d-flex align-items-center justify-content-center">
+                              <input class="w-0-px h-0-px overflow-hidden d-none" type="checkbox" id="{{attr.productAttribute.attributeValueName}}" />
+                              <label
+                              class="position-static w-100 h-auto cursor-pointer text-capitalize"
+                              for="{{attr.productAttribute.attributeValueName}}"
+                            >
+                              {{attr?.productAttribute?.attributeValueName}}
+                            </label>
+                            <div class="d-block w-100" *ngIf="attr?.productAttribute?.imageUrl">
+                              <img [src]="attr?.productAttribute?.imageUrl" alt="{{'PRODUCT_IMAGE'|translate}}"
+                                class="w-50-px h-50-px object-fit-contain object-position-center">
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Product Attribute Filters Ends Here -->
+
+  <!-- Product Promotions Starts Here -->
+  <div class="d-flex w-100 mb-3 align-items-center justify-content-start" *ngFor="let prom of product.catalogPromotionProductResponses">
+    <div class="d-flex px-3 py-0 align-items-center justify-content-start bg-theme-light-color rounded-2 mw-100 w-auto">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-15 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Product Promotions Ends Here -->
+
+   <!-- Product Add to Cart Starts Here -->
+   <div class="d-block w-100">
+    <div class="row mb-3">
+    <div class="col-md-12 d-flex align-items-center justify-content-start ">
+      <div class="d-flex align-items-center justify-content-center border rounded-pill bg-grey2 overflow-hidden">
+          <button 
+          (click)="decreaseQuantity()" 
+          class="d-flex align-items-center w-30-px justify-content-center text-black px-2 text-18 text-center rounded-circle">
+            - 
+          </button>
+          <input type="number" [(ngModel)]="quantity" min="1" (input)="checkQuantity($event)" 
+          class="text-center w-50-px h-40-px bg-white arrows-hide-input text-black font-weight-600 rounded-0 text-22">
+          <button 
+          (click)="increaseQuantity()" 
+          class="d-flex align-items-center w-30-px justify-content-center text-black px-2 text-18 text-center rounded-circle">
+           +
+        </button>
+      </div>
+      <div class="ms-3 add-to-cart-btn-pdp">
+          <button  
+          *ngIf="product?.inStock == true  && noOfProducts > 0"  
+[attr.style]="'border-radius: ' + data.cartButtonRedis + 'px' + '!important;'" 
+[disabled]="noOfProducts == 0 || exceedQuantity || firstTimeCalled" 
+type="button" (click)="addItemToCart()"
+            class="d-flex align-items-center bg-theme-dark-color px-3 py-2 rounded-2 overflow-hidden">
+            <span class="text-16 font-weight-600 text-white mob-text-12 lh-lg px-3">{{'ADD_TO_CART'|translate}}</span> 
+          </button>
+           <button  
+           *ngIf="product?.inStock == false  || noOfProducts == 0"  
+[attr.style]="'border-radius: ' + data.cartButtonRedis + 'px' + '!important;'" 
+[disabled]="noOfProducts == 0 || exceedQuantity || firstTimeCalled" 
+type="button"
+            class="d-flex align-items-center bg-theme-dark-color px-3 py-2 rounded-2 overflow-hidden">
+            <span class="text-16 font-weight-600 text-white mob-text-12 lh-lg px-3"> {{'SOLDOUT'|translate}} </span> 
+          </button>
+      </div>
+      
+    </div>
+    <div class="col-lg-12 pt-3">
+      <div class="d-block w-100">
+        <button type="button" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product.id)" class="text-15 px-2 py-2 d-flex align-items-center justify-content-center text-black font-weight-600 rounded-1">
+          <i class="bi bi-heart text-18 text-black no-min-height no-min-width lh-tiny ms-0 me-2 p-0"></i>
+          {{'ADD_TO_WISHLIST'|translate}}
+        </button>
+        <button type="button" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product.id)" class="text-15 px-2 py-2 d-flex align-items-center justify-content-center text-black font-weight-600 rounded-1">
+          <i class="bi bi-heart-fill text-18 text-black no-min-height no-min-width lh-tiny ms-0 me-2 p-0"></i>
+          {{'REMOVE_FROM_WISHLIST'|translate}}
+        </button>
+      </div>
+    </div>
+</div>
+<!-- Product Add to Cart Ends Here -->
+  
+   </div>
+   <!-- Product Add to Cart Ends Here -->
+
+  </div>

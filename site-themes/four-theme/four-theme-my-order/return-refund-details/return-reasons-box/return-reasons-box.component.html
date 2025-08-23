@@ -1,0 +1,86 @@
+<table class="w-100" *ngIf="prod">
+  <tbody>
+      <tr>
+          <td class="px-3 py-2 tab-wid-34 bg-info-subtle border border-color-silver">
+              <p class="text-black font-weight-500 text-14 m-0">
+                {{'QUANTITY_FOR_RETURN'|translate}}
+              </p>
+          </td>
+          <td class="px-3 py-2 border border-color-silver">
+              <p class="text-black font-weight-400 text-14 m-0">
+              {{prod.returnQuantity}}
+              </p>
+           </td>
+      </tr>
+      <tr>
+          <td class="px-3 py-2 tab-wid-34 bg-info-subtle border border-color-silver">
+
+            <p class="text-black font-weight-500 text-14 m-0">
+                {{'REASON_FOR_RETURN'|translate}}
+              </p>
+          </td>
+          <td class="px-3 py-2 border border-color-silver">
+
+            <p class="text-black font-weight-400 text-14 m-0">
+              {{prod.returnReasonType |translate}}
+              </p>
+           </td>
+
+      </tr>
+      <tr>
+          <td class="px-3 py-2 tab-wid-34 bg-info-subtle border border-color-silver">
+              <p class="text-black font-weight-500 text-14 m-0">
+                    {{'PACKAGING_CONDITION'|translate}}
+              </p>
+          </td>
+          <td class="px-3 py-2 border border-color-silver">
+
+           <p class="text-black font-weight-400 text-14 m-0">
+            {{prod.returnPackagingType |translate}}
+          </p>
+           </td>
+      </tr>
+      <tr>
+          <td class="px-3 py-2 tab-wid-34 bg-info-subtle border border-color-silver">
+
+            <p class="text-black font-weight-500 text-14 m-0">
+                 {{'UPLOADED_IMAGES'|translate}}
+         </p>
+          </td>
+          <td class="px-3 py-2 text-black font-weight-500 text-14 border border-color-silver">
+          <div class="d-flex align-items-center justify-content-start" *ngFor="let image of prod?.returnImages">
+              <img (click)="viewReturnImages(prod)" class="cursor-pointer w-50-px h-50-px d-inline-block rounded-2 object-fit-cover me-2 mb-2" src="{{awsURL}}{{image}}"
+              onerror="this.src='./assets/img/default-product.png'">  </div>
+           </td>
+      </tr>
+      <tr>
+          <td class="px-3 py-2 tab-wid-34 bg-info-subtle border border-color-silver">
+              <p class="text-black font-weight-500 text-14 m-0">
+                    {{'MORE_DETAIL'|translate}}
+              </p>
+          </td>
+          <td class="px-3 py-2 border border-color-silver">
+
+          <p class="text-black font-weight-400 text-14 m-0">{{prod.returnReason}}
+          </p>
+           </td>
+      </tr>
+      <tr *ngIf="!returnOrderTracks.includes('REQUEST_RETURN_APPROVED')">
+          <td class="px-3 py-2 tab-wid-34 bg-info-subtle border border-color-silver">
+              <p class="text-black font-weight-500 text-14 m-0">
+                   {{'WISH_TO_CANCEL_RETURN'|translate}} ?
+              </p>
+          </td>
+          <td *ngIf="prod?.returnOrderStatus != 'RETURN_CANCELLED'" class="px-3 py-2 border border-color-silver">
+           <button [disabled]="firstTimeCalled" (click)="cancelItemReturn()" class="bg-danger-subtle text-black font-weight-500 px-3 py-1 text-14 rounded-2">
+                {{'CANCEL_THIS_RETURN'|translate}}
+           </button>
+           </td>
+           <td *ngIf="prod?.returnOrderStatus == 'RETURN_CANCELLED'" class="px-3 py-2 border border-color-silver">
+            <button class="bg-danger-subtle text-black font-weight-500 px-3 py-1 text-14 rounded-2">
+                 {{'CANCELLED'|translate}}
+            </button>
+            </td>
+      </tr>
+  </tbody>
+</table>

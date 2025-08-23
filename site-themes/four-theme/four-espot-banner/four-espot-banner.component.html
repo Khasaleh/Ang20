@@ -1,0 +1,1361 @@
+<!-- Master Theme Code Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'FourthTheme'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-4': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-8': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-flex justify-content-between align-items-center p-lg-5 p-md-5 p-sm-4 p-3 rounded espot-banner-box border bg-color-si">
+      <div class="w-50">
+
+        <!-- Title Starts Here -->
+        <span class="text-color-dark text-first-light-color" 
+        [ngClass]="{
+          'font-weight-700': slide.titleBold, 
+          'font-weight-400': !slide.titleBold,
+          'font-italic': slide.titleItalic
+        }"
+        [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+        {{slide.imageTitle | titlecase}}
+        </span>
+        <!-- Title Ends Here -->
+
+        <!-- Tagline Starts Here -->
+        <h1 class="mb-3 text-color-dark text-first-light-color" 
+        [ngClass]="{
+          'font-weight-700': slide.taglineBold, 
+          'font-weight-400': !slide.taglineBold,
+          'font-italic': slide.taglineItalic
+        }"
+        [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+          {{slide.imageTagline | titlecase}}
+        </h1>
+        <!-- Tagline Ends Here -->
+
+        <!-- Action Button Starts Here -->
+        <a 
+        routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+        class="bg-theme-dark-color text-white px-4 py-2"
+        [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+        [ngClass]="{
+          'font-weight-700': slide.actionButtonBold, 
+          'font-weight-400': !slide.actionButtonBold,
+          'font-italic': slide.actionButtonItalic
+        }">
+        {{slide.actionButtonText | titlecase}} 
+        </a>
+        <!-- Action Button Ends Here -->
+
+      </div>
+      <img [src]="slide.imageUrl" class="w-50 rounded-3" alt="{{'PRODUCT' | translate}}">
+    </div>
+  </div>
+</div>
+</section>
+<!-- Master Theme Ends Here -->
+
+<!-- Retail Theme 2 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme2'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-4 p-0': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-8': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 position-relative" >
+      <div class="w-100 py-5 px-4 text-center position-relative z-index-99 bg-alpha-black">
+        <div class="d-block w-100 py-5">
+
+        <!-- Title Starts Here -->
+        <h2 class="text-color-w mb-3" [ngClass]="{
+          'font-weight-700': slide.titleBold, 
+          'font-weight-400': !slide.titleBold,
+          'font-italic': slide.titleItalic
+        }"
+        [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+          {{slide.imageTitle | titlecase}}
+        </h2>
+        <!-- Title Ends Here -->
+
+        <!-- Tagline Starts Here -->
+        <h5 class="text-color-w mb-4"
+        [ngClass]="{
+          'font-weight-700': slide.taglineBold, 
+          'font-weight-400': !slide.taglineBold,
+          'font-italic': slide.taglineItalic
+        }"
+        [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+          {{slide.imageTagline | titlecase}}
+        </h5>
+        <!-- Tagline Ends Here -->
+
+         <!-- Action Button Starts Here -->
+        <a 
+        routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+        class="bg-theme-dark-color text-white px-4 py-2 d-inline-block"
+        [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+        [ngClass]="{
+          'font-weight-700': slide.actionButtonBold, 
+          'font-weight-400': !slide.actionButtonBold,
+          'font-italic': slide.actionButtonItalic
+        }">
+          <span class="text-16 d-block w-100 lh-lg d-block px-2 font-weight-400 text-color-w text-first-light-color" [style.color]="slide.actionButtonColor">
+            {{slide.actionButtonText | titlecase}}
+          </span>
+        </a>
+        <!-- Action Button Ends Here -->
+
+        </div>
+      </div>
+      <img [src]="slide.imageUrl" class="w-100 position-absolute top-0 start-0 w-100 h-100 object-position-center object-fit-contain" alt="{{'PRODUCT' | translate}}">
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 2 Ends Here -->
+
+<!-- Retail Theme 3 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme3'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-4': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-8': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 position-relative border border-color-silver p-0" >
+      <div class="w-100 h-100 position-absolute d-flex align-items-center justify-content-center text-center position-relative z-index-99 ">
+        <div class="d-inline-block py-3 px-5 bg-alpha-black">
+        <!-- Title Starts Here -->
+        <h2 [ngClass]="{
+          'font-weight-700': slide.titleBold, 
+          'font-weight-400': !slide.titleBold,
+          'font-italic': slide.titleItalic
+        }"
+        [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '" class="text-color-w mb-3">
+          {{slide.imageTitle | titlecase}}
+        </h2>
+        <!-- Title Ends Here -->
+
+        <!-- Tagline Starts Here -->
+        <h5 class="text-color-w mb-4"
+        [ngClass]="{
+          'font-weight-700': slide.taglineBold, 
+          'font-weight-400': !slide.taglineBold,
+          'font-italic': slide.taglineItalic
+        }"
+        [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+          {{slide.imageTagline | titlecase}}
+        </h5>
+        <!-- Tagline Ends Here -->
+
+         <!-- Action Button Starts Here -->
+        <a 
+        routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+        class="bg-theme-dark-color text-white px-4 py-1 d-inline-block"
+        [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+        [ngClass]="{
+          'font-weight-700': slide.actionButtonBold, 
+          'font-weight-400': !slide.actionButtonBold,
+          'font-italic': slide.actionButtonItalic
+        }">
+         {{slide.actionButtonText | titlecase}} 
+        </a>
+        <!-- Action Button Ends Here -->
+
+        </div>
+      </div>
+      <img [src]="slide.imageUrl" class="w-100 top-0 start-0 w-100 h-400-px object-fit-contain" alt="{{'PRODUCT' | translate}}">
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 3 Ends Here -->
+
+<!-- Retail Theme 4 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme4'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative p-0 border border-color-silver rounded-2" >
+      <div class="row">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted "
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-100 object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 4 Ends Here -->
+
+<!-- Retail Theme 5 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme5'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 5 Ends Here -->
+
+<!-- Retail Theme 6 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme6'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 6 Ends Here -->
+
+<!-- Retail Theme 7 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme7'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-4': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-8': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 position-relative border border-color-silver p-0" >
+      <div class="w-100 h-100 position-absolute d-flex align-items-center justify-content-center text-center position-relative z-index-99 ">
+        <div class="d-inline-block py-3 px-5 bg-alpha-black">
+        <!-- Title Starts Here -->
+        <h2 [ngClass]="{
+          'font-weight-700': slide.titleBold, 
+          'font-weight-400': !slide.titleBold,
+          'font-italic': slide.titleItalic
+        }"
+        [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '" class="text-color-w mb-3">
+          {{slide.imageTitle | titlecase}}
+        </h2>
+        <!-- Title Ends Here -->
+
+        <!-- Tagline Starts Here -->
+        <h5 class="text-color-w mb-4"
+        [ngClass]="{
+          'font-weight-700': slide.taglineBold, 
+          'font-weight-400': !slide.taglineBold,
+          'font-italic': slide.taglineItalic
+        }"
+        [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+          {{slide.imageTagline | titlecase}}
+        </h5>
+        <!-- Tagline Ends Here -->
+
+         <!-- Action Button Starts Here -->
+        <a 
+        routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+        class="bg-theme-dark-color text-white px-4 py-1 d-inline-block"
+        [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+        [ngClass]="{
+          'font-weight-700': slide.actionButtonBold, 
+          'font-weight-400': !slide.actionButtonBold,
+          'font-italic': slide.actionButtonItalic
+        }">
+         {{slide.actionButtonText | titlecase}} 
+        </a>
+        <!-- Action Button Ends Here -->
+
+        </div>
+      </div>
+      <img [src]="slide.imageUrl" class="w-100 top-0 start-0 w-100 h-400-px object-fit-contain" alt="{{'PRODUCT' | translate}}">
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 7 Ends Here -->
+
+<!-- Retail Theme 8 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme8'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted "
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 8 Ends Here -->
+
+<!-- Retail Theme 9 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme9'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 9 Ends Here -->
+
+<!-- Retail Theme 10 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme10'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted "
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 10 Ends Here -->
+
+<!-- Retail Theme 11 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme11'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted "
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 11 Ends Here -->
+
+<!-- Retail Theme 12 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme12'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted "
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 12 Ends Here -->
+
+<!-- Retail Theme 13 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme13'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 13 Ends Here -->
+
+<!-- Retail Theme 14 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme14'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 14 Ends Here -->
+
+<!-- Retail Theme 15 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme15'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 text-lg-start text-md-start text-sm-center text-center py-5 px-2">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 15 Ends Here -->
+
+<!-- Retail Theme 16 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme16'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 text-lg-start text-md-start text-sm-center text-center py-5 px-2">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 16 Ends Here -->
+
+<!-- Retail Theme 17 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme17'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 17 Ends Here -->
+
+<!-- Retail Theme 18 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme18'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 18 Ends Here -->
+
+<!-- Retail Theme 19 Starts Here -->
+<section class="d-block w-100"> 
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme19'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block5"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 19 Ends Here -->
+
+
+<!-- Retail Theme 20 Starts Here -->
+<section class="d-block w-100"> 
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme20'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 20 Ends Here -->
+
+<!-- Retail Theme 21 Starts Here -->
+<section class="d-block w-100">
+<div class="new-container1 mx-auto" *ngIf="activeTheme == 'RetailTheme21'" [ngClass]="{'flex-row-reverse': design === 'FLOAT_RIGHT'}">
+  <div class="d-flex justify-content-between gap-4 w-100 flex-wrap flex-lg-nowrap">
+    <div *ngFor="let slide of data.data; let i = index"
+    [ngClass]="{
+      'w-100': slide.espotBannerDesign === 'DEFAULT',
+      'col-md-5': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 0) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 1),
+      'col-md-7': (slide.espotBannerDesign == 'FLOAT_LEFT' && i === 1) || (slide.espotBannerDesign == 'FLOAT_RIGHT' && i === 0)
+    }"
+      class="d-block w-100 h-100 position-relative bg-theme-light-color p-0 border border-color-silver rounded-2" >
+      <div class="row h-100 align-items-center">
+          <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+            <div class="d-block w-100 py-5 px-2 text-lg-start text-md-start text-sm-center text-center">
+              <!-- Title Starts Here -->
+              <h2 class="text-color-b mb-3"
+              [ngClass]="{
+                'font-weight-700': slide.titleBold, 
+                'font-weight-400': !slide.titleBold,
+                'font-italic': slide.titleItalic
+              }"
+              [attr.style]="'font-family: ' + slide.titleFont + ' !important; font-size: ' + slide.titleFontSize + ' !important '">
+                {{slide.imageTitle | titlecase}}
+              </h2>
+              <!-- Title Ends Here -->
+      
+              <!-- Tagline Starts Here -->
+              <h5 class="text-color-b mb-4 text-muted"
+              [ngClass]="{
+                'font-weight-700': slide.taglineBold, 
+                'font-weight-400': !slide.taglineBold,
+                'font-italic': slide.taglineItalic
+              }"
+              [attr.style]="'font-family: ' + slide.taglineFont + ' !important; font-size: ' + slide.taglineFontSize + ' !important '">
+                {{slide.imageTagline | titlecase}}
+              </h5>
+              <!-- Tagline Ends Here -->
+
+               <!-- Action Button Starts Here -->
+              <a 
+              routerLink='/{{subdomain}}/category/{{slide.url}}/{{slide.categoryId}}' 
+              class="bg-theme-dark-color text-white px-4 py-2 d-inline-block"
+              [attr.style]="'border-radius: ' + slide.actionButtonRedius + 'px !important; font-family: ' + slide.actionButtonFont + ' !important; font-size: ' + slide.actionButtonFontSize + ' !important '"
+              [ngClass]="{
+                'font-weight-700': slide.actionButtonBold, 
+                'font-weight-400': !slide.actionButtonBold,
+                'font-italic': slide.actionButtonItalic
+              }">
+              {{slide.actionButtonText | titlecase}} 
+              </a>
+              <!-- Action Button Ends Here -->
+
+              </div>
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div class="d-block w-100 h-100">
+                <img [src]="slide.imageUrl" class="w-100 w-100 h-250-px object-position-top object-fit-contain" alt="{{'PRODUCT' | translate}}">
+              </div>
+          </div>
+      </div> 
+    </div>
+  </div>
+</div>
+</section>
+<!-- Retail Theme 21 Ends Here -->

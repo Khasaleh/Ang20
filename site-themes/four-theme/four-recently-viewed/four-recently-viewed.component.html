@@ -1,0 +1,554 @@
+<!-- Recently Viewed Home Page Starts Here -->
+<section class="d-block w-100 py-5" *ngIf="pageType === 'home-page'">
+  <div class="new-container1">
+
+    <div class="d-flex flex-wrap w-100 pb-4 mb-2 align-items-center justify-content-center"
+    [ngClass]="{ 'justify-content-lg-between justify-content-md-between justify-content-sm-center': dashboredListResponse.enableBrowserHistory && (user?.userType == 'FAZEAL_REGISTERED' || user?.userType == 'STORE_REGISTERED') }">
+    <div class="d-inline-block"  *ngIf="dashboredListResponse.enableTitle">
+    <h2 class="text-22 font-weight-600 m-0 p-0" > 
+      {{ dashboredListResponse.recentlyViewedSliderHeading | titlecase }} 
+    </h2>
+    </div>
+
+    <div class="d-inline-block mt-lg-0 mt-md-0 mt-sm-0 mt-2" *ngIf="dashboredListResponse.enableBrowserHistory && (user?.userType == 'FAZEAL_REGISTERED' || user?.userType == 'STORE_REGISTERED')">
+      <button class="text-14 text-white ms-2 bg-theme-dark-color px-3 py-2 rounded-2 font-weight-500 cursor-pointer"
+      routerLink='/{{subdomain}}/view-browser-history'>
+        {{ 'VIEW_HISTORY' | translate }}
+      </button> 
+    </div>
+    </div>
+
+    <div class="d-block w-100">
+    <div class="row w-100">
+
+      <div class="row align-items-center justify-content-center"
+      [ngClass]="{ 'justify-content-lg-start justify-content-md-start justify-content-sm-start': dashboredListResponse.recentlyViewedProducts && (user?.userType == 'FAZEAL_REGISTERED' || user?.userType == 'STORE_REGISTERED') }">
+      
+        <!-- Products 1 Starts Here -->
+        <div *ngIf="dashboredListResponse.recentlyViewedProducts.length === 1" class="col-lg-3 col-md-3 col-sm-5 col-12">
+          <owl-carousel-o #owlCarousel 
+          [ngClass]="{
+            'arrows-style-consistent': dashboredListResponse.recentlyViewedSliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': dashboredListResponse.recentlyViewedSliderStyle === 'DOTS',
+            'slider-style-nothing': dashboredListResponse.recentlyViewedSliderStyle === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of dashboredListResponse.recentlyViewedProducts">
+              <div class="px-0 w-100 quickview-main-box" >
+                <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                  <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative">
+                    <img *ngIf="!product.productId" routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="product-thumbnail-size1 mw-100 min-w-180-px h-150-px object-fit-contain  object-position-center">
+                    <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                      <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                      <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                      {{'QUICKVIEW'|translate}}
+                      </button>
+                    </div>
+                  </a>
+                  <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                    <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                    <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                      <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                      <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                      {{'QUICKVIEW'|translate}}
+                      </button>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+        <!-- Products 1 Ends Here -->
+
+        <!-- Products 2 Starts Here -->
+        <div *ngIf="dashboredListResponse.recentlyViewedProducts.length === 2" class="col-lg-6 col-md-6 col-sm-10 col-12">
+          <owl-carousel-o #owlCarousel 
+          [ngClass]="{
+            'arrows-style-consistent': dashboredListResponse.recentlyViewedSliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': dashboredListResponse.recentlyViewedSliderStyle === 'DOTS',
+            'slider-style-nothing': dashboredListResponse.recentlyViewedSliderStyle === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of dashboredListResponse.recentlyViewedProducts">
+              <div class="px-0 w-100 quickview-main-box" >
+                <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                  <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                    <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="product-thumbnail-size1 mw-100 min-w-180-px h-150-px object-fit-contain  object-position-center">
+                    <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                      <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                      <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                      {{'QUICKVIEW'|translate}}
+                      </button>
+                    </div>
+                  </a>
+                  <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                    <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                    <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                      <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                      <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                      {{'QUICKVIEW'|translate}}
+                      </button>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+        <!-- Products 2 Ends Here -->
+
+        <!-- Products 3 Starts Here -->
+        <div *ngIf="dashboredListResponse.recentlyViewedProducts.length === 3" class="col-lg-9 col-md-9 col-sm-12 col-12">
+          <owl-carousel-o #owlCarousel 
+          [ngClass]="{
+            'arrows-style-consistent': dashboredListResponse.recentlyViewedSliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': dashboredListResponse.recentlyViewedSliderStyle === 'DOTS',
+            'slider-style-nothing': dashboredListResponse.recentlyViewedSliderStyle === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of dashboredListResponse.recentlyViewedProducts">
+              <div class="px-0 w-100 quickview-main-box" >
+                <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                  <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                    <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="product-thumbnail-size1 mw-100 min-w-180-px h-150-px object-fit-contain  object-position-center">
+                    <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                      <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                      <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                      {{'QUICKVIEW'|translate}}
+                      </button>
+                    </div>
+                  </a>
+                  <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                    <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                    <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                      <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                      <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                      {{'QUICKVIEW'|translate}}
+                      </button>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+        <!-- Products 3 Ends Here -->
+
+        <!-- Products More than 3 Starts Here -->
+        <div *ngIf="dashboredListResponse.recentlyViewedProducts.length > 3" class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <owl-carousel-o #owlCarousel 
+          [ngClass]="{
+            'arrows-style-consistent': dashboredListResponse.recentlyViewedSliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': dashboredListResponse.recentlyViewedSliderStyle === 'DOTS',
+            'slider-style-nothing': dashboredListResponse.recentlyViewedSliderStyle === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of dashboredListResponse.recentlyViewedProducts">
+              <div class="px-0 w-100 quickview-main-box" >
+                <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                  <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                    <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="product-thumbnail-size1 mw-100 min-w-180-px h-150-px object-fit-contain  object-position-center">
+                    <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                      <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                      <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                      {{'QUICKVIEW'|translate}}
+                      </button>
+                    </div>
+                  </a>
+                  <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                    <img  routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                    <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                      <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                      <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                      {{'QUICKVIEW'|translate}}
+                      </button>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+        <!-- Products More than 3 Ends Here -->
+
+      </div>
+
+  
+    </div>
+    </div>
+
+  </div>
+</section>
+<!-- Recently Viewed Home Page Ends Here -->
+
+<!-- Recently Viewed PLP Page Starts Here -->
+<section class="d-block w-100 py-5" *ngIf="pageType === 'plp-page'">
+  <div class="new-container1">
+
+    <div class="d-flex flex-wrap w-100 pb-4 mb-2 align-items-center justify-content-center"
+    [ngClass]="{ 'justify-content-lg-between justify-content-md-between justify-content-sm-center': productResponse.recentlyViewedBrowsingHistory && (user?.userType == 'FAZEAL_REGISTERED' || user?.userType == 'STORE_REGISTERED') }">
+    <div class="d-inline-block" *ngIf="productResponse.recentlyViewedProductHeadingEnabled">
+    <h2 class="text-22 font-weight-600 m-0 p-0"  > 
+            {{ productResponse.recentlyViewedProductHeading | titlecase }}  
+    </h2>
+    </div>
+
+    <div class="d-inline-block mt-lg-0 mt-md-0 mt-sm-0 mt-2" *ngIf="productResponse.recentlyViewedBrowsingHistory && (user?.userType == 'FAZEAL_REGISTERED' || user?.userType == 'STORE_REGISTERED')">
+      <button class="text-14 text-white ms-2 bg-theme-dark-color px-3 py-2 rounded-2 font-weight-500 cursor-pointer"
+      routerLink='/{{subdomain}}/view-browser-history'>
+        {{ 'VIEW_HISTORY' | translate }}
+      </button>
+    </div>
+    </div>
+    
+    <div class="d-block w-100">
+      <div class="row align-items-center justify-content-center"
+      [ngClass]="{ 'justify-content-lg-start justify-content-md-start justify-content-sm-start': productResponse.recentlyViewedBrowsingHistory && (user?.userType == 'FAZEAL_REGISTERED' || user?.userType == 'STORE_REGISTERED') }">
+      
+        <!-- Products 1 Starts Here -->
+        <div *ngIf="productResponse.recentlyViewedProducts.length === 1" class="col-lg-3 col-md-3 col-sm-5 col-12">
+          <owl-carousel-o 
+          [ngClass]="{
+            'arrows-style-consistent': productResponse.recentlyViewedProductSliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': productResponse.recentlyViewedProductSliderStyle === 'DOTS',
+            'slider-style-nothing': productResponse.recentlyViewedProductSliderStyle === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of productResponse.recentlyViewedProducts">
+             <div class="px-0 quickview-main-box">
+               <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+               </div>
+             </div>
+            </ng-template>
+         </owl-carousel-o>
+        </div>
+        <!-- Products 1 Ends Here -->
+
+        <!-- Products 2 Starts Here -->
+        <div *ngIf="productResponse.recentlyViewedProducts.length === 2" class="col-lg-6 col-md-6 col-sm-10 col-12">
+          <owl-carousel-o 
+          [ngClass]="{
+            'arrows-style-consistent': productResponse.recentlyViewedProductSliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': productResponse.recentlyViewedProductSliderStyle === 'DOTS',
+            'slider-style-nothing': productResponse.recentlyViewedProductSliderStyle === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of productResponse.recentlyViewedProducts">
+             <div class="px-0 quickview-main-box">
+               <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}'  [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+               </div>
+             </div>
+            </ng-template>
+         </owl-carousel-o>
+        </div>
+        <!-- Products 2 Ends Here -->
+
+        <!-- Products 3 Starts Here -->
+        <div *ngIf="productResponse.recentlyViewedProducts.length === 3" class="col-lg-9 col-md-9 col-sm-12 col-12">
+          <owl-carousel-o 
+          [ngClass]="{
+            'arrows-style-consistent': productResponse.recentlyViewedProductSliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': productResponse.recentlyViewedProductSliderStyle === 'DOTS',
+            'slider-style-nothing': productResponse.recentlyViewedProductSliderStyle === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of productResponse.recentlyViewedProducts">
+             <div class="px-0 quickview-main-box">
+               <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+               </div>
+             </div>
+            </ng-template>
+         </owl-carousel-o>
+        </div>
+        <!-- Products 3 Ends Here -->
+
+        <!-- Products More than 3 Starts Here -->
+        <div *ngIf="productResponse.recentlyViewedProducts.length > 3" class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <owl-carousel-o 
+          [ngClass]="{
+            'arrows-style-consistent': productResponse.recentlyViewedProductSliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': productResponse.recentlyViewedProductSliderStyle === 'DOTS',
+            'slider-style-nothing': productResponse.recentlyViewedProductSliderStyle === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of productResponse.recentlyViewedProducts">
+             <div class="px-0 quickview-main-box">
+               <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                   <img  routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+               </div>
+             </div>
+            </ng-template>
+         </owl-carousel-o>
+        </div>
+        <!-- Products More than 3 Ends Here -->
+
+      </div>
+
+
+    </div>
+
+</div>
+</section>
+<!-- Recently Viewed PLP Page Ends Here -->
+
+
+<!-- Recently Viewed PDP Page Starts Here -->
+<section class="d-block w-100" *ngIf="pageType === 'pdprecent-page'">
+
+  <div class="d-block w-100 py-5" *ngIf="productPdpResponse.showRecentlyViewedProducts">
+    <div class="new-container1">
+
+      <div class="d-flex flex-wrap w-100 pb-4 mb-2 align-items-center justify-content-center"
+      [ngClass]="{ 'justify-content-lg-between justify-content-md-between justify-content-sm-center': productPdpResponse.showRecentlyViewedBrowseHistory && (user?.userType == 'FAZEAL_REGISTERED' || user?.userType == 'STORE_REGISTERED') }">
+      <div class="d-inline-block"   *ngIf="productPdpResponse.showRecentlyViewedHeading">
+      <h2 class="text-22 font-weight-600 m-0 p-0"> 
+        {{ productPdpResponse.recentlyViewedHeading | titlecase }} 
+      </h2>
+      </div>
+  
+      <div class="d-inline-block mt-lg-0 mt-md-0 mt-sm-0 mt-2" *ngIf="productPdpResponse.showRecentlyViewedBrowseHistory && (user?.userType == 'FAZEAL_REGISTERED' || user?.userType == 'STORE_REGISTERED')">
+        <button class="text-14 text-white ms-2 bg-theme-dark-color px-3 py-2 rounded-2 font-weight-500 cursor-pointer"
+        routerLink='/{{subdomain}}/view-browser-history'>
+          {{ 'VIEW_HISTORY' | translate }}
+        </button>
+      </div>
+      </div>
+
+ 
+    <div class="d-block w-100">
+
+
+
+      <div class="row align-items-center justify-content-center"
+      [ngClass]="{ 'justify-content-lg-start justify-content-md-start justify-content-sm-start': productPdpResponse.pdpRecentlyViewedProducts && (user?.userType == 'FAZEAL_REGISTERED' || user?.userType == 'STORE_REGISTERED') }">
+      
+        <!-- Products 1 Starts Here -->
+        <div *ngIf="productPdpResponse.pdpRecentlyViewedProducts.length === 1" class="col-lg-3 col-md-3 col-sm-5 col-12">
+          <owl-carousel-o 
+          [ngClass]="{
+            'arrows-style-consistent': pdpContent.recentlyViewedSlider === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': pdpContent.recentlyViewedSlider === 'DOTS',
+            'slider-style-nothing': pdpContent.recentlyViewedSlider === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of productPdpResponse.pdpRecentlyViewedProducts">
+             <div class="px-0 quickview-main-box">
+               <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-4 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+               </div>
+             </div>
+            </ng-template>
+         </owl-carousel-o>
+        </div>
+        <!-- Products 1 Ends Here -->
+
+        <!-- Products 2 Starts Here -->
+        <div *ngIf="productPdpResponse.pdpRecentlyViewedProducts.length === 2" class="col-lg-6 col-md-6 col-sm-10 col-12">
+          <owl-carousel-o 
+          [ngClass]="{
+            'arrows-style-consistent': pdpContent.recentlyViewedSlider === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': pdpContent.recentlyViewedSlider === 'DOTS',
+            'slider-style-nothing': pdpContent.recentlyViewedSlider === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of productPdpResponse.pdpRecentlyViewedProducts">
+             <div class="px-0 quickview-main-box">
+               <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+               </div>
+             </div>
+            </ng-template>
+         </owl-carousel-o>
+        </div>
+        <!-- Products 2 Ends Here -->
+
+        <!-- Products 3 Starts Here -->
+        <div *ngIf="productPdpResponse.pdpRecentlyViewedProducts.length === 3" class="col-lg-9 col-md-9 col-sm-12 col-12">
+          <owl-carousel-o 
+          [ngClass]="{
+            'arrows-style-consistent': pdpContent.recentlyViewedSlider === 'LEFT_AND_RIGHT_ARROWS',
+            'dots-style-consistent': pdpContent.recentlyViewedSlider === 'DOTS',
+            'slider-style-nothing': pdpContent.recentlyViewedSlider === 'NO_ARROWS_NO_DOTS'
+             }"
+              [options]="customOptions">
+            <ng-template carouselSlide   *ngFor="let product of productPdpResponse.pdpRecentlyViewedProducts">
+             <div class="px-0 quickview-main-box">
+               <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+                   <img  routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+                 <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+                   <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+                   <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                     <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                     <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'QUICKVIEW'|translate}}
+                     </button>
+                   </div>
+                 </a>
+               </div>
+             </div>
+            </ng-template>
+         </owl-carousel-o>
+        </div>
+        <!-- Products 3 Ends Here -->
+
+        <!-- Products More than 3 Starts Here -->
+        <div *ngIf="productPdpResponse.pdpRecentlyViewedProducts.length > 3" class="col-lg-12 col-md-12 col-sm-12 col-12">
+          <owl-carousel-o 
+      [ngClass]="{
+        'arrows-style-consistent': pdpContent.recentlyViewedSlider === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent': pdpContent.recentlyViewedSlider === 'DOTS',
+        'slider-style-nothing': pdpContent.recentlyViewedSlider === 'NO_ARROWS_NO_DOTS'
+         }"
+          [options]="customOptions">
+        <ng-template carouselSlide   *ngFor="let product of productPdpResponse.pdpRecentlyViewedProducts">
+         <div class="px-0 quickview-main-box">
+           <div class="bg-white shadow-sm  rounded d-flex align-items-center justify-content-center">
+             <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="!product.productId">
+               <img  routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.id}}' [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+               <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                 <button (click)="pdppopup(product.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                 <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                 {{'QUICKVIEW'|translate}}
+                 </button>
+               </div>
+             </a>
+             <a class="position-relative product-hover-style2 d-flex align-items-center justify-content-center position-relative" *ngIf="product.productId">
+               <img routerLink='/{{subdomain}}/product/{{product.productName | replaceSpecialChars}}/{{product.productId}}'  [src]="product.mainImageUrl" alt="{{product.productName}}" onerror="this.src='./assets/img/default-product.png'" class="mw-100 min-w-180-px h-150-px mob-h-100-px object-fit-contain object-position-center w-auto border border-color-silver rounded-2 p-2">
+               <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                 <button (click)="pdppopup(product.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                 <i class="bi bi-bag-plus-fill d-lg-inline-block d-md-inline-block d-sm-inline-block d-none text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                 {{'QUICKVIEW'|translate}}
+                 </button>
+               </div>
+             </a>
+           </div>
+         </div>
+        </ng-template>
+     </owl-carousel-o>
+        </div>
+        <!-- Products More than 3 Ends Here -->
+
+      </div>
+
+ 
+    </div>
+
+  </div>
+  </div>
+
+</section>
+<!-- Recently Viewed PDP Page Ends Here -->

@@ -1,0 +1,55 @@
+<div class="d-block w-100" *ngIf="!dataFilled">
+  <div class="d-block w-100 px-3 sticky-top border-bottom bg-black">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <div class="d-inline-block w-100 py-3" (click)="$event.stopPropagation()">
+        <div class="d-flex w-100 align-items-center justify-content-start">
+          <div class="d-inline-block ps-3 w-100">
+            <h4 class="text-white text-16 font-weight-600 mt-0 mb-1">{{ 'FILL_THE_FORM_TO_START_CHAT' | translate }}
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block min-width-clear py-3">
+        <button class="d-flex align-items-center justify-content-center p-1 border rounded-2">
+          <mat-icon class="no-min-height no-min-width text-20 text-white">keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="d-block px-3 py-4" (click)="$event.stopPropagation()">
+    <form [formGroup]="guestForm" *ngIf="dataRequired ||!user" (ngSubmit)="onSubmit()">
+      <div *ngFor="let field of fieldsConfig; let i = index;" class="d-block w-100 mb-2">
+        <mat-form-field appearance="fill" class="w-100 field-style2 mb-1">
+          <mat-label *ngIf="field.name == 'First Name'" class="text-muted text-13"> {{ 'SIGNUP_INPUTPLACEHOLDFSTNAME'| translate }} </mat-label>
+          <mat-label *ngIf="field.name == 'Last Name'" class="text-muted text-13"> {{ 'SIGNUP_INPUTPLACEHOLDLSTNAME'| translate }} </mat-label>
+          <mat-label *ngIf="field.name == 'Email'" class="text-muted text-13"> {{ 'O_M_EMAIL'| translate }} </mat-label>
+          <mat-label *ngIf="field.name == 'Phone Number'" class="text-muted text-13"> {{ 'OS_PHONE_NUMBER'| translate }} </mat-label>
+          <mat-label *ngIf="field.name == 'Comments'" class="text-muted text-13"> {{ 'COMMENT'| translate }} </mat-label>
+          <ng-container [ngSwitch]="field.name">
+            <input *ngSwitchCase="'Email'" matInput [formControlName]="getFormControlName(field.name)" type="email"
+              class="form-control text-black text-15 h-30-px" [errorStateMatcher]="matcher"
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+            <textarea *ngSwitchCase="'Comments'" matInput [formControlName]="getFormControlName(field.name)"
+              class="form-control text-black text-15 h-50-px" [errorStateMatcher]="matcher"></textarea>
+            <input *ngSwitchDefault matInput [formControlName]="getFormControlName(field.name)" type="text"
+              class="form-control text-black text-15 h-30-px"
+              [pattern]="getFormControlName(field.name) === 'phone'? '^[0-9]{6,15}$' : ''"
+              [errorStateMatcher]="matcher" />
+            <mat-error
+              *ngIf="guestForm.get(getFormControlName(field.name))?.errors?.['required'] && (guestForm.get(getFormControlName(field.name))?.touched)">
+              {{ 'FIELD_REQUIRED_'+ (getFormControlName(field.name)) | translate }}
+            </mat-error>
+            <mat-error
+              *ngIf="guestForm.get(getFormControlName(field.name))?.errors?.['pattern'] && (guestForm.get(getFormControlName(field.name))?.touched)">
+              {{ 'INVALID_' + (getFormControlName(field.name).toUpperCase()) | translate }}
+            </mat-error>
+          </ng-container>
+        </mat-form-field>
+      </div>
+      <div class="d-block w-100">
+        <button class="bg-theme-dark-color text-white px-4 py-2 rounded-3 text-14" type="submit">
+          {{ 'START_CHAT' | translate }}</button>
+      </div>
+    </form>
+  </div>
+</div>

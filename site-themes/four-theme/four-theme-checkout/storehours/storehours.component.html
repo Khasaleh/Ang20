@@ -1,0 +1,53 @@
+<section class="w-100 d-block popup-parent-rtl">
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-3 py-3">
+    <div class="d-inline-block">
+    <h3 class="text-black text-18 m-0 p-0 font-weight-600">  {{'VIEW_STORE_HOURS'|translate}} </h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-block w-100 py-4 px-3">
+  <table class="w-100 border">
+    <thead>
+      <tr>
+        <th class="text-black font-weight-600 px-3 py-2 bg-grey2 text-15">
+           {{'DAY'|translate}}
+        </th>
+        <th class="text-black font-weight-600 px-3 py-2 bg-grey2 text-15">
+            {{'OPENING_HOURS'|translate}}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let day of businessHours">
+        <td class="text-15 font-weight-400 px-3 py-2 border">
+          {{ day.days | translate }}
+        </td>
+        <td class="text-15 font-weight-400 px-3 py-2 border">
+          <span
+            *ngIf="day.isOpen === 'YES' && day.allDay; else notAllDayTemplate"
+            class="bg-success-subtle text-black text-13 px-3 py-1 font-weight-500 d-inline-block rounded-2">
+            {{'OPEN_24_HOURS' | translate}}
+          </span>
+          <ng-template #notAllDayTemplate>
+            <span
+              *ngIf="day.isOpen === 'YES'; else closedTemplate"
+              class="bg-success-subtle text-black text-13 px-3 py-1 font-weight-500 d-inline-block rounded-2">
+              {{ getFormattedTime(day.startingHours, day.startingMinute, day.amORPmStartingHours) }} -
+              {{ getFormattedTime(day.endingHours, day.endingMinute, day.amORPmEndingHours) }}
+            </span>
+          </ng-template>
+          <ng-template #closedTemplate>
+            <span class="bg-danger-subtle text-black text-13 px-3 py-1 font-weight-500 d-inline-block rounded-2">
+              {{ 'CLOSED' | translate }}
+            </span>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>

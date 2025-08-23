@@ -1,0 +1,30 @@
+<div class="d-block w-100">
+<div *ngIf="!!attachment && attachment.replyOn">
+  <p class="m-0 text-muted text-14 font-weight-400">
+    {{attachment.text.substring(0, 20)}}{{attachment.text && attachment.text.length > 20 ? '...' : ''}}
+  </p>
+</div>
+<app-text-show-more-less [text]="attachment.repliedMessage.text"
+  *ngIf="!attachment.replyOn && !!attachment.repliedMessage"></app-text-show-more-less>
+
+<div class="attachment-wrapper position-relative" *ngIf="!!attachment && !!attachment.localPaths && attachment.localPaths.length > 0">
+  <button class="remove-attachment-btn position-absolute top-0 end-0 bg-white border border-color-silver me-2 mt-2 p-1 rounded-circle d-flex align-items-center justify-content-center"
+    (click)="onRemove()" *ngIf="!attachment.replyOn">
+    <mat-icon class="text-18 text-black no-min-height no-min-width m-0 p-0">close</mat-icon>
+  </button>
+  <div *ngIf="attachment.localPaths[0].type === 'image'">
+    <img class="h-100-px object-fit-cover border border-color-silver rounded-2" [src]="awsUrl + attachment.localPaths[0].localPath"
+      alt="Attached Image">
+  </div>
+  <div *ngIf="attachment.localPaths[0].type === 'video'">
+    <video class="h-150-px object-fit-cover w-100 border border-color-silver rounded-2" controls height="40">
+      <source [src]="awsUrl + attachment.localPaths[0].localPath" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div *ngIf="attachment.localPaths[0].type === 'document'">
+    <a class="attached-document grayed-out" [href]="awsUrl + attachment.localPaths[0].localPath"
+      target="_blank">{{'DOWN_DOC'|translate}}</a>
+  </div>
+</div>
+</div>

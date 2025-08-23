@@ -1,0 +1,23 @@
+<div class="box-popup-design edit-add-cat col-lg-8 col-md-8 col-sm-12">
+  <div class="pr-0 pl-0 box-head d-flex justify-content-between align-items-center">
+
+    <h2>{{'SIZE_CHART'|translate}}</h2>
+    <button type="button" mat-dialog-close=""
+      class="close border-0 d-flex align-items-center justify-content-center bg-transparent">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+  <div class="box-contant">
+    <div class="row">
+      <div class="w-100 p-0">
+         <div class="chartsizepreview text-center">
+          <img *ngIf="!imageUrl" src="../../../assets/img/default-product.png" alt="{{'DEFAULT_PICTURE'|translate}}">
+          <img *ngIf="imageUrl" [src]="imageUrl" alt="{{'DEFAULT_PICTURE'|translate}}">
+        </div>
+      </div>
+
+
+  </div>
+
+
+</div>

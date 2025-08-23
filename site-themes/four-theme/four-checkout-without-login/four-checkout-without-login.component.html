@@ -1,0 +1,1977 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">   {{'ORDER_CHECKOUT'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12"> 
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-transparent p-0 m-0 border-0 d-flex align-items-center justify-content-start">
+                  <li class="breadcrumb-item breadcrumb-slash-off d-flex align-items-center justify-content-start">
+                      <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                        {{'HOME'|translate}}
+                        </button>
+                      <span class="d-inline-block text-grey text-13 px-2"> / </span>
+                  </li>
+                  <li class="breadcrumb-item breadcrumb-slash-off p-0" aria-current="page">
+                      <b class="text-14 font-weight-400 cursor-default text-black text-capitalize">
+                        {{'ORDER_CHECKOUT'|translate}}
+                      </b>
+                  </li>
+              </ol>
+          </nav>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5 px-md-3 px-sm-0 px-0 checkout_section_parent">
+  <div class="new-container1">
+    <div class="row">
+      <div class="col-md-12 col-xxl-8 col-xl-8 col-lg-8 col-sm-12 col-12">
+        <div class="border w-100 rounded-2 py-4 px-2" *ngIf="userTypeShow">
+          <div class="row mt-minus-30-px">
+            <div class="col-md-3 col-sm-5 col-10 mx-auto">
+              <h1 class="text-15 font-weight-600 text-black mb-0 text-center bg-white">
+                {{'USER_TYPE'|translate}}</h1>
+            </div>
+          </div>
+
+          <div class="row billling_tab_ads mt-2">
+            <div class="col-lg-10 col-md-12 col-sm-12 col-12 mx-auto">
+              <mat-tab-group animationDuration="0ms">
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <div class="d-flex align-items-center">
+                      <span>
+                        <img src="../../../../assets/img/fazealuser.svg" alt="{{'FAZEALUSER'|translate}}" />
+                      </span>
+                      <span class="mx-2">
+                        {{'FAZEALUSER'|translate}}
+                      </span>
+                    </div>
+                  </ng-template>
+                  <div class="w-100 border rounded-3 px-md-4 px-sm-2 px-2 py-md-3 py-sm-2 py-2 mt-3">
+                    <div class="row mt-minus-30-px">
+                      <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="bg-transparent">
+                          <img class="w-100 h-100" src="../../../../assets/img/formclose.svg"
+                            alt="{{'CLOSE'|translate}}">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5 col-sm-12 col-12">
+                        <img class="w-100 h-215-px" src="../../../../assets/img/fazealuserbanner.svg"
+                          alt="{{'FAZEALUSER'|translate}}" />
+                      </div>
+                      <div class="col-md-7 col-sm-12 col-12">
+                        <form (submit)="loginFazealUser()">
+                          <div class="row mb-3">
+                            <div class="col-12">
+                              <label
+                                class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'USERNAMEOREMAIL'|translate}}</label>
+                              <input type="text" [(ngModel)]="fzealUserTxt" name="fzealUser" #fzealUser="ngModel"
+                                required class="border h-44-px rounded-2 px-2 input-focus-none w-100" />
+                              <div *ngIf="fzealUser.invalid && (fzealUser.dirty || fzealUser.touched)"
+                                class="text-danger">
+                                <div *ngIf="fzealUser?.errors?.['required']">{{ 'FAZEAL_EMAIL_REQUIRED_ERROR_MESSAGE' |
+                                  translate }}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mb-1">
+                            <div class="col-12">
+                              <label
+                                class="form-label mb-2 text-14 mob-text-12 font-weight-400 text-black">{{'PASSWORD'|translate}}</label>
+                              <div class="input-group rounded-2 border h-44-px">
+                                <input type="{{ showPassword ? 'text' : 'password' }}" [(ngModel)]="fzealPassTxt" name="fzealPass" #fzealPass="ngModel"
+                                  required class="input-focus-none-group h-100 px-2 border-0 rounded-0 form-control"
+                                  placeholder="******">
+                                <span class="input-group-text bg-transparent h-100 rounded-0 border-0">
+                                  <img (click)="togglePasswordVisibility()" src="../../../../assets/img/eye-off.svg" alt="{{'PASSWORD'|translate}}" />
+                                  <!-- <img src="../../../../assets/img/eye-on.svg" alt="{{'PASSWORD'|translate}}" /> -->
+                                  <div *ngIf="fzealPass.invalid && (fzealPass.dirty || fzealPass.touched)"
+                                    class="text-danger">
+                                    <div *ngIf="fzealPass.errors?.['required']">{{ 'SIGNUP_USERDETAILS_PASSWORD' |
+                                      translate }}</div>
+                                  </div>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <div class="col-12 text-end">
+                              <button type="button" (click)="forgotPassword()"
+                                class="text-14 mob-text-12 font-weight-400 text-black cursor-pointer">
+                                {{'FORGOT_PASSWORD_ONLY'|translate}}
+                            </button>
+                            </div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col-md-12">
+                              <button type="submit"
+                                class="border-0 w-100 rounded-3 bg-theme-dark-color text-color-w text-first-light-color py-2 text-center text-16 font-weight-400 mob-text-14">{{'SIGNIN'|translate}}</button>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <p class="mb-0 text-center">
+                                <span
+                                  class="text-14 font-weight-400 text-black mob-text-12">{{'DONTHAVEANACCOUNT'|translate}}</span>
+                                <a type="button" (click)="signupmodal()"
+                                  class="mx-2 text-14 mob-text-12 font-weight-500 text-color-dark text-first-light-color border-bottom-first-color">{{'SIGNUPNOW'|translate}}</a>
+                              </p>
+                            </div>
+                          </div>
+
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <div class="d-flex align-items-center">
+                      <span>
+                        <img src="../../../../assets/img/storeuser.svg" alt="{{'STOREUSER'|translate}}" />
+                      </span>
+                      <span class="mx-2">
+                        {{'STOREUSER'|translate}}
+                      </span>
+                    </div>
+                  </ng-template>
+                  <div class="w-100 border rounded-3 px-md-4 px-sm-2 px-2 py-md-3 py-sm-2 py-2 mt-3">
+                    <div class="row mt-minus-30-px">
+                      <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="bg-transparent">
+                          <img class="w-100 h-100" src="../../../../assets/img/formclose.svg"
+                            alt="{{'CLOSE'|translate}}">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5 col-sm-12 col-12">
+                        <img class="w-100 h-215-px" src="../../../../assets/img/storeuserbanner.svg"
+                          alt="{{'FAZEALUSER'|translate}}" />
+                      </div>
+                      <div class="col-md-7 col-sm-12 col-12">
+                        <form>
+                          <div class="row mb-3">
+                            <div class="col-12">
+                              <label
+                                class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'EMAILADDRESS'|translate}}</label>
+                              <input type="text" value="Kamran400"
+                                class="border h-44-px rounded-2 px-2 input-focus-none w-100" />
+                            </div>
+                          </div>
+                          <div class="row mb-1">
+                            <div class="col-12">
+                              <label
+                                class="form-label mb-2 text-14 mob-text-12 font-weight-400 text-black">{{'PASSWORD'|translate}}</label>
+                              <div class="input-group rounded-2 border h-44-px">
+                                <input type="text"
+                                  class="input-focus-none-group h-100 px-2 border-0 rounded-0 form-control"
+                                  placeholder="******">
+                                <span class="input-group-text bg-transparent h-100 rounded-0 border-0">
+                                  <img src="../../../../assets/img/eye-off.svg" alt="{{'PASSWORD'|translate}}" />
+                                  <!-- <img src="../../../../assets/img/eye-on.svg" alt="{{'PASSWORD'|translate}}" /> -->
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <div class="col-12 text-end">
+                              <button (click)="forgotPassword()"
+                                class="text-14 mob-text-12 font-weight-400 text-black cursor-pointer">
+                                {{'FORGOT_PASSWORD_ONLY'|translate}}
+                                </button>
+                            </div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col-md-12">
+                              <button type="button"
+                                class="border-0 w-100 rounded-3 bg-theme-dark-color text-color-w text-first-light-color py-2 text-center text-16 font-weight-400 mob-text-14">{{'SIGNIN'|translate}}</button>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <p class="mb-0 text-center">
+                                <span
+                                  class="text-14 font-weight-400 text-black mob-text-12">{{'DONTHAVEANACCOUNT'|translate}}</span>
+                                <a type="button" (click)="signupmodal()"
+                                  class="mx-2 text-14 mob-text-12 font-weight-500 text-color-dark text-first-light-color border-bottom-first-color">{{'SIGNUPNOW'|translate}}</a>
+                              </p>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+                <mat-tab>
+                  <ng-template mat-tab-label>
+                    <div class="d-flex align-items-center">
+                      <span>
+                        <img src="../../../../assets/img/guest.svg" alt="{{'GUEST'|translate}}" />
+                      </span>
+                      <span class="mx-2">
+                        {{'GUEST'|translate}}
+                      </span>
+                    </div>
+                  </ng-template>
+                  <div class="w-100 border rounded-3 px-md-4 px-sm-2 px-2 py-md-3 py-sm-2 py-2 mt-3">
+                    <div class="row mt-minus-30-px">
+                      <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="bg-transparent">
+                          <img class="w-100 h-100" src="../../../../assets/img/formclose.svg"
+                            alt="{{'CLOSE'|translate}}">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-5 col-sm-12 col-12">
+                        <img class="w-100 h-215-px" src="../../../../assets/img/guestbanner.svg"
+                          alt="{{'FAZEALUSER'|translate}}" />
+                      </div>
+                      <div class="col-md-7 col-sm-12 col-12">
+                        <form (ngSubmit)="continueAsGuest(guestForm)" #guestForm="ngForm">
+                          <div class="row mb-3">
+                            <div class="col-md-6 col-sm-12 col-12 mb-3">
+                              <label class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'FIRST_NAME'|translate}}</label>
+                              <input type="text" class="border h-44-px rounded-2 px-2 input-focus-none w-100" name="firstName" ngModel required>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-12 mb-3">
+                              <label class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'LAST_NAME'|translate}}</label>
+                              <input type="text" class="border h-44-px rounded-2 px-2 input-focus-none w-100" name="lastName" ngModel required>
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <div class="col-12">
+                              <label class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'EMAILADDRESS'|translate}}</label>
+                              <input type="email" class="border h-44-px rounded-2 px-2 input-focus-none w-100" name="email" ngModel required email>
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <div class="col-12">
+                              <label class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'PHONE_NUMBER'|translate}}</label>
+                              <input type="text" class="border h-44-px rounded-2 px-2 input-focus-none w-100" name="phoneNumber" ngModel required>
+                            </div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col-md-12">
+                              <button type="submit" class="border-0 w-100 rounded-3 bg-theme-dark-color text-color-w text-first-light-color py-2 text-center text-16 font-weight-400 mob-text-14">{{'CONTINUEASGUEST'|translate}}</button>
+                            </div>
+                          </div>
+                          <div class="row mb-2">
+                            <div class="col-md-12">
+                              <p class="text-14 font-weight-500 text-color-dark mb-0 text-center">
+                                {{'SIGNIN_OR'|translate}}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <p class="mb-0 text-center">
+                                <span class="text-14 font-weight-400 text-black mob-text-12">{{'DONTHAVEANACCOUNT'|translate}}</span>
+                                <a type="button" (click)="signupmodal()" class="mx-2 text-14 mob-text-12 font-weight-500 text-color-dark text-first-light-color border-bottom-first-color">{{'SIGNUPNOW'|translate}}</a>
+                              </p>
+                            </div>
+                          </div>
+                        </form>
+
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+          </div>
+        </div>
+        <div class="border w-100 rounded-2 py-4 px-2" *ngIf="!userTypeShow">
+          <div class="row mt-minus-30-px">
+            <div class="col-md-3 col-sm-5 col-10 mx-auto">
+              <h1 class="text-15 font-weight-600 text-black mb-0 text-center bg-white">
+                {{'CHECKOUTTYPE'|translate}}</h1>
+            </div>
+          </div>
+          <div class="new-container1 mt-4">
+            <form>
+              <div class="row justify-content-start flex-lg-row flex-md-column flex-sm-column flex-column">
+                <div *ngIf="orderOnlinePickupFromStore" class="col-md-4">
+                  <div class="radio_column mb-lg-0 mb-md-3 mb-sm-3 mb-3 bg-white border-1-D0D5DD rounded-2 h-60-px px-2"
+                    (click)="setActiveColumn(1)" [ngClass]="{'active': activeColumn === 1}">
+                    <label for="orderonline11"
+                      class="container_radio text-14 mob-text-12 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                      {{'ORDERONLINEPICKUPFROMSTORE'|translate}}
+                      <input type="radio" id="orderonline11" checked name="radio" (change)="toggleAddressInfo(false, 'ORDER_ONLINE_PICK_IN_STORE')">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div *ngIf="orderOnlineShipHome" class="radio_column mb-lg-0 mb-md-3 mb-sm-3 mb-3 bg-white border-1-D0D5DD rounded-2 h-60-px px-2"
+                    (click)="setActiveColumn(2)" [ngClass]="{'active': activeColumn === 2}">
+                    <label for="orderonlineshiponline"
+                      class="container_radio text-14 mob-text-12 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                      {{'ORDERONLINESHIPONLINE'|translate}}
+                      <input type="radio" id="orderonlineshiponline" name="radio" (change)="toggleAddressInfo(true, 'ORDER_ONLINE_SHIP_TO_HOME')">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+                <div *ngIf="reserveOnlineOrTryInStore" class="col-md-4">
+                  <div class="radio_column mb-lg-0 mb-md-3 mb-sm-3 mb-3 bg-white border-1-D0D5DD rounded-2 h-60-px px-2"
+                    (click)="setActiveColumn(3)" [ngClass]="{'active': activeColumn === 3}">
+                    <label for="reserveinstore"
+                      class="container_radio text-14 mob-text-12 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                      {{'RESERVEINSTORE'|translate}}
+                      <input type="radio" id="reserveinstore" name="radio" (change)="toggleAddressInfo(false, 'RESERVE_ONLINE_TRY_IN_STORE')">
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="w-100 mt-4" *ngIf="activeColumn === 1 && !userTypeShow" >
+          <div class="row">
+            <div class="col-12">
+              <mat-accordion class="guest_panel checkoutpanel">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="d-flex justify-content-between align-items-center w-100">
+                        <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                          {{'STORELOCATION'|translate}}</p>
+                        <span
+                          class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                          <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                        </span>
+                        <span
+                          class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                        </span>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="w-100 mt-4">
+                    <div class="row">
+                      <div class="col-md-6 col-sm-12 col-12 mb-3" *ngFor="let address of businessAddresses">
+                        <div class="border rounded-2 px-2 pt-2 pb-4 bg-color-si w-100"
+                          (click)="storelocationmodal()">
+                          <div class="row align-items-center py-3">
+                            <div class="col-6">
+                              <h1 class="mb-0 text-14 font-weight-600 text-black">
+                                {{'CHICAGOSTORE'|translate}}</h1>
+                            </div>
+                            <div class="col-6">
+                              <span
+                                class="border ms-auto d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px bg-theme-dark-color overflow-hidden">
+                                <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                              </span>
+                            </div>
+                          </div>
+                          <div class="border-top w-100">
+                            <div class="row my-4">
+                              <div class="col-12">
+                                <p class="mb-0 text-14 font-weight-400 text-black">
+                                  {{address.addressLineOne}} , {{address.state}} {{address.zipCode}} ,
+                                  {{address.country}}</p>
+                              </div>
+                            </div>
+                            <div class="row mb-4">
+                              <div class="col-12">
+                                <ul class="p-0 m-0 list-unstyled">
+                                  <li class="mb-3 d-flex align-items-center mb-2 border-bottom-0">
+                                    <span>
+                                      <img class="w-18-px h-18-px" src="../../../../assets/img/marker-pin-01.svg"
+                                        alt="{{'MAP'|translate}}" />
+                                    </span>
+                                    <span
+                                      class="text-14 font-weight-400 text-black mx-2">{{'VIEWLOCATIONMAP'|translate}}</span>
+                                  </li>
+                                  <li class="mb-3 d-flex align-items-center mb-2 border-bottom-0">
+                                    <span>
+                                      <img class="w-18-px h-18-px" src="../../../../assets/img/clock.svg"
+                                        alt="{{'CLOCK'|translate}}" />
+                                    </span>
+                                    <span class="text-14 font-weight-400 text-black mx-2">Open
+                                      ⋅ Close 11 pm</span>
+                                  </li>
+                                  <li class="mb-3 d-flex align-items-center mb-2 border-bottom-0">
+                                    <span>
+                                      <img class="w-18-px h-18-px" src="../../../../assets/img/phoneblack.svg"
+                                        alt="{{'CLOCK'|translate}}" />
+                                    </span>
+                                    <span class="text-14 font-weight-400 text-black mx-2">555
+                                      555 12345</span>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                            {{'CHOOSEPICKUPDATEANDTIME'|translate}}</p>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                            <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                          </span>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                          </span>
+                        </div>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="w-100 mt-4">
+                    <div class="row" [formGroup]="pickupDetails">
+                      <div
+                        class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 choose_date_parent set_icon_date">
+                        <mat-form-field class="w-100 h-60-px">
+                          <mat-label
+                            class="text-12 font-weight-400 text-color-999EA8">{{'CHOOSEADATE'|translate}}</mat-label>
+                          <mat-datepicker-toggle matSuffix [for]="picker">
+                          </mat-datepicker-toggle>
+                          <input matInput [matDatepicker]="picker" class="h-60-px" placeholder="MM/DD/YYYY" formControlName="pickupDate">
+                          <mat-datepicker #picker>
+                            <mat-datepicker-actions>
+                              <button mat-button matDatepickerCancel
+                                class="border text-black w-50">{{'CANCEL'|translate}}</button>
+                              <button mat-raised-button
+                                class="bg-theme-dark-color text-color-w text-first-light-color w-50 text-center"
+                                 matDatepickerApply>
+                                {{'APPLY'|translate}}</button>
+                            </mat-datepicker-actions>
+                          </mat-datepicker>
+                        </mat-form-field>
+                        <div *ngIf="(getControl['pickupDate'].touched && getControl['pickupDate'].invalid) || (getControl['pickupDate'].untouched && isSubmitted)" class="d-block w-100 text-start">
+                          <p class="text-14 text-danger m-0" *ngIf="getControl['pickupDate'].errors?.['required']">
+                          {{'PICKUP_TIME_IS_REQUIRED'| translate}}
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 choose_date_parent time_select d-flex align-items-end flex-column">
+                        <input type="time" class="text-black border-1-DDDDDD bg-white rounded-2 w-100 px-2 h-60-px" />
+                      </div>
+
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                            {{'WHO-WILL-PICKUP-THE-ORDER'|translate}}</p>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                            <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                          </span>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                          </span>
+                        </div>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="w-100 mt-4">
+                    <form>
+                      <div class="row justify-content-start flex-lg-row flex-md-column flex-sm-column flex-column">
+                        <div
+                          class="radio_column_another_step me-lg-3 me-md-0 me-sm-0 me-0 mb-lg-0 mb-md-3 mb-sm-3 mb-3 mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto h-60-px"
+                          [ngClass]="{'active': activeMeAnother === 'me'}" (click)="anotherstep(false,'me', 'FAZEAL_CUSTOMER')">
+                          <label for="me11"
+                            class="container_radio text-14 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                            {{'ME'|translate}}
+                            <input type="radio" id="me11" checked name="radio" (change)="togglePickupPerson(false, 'FAZEAL_CUSTOMER')">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                        <div
+                          class="radio_column_another_step me-lg-3 me-md-0 me-sm-0 me-0 mb-lg-0 mb-md-3 mb-sm-3 mb-3 mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto h-60-px"
+                          [ngClass]="{'active': activeMeAnother === 'anotherperson'}"
+                          (click)="anotherstep(true,'anotherperson', 'ANOTHER_PERSON')">
+                          <label for="anotherperson11"
+                            class="container_radio text-14 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                            {{'ANOTHER_PERSON'|translate}}
+                            <input type="radio" id="anotherperson11" name="radio" (change)="togglePickupPerson(true, 'ANOTHER_PERSON')">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </form>
+                    <!-- CONTACT INFO FORM START -->
+                    <div class="row my-5" *ngIf="anotherform">
+                      <div class="col-md-12 px-md-auto px-sm-0 px-0">
+                        <form class="bg-white border rounded-2 p-3"  [formGroup]="pickupDetails">
+                          <div class="row mb-4">
+                            <div class="col-md-12">
+                              <h6 class="text-16 font-weight-500 text-black mob-text-14">
+                                {{'PLEASEENTERCONTACTINFORMATION'|translate}}</h6>
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <div
+                              class="col-md-12 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-12 mb-lg-0 mb-md-3 md-sm-3 mb-3">
+                              <label for="formGroupExampleInput" class="form-label text-14 font-weight-500 text-grey">
+                                {{'SIGNUP_INPUTPLACEHOLDFSTNAME'|translate}}</label>
+                              <input type="text" class="form-control input-focus-none-checkout h-44-px" formControlName="firstName">
+                            </div>
+                            <div class="col-md-12 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-12">
+                              <label for="formGroupExampleInput" class="form-label text-14 font-weight-500 text-grey">
+                                {{'SIGNUP_INPUTPLACEHOLDLSTNAME'|translate}}</label>
+
+                              <input type="text" class="form-control input-focus-none-checkout h-44-px" formControlName="lastName">
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <div class="col-md-12 col-xx-6 col-xl-6 col-lg-6 col-sm-12 col-12 mb-3">
+                              <label for="formGroupExampleInput"
+                                class="form-label text-14 font-weight-500 text-grey">{{'EMAIL'|translate}}</label>
+                              <input type="email" class="form-control input-focus-none-checkout h-44-px" formControlName="email">
+                            </div>
+                            <div class="col-md-6">
+                              <label
+                                class="text-15 font-weight-400 text-black mb-2">{{'PHONE_NUMBER'|translate}}</label>
+                              <div class="input-group h-44-px bg-white border rounded-2 overflow-hidden w-100 d-flex">
+                                <span [matMenuTriggerFor]="mobilecodemenu"
+                                  class="input-group-text bg-color-DBDBDB w-auto min-w-35 border-0 h-100 justify-content-between">
+                                  <span *ngIf="selectedcode">+{{phoneCode}}</span>
+                                  <span *ngIf="countrytext" class="text-color-475467">{{'COUNTRYCODE'|translate}}</span>
+                                  <span>
+                                    <img src="../../../../assets/img/chevron-down.svg" class="w-15-px h-15-px"
+                                      alt="{{'ICONIMAGES'|translate}}">
+                                  </span>
+                                </span>
+                                <div class="custom-wrapper">
+                                  <mat-menu #mobilecodemenu="matMenu" (closed)="onMenuClosedCountry()"
+                                    class="bottom-menu" yPosition="below" [overlapTrigger]="false">
+                                    <div class="menu-content-countrycode v_scroll_custom">
+                                      <form class="w-100">
+                                        <div class="w-100 my-3 px-2">
+                                          <input (click)="onMenuItemClick($event)" type="text" [(ngModel)]="searchText"
+                                            class="w-100 border rounded-3 p-2"
+                                            placeholder="{{'SEARCHCOUNTRY'|translate}}" />
+                                        </div>
+                                        <ul class="w-100 p-0 m-0 list-unstyled">
+                                          <li *ngFor="let country of countries" class="p-2 border-bottom-0 cursor-pointer text-black font-weight-400"
+                                            (click)="selectMobileCode(country)">
+                                            <span class="flag-icon flag-icon-{{country.flag.toLowerCase()}}"></span>
+                                            + {{country.code}}
+                                          </li>
+                                        </ul>
+                                      </form>
+                                    </div>
+                                  </mat-menu>
+                                </div>
+                                <input type="number" class="errow_hide px-2 w-65 h-44-px bg-white border-0 rounded-0"
+                                  placeholder="{{'(555) 000-0000'|translate}}" formControlName="phoneNumber"/>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 d-flex justify-content-end">
+                              <button type="button" (click)="addcontactinfo()"
+                                class="border-0 px-4 rounded-2 bg-theme-dark-color text-color-w text-first-light-color py-2 text-16 font-weight-400">{{'SAVE'|translate}}</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <!-- CONTACT INFO FORM START -->
+                    <!-- ADDRESS LIST START -->
+                    <div class="row mt-3" *ngIf="list_contact_info">
+                      <div class="col-12">
+                        <div class="border rounded-2 p-3 bg-white w-100">
+                          <div class="w-100">
+                            <div class="row">
+                              <div class="col-12">
+                                <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                                  {{'WHO-WILL-PICKUP-THE-ORDER'|translate}}</p>
+                              </div>
+                            </div>
+                            <div class="row mt-4">
+                              <div class="col-12">
+                                <div class="d-flex">
+                                  <div
+                                    class="flex-shrink-0 bg-color-eeeeee rounded-circle w-50-px h-50-px overflow-hidden">
+                                    <img class="w-100 h-100" src="../../../../assets/img/user-01.svg"
+                                      alt="{{'ADDRESS'|translate}}">
+                                  </div>
+                                  <div class="flex-grow-1 ms-3">
+                                    <div class="row">
+                                      <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                                        <p class="text-14 font-weight-500 text-black mb-2">
+                                          {{'DUMMYNAME'|translate}}</p>
+                                        <p class="text-14 font-weight-400 text-black mb-2">
+                                          {{'DUMMYGMAIL'|translate}}</p>
+                                        <p class="text-14 font-weight-400 text-black mb-2">
+                                          +1-1234658</p>
+                                        <div class="d-flex justify-content-center">
+                                          <button type="button" (click)="editcontactinfo()"
+                                            class="rounded-circle border w-24-px h-24-px mx-1 d-flex align-items-center justify-content-center">
+                                            <mat-icon
+                                              class="text-12 d-flex align-items-center justify-content-center">edit</mat-icon>
+                                          </button>
+                                          <button type="button" (click)="deletepopup()"
+                                            class="rounded-circle border w-24-px h-24-px mx-1 d-flex align-items-center justify-content-center">
+                                            <mat-icon
+                                              class="text-12 d-flex align-items-center justify-content-center">close</mat-icon>
+                                          </button>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ADDRESS LIST END -->
+                    <!-- CONTACT INFO UPDATE FORM START -->
+                    <div class="row my-5" *ngIf="update_contact_info">
+                      <div class="col-md-12 px-md-auto px-sm-0 px-0">
+                        <form class="bg-white border rounded-2 p-3">
+                          <div class="row mb-4">
+                            <div class="col-md-12">
+                              <h6 class="text-16 font-weight-500 text-black mob-text-14">
+                                {{'PLEASEUPDATECONTACTINFORMATION'|translate}}</h6>
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <div
+                              class="col-md-12 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-12 mb-lg-0 mb-md-3 md-sm-3 mb-3">
+                              <label for="formGroupExampleInput" class="form-label text-14 font-weight-500 text-grey">
+                                {{'SIGNUP_INPUTPLACEHOLDFSTNAME'|translate}}</label>
+                              <input type="text" class="form-control input-focus-none-checkout h-44-px">
+                            </div>
+                            <div class="col-md-12 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-12">
+                              <label for="formGroupExampleInput" class="form-label text-14 font-weight-500 text-grey">
+                                {{'SIGNUP_INPUTPLACEHOLDLSTNAME'|translate}}</label>
+
+                              <input type="text" class="form-control input-focus-none-checkout h-44-px">
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <div class="col-md-12 col-xx-6 col-xl-6 col-lg-6 col-sm-12 col-12 mb-3">
+                              <label for="formGroupExampleInput"
+                                class="form-label text-14 font-weight-500 text-grey">{{'EMAIL'|translate}}</label>
+                              <input type="email" class="form-control input-focus-none-checkout h-44-px">
+                            </div>
+                            <div class="col-md-6">
+                              <label
+                                class="text-15 font-weight-400 text-black mb-2">{{'PHONE_NUMBER'|translate}}</label>
+                              <div class="input-group h-44-px bg-white border rounded-2 overflow-hidden w-100">
+                                <span [matMenuTriggerFor]="mobilecodemenu"
+                                  class="input-group-text bg-white w-auto min-w-35 justify-content-between border-0">
+                                    <span *ngIf="selectedcode">+{{phoneCode}}</span>
+                                    <span *ngIf="countrytext" class="text-color-475467">{{'COUNTRYCODE'|translate}}</span>
+                                    <span>
+                                        <img src="../../../../assets/img/chevron-down.svg"
+                                            class="w-15-px h-15-px"
+                                            alt="{{'ICONIMAGES'|translate}}">
+                                    </span>
+                                </span>
+                                <div class="custom-wrapper">
+                                  <mat-menu #mobilecodemenu="matMenu" (closed)="onMenuClosedCountry()"
+                                    class="bottom-menu" yPosition="below" [overlapTrigger]="false">
+                                    <div class="menu-content-countrycode">
+                                      <form class="w-100">
+                                        <div class="w-100 my-3 px-2">
+                                          <input (click)="onMenuItemClick($event)" type="text" [(ngModel)]="searchText"
+                                            class="w-100 border rounded-3 p-2"
+                                            placeholder="{{'SEARCHCOUNTRY'|translate}}" />
+                                        </div>
+                                        <ul class="w-100 p-0 m-0 list-unstyled">
+                                          <li *ngFor="let country of countries" class="p-2 border-bottom-0 cursor-pointer text-black font-weight-400"
+                                            (click)="selectMobileCode(country)">
+                                            <span class="flag-icon flag-icon-{{country.flag.toLowerCase()}}"></span>
+                                            + {{country.code}}
+                                          </li>
+                                        </ul>
+                                      </form>
+                                    </div>
+                                  </mat-menu>
+                                </div>
+                                <input type="number" class="errow_hide px-2 w-65 h-44-px bg-white border-0 rounded-0"
+                                  placeholder="{{'(555) 000-0000'|translate}}" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 d-flex justify-content-end">
+                              <button type="button" (click)="cancelupdateinfo()"
+                                class="border-0 px-4 mx-2 rounded-2 bg-color-si text-black py-2 text-16 font-weight-400">{{'CANCLE'|translate}}</button>
+                              <button type="button" (click)="updatecontactinfo()"
+                                class="border-0 px-4 rounded-2 bg-theme-dark-color text-color-w text-first-light-color py-2 text-16 font-weight-400">{{'UPDATE'|translate}}</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <!-- CONTACT INFO UPDATE FORM END -->
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="payment_panel">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                            {{'PAYMENT'|translate}}</p>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                            <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                          </span>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+                          </span>
+                        </div>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="w-100">
+                    <div class="row mb-3">
+                      <div class="col-12">
+                        <div
+                          class="w-100 bg-color-si py-2 text-center text-color-dark tex-first-light-color text-14 font-weight-400">
+                          {{'ALLTRANSACTIONSARESECUREANDENCRYPTED'|translate}}
+                        </div>
+                      </div>
+                    </div>
+
+                    <form class="mt-4">
+                      <div class="w-100 p-4">
+                        <div class="row justify-content-start flex-lg-row flex-md-column flex-sm-column flex-column">
+                          <div
+                            class="me-lg-3 me-md-0 me-sm-0 me-0 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto h-60-px"
+                            [ngClass]="{'active': activepayment === 'cashondelivery'}"
+                            (click)="paymentmethodcard_one(false,'cashondelivery')">
+                            <label for="cashondelivery22"
+                              class="container_radio text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                              {{'CASHONDELIVERY'|translate}}
+                              <input type="radio" id="cashondelivery22" checked name="radio" (change)="toggleCreditInfo(false, 'COD')">
+                              <span class="checkmark"></span>
+                            </label>
+                          </div>
+                          <div
+                            class="me-lg-3 me-md-0 me-sm-0 me-0 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto h-60-px"
+                            (click)="paymentmethodcard_one(true,'creditcard')"
+                            [ngClass]="{'active': activepayment === 'creditcard'}">
+                            <label for="creditcard44"
+                              class="container_radio text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                              {{'CREDITCARD'|translate}}
+                              <input type="radio" id="creditcard44" name="radio" (change)="toggleCreditInfo(false, 'CREDIT_CARD')">
+                              <span class="checkmark"></span>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+
+                    <div class="w-100 p-3" *ngIf="paymentcard">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="w-100 p-3 border-1-BBC2CD bg-white rounded-3">
+                            <div class="row">
+                              <div class="col-md-12 col-lg-7 col-sm-12 col-12">
+                                <form [formGroup]="cardForm">
+                                  <div class="row mb-3">
+                                    <div class="col-md-12 col-xxl-12 col-xl-12 col-lg-12 col-sm-12 col-12">
+                                      <label for="formGroupExampleInput"
+                                        class="form-label text-14 font-weight-500 text-grey">
+                                        {{'SIGNUP_INPUTPLACEHOLDFSTNAME'|translate}}</label>
+                                      <input type="text" class="form-control input-focus-none-checkout h-44-px" formControlName="nameOnCard">
+                                      <small class="text-16 font-weight-400 text-black">
+                                        {{'PLAN_CARD_FULL_NAME'|translate}}</small>
+                                    </div>
+                                    <div *ngIf="(getCardControl['nameOnCard'].touched && getCardControl['nameOnCard'].invalid) || (getCardControl['nameOnCard'].untouched && isSubmitted)" class="text-danger">
+                                      <div *ngIf="getCardControl['nameOnCard'].errors?.['required']">{{'NAME_ON_CARD_IS_REQUIRED'| translate}}</div>
+                                    </div>
+                                  </div>
+                                  <div class="row mb-3">
+                                    <div class="col-md-12 col-xxl-12 col-xl-12 col-lg-12 col-sm-12 col-12">
+                                      <label for="formGroupExampleInput"
+                                        class="form-label text-14 font-weight-500 text-grey">
+                                        {{'CARDNUMBER'|translate}}</label>
+                                      <div class="input-group h-44-px border rounded-3">
+                                        <span class="input-group-text bg-transparent border-0">
+                                          <img src="../../../assets/img/items/mastercard.svg" class="w-100 m-0"
+                                            alt="{{'ICONIMAGES'|translate}}">
+                                        </span>
+                                        <input type="text"
+                                          class="form-control input-focus-none-checkout border-top-0 border-bottom-0 h-100"
+                                          aria-label="Amount (to the nearest dollar)"
+                                          placeholder="0000 00000 0000 0000" formControlName="cardNumber">
+                                        <span class="input-group-text bg-transparent border-0">
+                                          <img src="../../../assets/img/items/help-circle.svg" class="w-100 m-0"
+                                            alt="{{'ICONIMAGES'|translate}}"></span>
+                                      </div>
+                                    </div>
+                                    <div *ngIf="(getCardControl['cardNumber'].touched && getCardControl['cardNumber'].invalid) || (getCardControl['cardNumber'].untouched && isSubmitted)" class="text-danger">
+                                      <div *ngIf="getCardControl['cardNumber'].errors?.['required']">{{'CARD_NUMBER_IS_REQUIRED'| translate}}</div>
+                                    </div>
+                                  </div>
+                                  <div class="row mb-3">
+                                    <div
+                                      class="col-md-12 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-12 mb-md-3 mb-sm-3 mb-3 mb-lg-0">
+                                      <label for="formGroupExampleInput"
+                                          class="form-label text-14 font-weight-500 text-grey">
+                                          {{'PLAN_CARD_EXPIRATION_MONTH'|translate}}</label>
+                                      <input type="text"
+                                          class="form-control input-focus-none-checkout h-44-px"
+                                          placeholder="MM" formControlName="expMonth">
+                                      <div *ngIf="(getCardControl['expMonth'].touched && getCardControl['expMonth'].invalid) || (getCardControl['expMonth'].untouched && isSubmitted)" class="text-danger">
+                                        <div *ngIf="getCardControl['expMonth'].errors?.['required']">{{'EXPIRATION_MONTH_IS_REQUIRED'| translate}}</div>
+                                      </div>
+                                  </div>
+                                  <div
+                                      class="col-md-12 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-12 mb-md-3 mb-sm-3 mb-3 mb-lg-0">
+                                      <label for="formGroupExampleInput"
+                                          class="form-label text-14 font-weight-500 text-grey">
+                                          {{'Expiration Year'|translate}}</label>
+                                      <input type="text"
+                                          class="form-control input-focus-none-checkout h-44-px"
+                                          placeholder="YYYY" formControlName="expYear">
+                                      <div *ngIf="(getCardControl['expYear'].touched && getCardControl['expYear'].invalid) || (getCardControl['expYear'].untouched && isSubmitted)" class="text-danger">
+                                        <div *ngIf="getCardControl['expYear'].errors?.['required']">{{'EXPIRATION_YEAR_IS_REQUIRED'| translate}}</div>
+                                      </div>
+                                  </div>
+                                    <div class="col-md-12 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-12">
+                                      <label for="formGroupExampleInput" class="form-label">
+                                        <span
+                                          class="text-14 font-weight-500 text-grey">{{'SECURITYCODE'|translate}}</span>
+                                        <span class="ms-2">
+                                          <img src="../../../assets/img/items/help-circle.svg" class="m-0"
+                                            alt="{{'ICONIMAGES'|translate}}">
+                                        </span>
+                                      </label>
+                                      <input type="text" class="form-control input-focus-none-checkout h-44-px"
+                                        placeholder="CVV" formControlName="cvc">
+                                      <div *ngIf="(getCardControl['cvc'].touched && getCardControl['cvc'].invalid) || (getCardControl['cvc'].untouched && isSubmitted)" class="text-danger">
+                                        <div *ngIf="getCardControl['cvc'].errors?.['required']">{{'CVV_IS_REQUIRED'| translate}}</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row mt-3">
+                                    <div class="col-md-12">
+                                      <ul class="list-unstyled mb-0">
+                                        <li class="border-bottom-0">
+                                          <div class="mb-1 d-flex align-items-center">
+                                            <mat-checkbox>
+                                            </mat-checkbox>
+                                            <label class="form-check-label w-100 mx-2" for="flexCheckDefault">
+                                              <span
+                                                class="text-16 font-weight-500">{{'USETHISCARDFORFUTUREPAYMENT'|translate}}</span>
+                                            </label>
+                                          </div>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                  </div>
+                                  <div class="row mt-3">
+                                    <div class="col-md-12 d-flex align-items-center justify-content-start">
+                                      <span class="me-2">
+                                        <img src="../../../assets/img/items/mdi_encryption.svg" class="m-0"
+                                          alt="{{'ICONIMAGES'|translate}}">
+                                      </span>
+                                      <p class="text-14 font-weight-400 text-four-theme-gray-shade-6C6D70 mb-0">
+                                        Secure payment with SSL
+                                        Encryptioninfo</p>
+                                    </div>
+                                  </div>
+                                  <div class="row mt-3">
+                                    <div class="col-12">
+                                      <button type="button"
+                                        class="bg-theme-dark-color text-15 mob-text-12 font-weight-500 text-color-w text-first-light-color rounded-2 px-md-4 px-sm-2 px-2 py-2">
+                                        {{'ADDANOTHERCARD'|translate}}
+                                      </button>
+                                    </div>
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="col-md-12 col-lg-5 col-sm-12 col-12">
+                                <img src="../../../assets/img/items/flags.png" class="w-100 m-0"
+                                  alt="{{'CARD'|translate}}">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel *ngIf="BillingAddressBox">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                            {{'BILLING_ADDRESS'|translate}}</p>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                            <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                          </span>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                          </span>
+                        </div>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="w-100 mt-4">
+                    <div class="row mt-3">
+                      <div class="col-12 px-0">
+                        <mat-accordion class="guest_panel inner_tab">
+                          <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                <div class="d-flex align-items-center justify-content-between w-100">
+                                  <div class="d-flex justify-content-between align-items-center w-100">
+                                    <i class="fa fa-minus text-18 text-color-dark text-first-light-color me-3"></i>
+                                    <i class="fa fa-plus text-18 text-color-dark text-first-light-color me-3"></i>
+                                    <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                                      {{'ADDNEWADDRESS'|translate}}</p>
+                                  </div>
+                                </div>
+                              </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="w-100 mt-4">
+                              <div class="row">
+                                <div class="col-12">
+                                  <form>
+                                    <div class="row mb-3">
+                                      <div class="col-md-12 custom_mat_select_parent">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_COUNTRY'|translate}}</label>
+                                          <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'ADD_LOCATION_COUNTRY'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-md-6">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'FIRST_NAME'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'FIRST_NAME'|translate}}" />
+                                      </div>
+                                      <div class="col-md-6">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'LAST_NAME'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'LAST_NAME'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-md-12">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_ADDRESS'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'ADD_LOCATION_ADDRESS'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-md-6">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'CITY'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'CITY'|translate}}" />
+                                      </div>
+                                      <div class="col-md-6">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'POSTCODE'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'POSTCODE'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-md-12">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'PHONE_NUMBER'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'PHONE_NUMBER'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button"
+                                          class="border-0 ms-auto mob-w-100 rounded-3 bg-theme-dark-color text-color-w text-first-light-color py-2 px-4 text-center text-16 font-weight-400 text-white mob-text-14">{{'SAVE'|translate}}</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </mat-expansion-panel>
+                        </mat-accordion>
+                      </div>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+          </div>
+        </div>
+        <div class="w-100 mt-4" *ngIf="activeColumn === 2 && !userTypeShow" >
+          <div class="row">
+            <div class="col-12">
+              <mat-accordion class="guest_panel checkoutpanel">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                            {{'SHIPPING_ADDRESS'|translate}}</p>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                            <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                          </span>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                          </span>
+                        </div>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="w-100 mt-4">
+                    <!-- update form shipping address start -->
+                    <div class="row" *ngIf="update_address_shipping">
+                      <div class="col-12 px-0">
+                        <div class="rounded-2 p-3 w-100 border bg-color-E0E0E0 mb-3">
+                          <form>
+                            <div class="row">
+                              <div class="col-md-9 col-sm-12 col-12 mb-md-0 mb-sm-3 mb-3">
+                                <label
+                                  class="text-15 font-weight-400 text-black mb-2">{{'SEARCHLOCATION'|translate}}</label>
+                                <input type="text" [(ngModel)]="searchText" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px" />
+                              </div>
+                              <div class="col-md-3 d-flex align-items-end justify-content-end">
+                                <button type="button"
+                                  class="border-0 ms-auto mob-w-100 rounded-3 bg-theme-dark-color text-color-w text-first-light-color h-44-px px-4 text-center text-16 font-weight-400 text-white mob-text-14">{{'SEARCHLOCATION'|translate}}</button>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                        <form class="bg-white border rounded-3 p-3">
+                          <div class="row">
+                            <div class="col-md-6 col-lg-6 custom_mat_select_parent mb-3">
+                              <label
+                                class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_COUNTRY'|translate}}
+                                <span class="text-danger">*</span></label>
+                                <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'ADD_LOCATION_COUNTRY'|translate}}" />
+                            </div>
+                            <div class="col-md-12 col-lg-6 custom_mat_select_parent mb-3">
+                              <label class="text-15 font-weight-400 text-black mb-2">{{'STATE'|translate}} <span
+                                  class="text-danger">*</span></label>
+                              <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'STATE'|translate}}" />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 mb-3">
+                              <label class="text-15 font-weight-400 text-black mb-2">{{'CITY'|translate}} <span
+                                  class="text-danger">*</span></label>
+                              <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'CITY'|translate}}" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                              <label class="text-15 font-weight-400 text-black mb-2">{{'PHONE_NUMBER'|translate}} <span
+                                  class="text-danger">*</span></label>
+                              <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'PHONE_NUMBER'|translate}}" />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 col-lg-6 mb-3">
+                              <label class="text-15 font-weight-400 text-black mb-2">{{'ZIPCODE'|translate}} <span
+                                  class="text-danger">*</span></label>
+                              <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'ZIPCODE'|translate}}" />
+                            </div>
+                            <div class="col-md-6 col-lg-6 mb-3">
+                              <label
+                                class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_STREET_NUMBER'|translate}}</label>
+                              <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'ADD_LOCATION_STREET_NUMBER'|translate}}" />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 col-lg-6 mb-3">
+                              <label class="text-15 font-weight-400 text-black mb-2">{{'LOCATIONS_PO_BOX'|translate}}</label>
+                              <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'LOCATIONS_PO_BOX'|translate}}" />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 mb-3">
+                              <label
+                                class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_ADDRESS'|translate}}</label>
+                              <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'ADD_LOCATION_ADDRESS'|translate}}" />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 mb-3">
+                              <label class="text-15 font-weight-400 text-black mb-2">{{'LONGITUDE'|translate}}</label>
+                              <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'120.092109.0'|translate}}" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                              <label class="text-15 font-weight-400 text-black mb-2">{{'LATITUDE'|translate}}</label>
+                              <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                placeholder="{{'120.092109.0'|translate}}" />
+                            </div>
+                          </div>
+                          <div class="row mb-3">
+                            <div class="col-12">
+                              <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                                <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                              </agm-map> -->
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 d-flex justify-content-end">
+                              <button type="button" (click)="cancleshippinginfo()"
+                                class="border-0 px-4 mx-2 rounded-2 bg-color-si text-black py-2 text-16 font-weight-400">{{'CANCLE'|translate}}</button>
+                              <button type="button" (click)="updateshippinginfo()"
+                                class="border-0 mob-w-100 rounded-3 bg-theme-dark-color text-color-w text-first-light-color py-2 px-4 text-center text-16 font-weight-400 text-white mob-text-14">{{'UPDATE'|translate}}</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <!-- update form shipping address end -->
+                    <!-- list form shipping address start -->
+                    <div class="row mb-2" *ngIf="list_shipping_info">
+                      <div class="col-lg-6 col-md-12 col-sm-12 col-12 mb-3 ps-0">
+                        <div class="radio_column mb-2 bg-white border-1-D0D5DD rounded-2 h-60-px px-2"
+                          (click)="setActiveAddress(addressDTO)" [ngClass]="{'active': setaddress == 1}">
+                          <label for="setaddress1"
+                            class="container_radio text-14 mob-text-12 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                            {{ addressDTO.addressLine1 }}, {{ addressDTO.streetNumber }}, {{ addressDTO.streetNumber }}, {{ addressDTO.city }}, {{ addressDTO.state }}
+                            <input type="radio" id="setaddress1" name="radio">
+                            <span class="checkmark"></span>
+                          </label>
+                          <div *ngIf="shippingNotAvailable" class="d-flex justify-content-start">
+                            <mat-error>Shipping is not available to this address</mat-error>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                          <button type="button" (click)="editshippinginfo()"
+                            class="rounded-circle border bg-white w-24-px h-24-px mx-1 d-flex align-items-center justify-content-center">
+                            <mat-icon class="text-12 d-flex align-items-center justify-content-center">edit</mat-icon>
+                          </button>
+                          <button type="button" (click)="deletepopup()"
+                            class="rounded-circle border bg-white w-24-px h-24-px mx-1 d-flex align-items-center justify-content-center">
+                            <mat-icon class="text-12 d-flex align-items-center justify-content-center">close</mat-icon>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- list form shipping address start -->
+                    <!-- new form shipping address start -->
+                    <div class="row" *ngIf="add_address_shipping || list_shipping_info">
+                      <div class="col-12 px-0">
+                        <!-- <div class="row mb-3">
+                          <div class="col-md-4">
+                            <div
+                              class="radio_column mb-lg-0 mb-md-3 mb-sm-3 mb-3 bg-white border-1-D0D5DD rounded-2 h-60-px px-2"
+                              (click)="shipping_address_one(1)" [ngClass]="{'active': sameasshipping == 1}">
+                              <label for="mapaddress"
+                                class="container_radio text-14 mob-text-12 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                                {{'SELECTYOURSHIPPINGADDRESSBYMAP'|translate}}
+                                <input type="radio" id="mapaddress" name="radio">
+                                <span class="checkmark"></span>
+                              </label>
+                            </div>
+                          </div>
+                        </div> -->
+                        <mat-accordion class="guest_panel inner_tab">
+                          <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                <div class="d-flex align-items-center justify-content-between w-100">
+                                  <div class="d-flex justify-content-between align-items-center w-100">
+                                    <i class="fa fa-minus text-18 text-color-dark text-first-light-color me-3"></i>
+                                    <i class="fa fa-plus text-18 text-color-dark text-first-light-color me-3"></i>
+                                    <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                                      {{'ADDADDRESS'|translate}}</p>
+                                  </div>
+                                </div>
+                              </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="w-100 mt-4">
+                              <div class="row">
+                                <div class="col-12">
+                                  <!-- Search location form -->
+                                  <div class="rounded-2 p-3 w-100 border bg-color-E0E0E0 mb-3">
+                                    <form>
+                                      <div class="row">
+                                        <div class="col-md-9 col-sm-12 col-12 mb-md-0 mb-sm-3 mb-3">
+                                          <label class="text-15 font-weight-400 text-black mb-2">{{'SEARCHLOCATION'|translate}}</label>
+                                          <input matInput type="text" id="autocomplete" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px" placeholder="Enter your address"
+                                                 ngx-google-places-autocomplete (onAddressChange)="placeChangedCallback($event)" />
+                                        </div>
+                                      </div>
+                                    </form>
+                                  </div>
+                                  <!-- Shipping address form -->
+                                  <form [formGroup]="addressForm">
+                                    <div class="row">
+                                      <div class="col-md-6 col-lg-6 custom_mat_select_parent mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_COUNTRY'|translate}}
+                                          <span class="text-danger">*</span></label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                               formControlName="country"
+                                               placeholder="{{'ADD_LOCATION_COUNTRY'|translate}}" />
+                                      </div>
+                                      <div class="col-md-12 col-lg-6 custom_mat_select_parent mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'STATE'|translate}}
+                                          <span class="text-danger">*</span></label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                               formControlName="state"
+                                               placeholder="{{'STATE'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-6 mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'CITY'|translate}}
+                                          <span class="text-danger">*</span></label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                               formControlName="city"
+                                               placeholder="{{'CITY'|translate}}" />
+                                      </div>
+                                      <div class="col-md-6 mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'PHONE_NUMBER'|translate}}
+                                          <span class="text-danger">*</span></label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                               formControlName="phoneNumber"
+                                               placeholder="{{'PHONE_NUMBER'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-6 col-lg-6 mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'ZIPCODE'|translate}}
+                                          <span class="text-danger">*</span></label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                               formControlName="zipcode"
+                                               placeholder="{{'ZIPCODE'|translate}}" />
+                                      </div>
+                                      <div class="col-md-6 col-lg-6 mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_STREET_NUMBER'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                              formControlName="streetNumber"
+                                              placeholder="{{'ADD_LOCATION_STREET_NUMBER'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-6 col-lg-6 mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'LOCATIONS_PO_BOX'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                              placeholder="{{'LOCATIONS_PO_BOX'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-12 mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_ADDRESS'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                              formControlName="formattedAddress"
+                                               placeholder="{{'ADD_LOCATION_ADDRESS'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-6 mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'LONGITUDE'|translate}}</label>
+                                        <input [disabled]="true" type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                               [placeholder]="this.longitude" />
+                                      </div>
+                                      <div class="col-md-6 mb-3">
+                                        <label class="text-15 font-weight-400 text-black mb-2">{{'LATITUDE'|translate}}</label>
+                                        <input [disabled]="true" type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                               [placeholder]="this.latitude"/>
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3" *ngIf="mapselect">
+                                      <div class="col-12">
+                                        <!-- <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapReady)="mapReadyHandler($event)">
+                                          <agm-marker [latitude]="markerLatitude" [longitude]="markerLongitude" [markerDraggable]="true"
+                                                      (dragEnd)="onMarkerDragEnd($event)"></agm-marker>
+                                        </agm-map> -->
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button" (click)="addshippinginfo()"
+                                                class="border-0 ms-auto mob-w-100 rounded-3 bg-theme-dark-color text-color-w text-first-light-color py-2 px-4 text-center text-16 font-weight-400 text-white mob-text-14">{{'SAVE'|translate}}</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+
+                          </mat-expansion-panel>
+                        </mat-accordion>
+                      </div>
+                    </div>
+                    <!-- new form shipping address start -->
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="shipping_panel">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+
+                      <div class="d-flex justify-content-between align-items-center w-100">
+                        <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                          {{'SHIPPINGOPTIONS'|translate}}</p>
+                        <span
+                          class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                          <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                        </span>
+                        <span
+                          class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                        </span>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <ul *ngIf="shippingRates.length > 0" class="list-unstyled mb-0">
+                          <li *ngFor="let rate of shippingRates" class="border-bottom-1-D0D5DD p-4">
+                              <div class="bg-transparent radio_shipping_container " >
+                                  <label for="{{rate.id}}"
+                                      class="container_radio text-15 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                                      {{rate.shippingType|translate}}:  {{currencySymbol}}{{rate.shippingRate}}
+                                      <input type="radio" id="{{rate.id}}" name="shippingRate" (click)="setActiveShippingRate(rate)">
+                                      <span class="checkmark"></span>
+                                  </label>
+                                  <div class="d-flex justify-content-start ml-5">
+                                    <label>({{rate.shippingDays}})</label>
+                                  </div>
+                              </div>
+
+                          </li>
+                      </ul>
+                      <div *ngIf="shippingRates.length == 0" class="d-flex justify-content-center mt-4 mb-4">
+                        <mat-error>Shipping is not available to the selected address</mat-error>
+                      </div>
+                  </div>
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                            {{'PAYMENT'|translate}}</p>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                            <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                          </span>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                          </span>
+                        </div>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="w-100 mt-4">
+                    <form>
+                      <div class="row justify-content-start flex-lg-row flex-md-column flex-sm-column flex-column">
+                        <div
+                          class="me-lg-3 me-md-0 me-sm-0 me-0 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto h-60-px"
+                          [ngClass]="{'active': activepayment_two === 'cashondelivery'}"
+                          (click)="paymentmethodcard_two(false,'cashondelivery')">
+                          <label for="cashondelivery6"
+                            class="container_radio text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                            {{'CASHONDELIVERY'|translate}}
+                            <input type="radio" id="cashondelivery6" checked name="radio">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                        <div
+                          class="me-lg-3 me-md-0 me-sm-0 me-0 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto h-60-px"
+                          (click)="paymentmethodcard_two(true,'creditcard')"
+                          [ngClass]="{'active': activepayment_two === 'creditcard'}">
+                          <label for="creditcard7"
+                            class="container_radio text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                            {{'CREDITCARD'|translate}}
+                            <input type="radio" id="creditcard7" name="radio">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </form>
+                    <div class="row" *ngIf="paymentcard_two">
+                      <div class="col-md-12 card border-1-BBC2CD bg-white rounded-3">
+                        <div class="w-100 p-3">
+                          <div class="row">
+                            <div class="col-md-12 col-lg-7 col-sm-12 col-12">
+                              <form>
+                                <div class="row mb-3">
+                                  <div class="col-md-12 col-xxl-12 col-xl-12 col-lg-12 col-sm-12 col-12">
+                                    <label for="formGroupExampleInput"
+                                      class="form-label text-14 font-weight-500 text-grey">
+                                      {{'SIGNUP_INPUTPLACEHOLDFSTNAME'|translate}}</label>
+                                    <input type="text" class="form-control input-focus-none-checkout h-44-px">
+                                    <small class="text-16 font-weight-400 text-black">
+                                      {{'PLAN_CARD_FULL_NAME'|translate}}</small>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-md-12 col-xxl-12 col-xl-12 col-lg-12 col-sm-12 col-12">
+                                    <label for="formGroupExampleInput"
+                                      class="form-label text-14 font-weight-500 text-grey">
+                                      {{'CARDNUMBER'|translate}}</label>
+                                    <div class="input-group h-44-px border rounded-3">
+                                      <span class="input-group-text bg-transparent border-0">
+                                        <img src="../../../assets/img/items/mastercard.svg" class="w-100 m-0"
+                                          alt="{{'ICONIMAGES'|translate}}">
+                                      </span>
+                                      <input type="text"
+                                        class="form-control input-focus-none-checkout border-top-0 border-bottom-0 h-100"
+                                        aria-label="Amount (to the nearest dollar)" placeholder="0000 00000 0000 0000">
+                                      <span class="input-group-text bg-transparent border-0">
+                                        <img src="../../../assets/img/items/help-circle.svg" class="w-100 m-0"
+                                          alt="{{'ICONIMAGES'|translate}}"></span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row mb-3">
+                                  <div class="col-md-12 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-12 mb-3">
+                                    <label for="formGroupExampleInput"
+                                      class="form-label text-14 font-weight-500 text-grey">
+                                      {{'PLAN_CARD_EXPIRATION_MONTH'|translate}}</label>
+                                    <input type="text" class="form-control input-focus-none-checkout h-44-px"
+                                      placeholder="MM">
+                                  </div>
+                                  <div class="col-md-12 col-xxl-6 col-xl-6 col-lg-6 col-sm-12 col-12">
+                                    <label for="formGroupExampleInput" class="form-label">
+                                      <span
+                                        class="text-14 font-weight-500 text-grey">{{'SECURITYCODE'|translate}}</span>
+                                      <span class="ms-2">
+                                        <img src="../../../assets/img/items/help-circle.svg" class="m-0"
+                                          alt="{{'ICONIMAGES'|translate}}">
+                                      </span>
+                                    </label>
+                                    <input type="text" class="form-control input-focus-none-checkout h-44-px"
+                                      placeholder="CVV">
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-12">
+                                    <ul class="list-unstyled mb-0">
+                                      <li class="border-bottom-0">
+                                        <div class="mb-1 d-flex align-items-center">
+                                          <mat-checkbox>
+                                          </mat-checkbox>
+                                          <label class="form-check-label w-100 mx-2" for="flexCheckDefault">
+                                            <span
+                                              class="text-16 font-weight-500">{{'USETHISCARDFORFUTUREPAYMENT'|translate}}</span>
+                                          </label>
+                                        </div>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-md-12 d-flex align-items-center justify-content-start">
+                                    <span class="me-2">
+                                      <img src="../../../assets/img/items/mdi_encryption.svg" class="m-0"
+                                        alt="{{'ICONIMAGES'|translate}}">
+                                    </span>
+                                    <p class="text-14 font-weight-400 text-four-theme-gray-shade-6C6D70 mb-0">
+                                      Secure payment with SSL
+                                      Encryptioninfo</p>
+                                  </div>
+                                </div>
+                                <div class="row mt-3">
+                                  <div class="col-12">
+                                    <button type="button"
+                                      class="bg-theme-dark-color text-15 mob-text-12 font-weight-500 text-color-w text-first-light-color rounded-2 px-md-4 px-sm-2 px-2 py-2">
+                                      {{'ADDANOTHERCARD'|translate}}
+                                    </button>
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="col-md-12 col-lg-5 col-sm-12 col-12">
+                              <img src="../../../assets/img/items/flags.png" class="w-100 m-0"
+                                alt="{{'CARD'|translate}}">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel *ngIf="BillingAddressBoxNew">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                            {{'BILLING_ADDRESS'|translate}}</p>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                            <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                          </span>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                          </span>
+                        </div>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="w-100 mt-4">
+                    <div class="row mt-3">
+                      <div class="col-12 px-0">
+                        <mat-accordion class="guest_panel inner_tab">
+                          <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                <div class="d-flex align-items-center justify-content-between w-100">
+                                  <div class="d-flex justify-content-between align-items-center w-100">
+                                    <i class="fa fa-minus text-18 text-color-dark text-first-light-color me-3"></i>
+                                    <i class="fa fa-plus text-18 text-color-dark text-first-light-color me-3"></i>
+                                    <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                                      {{'ADDNEWADDRESS'|translate}}</p>
+                                  </div>
+                                </div>
+                              </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="w-100 mt-4">
+                              <div class="row">
+                                <div class="col-12">
+                                  <form>
+                                    <div class="row mb-3">
+                                      <div class="col-md-12 custom_mat_select_parent">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_COUNTRY'|translate}}</label>
+                                            <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                            placeholder="{{'ADD_LOCATION_COUNTRY'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-md-6">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'FIRST_NAME'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'FIRST_NAME'|translate}}" />
+                                      </div>
+                                      <div class="col-md-6">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'LAST_NAME'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'LAST_NAME'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-md-12">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'ADD_LOCATION_ADDRESS'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'ADD_LOCATION_ADDRESS'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-md-6">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'CITY'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'CITY'|translate}}" />
+                                      </div>
+                                      <div class="col-md-6">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'POSTCODE'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'POSTCODE'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                      <div class="col-md-12">
+                                        <label
+                                          class="text-15 font-weight-400 text-black mb-2">{{'PHONE_NUMBER'|translate}}</label>
+                                        <input type="text" class="px-2 w-100 h-44-px bg-white border rounded-2 h-44-px"
+                                          placeholder="{{'PHONE_NUMBER'|translate}}" />
+                                      </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col-md-12 d-flex justify-content-end">
+                                        <button type="button"
+                                          class="border-0 ms-auto mob-w-100 rounded-3 bg-theme-dark-color text-color-w text-first-light-color py-2 px-4 text-center text-16 font-weight-400 text-white mob-text-14">{{'SAVE'|translate}}</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </mat-expansion-panel>
+                        </mat-accordion>
+                      </div>
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+          </div>
+        </div>
+        <div class="w-100 mt-4" *ngIf="activeColumn === 3 && !userTypeShow" >
+          <div class="row">
+            <div class="col-12">
+              <mat-accordion class="guest_panel checkoutpanel">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                          <p class="text-16 font-weight-500 text-black mb-0 mob-text-12">
+                            {{'CHOOSEPICKUPDATEANDTIME'|translate}}</p>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                            <i class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                          </span>
+                          <span
+                            class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                          </span>
+                        </div>
+                      </div>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="w-100 mt-4">
+                    <div class="row" [formGroup]="pickupDetails">
+                      <div
+                        class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 choose_date_parent set_icon_date">
+                        <mat-form-field class="w-100 h-60-px">
+                          <mat-label
+                            class="text-12 font-weight-400 text-color-999EA8">{{'CHOOSEADATE'|translate}}</mat-label>
+                          <mat-datepicker-toggle matSuffix [for]="picker">
+                          </mat-datepicker-toggle>
+                          <input matInput [matDatepicker]="picker" class="h-60-px" placeholder="MM/DD/YYYY" formControlName="pickupDate">
+                          <mat-datepicker #picker>
+                            <mat-datepicker-actions>
+                              <button mat-button matDatepickerCancel
+                                class="border text-black w-50">{{'CANCEL'|translate}}</button>
+                              <button mat-raised-button
+                                class="bg-theme-dark-color text-color-w text-first-light-color w-50 text-center"
+                                 matDatepickerApply>
+                                {{'APPLY'|translate}}</button>
+                            </mat-datepicker-actions>
+                          </mat-datepicker>
+                        </mat-form-field>
+                        <div *ngIf="(getControl['pickupDate'].touched && getControl['pickupDate'].invalid) || (getControl['pickupDate'].untouched && isSubmitted)" class="text-danger d-block w-100 text-start">
+                          <p class="text-14 text-danger m-0" *ngIf="getControl['pickupDate'].errors?.['required']">
+                            {{'PICKUP_TIME_IS_REQUIRED'| translate}}
+                            </p>
+                        </div>
+                      </div>
+                      <div
+                        class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 choose_date_parent time_select d-flex align-items-end flex-column">
+                        <input type="time" class="text-black border-1-DDDDDD bg-white rounded-2 w-100 px-2 h-60-px" />
+                      </div>
+
+                    </div>
+                  </div>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-xxl-4 col-xl-4 col-lg-4 col-sm-12 col-12 mt-md-3 mt-sm-3 mt-3 mt-lg-0" *ngIf="!userTypeShow">
+        <div class="card border p-0">
+          <div class="w-100 border-bottom px-3 py-3 mb-3">
+            <div class="row">
+              <div class="col-md-12">
+                <h5 class="text-18 font-weight-600 text-black mb-0">
+                  {{'OVERVIEW'|translate}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="w-100 p-3">
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <div
+                  class="rounded-2 bg-color-si bg-color-si border-first-color px-md-3 px-sm-2 px-2 py-2 d-flex justify-content-center align-items-md-center align-items-sm-center align-items-center align-items-lg-start w-100">
+                  <div
+                    class="text-15 font-weight-600 text-black mob-text-12 white-space-nowrap">
+                    {{'CHECKOUTTYPE'|translate}}:
+                  </div>
+                  <div
+                    class="text-15 font-weight-400 text-black mob-text-12 ms-2">
+                    {{orderType| translate}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-12">
+                <div
+                  class="rounded-2 border-1-9E77ED bg-color-E9D7FE px-md-3 px-sm-2 px-2 py-2 d-flex justify-content-center align-items-md-center align-items-sm-center align-items-center align-items-lg-start w-100">
+                  <div
+                    class="text-15 font-weight-600 text-black white-space-nowrap mob-text-12">
+                    {{'PAYMENTBY'|translate}}:
+                  </div>
+                  <div class="text-15 font-weight-400 text-black mob-text-12 ms-2">
+                    {{paymentMethod}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12">
+                <h1 class="mb-0 text-15 font-weight-600 text-black">{{'YOURCART'|translate}}</h1>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12">
+                <div class="table-responsive w-100 border-bottom">
+                  <table class="table overview_table">
+                    <tr *ngFor="let item of shoppingCart?.cartItemResponseList">
+                      <td>
+                        <div class="border rounded-2 w-55-px h-50-px">
+                          <img class="w-100 h-100" [src]="item.itemImage"
+                            alt="{{'PRODUCTS'|translate}}" />
+                        </div>
+                      </td>
+                      <td>
+                        <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                          {{item.productName | titlecase}}</p>
+                      </td>
+                      <td>
+                        <div class="w-50-px">
+                          <input type="number" class=" border rounded-2 w-100 p-1" [value]="item.quantity" readonly/>
+                        </div>
+                      </td>
+                      <td>
+                        <p class="mb-0 text-14 font-weight-500  mob-text-12" [ngClass]="{'text-black': item.customerPrice > 0, 'text-danger': item.customerPrice == 0}">{{currencySymbol}}{{item.customerPrice}} </p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12">
+                <h1 class="mb-0 text-15 font-weight-600 text-black">{{'ORDERSUMMARY'|translate}}</h1>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-12" *ngIf="shoppingCart">
+                <div class="table-responsive w-100 border-bottom">
+                  <table class="table overview_table">
+                    <tr>
+                      <td>
+                        <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                          {{'TOTALITEMS'|translate}} ({{shoppingCart.cartItemResponseList.length}})</p>
+                      </td>
+                      <td>
+                        <p class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                          {{currencySymbol}}{{shoppingCart?.totalItemsPrice| number:'1.2-2'}} </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                          {{'D_TOTAL_DISCOUNT'|translate}}</p>
+                      </td>
+                      <td>
+                        <p class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                          (-) {{currencySymbol}}{{shoppingCart.totalDiscount| number:'1.0-2'}} </p>
+                      </td>
+                    </tr>
+                    <tr *ngIf="this.shoppingCart.totalPromoitionDiscount && this.shoppingCart.totalPromoitionDiscount > 0">
+                      <td>
+                        <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                          {{'PROMOTIONS-SEC'|translate}}</p>
+                      </td>
+                      <td>
+                        <p class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                          (-) {{currencySymbol}}{{this.shoppingCart.totalPromoitionDiscount}} </p>
+                      </td>
+                    </tr>
+                    <tr *ngIf="activeColumn == 2 && totalShippingRate > 0">
+                      <td>
+                          <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                              {{'SHIPPINGHANDLILNG'|translate}}</p>
+                      </td>
+                      <td>
+                          <p *ngIf="!shoppingCart.isFixedAmountForShipping" class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                              (+){{currencySymbol}}{{totalShippingRate| number:'1.2-2'}}</p>
+                          <p *ngIf="shoppingCart.isFixedAmountForShipping" class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                                (+) {{currencySymbol}}{{shoppingCart.discountedShippingCost| number:'1.2-2'}}</p>
+                      </td>
+                  </tr>
+                    <tr *ngIf="tax > 0 || surcharges > 0 || shippingTax > 0">
+                      <td>
+                        <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                          {{'ESTIMATESTAX'|translate}}</p>
+                      </td>
+                      <td>
+                        <p class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                          (+) {{currencySymbol}}{{tax+surcharges+shippingTax| number:'1.2-2'}} </p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="border rounded-3 mb-4">
+              <div class="px-2 pt-2 mb-4">
+                <div class="row">
+                  <div class="col-lg-8 col-md-6 col-sm-6 col-12">
+                    <div class="input-group border rounded-2 bg-color-si h-100">
+                      <input type="text"
+                        class="form-control border-0 input-focus-none-checkout p-2 h-100 bg-color-si">
+                      <span
+                        class="input-group-text border-0 bg-color-si rounded-0 h-100 p-2 d-flex align-items-center justify-content-center">
+                        <mat-icon
+                          class="text-16 text-black d-flex align-items-center justify-content-center">close</mat-icon>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 col-sm-6 col-12 mt-sm-0 mt-3">
+                    <button type="button"
+                      class=" border-0 h-100 rounded-2 bg-theme-dark-color text-color-w text-first-light-color p-2 w-100 text-14 mob-text-12 font-weight-400 text-whitee">{{'APPLYCOUPON'|translate}}</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 promotions_accordion">
+                  <mat-accordion>
+                    <mat-expansion-panel>
+                      <mat-expansion-panel-header class="bg-color-F2F2F2">
+                        <mat-panel-title>
+                          <div class="d-flex align-items-center justify-content-between w-100">
+                            <span class="text-16 font-weight-500 text-black">{{'PROMOTIONS'|translate}}</span>
+                            <span class="arrow_promotions">
+                              <img src="../../../../assets/img/chevron-down.svg" alt="{{'PROMOTIONS'|translate}}">
+                            </span>
+                          </div>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <div class="w-100 pb-3">
+                        <div class="row my-3">
+                          <div clas="col-12">
+                            <p class="mb-0 text-14 font-weight-400 text-black">
+                              {{'YOUHAVEGOTMULTIPLEPROMOTIONS'|translate}}</p>
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                          <div class="col-12 d-flex flex-wrap">
+                            <div
+                              class="w-auto px-2 py-1 mb-2 rounded-2 text-12 font-weight-400 mx-1 bg-theme-dark-color text-color-w text-first-light-color">
+                              {{'NEWYEAROF'|translate}}
+                            </div>
+                            <div
+                              class="w-auto px-2 py-1 mb-2 rounded-2 text-12 font-weight-400 mx-1 bg-theme-dark-color text-color-w text-first-light-color">
+                              {{'FLATEOFF'|translate}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="roW">
+                          <div clas="col-12">
+                            <h1 class="mb-3 text-15 font-weight-400 text-black">
+                              {{'COUPONS'|translate}}</h1>
+                            <p class="mb-0 text-14 font-weight-400 text-black">
+                              {{'YOUHAVEGOTCOUPONDISCOUNT'|translate}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-2" *ngIf="this.shoppingCart">
+              <div class="col-md-12">
+                <ul class="list-unstyled">
+                  <li
+                    class="border-bottom-0 bg-theme-dark-color p-3 rounded-2 d-flex justify-content-between align-items-center">
+                    <span
+                      class="text-14 font-weight-500 text-color-w text-first-light-color mob-text-12">{{'ORDERTOTAL'|translate}}</span>
+                    <span
+                      class="text-14 font-weight-500 text-color-w text-first-light-color mob-text-12">{{currencySymbol}}{{shoppingCart.totalPrice| number:'1.0-2'}}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="row mb-4" *ngIf="this.shoppingCart">
+                <div class="col-md-12">
+                    <ul class="list-unstyled">
+                        <li
+                        class="border-bottom-0 d-flex justify-content-between align-items-center">
+                        <span
+                            class="text-15 font-weight-600 mob-text-12 text-color-dark">{{'YOURTOTALSAVING'|translate}}</span>
+                        <span
+                            class="text-15 font-weight-600 mob-text-12 text-color-dark">{{currencySymbol}}{{(shoppingCart.subTotal - shoppingCart.totalPrice)| number:'1.0-2'}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <ul class="list-unstyled mb-0">
+                  <li class="border-bottom-0">
+                    <div class="mb-1 d-flex align-items-center">
+                      <mat-checkbox></mat-checkbox>
+                      <label class="form-check-label w-100 mx-2" for="flexCheckDefault">
+                        <span
+                          class="text-14 font-weight-500 mob-text-12">{{'AGREEWITHTERMSANDCONDITON'|translate}}</span>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="button" [disabled]="buttonDisabled" (click)="placeOrder()"
+                  class="border-0 w-100 rounded-2 bg-theme-dark-color text-color-w text-first-light-color py-2 text-center text-16 font-weight-600 text-white mob-text-14">{{'PROCEED'|translate}}</button>
+              </div>
+            </div>
+            <div class="col-md-12 mt-3" *ngIf="errorMessage">
+              <div class="alert alert-warning text-center">
+                  {{ errorMessage }}
+              </div>
+          </div>
+          <div class="col-md-12 mt-3" *ngIf="message">
+              <div class="alert alert-success text-center">
+                  {{message}}
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

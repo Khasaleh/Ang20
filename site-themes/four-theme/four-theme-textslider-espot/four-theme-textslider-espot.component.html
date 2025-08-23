@@ -1,0 +1,19 @@
+<section class="mt-lg-5 mt-md-5 mt-sm-5 mt-4 bg-theme-dark-color">
+  <div class="new-container1">
+    <div class="d-block w-100">
+      <div class="d-block w-100 py-3"  *ngIf="!data?.enableScroll" >
+      <p class="p-0 m-0 text-center text-color-w text-19" 
+      [innerHTML]="data?.description|stripHtmlTags">
+      </p>
+      </div>
+      <div class="d-block w-100 py-3"  *ngIf="data?.enableScroll">
+        <marquee behavior="scroll" direction="left">
+        <p class="p-0 m-0 w-auto d-inline-block text-center text-color-w text-19" 
+        [innerHTML]="data?.description|stripHtmlTags">
+        </p>
+        </marquee>
+        </div>
+    </div>
+  </div>
+</section>
+

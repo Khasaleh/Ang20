@@ -1,0 +1,107 @@
+<section class="py-5 my-2">
+<div class="new-container1 mx-auto customer-reviews-section">
+
+<div class="d-block w-100 pb-4 mb-3">
+   <h1 class="text-24 mob-text-20 font-weight-700 text-black text-center m-0">
+      {{data.sliderTitle | titlecase}}
+   </h1>
+</div> 
+
+ <div class="row w-100 justify-content-center" *ngIf="design=='TM_CLASSIC'" >
+   <div class="col-12" [ngClass]="{
+      'col-lg-4 col-md-4 col-sm-4': data.data.length === 1,
+      'col-lg-8 col-md-8 col-sm-8': data.data.length === 2
+    }">
+      <owl-carousel-o [options]="customOptions" 
+      [ngClass]="{ 
+         'arrows-style-consistent px-lg-5 px-md-4 px-sm-4 px-4': sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+         'dots-style-consistent': sliderStyle === 'DOTS',
+         'slider-style-nothing': sliderStyle === 'NO_ARROWS_NO_DOTS'
+         }"
+         >
+         <ng-template carouselSlide *ngFor="let review of data.data">
+            <div class="border-1-BBC2CD rounded h-100  mx-lg-4 mx-md-3 mx-sm-3 mx-3 customer-review">
+               <div class="d-flex justify-content-between py-2 px-4 align-items-center border-bottom">
+                  <div class="bg-white d-flex align-items-center justify-content-center rounded-1">
+                    <ngb-rating class="rating-star" [max]="5" [(rate)]="review.rating"
+                    [readonly]="true"></ngb-rating>
+                  </div>
+                  <span class="text-15 text-black font-weight-500">{{review?.customerName | titlecase}}</span>
+               </div>
+               <p class="text-14 text-black font-weight-400 p-4">{{review?.comment}}</p>
+            </div>
+         </ng-template>
+      </owl-carousel-o>
+   </div>
+ </div>
+
+ <div class="row w-100 justify-content-center" *ngIf="design=='TM_ELEGANCE'" >
+   <div class="col-12" [ngClass]="{
+      'col-lg-4 col-md-4 col-sm-4': data.data.length === 1,
+      'col-lg-8 col-md-8 col-sm-8': data.data.length === 2
+    }">
+    <owl-carousel-o [options]="customOptions" 
+    [ngClass]="{ 
+      'arrows-style-consistent px-lg-5 px-md-4 px-sm-4 px-4': sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+      'dots-style-consistent': sliderStyle === 'DOTS',
+      'slider-style-nothing': sliderStyle === 'NO_ARROWS_NO_DOTS'
+      }">
+      <ng-template carouselSlide *ngFor="let review of data.data">
+         <div class="border-1-BBC2CD rounded h-100  mx-lg-4 mx-md-3 mx-sm-3 mx-3 customer-review">
+          <div class="d-flex gap-2 align-items-center py-2 px-4">
+            <img class="img-fluid w-80-px h-80-px round"
+            onerror="this.src='./assets/img/default-profile-image.jpg'"
+            [src]=" awsUrl + review?.profileImage" alt="profile-img">
+            <div class="d-flex gap-2 flex-column w-100">
+            <div class="d-flex justify-content-between  align-items-center">
+               <div class="bg-white d-flex align-items-center justify-content-center rounded-1">
+                 <ngb-rating class="rating-star" [max]="5" [(rate)]="review.rating"
+                 [readonly]="true"></ngb-rating>
+               </div>
+               <span class="text-15 text-black font-weight-500">{{review?.customerName | titlecase}}</span>
+            </div>
+            <p class="text-14 text-black font-weight-400">{{review?.comment}}</p>
+             </div>
+          </div>
+         </div>
+      </ng-template>
+   </owl-carousel-o>
+    </div>
+</div>
+
+<div class="row w-100 justify-content-center" *ngIf="design=='TM_RETRO'">
+   <div class="col-12" [ngClass]="{
+      'col-lg-4 col-md-4 col-sm-4': data.data.length === 1,
+      'col-lg-8 col-md-8 col-sm-8': data.data.length === 2
+    }">
+    <owl-carousel-o [options]="customOptions" 
+    [ngClass]="{ 
+      'arrows-style-consistent px-lg-5 px-md-4 px-sm-4 px-4': sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+      'dots-style-consistent': sliderStyle === 'DOTS',
+      'slider-style-nothing': sliderStyle === 'NO_ARROWS_NO_DOTS'
+      }">
+      <ng-template carouselSlide *ngFor="let review of data.data">
+         <div class="border-1-BBC2CD rounded h-100  mx-lg-4 mx-md-3 mx-sm-3 mx-3 customer-review">
+          <div class="d-flex gap-3 align-items-center py-2 px-4 flex-column">
+            <img class="img-fluid w-70-px h-70-px round"
+            onerror="this.src='./assets/img/default-profile-image.jpg'"
+            [src]=" awsUrl + review?.profileImage" alt="profile-img">
+            <div class="d-flex gap-2 flex-column">
+            <div class="d-flex justify-content-center flex-column align-items-center">
+               <div class="bg-white d-flex align-items-center justify-content-center rounded-1">
+                 <ngb-rating class="rating-star" [max]="5" [(rate)]="review.rating"
+                 [readonly]="true"></ngb-rating>
+               </div>
+               <span class="text-15 text-black font-weight-500 d-block w-100 text-center mt-3">{{review?.customerName | titlecase}}</span>
+            </div>
+            <p class="text-14 text-black font-weight-400 d-block w-100 text-center">{{review?.comment}}</p>
+            </div>
+          </div>
+         </div>
+      </ng-template>
+    </owl-carousel-o>
+    </div>
+</div>
+
+</div>
+</section>

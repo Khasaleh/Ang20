@@ -1,0 +1,1651 @@
+<section>
+<section class="py-2 bg-F4EBFF">
+<div class="new-container1">
+  <div class="row w-100 align-items-center">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-6 order-lg-1 order-md-1 order-sm-1 order-1">
+      <div class="d-flex align-items-center justify-content-start">
+        <button [routerLink]="['../home']">
+                <img class="w-100-px mob-w-80-px h-60-px mob-h-60 object-fit-contain object-position-center-left" onerror="this.src='./assets/img/themelogoplaceholder.svg'" [src]="assetsAwsKey+logoImage"
+                    alt="{{'LOGOIMAGETHEMEFOUR'|translate}}" />
+      </button>
+      </div>
+    </div>
+     <div class="col-lg-6 col-md-6 col-sm-12 col-12 order-lg-2 order-md-2 order-sm-3 order-3">
+      <div class="d-block w-100 text-center">
+        <h5 class="text-black font-weight-700 text-18 mt-0 mb-1">
+          {{'ORDER_CHECKOUT'|translate}}
+        </h5>
+        <p class="text-14 text-black font-weight-500 m-0">
+          {{'ENJOY_SECURE_SEAMLESS_CHECKOUT'|translate}}
+        </p>
+      </div>
+    </div>
+     <div class="col-lg-3 col-md-3 col-sm-12 col-6 order-lg-3 order-md-3 order-sm-2 order-2">
+      <div class="d-flex align-items-center justify-content-end">
+          <button [routerLink]="['../home']" class="px-2 py-2 bg-grey2 border rounded-2 d-flex align-items-center justify-content-start">
+        <i class="bi bi-caret-left-fill text-black text-13 me-2 lh-tiny ms-0 pt-1"></i>
+        <span class="d-lg-inline-block d-md-inline-block d-sm-none d-none font-weight-500 text-13">
+            {{'BACK_TO_HOME'|translate}}
+        </span>
+        <span class="d-lg-none d-md-none d-sm-inline-block d-inline-block font-weight-500 text-13">
+            {{'BACK'|translate}}
+        </span>
+      </button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- User Type Show Section Starts Here -->
+<section *ngIf="userTypeShow" class="py-5">
+  <div class="new-container1">
+    <div class="row">
+      <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+        <div class="d-lg-block d-md-block d-sm-none d-none w-100">
+                <img class="w-100" src="../../../../assets/img/checkout-accounts.jpg" alt="{{'PASSWORD'|translate}}" />
+        </div>
+      </div>
+
+       <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+
+          <!-- Email Address Form Starts Here -->
+          <div class="d-block w-100" *ngIf="showEmailform">
+              <div class="d-block w-100 mb-4 pb-2">
+                <h3 class="text-black font-weight-600 text-20 mt-0 mb-2">
+                  Enter Email Address
+                </h3>
+                <p class="text-black font-weight-400 text-15 m-0">
+                 Please enter your email to continue. We'll send your order details and updates to this address.
+                </p>
+              </div>
+              <div class="d-block w-100 border border-color-silver px-3 py-5 rounded-2">
+                <div class="row justify-content-center py-lg-4 py-md-4 py-sm-3 py-2">
+                    <div class="col-lg-9 col-md-10 col-sm-12 col-12">
+                    <div class="d-block w-100 mb-3">
+                      <mat-form-field appearance="fill" class="w-100 field-style2 mat-form-field-height-auto">
+                        <mat-label class="text-black text-14 font-weight-500">Email Address</mat-label>
+                        <input
+                          matInput
+                          [(ngModel)]="checkOutEmail"
+                          type="email"
+                          class="text-black text-15 h-30-px"
+                        />
+                      </mat-form-field>
+                      <mat-error *ngIf="isEmailInvalid">
+                          Please enter a valid email address.
+                        </mat-error>
+                    </div>
+
+                    <div class="d-block w-100">
+                      <button [disabled]="!checkOutEmail || firstTimeCalled"
+                        (click)="getCheckoutUserTypeByEmail()"
+                        class="w-100 text-white text-14 font-weight-600 bg-theme-dark-color rounded-2 px-3 py-2 lh-lg"
+                      >
+                        Continue
+                      </button>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+          </div>
+          <!-- Email Address Form Ends Here -->
+
+
+          <!-- Password Form Starts Here -->
+           <div class="d-block w-100"  *ngIf="!showEmailform && !isContinueGuest && (checkOutUserTypeByEmail === 'STORE_REGISTERED' || checkOutUserTypeByEmail === 'FAZEAL_REGISTERED')">
+
+              <div *ngIf="checkOutUserTypeByEmail === 'STORE_REGISTERED'" class="d-block w-100 mb-4 pb-2">
+                <h3 class="text-black font-weight-600 text-20 mt-0 mb-2">
+                  Welcome Back!
+                </h3>
+                <p class="text-black font-weight-400 text-15 m-0 lh-sm">
+                  You already have an account with our store, Just enter your password below to continue shopping.
+                </p>
+              </div>
+
+              <div *ngIf="checkOutUserTypeByEmail === 'FAZEAL_REGISTERED'" class="d-block w-100 mb-4 pb-2">
+              <h3 class="text-black font-weight-600 text-20 mt-0 mb-2">
+               Already Registered on Fazeal
+              </h3>
+              <p class="text-black font-weight-400 text-15 m-0 lh-sm">
+                We found an existing account associated with your email on Fazeal. Please enter your password to log in and continue.
+              </p>
+              </div>
+
+              <div class="d-block w-100 border border-color-silver px-3 py-5 rounded-2">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-md-10 col-sm-12 col-12">
+                      <div class="d-block w-100 mb-1 position-relative">
+                          <mat-form-field appearance="fill" class="w-100 field-style2 mat-form-field-height-auto">
+                            <mat-label class="text-black text-14 font-weight-500">
+                             Password
+                            </mat-label>
+                            <input matInput [(ngModel)]="checkOutTypePassword"  [type]=" hidenewpassword ? 'password' : 'text'" class="text-black text-15 h-30-px" />
+                          </mat-form-field>
+                            <button (click)="hidenewpassword = !hidenewpassword" type="button"
+                              class="position-absolute end-0 top-0 p-2 d-flex align-items-center justify-content-center mt-2 me-1">
+                              <i *ngIf="hidenewpassword" class="bi bi-eye-slash-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+                              <i *ngIf="!hidenewpassword" class="bi bi-eye-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+                            </button>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-end w-100 mb-2">
+                        <button (click)="forgotPassword()" class="text-12 font-weight-500 text-black py-1">
+                          Forgot Password
+                        </button>
+                      </div>
+                      <div class="d-block w-100">
+                        <button [disabled]="!checkOutTypePassword || firstTimeCalled" (click)="loginByCheckoutType()"  class="w-100 text-white text-14 font-weight-600 bg-theme-dark-color rounded-2 px-3 py-2 lh-lg mb-2">
+                        Login
+                        </button>
+
+                          <button (click)="continueGuest()" class="w-100 text-white text-14 font-weight-600 bg-black rounded-2 px-3 py-2 lh-lg mb-2">
+                        Continue as a Guest
+                        </button>
+                         <p class="m-0 text-center text-13 font-weight-400 p-0">
+                          {{'DONTHAVEANACCOUNT'|translate}}
+                          <button type="button" (click)="signupmodal()"
+                            class="mx-2 text-14 mob-text-12 font-weight-500 text-0083EA">
+                            {{'SIGNUPNOW'|translate}}
+                          </button>
+                        </p>
+
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <!-- Password Form Ends Here -->
+
+
+           <!-- Password Form Starts Here -->
+           <div class="d-block w-100" *ngIf="!showEmailform && !isContinueGuest && (checkOutUserTypeByEmail !== 'STORE_REGISTERED' && checkOutUserTypeByEmail !== 'FAZEAL_REGISTERED')">
+              <div class="d-block w-100 mb-4 pb-2">
+                <h3 class="text-black font-weight-600 text-20 mt-0 mb-2">
+                 Signup
+                </h3>
+                <p class="text-black font-weight-400 text-15 m-0">
+                 Create a guest account to complete your purchase or continue as a guest. You'll still receive all order updates and confirmations.
+                </p>
+              </div>
+              <div class="d-block w-100 border border-color-silver px-3 py-5 rounded-2">
+                <div class="row justify-content-center">
+                    <div class="col-lg-9 col-md-10 col-sm-12 col-12">
+
+                      <div class="d-block w-100">
+                        <button (click)="signupmodal()" class="w-100 text-white text-14 font-weight-600 bg-theme-dark-color rounded-2 px-3 py-2 lh-lg mb-2">
+                        Signup
+                        </button>
+
+                          <button (click)="continueGuest()" class="w-100 text-white text-14 font-weight-600 bg-black rounded-2 px-3 py-2 lh-lg">
+                        Continue as a Guest
+                        </button>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+          <!-- Password Form Ends Here -->
+
+
+          <!-- Guest Form Starts Here -->
+          <div *ngIf="isContinueGuest" class="d-block w-100">
+                 <div class="d-block w-100 mb-4 pb-2">
+                <h3 class="text-black font-weight-600 text-20 mt-0 mb-2">
+                 Create Your Account
+                </h3>
+                <p class="text-black font-weight-400 text-15 m-0">
+                Create your account on our store to unlock a personalized shopping experience, track your orders with ease, access exclusive offers, and enjoy a fast, seamless checkout every time you shop.
+                </p>
+              </div>
+              <div class="d-block w-100 border border-color-silver px-3 py-5 rounded-2">
+                <div class="row justify-content-center">
+                    <div class="col-lg-11 col-md-12 col-sm-12 col-12">
+
+                         <form (ngSubmit)="continueAsGuest(guestForm)" #guestForm="ngForm">
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                          <label
+                            class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'FIRST_NAME'|translate}}</label>
+                          <input type="text" class="border border-color-silver h-40-px rounded-2 px-2 input-focus-none w-100" name="firstName" ngModel
+                            #firstNameRef="ngModel" pattern="^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ\s'\-]*$" minlength="2" maxlength="50" required>
+                          <div *ngIf="firstNameRef.invalid && (firstNameRef.dirty || firstNameRef.touched)"
+                            class="text-danger text-12">
+                            <div *ngIf="firstNameRef.errors?.['required']"  class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'FIRST_NAME_REQUIRED_ERROR' | translate }}
+                            </div>
+                            <div *ngIf="firstNameRef.errors?.['pattern']" class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'FIRST_NAME_INVALID' | translate }}
+                            </div>
+                            <div *ngIf="firstNameRef.errors?.['minlength'] || firstNameRef.errors?.['maxlength']" class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'FIRST_NAME_MIN_MAX_LENGTH_ERROR' | translate }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                          <label
+                            class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'LAST_NAME'|translate}}</label>
+                          <input type="text" class="border border-color-silver h-40-px rounded-2 px-2 input-focus-none w-100" name="lastName" ngModel
+                            #lastNameRef="ngModel" pattern="^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ\s'\-]*$" minlength="2" maxlength="50" required>
+                          <div *ngIf="lastNameRef.invalid && (lastNameRef.dirty || lastNameRef.touched)" class="text-danger text-12">
+                            <div *ngIf="lastNameRef.errors?.['required']" class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'LAST_NAME_REQUIRED_ERROR' | translate }}
+                            </div>
+                            <div *ngIf="lastNameRef.errors?.['pattern']" class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'LAST_NAME_INVALID' | translate }}
+                            </div>
+                            <div *ngIf="lastNameRef.errors?.['minlength'] || lastNameRef.errors?.['maxlength']" class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'LAST_NAME_MIN_MAX_LENGTH_ERROR' | translate }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                          <label class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">
+                            {{'EMAILADDRESS'|translate}}
+                          </label>
+                          <input type="text" class="border border-color-silver h-40-px rounded-2 px-2 input-focus-none w-100" name="email" ngModel
+                            #email="ngModel" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger text-12">
+                            <div *ngIf="email.errors?.['required']" class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'EMAIL_REQUIRED_ERROR_MESSAGE' | translate }}
+                            </div>
+                            <div *ngIf="email.errors?.['pattern'] || email.errors?.['email']" class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'INVALID_EMAIL' | translate }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-3">
+                           <label class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">
+                            {{ 'PHONE_NUMBER' | translate }}
+                          </label>
+                          <input type="tel" class="border border-color-silver h-40-px rounded-2 px-2 input-focus-none w-100" name="phoneNumber" ngModel
+                            #phoneNumberRef="ngModel" required minlength="10" maxlength="15" pattern="[0-9]+">
+                          <div *ngIf="phoneNumberRef.invalid && (phoneNumberRef.dirty || phoneNumberRef.touched)"
+                            class="text-danger text-12">
+                            <div *ngIf="phoneNumberRef.errors?.['required']" class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'PHONE_REQUIRED' | translate }}
+                            </div>
+                            <div *ngIf="phoneNumberRef.errors?.['minlength'] || phoneNumberRef.errors?.['maxlength']" class="text-12 font-weight-400 text-danger text-start">
+                              {{ 'PHONE_LENGTH_ERROR' | translate }}
+                            </div>
+                            <div *ngIf="phoneNumberRef.errors?.['pattern']" class="text-12 font-weight-400 text-danger text-start d-block">
+                              {{ 'PHONE_INVALID_ERROR' | translate }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mb-2">
+                        <div class="col-md-12">
+                          <button [disabled]="guestForm.invalid" type="submit"
+                           class="w-100 text-white text-14 font-weight-600 bg-theme-dark-color rounded-2 px-3 py-2 lh-lg">
+                            {{'CONTINUEASGUEST'|translate}}
+                          </button>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                           <p class="m-0 text-center text-13 font-weight-400 p-0">
+                          {{'DONTHAVEANACCOUNT'|translate}}
+                          <button type="button" (click)="signupmodal()"
+                            class="mx-2 text-14 mob-text-12 font-weight-500 text-0083EA">
+                            {{'SIGNUPNOW'|translate}}
+                          </button>
+                        </p>
+                        </div>
+                      </div>
+                    </form>
+
+                    </div>
+                </div>
+              </div>
+          </div>
+          <!-- Guest Form Ends Here -->
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</section>
+<!-- User Type Show Section Ends Here -->
+
+
+<section *ngIf="!userTypeShow" class="py-5 px-md-3 px-sm-0 px-0 checkout_section_parent">
+    <div *ngIf="!isCheckoutApiStarted" class="new-container1">
+        <div class="row ">
+
+            <div class="col-md-12 col-xxl-8 col-xl-8 col-lg-8 col-sm-12 col-12">
+
+
+              <!-- If User Enabled Multiple Checkout Methods Starts Here -->
+                <div class="border w-100 rounded-2 py-4 px-2" *ngIf="!getSingleCheckoutMethodKey()">
+                    <div class="row mt-minus-30-px">
+                        <div class="col-md-3 col-sm-5 col-10 mx-auto">
+                            <h1 class="text-15 font-weight-600 text-black mb-0 text-center bg-white">
+                                {{'CHECKOUTTYPE'|translate}}</h1>
+                        </div>
+                    </div>
+                    <div class="w-100 mt-4">
+                        <form>
+                            <div *ngIf="!isCheckoutApiStarted"  class="row justify-content-around flex-lg-row flex-md-column flex-sm-column flex-column">
+
+                              <div *ngIf="orderOnlineShipHome" class="radio_column me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 mob-w-100 bg-white border-1-D0D5DD rounded-2 w-30-percent h-60-px" (click)="setActiveColumn(2)"
+                                    [ngClass]="{'active': activeColumn === 2}">
+                                    <label for="radio2"
+                                        class="container_radio text-14 mob-text-12 font-weight-400 text-capitalize text-black mb-0 h-100 d-flex align-items-center pb-2">
+                                       <span class="font-weight-600 text-14 text-black d-inline-block mt-1"> Order Online <br/> Ship to Home </span>
+                                        <input type="radio" id="radio2" [checked]="activeColumn === 2" name="radio" (click)="toggleAddressInfo(true, 'ORDER_ONLINE_SHIP_TO_HOME')">
+                                        <span class="checkmark"></span>
+                                         <i class="bi bi-info-circle-fill ms-3 mt-2 lh-tiny text-13 me-1 no-min-height no-min-width text-black"
+                                         matTooltip="Complete your purchase online and have your items delivered directly to your home. Enjoy a hassle-free shopping experience with doorstep delivery."
+                                         matTooltipPosition="above"
+                                         matTooltipClass="bg-black text-white text-13 font-weight-500 p-1 rounded-2 mat-tooltip-global">
+                                        </i>
+                                    </label>
+                                </div>
+
+
+                              <div *ngIf="orderOnlinePickupFromStore && businessAddressesOn" class="radio_column me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 mob-w-100 bg-white border-1-D0D5DD rounded-2 w-30-percent h-60-px" (click)="setActiveColumn(1)"
+                                    [ngClass]="{'active': activeColumn === 1}">
+                                    <label for="radio1"
+                                        class="container_radio text-14 mob-text-12 font-weight-400 text-capitalize text-black mb-0 h-100 d-flex align-items-center pb-2">
+                                       <span class="font-weight-600 text-14 text-black d-inline-block mt-1">  Order Online <br/> Pickup from Store </span>
+                                        <input type="radio" id="radio1" [checked]="activeColumn === 1" name="radio" (click)="toggleAddressInfo(false, 'ORDER_ONLINE_PICK_IN_STORE')">
+                                        <span class="checkmark"></span>
+                                         <i class="bi bi-info-circle-fill ms-3 mt-2 lh-tiny text-13 me-1 no-min-height no-min-width text-black"
+                                         matTooltip="Purchase products online and pick them up at your selected store location. Skip the shipping and get your order faster at your convenience. "
+                                         matTooltipPosition="above"
+                                         matTooltipClass="bg-black text-white text-13 font-weight-500 p-1 rounded-2 mat-tooltip-global">
+                                        </i>
+                                    </label>
+                                </div>
+
+
+                                <div *ngIf="reserveOnlineOrTryInStore && businessAddressesOn" class="radio_column me-lg-0 me-md-0 me-sm-0 me-0 mb-lg-0 mb-md-3 mb-sm-3 mb-3 mob-w-100 bg-white border-1-D0D5DD rounded-2 w-30-percent h-60-px" (click)="setActiveColumn(3)"
+                                    [ngClass]="{'active': activeColumn === 3}">
+                                    <label for="radio3"
+                                        class="container_radio text-14 mob-text-12 font-weight-400 text-capitalize text-black mb-0 h-100 d-flex align-items-center pb-2">
+                                       <span class="font-weight-600 text-14 text-black d-inline-block mt-1"> Reserve Online <br/> Try in Store </span>
+                                        <input type="radio" id="radio3" [checked]="activeColumn === 3" name="radio" (click)="toggleAddressInfo(false, 'RESERVE_ONLINE_TRY_IN_STORE')">
+                                        <span class="checkmark"></span>
+                                         <i class="bi bi-info-circle-fill ms-3 mt-2 lh-tiny text-13 me-1 no-min-height no-min-width text-black"
+                                         matTooltip="Reserve your favorite items online without paying upfront. Your order will be held at the store, and you can complete the payment when you visit to pick it up."
+                                         matTooltipPosition="above"
+                                         matTooltipClass="bg-black text-white text-13 font-weight-500 p-1 rounded-2 mat-tooltip-global">
+                                        </i>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+              <!-- If User Enabled Multiple Checkout Methods Ends Here -->
+
+              <!-- If Single Checkout Method Available Starts Here -->
+              <div class="d-block w-100 mb-4" *ngIf="getSingleCheckoutMethodKey()">
+                <h3 class="font-weight-600 text-17 text-color-165FCF m-0 d-flex align-items-center justify-content-start text-capitalize">
+                  <b class="text-black font-weight-600 me-3 d-inline-block"> Checkout Type: </b>
+                  {{ getSingleCheckoutMethodKey()! | translate }}
+                </h3>
+              </div>
+              <!-- If Single Checkout Method Available Ends Here -->
+
+                <!-- Order Online Pickup From Store Starts Here -->
+                <div class="w-100 checkoutpanel mt-3" *ngIf="activeColumn == 1">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-accordion class="panel_for_check_circle guest_panel" multi>
+
+                               <!-- Who Will Pickup Panel Starts Here -->
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <p class="text-14 font-weight-600 text-black mb-0 mob-text-12">
+                                                    {{'WHO-WILL-PICKUP-THE-ORDER'|translate}}</p>
+                                                <span
+                                                    class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                                                    <i
+                                                        class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                                </span>
+                                                <span
+                                                    class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+                                                </span>
+                                            </div>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div class="row my-3">
+                                        <div class="col-md-12 px-md-0 px-sm-0 px-0 px-lg-auto">
+                                            <div class="card rounded-3 p-3 border-bottom-1-999EA8">
+                                                <div class="row g-0">
+                                                    <div class="col-lg-10 col-md-12 col-sm-12 col-12 order-lg-1 order-md-2 order-sm-2 order-2">
+                                                        <div class="card-body ps-md-0 ps-sm-0 ps-0 ps-lg-auto">
+                                                            <h5
+                                                                class="card-title text-16 font-weight-500 text-black mb-2 mob-text-14">
+                                                                {{'STORELOCATION'|translate}}</h5>
+                                                            <p *ngFor="let address of businessAddresses"
+                                                                class="card-text text-16 font-weight-400 text-black mb-2 mob-text-14">
+                                                                {{address?.streetNumber + ' ' + address?.addressLineOne + ' , ' + address?.state + ' ' + address?.zipCode + ' , ' + address?.country}}
+                                                              </p>
+                                                            <p
+                                                                class="card-text text-16 mob-text-14 font-weight-500 text-green-theme-four-light-027A48">
+                                                                <span
+                                                                class="text-14 font-weight-500 mx-2 text-capitalize w-100" [innerHTML]="getOpenCloseMessage()">
+                                                              </span>
+                                                              </p>
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        class="col-md-2 order-lg-2 col-sm-2 col-2 order-md-1 order-sm-1 order-1 d-flex align-items-center justify-content-center">
+                                                        <div
+                                                            class="bg-theme-dark-color p-sm-3 p-1 overflow-hidden rounded-3">
+                                                            <img src="../../../assets/img/items/marker-pin-02.svg"
+                                                                width="56" height="56" class="mob-w-100" alt="{{'ICONIMAGES'|translate}}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form>
+                                        <div class="row my-3 justify-content-start flex-lg-row flex-md-column flex-sm-column flex-column">
+                                            <div class="radio_column_another_step me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto h-60-px"
+                                                [ngClass]="{'active': activeMeAnother === 'me'}"
+                                                (click)="anotherstep(false,'me', 'FAZEAL_CUSTOMER')">
+                                                <label for="radio4"
+                                                    class="container_radio text-14 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                                                    {{'ME'|translate}}
+                                                    <input type="radio" id="radio4" checked name="radio" (change)="toggleMe('FAZEAL_CUSTOMER')">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                            <div class="radio_column_another_step me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto h-60-px"
+                                                [ngClass]="{'active': activeMeAnother === 'anotherperson'}"
+                                                (click)="anotherstep(true,'anotherperson', 'ANOTHER_PERSON')">
+                                                <label for="radio5"
+                                                    class="container_radio text-14 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                                                    {{'ANOTHER_PERSON'|translate}}
+                                                    <input type="radio" id="radio5" name="radio" (change)="togglePickupPerson(true, 'ANOTHER_PERSON')">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="d-block w-100 py-3" *ngIf="showPickupPerson">
+                                      <div class="row">
+                                        <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+                                          <div class="d-block w-100 bg-white px-4 py-4 border border-color-silver rounded-2 position-relative">
+                                          <div class="d-block w-100 mb-3">
+                                            <h5 class="text-black text-16 font-weight-600 m-0"> {{personDetails?.firstName}} {{personDetails?.lastName}} </h5>
+                                          </div>
+                                          <div class="d-flex align-items-center justify-content-start flex-wrap">
+                                            <div class="d-inline-block mb-2 me-4">
+                                              <span class="text-black d-inline-block min-width-clear  font-weight-400 text-15">
+                                                {{personDetails?.email}}
+                                                </span>
+                                            </div>
+                                            <div class="d-inline-block mb-2 me-4">
+                                              <span class="text-black d-inline-block min-width-clear font-weight-400 text-15">
+                                                  +{{personDetails?.phoneNumber}}
+                                                </span>
+                                            </div>
+                                              </div>
+                                              <button (click)="PickPerson()" class="px-2 py-1 text-14 font-weight-600 position-absolute top-0 end-0 mt-2 me-2 text-color-165FCF">
+                                                {{'CHANGE'|translate}}
+                                              </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                   <div>
+                                   </div>
+                                </mat-expansion-panel>
+                                <!-- Who Will Pickup Panel Ends Here -->
+
+                                 <!-- Choose Pickup Date & Time Panel Starts Here -->
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <div class="d-flex align-items-center justify-content-between w-100">
+                                                <div class="d-flex justify-content-between align-items-center w-100">
+                                                  <div class="d-flex w-100 align-items-center justify-content-start flex-wrap">
+                                                    <p class="text-14 font-weight-600 text-black mb-0 mob-text-12">
+                                                      {{'CHOOSEPICKUPDATEANDTIME'|translate}}
+                                                    </p>
+                                                    <button (click)="viewStoreHours()" class="d-flex align-items-center justify-content-center bg-theme-light-color ms-3 text-black font-weight-500 px-2 py-1 text-13 rounded-2">
+                                                      <i class="bi bi-info-circle-fill lh-tiny text-13 me-1 no-min-height no-min-width text-black"></i>
+                                                       {{'VIEW_STORE_HOURS'|translate}}
+                                                    </button>
+                                                  </div>
+                                                    <span
+                                                        class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                                                        <i
+                                                            class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                                    </span>
+                                                    <span
+                                                        class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div class="w-100 mt-4">
+                                        <div class="row">
+                                            <div [formGroup]="pickupDetails"
+                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 choose_date_parent set_icon_date">
+                                                <mat-form-field class="w-100 field-style-mat-date">
+                                                    <mat-label class="text-13 font-weight-400 text-black">{{'CHOOSEADATE'|translate}}</mat-label>
+                                                    <mat-datepicker-toggle matSuffix [for]="picker">
+                                                    </mat-datepicker-toggle>
+                                                    <input matInput [matDatepicker]="picker" class="h-36-px text-black font-weight-500 text-black" placeholder="MM/DD/YYYY"
+                                                     formControlName="pickupDate" [matDatepickerFilter]="filterDates">
+                                                    <mat-datepicker #picker>
+                                                    </mat-datepicker>
+                                                </mat-form-field>
+                                                <div *ngIf="(getControl['pickupDate'].touched && getControl['pickupDate'].invalid) || (getControl['pickupDate'].untouched && isSubmitted)" class="text-danger">
+                                                    <div *ngIf="getControl['pickupDate'].errors?.['required']">{{'PICKUP_DATE_IS_REQUIRED'| translate}}</div>
+                                                </div>
+                                            </div>
+                                            <div [formGroup]="pickupDetails"
+                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 choose_date_parent time_select d-flex align-items-end flex-column">
+                                                <input type="time" formControlName="pickupTime"
+                                                      class="text-black border border-color-silver bg-white rounded-2 w-100 px-2 h-50-px" />
+                                                    <div *ngIf="(getControl['pickupTime'].touched && getControl['pickupTime'].invalid) || (getControl['pickupTime'].untouched && isSubmitted)" class="text-danger d-block w-100 text-start">
+                                                      <p class="m-0 text-14 text-danger text-start" *ngIf="getControl['pickupTime'].errors?.['required']">
+                                                        {{'PICKUP_TIME_IS_REQUIRED'| translate}}
+                                                      </p>
+                                                   </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                            <button [disabled]="!this.pickupDetails.get('pickupDate')?.value || !this.pickupDetails.get('pickupTime')?.value"
+                                              (click)="checkTimeAvailable()" class="bg-6E7A8E bg-btn-second-bg font-weight-600 px-3 py-3 rounded-2 text-14 text-white">
+                                             <span class="py-0 d-inline-block">
+                                              {{'SUBMIT_DATE'| translate}}
+                                             </span>
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-expansion-panel>
+                                <!-- Choose Pickup Date & Time Panel Ends Here -->
+
+                                 <!-- Payment Panel Starts Here -->
+                                <mat-expansion-panel class="mt-4">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <p class="text-14 font-weight-600 text-black mb-0 mob-text-12">
+                                                  {{'PAYMENT_METHOD'|translate}}
+                                                </p>
+                                                <span
+                                                    class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                                                    <i
+                                                        class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                                </span>
+                                                <span
+                                                    class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+                                                </span>
+                                            </div>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <form>
+                                        <div class="row my-3 justify-content-start flex-lg-row flex-md-column flex-sm-column flex-column">
+                                            <div *ngIf="isCODEnabled" class="me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto"
+                                                [ngClass]="{'active': activepayment === 'CASH_ON_DELIVERY'}"
+                                                (click)="paymentmethodcard(false,'CASH_ON_DELIVERY')">
+                                                <label for="radio6"
+                                                    class="container_radio checkout-select-btn text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                                                    <div class="d-block w-100 text-center">
+                                                      <img
+                                                       src="../../../assets/img/checkout-cod-icon.png"
+                                                       class="m-0 w-40-px h-auto"
+                                                      alt="{{'ICONIMAGES'|translate}}">
+                                                      <h5 class="text-black text-13 font-weight-600 my-2 ">
+                                                        {{'CASHONDELIVERY'|translate}}
+                                                      </h5>
+                                                    </div>
+                                                    <input type="radio" id="radio6" checked name="radio" (change)="toggleCreditInfo(false, 'COD')">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                            <div *ngIf="isFinixPay" class="me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto"
+                                                (click)="paymentmethodcard(true,'FAZEAL_PAY')"
+                                                [ngClass]="{'active': activepayment === 'FAZEAL_PAY'}">
+                                                <label for="radio7"
+                                                    class="container_radio checkout-select-btn text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                                                    <div class="d-block w-100 text-center">
+                                                      <img
+                                                       src="../../../assets/img/checkout-card-icon.png"
+                                                       class="m-0 w-40-px h-auto"
+                                                      alt="{{'ICONIMAGES'|translate}}">
+                                                      <h5 class="text-black text-13 font-weight-600 my-2 ">
+                                                        {{'CREDITCARD'|translate}}
+                                                      </h5>
+                                                    </div>
+                                                    <input type="radio" id="radio7" name="radio" (change)="toggleCreditInfo(true, 'CREDIT_CARD')">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                            <div *ngIf="isPayPalEnabled" class="me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto"
+                                            (click)="paymentmethodcard(false,'PAYPAL')"
+                                            [ngClass]="{'active': activepayment === 'PAYPAL'}">
+                                            <label for="paypal"
+                                                class="container_radio checkout-select-btn text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                                                <div class="d-block w-100 text-center">
+                                                  <img
+                                                   src="../../../assets/img/paypal-logo-transparent.png"
+                                                   class="m-0 w-100-px h-auto"
+                                                  alt="{{'ICONIMAGES'|translate}}">
+                                                  <h5 class="text-black text-13 font-weight-600 my-2 ">
+                                                    {{'PAYPAL'|translate}}
+                                                  </h5>
+                                                </div>
+                                                <input type="radio" id="paypal" name="radio" (change)="toggleCreditInfo(false, 'PAYPAL')">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        </div>
+                                    </form>
+                                    <div class="row my-3" [ngClass]="{'d-none': !paymentcard}">
+                                        <div class="d-block w-100 p-0 position-relative">
+
+                                           <div class="d-block w-100 mb-3 mt-2">
+                                        <div class="d-flex px-2 flex-wrap w-100 align-items-center justify-content-start">
+                                          <div class="d-inline-block me-3">
+                                            <h3 class="text-black font-weight-600 text-18 m-0">
+                                              {{'WE_ACCEPT'|translate}}
+                                            </h3>
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-visa-icon.png">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-american-icon.png">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-mastercard-icon.jpg">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-discover-icon.png">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/hsa-fsa-card.png">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <span class="font-weight-600 text-14 text-black d-inline-block"> {{'AND_MANY_MORE'|translate}} </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="d-block w-100 bg-white border border-color-silver px-lg-4 px-md-3 px-sm-3 px-2 py-3 my-3 rounded-2">
+                                        <div id="finix-form" #finixFormContainer></div>
+                                      </div>
+                                      <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+                                        <div class="d-inline-block">
+                                          <div class="d-flex align-items-center justify-content-start">
+                                            <i class="bi bi-file-lock-fill text-18 text-black no-min-height no-min-width lh-tiny me-2 p-0"></i>
+                                            <span class="text-13 text-black d-inline-block"> {{'SECURE_PAYMENT_WITH_SSL_ENCRYPTION_INFO'|translate}} </span>
+                                          </div>
+                                        </div>
+                                        <div class="d-inline-block">
+                                          <div class="d-flex align-items-center justify-content-start">
+                                            <span class="text-black text-14 font-weight-500 d-inline-block ps-3">
+                                              {{'POWERED_BY'|translate}}
+                                            </span>
+                                            <span class="text-black text-14 font-weight-600 d-inline-block ">
+                                              Fazeal Pay
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                          <div *ngIf="initializingPayment" class="position-absolute top-0 start-0 w-100 h-100 bg-white-90 d-flex flex-column align-items-center justify-content-center">
+                                           <img src="./assets/img/spinner-icon1.png" class="spinner-border border-0 overflow-hidden mb-3">
+                                           <h5 class="text-black text-15 mt-0 mb-3 w-100 text-center"> {{'INITIALIZING_PAYMENT'|translate}} </h5>
+                                          </div>
+                                        </div>
+                                    </div>
+                                </mat-expansion-panel>
+                                <!-- Payment Panel Ends Here -->
+
+                                <!-- Store Location Panel Starts Here -->
+                                <mat-expansion-panel class="d-none">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <p class="text-14 font-weight-600 text-black mb-0 mob-text-12">
+                                                    {{'STORELOCATION'|translate}}</p>
+                                                <span
+                                                    class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                                                    <i
+                                                        class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                                </span>
+                                                <span
+                                                    class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                                                </span>
+                                            </div>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div class="w-100 mt-4">
+                                        <div class="row">
+                                            <div *ngFor="let address of businessAddresses" class="col-md-6 col-sm-12 col-12 mb-3">
+                                                <div class="border rounded-2 px-2 pt-2 pb-4 bg-color-si w-100"
+                                                    (click)="storelocationmodal(address)">
+                                                    <div class="row align-items-center py-3">
+                                                        <div class="col-6">
+                                                            <h1 class="mb-0 text-14 font-weight-600 text-black">
+                                                                {{'STORE'|translate}}</h1>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <span
+                                                                class="border ms-auto d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px bg-theme-dark-color overflow-hidden">
+                                                                <i
+                                                                    class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="border-top w-100">
+                                                        <div class="row my-4">
+                                                            <div class="col-12">
+                                                                <p class="mb-0 text-14 font-weight-400 text-black text-capitalize">
+                                                                    {{address?.addressLineOne}}   {{address?.state}}   {{address?.zipCode}}
+                                                                    {{address?.country}}
+                                                                  </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-4">
+                                                            <div class="col-12">
+                                                                <ul class="p-0 m-0 list-unstyled">
+                                                                    <li
+                                                                        class="mb-3 d-flex align-items-center mb-2 border-bottom-0">
+                                                                        <span>
+                                                                            <img class="w-18-px h-18-px"
+                                                                                src="../../../../assets/img/marker-pin-01.svg"
+                                                                                alt="{{'MAP'|translate}}" />
+                                                                        </span>
+                                                                        <span
+                                                                            class="text-14 font-weight-400 text-black mx-2">{{'VIEWLOCATIONMAP'|translate}}</span>
+                                                                    </li>
+                                                                    <li
+                                                                        class="mb-3 d-flex align-items-center mb-2 border-bottom-0">
+                                                                        <span>
+                                                                            <img class="w-18-px h-18-px"
+                                                                                src="../../../../assets/img/clock.svg"
+                                                                                alt="{{'CLOCK'|translate}}" />
+                                                                        </span>
+                                                                        <span
+                                                                            class="text-14 font-weight-500 mx-2 text-capitalize w-100" [innerHTML]="getOpenCloseMessage()">
+                                                                          </span>
+                                                                    </li>
+                                                                    <li *ngIf="address.phoneNumberOne"
+                                                                        class="mb-3 d-flex align-items-center mb-2 border-bottom-0">
+                                                                        <span>
+                                                                            <img class="w-18-px h-18-px"
+                                                                                src="../../../../assets/img/phoneblack.svg"
+                                                                                alt="{{'CLOCK'|translate}}" />
+                                                                        </span>
+                                                                        <span
+                                                                            class="text-14 font-weight-400 text-black mx-2">{{address?.phoneNumberOne}}</span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </mat-expansion-panel>
+                                <!-- Store Location Panel Ends Here -->
+
+                            </mat-accordion>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Order Online Pickup From Store Ends Here -->
+
+                <!-- Order Online Ship to Home Starts Here -->
+                <div class="w-100 checkoutpanel mt-3" *ngIf="activeColumn == 2">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-accordion class="panel_for_check_circle" multi>
+                              <!-- Shipping Address Panel Starts Here -->
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <div class="d-flex align-items-center justify-content-between w-100">
+                                                <div class="d-flex justify-content-between align-items-center w-100">
+                                                    <p class="text-14 font-weight-600 text-black mb-0 mob-text-12">
+                                                        {{'SHIPPING_ADDRESS'|translate}}</p>
+                                                    <span
+                                                        class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                                                        <i
+                                                            class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                                    </span>
+                                                    <span
+                                                        class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div class="w-100 mt-4">
+                                      <div class="row mb-2">
+                                        <div *ngFor="let address of shippingAddresses; let i = index" class="col-lg-6 col-md-12 col-sm-12 col-12 mb-3 ps-0">
+                                          <div class="py-4 px-3 mb-2 bg-white border-1-D0D5DD rounded-2"
+                                            [ngClass]="{'active': setaddress == i}">
+                                            <label for="{{i}}"
+                                              class="container_radio text-capitalize text-14 mob-text-12 font-weight-400 text-black mb-0 h-100 d-flex align-items-center">
+                                              {{address.addressLine1}} {{address.addressLine2}} <br />
+                                              {{address.city}} <br />
+                                              {{address.state}} <br />
+                                              {{address?.zipCode}} <br/>
+                                              {{address?.country}}
+                                              <input type="radio" id="{{i}}" name="radio" [checked]="setaddress === i" (change)="setActiveAddress(address, i)">
+                                              <span class="checkmark"></span>
+                                            </label>
+                                          </div>
+                                          <div class="d-flex justify-content-end">
+                                            <button *ngIf="!address.addressId" type="button" (click)="editShippingAddressPopup(address)"
+                                              class="rounded-circle border bg-white w-24-px h-24-px mx-1 d-flex align-items-center justify-content-center">
+                                              <mat-icon class="text-15 d-flex align-items-center justify-content-center">edit</mat-icon>
+                                            </button>
+                                            <button *ngIf="!address.addressId" type="button" (click)="removeTemporaryShipping(address)"
+                                              class="rounded-circle border bg-white w-24-px h-24-px mx-1 d-flex align-items-center justify-content-center">
+                                              <mat-icon class="text-15 d-flex align-items-center justify-content-center">close</mat-icon>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                        <div class="d-block py-3">
+                                            <div class="d-flex w-100 align-items-center justify-content-start">
+                                              <button (click)="addshippingAddressPopup()" class="bg-white border-color-silver border px-3 py-2 lh-lg rounded-2 d-flex align-items-center justify-content-start">
+                                                <i class="bi bi-plus text-22 text-black no-min-height no-min-width lh-tiny me-2"></i>
+                                                <span class="text-black text-15 font-weight-500 text-capitalize"> {{'ADDADDRESS'|translate}} </span>
+                                              </button>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="validateAddressMessages.length > 0">
+                                         <div *ngFor="let val of validateAddressMessages" class="d-flex justify-content-center mt-4 mb-4">
+                                         <mat-error>  {{val?.message}} </mat-error>
+                                          </div>
+                                          </div>
+                                    </div>
+                                </mat-expansion-panel>
+
+                                <!-- Shipping Method Panel Starts Here -->
+                                <mat-expansion-panel class="shipping_panel">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <div class="d-flex justify-content-between align-items-center w-100">
+                                                <p class="text-14 font-weight-600 text-black mb-0 mob-text-12">
+                                                    {{'SHIPPING_METHOD'|translate}}</p>
+                                                <span
+                                                    class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                                                    <i
+                                                        class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                                </span>
+                                                <span
+                                                    class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+                                                </span>
+                                            </div>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div *ngIf="checkoutAddressError" class="d-flex justify-content-center mt-4 mb-4">
+                                      <mat-error>  {{checkoutAddressError}} </mat-error>
+                                    </div>
+                                    <div *ngIf="shippingRates.length == 0" class="d-flex justify-content-center mt-4 mb-4">
+                                      <mat-error>  {{'SHIPPING_IS_NOT_AVAILABLE_TO_THIS_ADDRESS'|translate}} </mat-error>
+                                    </div>
+                                    <mat-error *ngIf="addressNotSelected">{{'PLEASE_SELECT_SHIPPING_ADDRESS'|translate}}</mat-error>
+                                    <div class="d-block w-100 px-4 py-4" *ngIf="shippingRates.length > 0">
+                                    <mat-radio-button *ngFor="let rate of shippingRates"
+                                     [value]="rate"
+                                     [checked]="selectedShippingRates === rate" (change)="setActiveShippingRate(rate)"
+                                      class="w-100 d-block checkbox-turnon-parent bg-white px-3 py-3 border border-color-silver rounded-2 mb-3">
+                                      <div class="d-block w-100 ps-3">
+                                        <div class="d-block w-100">
+                                          <h4 class="text-black font-weight-600 text-15 m-0"> {{rate.shippingType|translate}} </h4>
+                                        </div>
+                                        <div class="d-none w-100 align-items-center justify-content-start checkbox-turnon-inner pt-2">
+                                          <div class="d-inline-block px-3 bg-grey2 py-3 border border-color-silver rounded-2">
+                                            <h5 class="text-black font-weight-400 text-15 mt-0 mb-2"> {{'CHARGES'|translate}}: {{currencySymbol}}{{rate.shippingRate}} </h5>
+                                            <h5 class="text-black font-weight-40 text-15 m-0">  ( {{'RECIEVED_BY'|translate}} {{convertShippingDays(rate.shippingDays.toString())}}) </h5>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </mat-radio-button>
+                                    </div>
+                                </mat-expansion-panel>
+                                <!-- Shipping Method Panel Ends Here -->
+
+                                 <!-- Payment Method Panel Starts Here -->
+                                <mat-expansion-panel class="mt-4" *ngIf="!isOrderIdNull">
+                                  <mat-expansion-panel-header>
+                                      <mat-panel-title>
+                                          <div class="d-flex justify-content-between align-items-center w-100">
+                                              <p class="text-14 font-weight-600 text-black mb-0 mob-text-12">{{'PAYMENT_METHOD'|translate}}
+                                              </p>
+                                              <span
+                                                  class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                                                  <i
+                                                      class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                              </span>
+                                              <span
+                                                  class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+                                              </span>
+                                          </div>
+                                      </mat-panel-title>
+                                  </mat-expansion-panel-header>
+                                  <form>
+                                      <div class="row my-3 justify-content-start flex-lg-row flex-md-column flex-sm-column flex-column">
+
+                                          <div *ngIf="isCODEnabled" class="me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto"
+                                              [ngClass]="{'active': activepayment === 'CASH_ON_DELIVERY'}"
+                                              (click)="paymentmethodcard(false,'CASH_ON_DELIVERY')">
+                                              <label for="radio6"
+                                                  class="container_radio checkout-select-btn text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                                                  <div class="d-block w-100 text-center">
+                                                    <img
+                                                     src="../../../assets/img/checkout-cod-icon.png"
+                                                     class="m-0 w-40-px h-auto"
+                                                    alt="{{'ICONIMAGES'|translate}}">
+                                                    <h5 class="text-black text-13 font-weight-600 my-2 ">
+                                                      {{'CASHONDELIVERY'|translate}}
+                                                    </h5>
+                                                  </div>
+                                                  <input type="radio" id="radio6" checked name="radio" (change)="toggleCreditInfo(false, 'COD')">
+                                                  <span class="checkmark"></span>
+                                              </label>
+                                          </div>
+
+                                          <div *ngIf="isFinixPay" class="me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto"
+                                              (click)="paymentmethodcard(true,'FAZEAL_PAY')"
+                                              [ngClass]="{'active': activepayment === 'FAZEAL_PAY'}">
+                                              <label for="radio7"
+                                                  class="container_radio checkout-select-btn text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                                                  <div class="d-block w-100 text-center">
+                                                    <img
+                                                     src="../../../assets/img/checkout-card-icon.png"
+                                                     class="m-0 w-40-px h-auto"
+                                                    alt="{{'ICONIMAGES'|translate}}">
+                                                    <h5 class="text-black text-13 font-weight-600 my-2 ">
+                                                      {{'CREDITCARD'|translate}}
+                                                    </h5>
+                                                  </div>
+                                                  <input type="radio" id="radio7" name="radio" (change)="toggleCreditInfo(true, 'CREDIT_CARD')">
+                                                  <span class="checkmark"></span>
+                                              </label>
+                                          </div>
+                                          <div *ngIf="isPayPalEnabled" class="me-3 mb-lg-0 mb-md-3 mb-sm-3 mb-3 radio_column_payment mob-w-100 bg-white border-1-D0D5DD rounded-2 w-auto"
+                                          (click)="paymentmethodcard(false,'PAYPAL')"
+                                          [ngClass]="{'active': activepayment === 'PAYPAL'}">
+                                          <label for="paypal"
+                                              class="container_radio checkout-select-btn text-14 font-weight-400 text-black mb-0 d-flex align-items-center h-100">
+                                              <div class="d-block w-100 text-center">
+                                                <img
+                                                 src="../../../assets/img/paypal-logo-transparent.png"
+                                                 class="m-0 w-100-px h-auto"
+                                                alt="{{'ICONIMAGES'|translate}}">
+                                                <h5 class="text-black text-13 font-weight-600 my-2 ">
+                                                  {{'PAYPAL'|translate}}
+                                                </h5>
+                                              </div>
+                                              <input type="radio" id="paypal" name="radio" (change)="toggleCreditInfo(false, 'PAYPAL')">
+                                              <span class="checkmark"></span>
+                                          </label>
+                                      </div>
+                                      </div>
+                                  </form>
+                                  <div *ngIf="paymentcard" class="row my-3" >
+                                       <div class="d-block w-100 p-0 position-relative">
+                                      <div class="d-block w-100 mb-3 mt-2">
+                                        <div class="d-flex px-2 flex-wrap w-100 align-items-center justify-content-start">
+                                          <div class="d-inline-block me-3">
+                                            <h3 class="text-black font-weight-600 text-18 m-0">
+                                              {{'WE_ACCEPT'|translate}}
+                                            </h3>
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-visa-icon.png">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-american-icon.png">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-mastercard-icon.jpg">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-discover-icon.png">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/hsa-fsa-card.png">
+                                          </div>
+                                          <div class="d-inline-block me-3">
+                                            <span class="font-weight-600 text-14 text-black d-inline-block"> {{'AND_MANY_MORE'|translate}} </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="d-block w-100 bg-white border border-color-silver px-lg-4 px-md-3 px-sm-3 px-2 py-3 my-3 rounded-2">
+                                        <div id="finix-form" #finixFormContainer></div>
+                                      </div>
+                                      <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+                                        <div class="d-inline-block">
+                                          <div class="d-flex align-items-center justify-content-start">
+                                            <i class="bi bi-file-lock-fill text-18 text-black no-min-height no-min-width lh-tiny me-2 p-0"></i>
+                                            <span class="text-13 text-black d-inline-block"> {{'SECURE_PAYMENT_WITH_SSL_ENCRYPTION_INFO'|translate}} </span>
+                                          </div>
+                                        </div>
+                                        <div class="d-inline-block">
+                                          <div class="d-flex align-items-center justify-content-start">
+                                           <span class="text-black text-14 font-weight-500 d-inline-block ps-3">
+                                              {{'POWERED_BY'|translate}}
+                                            </span>
+                                            <span class="text-black text-14 font-weight-600 d-inline-block ">
+                                              Fazeal Pay
+                                            </span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                        <div *ngIf="initializingPayment" class="position-absolute top-0 start-0 w-100 h-100 bg-white-90 d-flex flex-column align-items-center justify-content-center">
+                                           <img src="./assets/img/spinner-icon1.png" class="spinner-border border-0 overflow-hidden mb-3">
+                                           <h5 class="text-black text-15 mt-0 mb-3 w-100 text-center"> {{'INITIALIZING_PAYMENT'|translate}} </h5>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </mat-expansion-panel>
+                              <!-- Payment Method Panel Ends Here -->
+
+                            </mat-accordion>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Order Online Ship to Home Ends Here -->
+
+                <!-- Reserve in Store Starts Here -->
+                <div class="w-100 checkoutpanel mt-3" *ngIf="activeColumn == 3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-accordion class="panel_for_check_circle" multi>
+
+                              <!-- Choose Pickup Date & Time Panel Starts Here -->
+                              <mat-expansion-panel [expanded]="true">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <div class="d-flex align-items-center justify-content-between w-100">
+                                                <div class="d-flex justify-content-between align-items-center w-100">
+                                                  <div class="d-flex w-100 align-items-center justify-content-start flex-wrap">
+                                                    <p class="text-14 font-weight-600 text-black mb-0 mob-text-12">
+                                                      {{'CHOOSEPICKUPDATEANDTIME'|translate}}
+                                                    </p>
+                                                    <button (click)="viewStoreHours()" class="d-flex align-items-center justify-content-center bg-theme-light-color ms-3 text-black font-weight-500 px-2 py-1 text-13 rounded-2">
+                                                      <i class="bi bi-info-circle-fill lh-tiny text-13 me-1 no-min-height no-min-width text-black"></i>
+                                                       {{'VIEW_STORE_HOURS'|translate}}
+                                                    </button>
+                                                  </div>
+                                                    <span
+                                                        class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                                                        <i
+                                                            class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                                    </span>
+                                                    <span
+                                                        class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div class="w-100 mt-4">
+                                        <div class="row">
+                                            <div [formGroup]="pickupDetails"
+                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 choose_date_parent set_icon_date">
+                                                <mat-form-field class="h-auto w-100 field-style-mat-date">
+                                                    <mat-label class="text-13 font-weight-400 text-black">{{'CHOOSEADATE'|translate}}</mat-label>
+                                                    <mat-datepicker-toggle matSuffix [for]="picker">
+                                                    </mat-datepicker-toggle>
+                                                    <input matInput [matDatepicker]="picker" class="h-36-px text-black font-weight-500 text-black" placeholder="MM/DD/YYYY"
+                                                     formControlName="pickupDate" [matDatepickerFilter]="filterDates">
+                                                    <mat-datepicker #picker>
+                                                    </mat-datepicker>
+                                                </mat-form-field>
+                                                <div *ngIf="(getControl['pickupDate'].touched && getControl['pickupDate'].invalid) || (getControl['pickupDate'].untouched && isSubmitted)" class="text-danger">
+                                                    <p class="text-14 text-danger m-0" *ngIf="getControl['pickupDate'].errors?.['required']">
+                                                    {{'PICKUP_DATE_IS_REQUIRED'| translate}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div [formGroup]="pickupDetails"
+                                                class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 choose_date_parent time_select d-flex align-items-end flex-column">
+                                                <input type="time" formControlName="pickupTime" placeholder="{{'CHOOSE_PICKUP_TIME'| translate}}"
+                                                    class="text-black border border-color-silver bg-white rounded-2 w-100 px-2 h-50-px" />
+                                                    <div *ngIf="(getControl['pickupTime'].touched && getControl['pickupTime'].invalid) || (getControl['pickupTime'].untouched && isSubmitted)" class="text-danger d-block w-100 text-start">
+                                                      <p class="m-0 text-14 text-danger text-start" *ngIf="getControl['pickupTime'].errors?.['required']">
+                                                        {{'PICKUP_TIME_IS_REQUIRED'| translate}}
+                                                      </p>
+                                                   </div>
+                                            </div>
+                                             <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                                            <button [disabled]="!this.pickupDetails.get('pickupDate')?.value || !this.pickupDetails.get('pickupTime')?.value"
+                                             (click)="checkTimeAvailable()" class="bg-6E7A8E bg-btn-second-bg font-weight-600 px-3 py-3 rounded-2 text-14 text-white">
+                                             <span class="d-inline-block">
+                                              {{'SUBMIT_DATE'| translate}}
+                                             </span>
+                                            </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                              </mat-expansion-panel>
+                              <!-- Choose Pickup Date & Time Starts Here -->
+
+                              <!-- Store Location Panel Starts Here -->
+                              <mat-expansion-panel class="d-none">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <p class="text-14 font-weight-600 text-black mb-0 mob-text-12">
+                                                {{'STORELOCATION'|translate}}</p>
+                                            <span
+                                                class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_check active_circle bg-theme-dark-color overflow-hidden">
+                                                <i
+                                                    class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                            </span>
+                                            <span
+                                                class="border d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px active_circle empty_circle bg-color-eeeeee overflow-hidden">
+                                            </span>
+                                        </div>
+                                    </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <div class="w-100 mt-4">
+                                    <div class="row">
+                                        <div *ngFor="let address of businessAddresses" class="col-md-6 col-sm-12 col-12 mb-3">
+                                            <div class="border rounded-2 px-2 pt-2 pb-4 bg-color-si w-100"
+                                                (click)="storelocationmodal(address)">
+                                                <div class="row align-items-center py-3">
+                                                    <div class="col-6">
+                                                        <h1 class="mb-0 text-14 font-weight-600 text-black">
+                                                            {{'STORE'|translate}}</h1>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <span
+                                                            class="border ms-auto d-flex align-items-center justify-content-center rounded-circle w-16-px h-16-px bg-theme-dark-color overflow-hidden">
+                                                            <i
+                                                                class="fa fa-check text-8 text-color-w text-first-light-color"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="border-top w-100">
+                                                    <div class="row my-4">
+                                                        <div class="col-12">
+                                                            <p class="mb-0 text-14 font-weight-400 text-black">
+                                                                {{address?.addressLineOne}} , {{address?.state}} {{address?.zipCode}} ,
+                                                                {{address?.country}}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-4">
+                                                        <div class="col-12">
+                                                            <ul class="p-0 m-0 list-unstyled">
+                                                                <li
+                                                                    class="mb-3 d-flex align-items-center mb-2 border-bottom-0">
+                                                                    <span>
+                                                                        <img class="w-18-px h-18-px"
+                                                                            src="../../../../assets/img/marker-pin-01.svg"
+                                                                            alt="{{'MAP'|translate}}" />
+                                                                    </span>
+                                                                    <span
+                                                                        class="text-14 font-weight-400 text-black mx-2">{{'VIEWLOCATIONMAP'|translate}}</span>
+                                                                </li>
+                                                                <li
+                                                                    class="mb-3 d-flex align-items-center mb-2 border-bottom-0">
+                                                                    <span>
+                                                                        <img class="w-18-px h-18-px"
+                                                                            src="../../../../assets/img/clock.svg"
+                                                                            alt="{{'CLOCK'|translate}}" />
+                                                                    </span>
+                                                                    <span
+                                                                    class="text-14 font-weight-500 mx-2 text-capitalize w-100" [innerHTML]="getOpenCloseMessage()">
+                                                                  </span>
+                                                                </li>
+                                                                <li *ngIf="address.phoneNumberOne"
+                                                                    class="mb-3 d-flex align-items-center mb-2 border-bottom-0">
+                                                                    <span>
+                                                                        <img class="w-18-px h-18-px"
+                                                                            src="../../../../assets/img/phoneblack.svg"
+                                                                            alt="{{'CLOCK'|translate}}" />
+                                                                    </span>
+                                                                    <span
+                                                                        class="text-14 font-weight-400 text-black mx-2">{{address?.phoneNumberOne}}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                              </mat-expansion-panel>
+                              <!-- Store Location Panel Ends Here -->
+
+                            </mat-accordion>
+                        </div>
+                    </div>
+                </div>
+                <!-- Reserve in Store Ends Here -->
+
+            </div>
+
+            <!-- Right Column Starts Here -->
+            <div class="col-md-12 col-xxl-4 col-xl-4 col-lg-4 col-sm-12 col-12 mt-md-3 mt-sm-3 mt-3 mt-lg-0">
+                <div class="card border position-relative min-h-90-px">
+                    <div class="w-100 border-bottom px-3 py-3 mb-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5 class="text-18 font-weight-600 text-black mb-0">
+                                    {{'OVERVIEW'|translate}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!loading" class="w-100 p-3">
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <div
+                                    class="rounded-2 bg-color-si border border-color-silver px-2 py-2 d-flex justify-content-center align-items-md-center align-items-sm-center align-items-center align-items-lg-start w-100">
+                                     <div class="d-flex w-100 align-items-center justify-content-center w-100">
+                                      <span class="text-15 font-weight-600 text-black mob-text-12"> {{'CHECKOUT_TYPE'|translate}}:  </span>
+                                        <span class="text-15 font-weight-500 text-black mob-text-12 px-1"> {{orderType| translate}} </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-12">
+                                <div
+                                    class="rounded-2 bg-theme-light-color border border-dark-color px-md-3 px-sm-2 px-2 py-2 d-flex justify-content-center align-items-md-center align-items-sm-center align-items-center align-items-lg-start w-100">
+
+                                    <div class="d-flex w-100 align-items-center justify-content-center w-100">
+                                        <span class="text-15 font-weight-600 text-black mob-text-12"> {{'PAYMENT_BY'|translate}}:  </span>
+                                        <span class="text-15 font-weight-500 text-black mob-text-12 px-1">   {{paymentMethod |translate}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h1 class="mb-0 text-15 font-weight-600 text-black">{{'YOURCART'|translate}}</h1>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="table-responsive w-100 border-bottom">
+                                    <table class="table overview_table">
+                                        <tr *ngFor="let item of shoppingCart?.cartItemResponseList">
+                                            <td>
+                                                <div class="border rounded-2 w-55-px h-50-px">
+                                                    <img class="w-100 h-100" [src]="item.itemImage" onerror="this.src='./assets/img/default-product.png'"
+                                                        alt="{{'PRODUCTS'|translate}}" />
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="m-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                                                  {{item.productName | titlecase}}</p>
+                                                  <p class="m-0 text-14 font-weight-400 mob-text-12 w-150-px text-success" *ngFor="let prom of item?.cartItemPromotionResponses">
+                                                    {{prom?.name}}
+                                                  </p>
+
+                                            </td>
+                                            <td>
+                                                <div class="w-50-px">
+                                                    <p class="mb-0 text-14 font-weight-500 text-black mob-text-12">{{item.quantity}} X</p>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 text-14 font-weight-500  mob-text-12" [ngClass]="{'text-danger': item?.customerPrice != item?.price}">{{currencySymbol}}{{(item.salePrice * item.quantity).toFixed(2)}}</p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h1 class="mb-0 text-15 font-weight-600 text-black">{{'ORDERSUMMARY'|translate}}</h1>
+                            </div>
+                        </div>
+                        <div class="row mb-4 position-relative min-h-90-px">
+                            <div class="col-12" *ngIf="shoppingCart">
+                                <div class="table-responsive w-100 border-bottom">
+                                    <table class="table overview_table">
+                                        <tr>
+                                            <td>
+                                                <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                                                    {{'TOTALITEMS'|translate}} ({{shoppingCart?.cartItemResponseList?.length}})</p>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                                                  {{currencySymbol}}{{shoppingCart?.totalItemsPrice}} </p>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="this.shoppingCart && this.shoppingCart.totalPromoitionDiscount > 0">
+                                          <td>
+                                              <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                                                  {{'PROMOTIONS-SEC'|translate}} (-)</p>
+                                          </td>
+                                          <td>
+                                              <p class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                                                   {{currencySymbol}}{{this.shoppingCart.totalPromoitionDiscount.toFixed(2)}} </p>
+                                          </td>
+                                      </tr>
+                                        <tr *ngIf="this.shoppingCart && shoppingCart.totalDiscount > 0">
+                                            <td>
+                                                <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                                                    {{'DISCOUNTS'|translate}} (-)</p>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                                                  {{currencySymbol}}{{shoppingCart?.discount| number:'1.0-2'}} </p>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="activeColumn == 2 && shoppingCart.shippingCost > 0">
+                                            <td>
+                                                <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                                                    {{'SHIPPINGHANDLILNG'|translate}} (+)</p>
+                                            </td>
+                                            <td>
+                                                <p  class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                                                  {{currencySymbol}}{{shoppingCart.shippingCost| number:'1.2-2'}}</p>
+                                                <p *ngIf="shoppingCart.isFixedAmountForShipping" class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                                                       {{currencySymbol}}{{shoppingCart.discountedShippingCost| number:'1.2-2'}}</p>
+                                            </td>
+                                        </tr>
+                                        <tr *ngIf="shoppingCart.totalApplicableTaxes > 0">
+                                            <td>
+                                                <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                                                    {{'ESTIMATESTAX'|translate}} (+) </p>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                                                    {{currencySymbol}}{{shoppingCart?.totalApplicableTaxes| number:'1.2-2'}} </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                          <td>
+                                              <p class="mb-0 text-14 font-weight-400 text-black mob-text-12 w-150-px">
+                                                {{'GIFT_CARD'|translate}} (-)
+                                               </p>
+                                          </td>
+                                          <td>
+                                              <p class="mb-0 text-14 font-weight-500 text-black mob-text-12 text-end">
+                                                 0.00
+                                              </p>
+                                          </td>
+                                      </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div *ngIf="isSummarySpinner" class="position-absolute z-index-99 top-0 start-0 w-100 h-100 py-2 px-2 text-center d-flex bg-white-80 flex-column align-items-center justify-content-center">
+                            <img src="../../../../assets/img/spinner-icon1.png" class="spinner-border border-0 mt-0 overflow-hidden mb-3">
+                            <h5 class="d-block w-100 text-black text-15 mt-0 mb-3"> Updating Order Summary </h5>
+                            </div>
+
+                        </div>
+                        <!-- <div class="d-block w-100 mb-3">
+                          <mat-expansion-panel [expanded]="true"
+                          class="mat-elevation-z0 overflow-hidden mb-0 mt-0 rounded-3 mat-expansion-no-pad bg-transparent expansion-panel-height-auto  border border-color-silver">
+                          <mat-expansion-panel-header class="px-md-3 py-1 rounded-0 overflow-hidden bg-theme-light-color">
+                            <mat-panel-title>
+                              <span class="font-weight-600 text-15"> {{'LOYALTY_POINTS'|translate}} </span>
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                          <div class="d-block w-100 py-3 px-3 bg-coin-2 position-relative">
+                            <p class="text-black text-15 font-weight-400 w-100 m-0 d-flex align-items-end justify-content-start">
+                                {{'YOU_HAVE'|translate}}
+                              <b class="text-black text-18 font-weight-600 px-2"> 1550 </b>
+                               {{'POINTS'|translate}}
+                            </p>
+                          </div>
+                        </mat-expansion-panel>
+                        </div> -->
+                        <div class="border rounded-3 mb-3">
+                            <div class="px-2 pt-3 mb-4">
+                                <div class="row">
+                                  <div class="col-lg-12 col-md-12 col-sm-12 col-12 pb-3">
+                                  <h5 class="text-15 text-black text-start w-100 m-0 p-0">  {{'APPLY_GIFT_CARD_OR_PROMOTION_CODE'|translate}} </h5>
+                                  </div>
+                                    <div class="col-lg-8 col-md-6 col-sm-6 col-12">
+                                        <div class="input-group border rounded-2 bg-color-si h-100">
+                                            <input type="text" [(ngModel)]="promocode" class="form-control border-0 input-focus-none-checkout p-2 h-100 bg-color-si border border-color-silver">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12 mt-sm-0 mt-3">
+                                        <button [disabled]="!promocode" type="button" (click)="applyPromocode()"
+                                            class=" border-0 h-100 rounded-2 bg-theme-dark-color text-color-w text-first-light-color p-2 w-100 text-14 mob-text-12 font-weight-400 text-whitee">{{'APPLY'|translate}}</button>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12" *ngIf="isFailed">
+                                        <div class="alert alert-warning text-center">
+                                        {{promoCodeErrorMessage |translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 promotions_accordion">
+                                    <mat-accordion>
+                                        <mat-expansion-panel [expanded]="promotionExpanded">
+                                            <mat-expansion-panel-header class="bg-color-F2F2F2">
+                                                <mat-panel-title>
+                                                    <div class="d-flex align-items-center justify-content-between w-100">
+                                                        <span
+                                                            class="text-16 font-weight-500 text-black">{{'PROMOTIONS'|translate}}</span>
+                                                        <span class="arrow_promotions">
+                                                            <img src="../../../../assets/img/chevron-down.svg"
+                                                                alt="{{'PROMOTIONS'|translate}}">
+                                                        </span>
+                                                    </div>
+                                                </mat-panel-title>
+                                            </mat-expansion-panel-header>
+                                            <div class="w-100">
+                                              <div class="row mt-3 mb-2" *ngIf="shoppingCart">
+                                                <div class="col-12 d-flex flex-wrap align-items-start justify-content-start" *ngIf="shoppingCart?.appliedShippingPromotions?.length! > 0">
+                                                  <div class="d-flex w-100 align-items-center justify-content-start border rounded-2 px-2 py-1 rounded-2 mb-2 bg-info-subtle" *ngFor="let promo of shoppingCart?.appliedShippingPromotions">
+                                                    <div class="d-inline-block min-width-clear">
+                                                      <i class="bi bi-megaphone-fill lh-tiny text-success text-15"></i>
+                                                    </div>
+                                                    <div class="d-inline-block ps-2">
+                                                      <span class="text-13 font-weight-500 d-block w-100 text-capitalize text-black">
+                                                        {{promo.name}}
+                                                      </span>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="col-12" *ngIf="shoppingCart?.appliedOrderPromotions?.length == 0 && shoppingCart?.appliedShippingPromotions?.length == 0">
+                                                  <p class="mb-0 text-13 font-weight-600 text-black w-100 text-center">
+                                                    {{ 'NO_PROMOTIONS_AVAILABLE_AT_THIS_TIME' | translate }}
+                                                </p>
+                                              </div>
+                                            </div>
+                                              <div class="d-block w-100">
+
+                                                <div class="d-flex w-100 align-items-center justify-content-start border rounded-2 px-2 py-1 rounded-2 mb-2 bg-info-subtle"
+                                                *ngFor="let promo of shoppingCart?.appliedOrderPromotions">
+                                                  <div class="d-inline-block min-width-clear">
+                                                    <i class="bi bi-megaphone-fill lh-tiny text-success text-15"></i>
+                                                  </div>
+                                                  <div class="d-inline-block ps-2">
+                                                    <span class="text-13 font-weight-500 d-block w-100 text-capitalize text-black">
+                                                      {{promo.name}}
+                                                    </span>
+                                                  </div>
+                                                </div>
+
+                                                <!-- <div class="d-flex w-100 align-items-center justify-content-start border rounded-2 px-2 py-1 rounded-2 mb-2 bg-info-subtle"
+                                                *ngFor="let promo of shoppingCart?.appliedCatalogPromotions">
+                                                  <div class="d-inline-block min-width-clear">
+                                                    <i class="bi bi-megaphone-fill lh-tiny text-success text-15"></i>
+                                                  </div>
+                                                  <div class="d-inline-block ps-2">
+                                                    <span class="text-13 font-weight-500 d-block w-100 text-capitalize text-black">
+                                                      {{promo.name}}
+                                                    </span>
+                                                  </div>
+                                                </div> -->
+
+                                              </div>
+                                            </div>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-12">
+                              <ul class="list-unstyled" *ngIf="this.shoppingCart">
+                                <li
+                                  class="border-bottom-0 bg-theme-light-color p-3 rounded-2 d-flex justify-content-between align-items-center">
+                                  <span
+                                    class="text-14 font-weight-500 text-color-b mob-text-12">{{'ORDERTOTAL'|translate}}</span>
+                                  <span
+                                    class="text-14 font-weight-500 text-color-b mob-text-12">{{currencySymbol}}{{shoppingCart.totalPrice}}</span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        <div class="row mb-4">
+                            <div class="col-md-12">
+                                <ul class="list-unstyled" *ngIf="this.shoppingCart">
+                                    <li
+                                    class="border-bottom-0 d-flex justify-content-between align-items-center">
+                                    <span
+                                        class="text-15 font-weight-600 text-success mob-text-12">{{'YOURTOTALSAVING'|translate}}</span>
+                                    <span
+                                        class="text-15 font-weight-600 text-success mob-text-12">{{currencySymbol}}{{shoppingCart.totalDiscount| number:'1.0-2'}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div *ngIf="!isFinixFormActive" class="row mb-3">
+                            <div class="col-md-12">
+                                <ul class="list-unstyled mb-0">
+                                    <li class="border-bottom-0">
+                                        <div class="mb-1 d-flex align-items-center">
+                                            <mat-checkbox [(ngModel)]="agreeTermsAndConditions"></mat-checkbox>
+                                            <label class="form-check-label d-flex flex-wrap align-items-center justify-content-start w-100 mx-2" for="flexCheckDefault">
+                                                <span class="text-15 font-weight-500 mob-text-14 d-inline-block">
+                                                   {{'I_AGREE_TO_THE'|translate}}
+                                                </span>
+                                                <button
+                                                routerLink="/{{subdomain}}/terms-and-conditions"
+                                                 class="cursor-pointer text-15 w-auto text-0083EA font-weight-500 mob-text-14 d-inline-block">
+                                                    {{'TERMS_CONDITIONS'|translate}}
+                                                </button>
+                                                <span class="text-15 font-weight-500 mob-text-14 d-inline-block">
+                                                  {{'AND'|translate}}
+                                                </span>
+                                                <button
+                                                routerLink="/{{subdomain}}/return-policy"
+                                                 class="cursor-pointer text-15 w-auto text-0083EA font-weight-500 mob-text-14 d-inline-block text-capitalize">
+                                                    {{'RETURN_POLICY'|translate}}
+                                                </button>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div *ngIf="!isFinixFormActive" class="col-md-12">
+
+                              <button
+                                *ngIf="orderType == 'RESERVE_ONLINE_TRY_IN_STORE'"
+                                type="button"
+                                [disabled]="buttonDisabled || !agreeTermsAndConditions || checkoutAddressError || (!isTimeCorrect)"
+                                (click)="placeOrder()"
+                                class="border-0 w-100 rounded-2 bg-theme-dark-color text-color-w text-first-light-color p-2 text-18 font-weight-600 mob-text-14">
+                                {{'RESERVE'|translate}}
+                                </button>
+                              <button
+                                *ngIf="activepayment === 'CASH_ON_DELIVERY' && orderType !== 'RESERVE_ONLINE_TRY_IN_STORE'"
+                                type="button"
+                                [disabled]="buttonDisabled || !agreeTermsAndConditions || checkoutAddressError || (!isTimeCorrect && orderType !== 'ORDER_ONLINE_SHIP_TO_HOME')"
+                                (click)="placeOrder()"
+                                class="border-0 w-100 rounded-2 bg-theme-dark-color text-color-w text-first-light-color p-2 text-18 font-weight-600 mob-text-14">
+                                {{'PLACEANORDER'|translate}}
+                                </button>
+
+                                <button
+                                *ngIf="paymentMethod == 'PAYPAL' && !paypalUrl"
+                                disabled
+                                type="button"
+                                class="d-flex w-100 align-items-center justify-content-center w-100 rounded-2 px-2 py-0 mt-3 border border-color-silver">
+                                <img class="w-100-px h-auto me-2 object-fit-contain"
+                                 src="../../../../assets/img/paypal-main-logo.png">
+                                 <span class="text-15 d-inline-block font-weight-600 mob-text-14">
+                                  {{'PAY_WITH_PAYPAL'|translate}}
+                                 </span>
+                                </button>
+
+                                <button
+                                *ngIf="paymentMethod == 'PAYPAL' && paypalUrl"
+                                type="button"
+                                [disabled]="!agreeTermsAndConditions"
+                                (click)="placePaypalOrder()"
+                                class="d-flex w-100 align-items-center justify-content-center w-100 rounded-2 px-2 py-0 mt-3 border border-color-silver">
+                                <img class="w-100-px h-auto me-2 object-fit-contain"
+                                 src="../../../../assets/img/paypal-main-logo.png">
+                                 <span class="text-15 d-inline-block font-weight-600 mob-text-14">
+                                  {{'PAY_WITH_PAYPAL'|translate}}
+                                 </span>
+                                </button>
+
+                            </div>
+                            <div class="col-md-12 mt-3" *ngIf="errorMessage">
+                                <div class="alert alert-warning text-center">
+                                    {{ errorMessage |translate }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-3" *ngIf="message">
+                                <div class="alert alert-success text-center">
+                                    {{message}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Loading Starts Here -->
+                    <div *ngIf="loading" class="position-absolute z-index-99 top-0 start-0 w-100 h-100 py-2 px-2 text-center d-flex bg-white-80 flex-column align-items-center justify-content-center">
+                      <img src="../../../../assets/img/spinner-icon1.png" class="spinner-border border-0 mt-0 overflow-hidden mb-3">
+                      <h5 class="d-block w-100 text-black text-15 mt-0 mb-3"> {{'LOADING_ONLY'|translate}} </h5>
+                    </div>
+                    <!-- Loading Ends Here -->
+                </div>
+            </div>
+            <!-- Right Column Ends Here -->
+        </div>
+
+    </div>
+</section>
+
+
+<section *ngIf="!userTypeShow && (checkoutCartInProgress || loading)" class="align-items-center bg-white-80 d-flex h-100 justify-content-center ng-star-inserted position-absolute position-fixed start-0 text-center top-0 w-100 z-index-999">
+<div class="new-container1">
+    <img src="./assets/img/spinner-icon1.png" class="spinner-border border-0 overflow-hidden mb-3">
+    <h5 class="text-black text-17 mt-0 mb-4 w-100 text-center">
+       {{'CHECKOUT_IS_LOADING'|translate}}  {{'PLEASEWAIT'|translate}}  ...
+      </h5>
+</div>
+</section>
+
+</section>
+
+

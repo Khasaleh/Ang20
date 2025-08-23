@@ -1,0 +1,131 @@
+<section class="d-block w-100 popup-parent-rtl">
+  <div class="d-block w-100 px-4 py-3 bg-theme-light-color">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <div class="d-inline-block">
+        <h3 class="text-black text-18 m-0 p-0 font-weight-600">  {{'ADD_PAYMENT'|translate}} </h3>
+      </div>
+      <div class="d-inline-block">
+        <button mat-dialog-close
+          class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+          <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="px-4 py-4">
+    <div class="row">
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="row  mb-3">
+
+          <div class="col-md-6 col-lg-6 col-sm-12 col-12">
+            <div class="d-block w-100 position-relative">
+              <mat-form-field appearance="fill" class="w-100 field-style2">
+                <mat-label class="text-muted text-13">   {{'CARD_HOLDER_NAME'|translate}}  </mat-label>
+                <input matInput type="text" [(ngModel)]="cardHolderName" class="form-control bg-white text-black text-15 h-30-px" />
+              </mat-form-field>
+             </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-1" *ngIf="cardNameValidation">
+          <p class="red m-0 text-13 d-block w-100"> {{cardNameValidation|translate}} </p>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-2">
+        <div class="d-block w-100 position-relative">
+          <mat-form-field appearance="fill" class="w-100 field-style2">
+            <mat-label class="text-muted text-13">   {{'CARDNUMBER'|translate}}  </mat-label>
+            <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px"
+            [(ngModel)]="cardNumber" maxlength="19" pattern="^(\d{4}\s?){1,4}\d{1,4}\s?$" (input)="formatCardNumber($event)" />
+          </mat-form-field>
+          <img matSuffix width="60" class="w-58-px h-auto position-absolute top-0 mt-2 me-2 end-0"
+           [src]="cardType && cardType.toUpperCase() === 'VISA' ? './assets/img/visa-icon.svg' :
+              cardType && cardType.toUpperCase() === 'MASTERCARD' ? './assets/img/master.png' :
+              cardType && cardType.toUpperCase() === 'AMEX' ? './assets/img/a_express.png' :
+              cardType && cardType.toUpperCase() === 'DISCOVER' ? './assets/img/discover.png' :
+              cardType && cardType.toUpperCase() === 'DINERS' ? './assets/img/diners-club.svg' :
+              cardType && cardType.toUpperCase() === 'JCB' ? './assets/img/jcb.png' :
+              cardType && cardType.toUpperCase() === 'CHINA_UNION_PAY' ? './assets/img/chinaunionpay.png' :
+              cardType && cardType.toUpperCase() === 'ELO' ? './assets/img/elo.png' : './assets/img/visa-icon.svg'" alt="{{'YOUR_CARD_TYPE'|translate}}">
+        </div>
+      </div>
+      <mat-error  class="mt-0 mb-1" *ngIf="invalidCardNumber">{{'INVALID_CARD_NUMBER'|translate}}</mat-error>
+
+      <div class="col-md-6 col-lg-6 col-sm-6 col-12 mb-2">
+        <div class="d-block w-100">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label class="text-muted text-13">  {{'PLAN_CARD_EXPIRATION_DATE'|translate}} </mat-label>
+            <input matInput class="form-control bg-white text-black text-15 h-30-px"
+            placeholder="MM/YYYY" [(ngModel)]="expiryDate" pattern="^(0[1-9]|1[0-2])\/(20\d{2})$"
+           (input)="onExpirationDateInputChange($event)" maxlength="7" #expiryfield="ngModel" minlength="7" />
+          </mat-form-field>
+          <mat-error class="pt-2 text-13" *ngIf="!expirationDateNotValid || (expiryfield.invalid && expiryfield.touched)">
+            {{'INVALID_EXP_DATE'|translate}}</mat-error>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-6 col-sm-6 col-12 mb-2">
+        <div class="d-block w-100">
+          <mat-form-field appearance="fill" class="w-100 field-style2">
+            <mat-label class="text-muted text-13"> {{'PLAN_CARD_CVVCVC'|translate}} </mat-label>
+            <input matInput type="text" [(ngModel)]="cvv" pattern="[0-9]{3,4}"  maxlength="4"
+             class="form-control bg-white text-black text-15 h-27-px" />
+           </mat-form-field>
+           <mat-error class="text-13" *ngIf="cvvNotValid">{{'INVALID_CVV'|translate}}</mat-error>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-3">
+        <div class="d-flex align-items-center justify-content-start">
+          <mat-checkbox [(ngModel)]="isDefault">
+            <span class="text-13 text-black px-2 d-inline-block"> {{'SET_AS_DEFAULT_PAYMENT_CARD'|translate}} </span>
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-2">
+        <div class="d-flex align-items-center justify-content-end">
+          <mat-form-field appearance="fill" class="w-100 field-style2">
+            <mat-label class="text-muted text-13">    {{'ADD_BILLING_ADDRESS'|translate}}</mat-label>
+            <mat-select (selectionChange)="onOptionSelected($event)" class="h-30-px" panelClass="field-exact-dropdown-width">
+              <mat-option *ngFor="let address of addresses"  [value]="address.addressId" >
+                <p  class="m-0 text-black d-block w-100">{{address?.addressDescription}}  </p>
+                  <p  class="m-0 text-black d-block w-100"> {{address?.country}} , {{address?.city}}, {{address?.state}} , {{address?.streetNumber}} {{address?.addressLine1}} </p>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </div>
+    <mat-error *ngIf="ccErrorMessage"> {{ccErrorMessage | translate}} </mat-error>
+    <mat-error style="color: 'green'" *ngIf="message"> {{message}} </mat-error>
+
+    <div class="d-block w-100 pt-3">
+    <div class="d-flex align-items-lg-center align-items-md-center align-items-sm-center align-items-start justify-content-between flex-lg-row flex-md-row flex-sm-row flex-column">
+
+      <div class="d-flex align-items-center justify-content-start mb-lg-0 mb-md-0 mb-sm-0 mb-4">
+      <button mat-dialog-close routerLink="../terms-and-conditions"  class="text-muted text-13 font-weight-400 p-0 me-2">
+        {{'TERMS_CONDITIONS'|translate}}
+      </button>
+      <button mat-dialog-close routerLink="../terms-of-use"  class="text-muted text-13 font-weight-400 p-0 me-2">
+        {{'TERMS_OF_USE'|translate}}
+      </button>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <button mat-dialog-close class="bg-theme-light-color text-black px-4 py-2 text-14 rounded-3">
+          {{'CANCEL'|translate}}
+        </button>
+        <button [disabled]="paymentButton" (click)="addPayment()" class="bg-theme-dark-color px-4 py-2 text-14 rounded-3 ms-3 text-white">
+          {{'ADD_PAYMENT'|translate}}
+        </button>
+      </div>
+
+    </div>
+    </div>
+
+  </div>
+</section>

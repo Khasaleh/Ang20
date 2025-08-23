@@ -1,0 +1,42 @@
+<body *ngIf="dashboardContent">
+ <div *ngFor="let item of customData">
+    <ng-container [ngSwitch]="item.section">
+      <ng-container *ngSwitchCase="'mainHeader'">
+        <app-four-main-header-espot [data]="item.data" [subdomain]="subdomain" [activeTheme]="dashboardContent.themeName" *ngIf="item.isShow && optionsList.includes('MENU_MAIN_HEADER')"></app-four-main-header-espot>
+      </ng-container>
+      <ng-container *ngSwitchCase="'threein1'">
+        <app-four-theme-popular-categories [data]="item" [activeTheme]="dashboardContent.themeName" *ngIf="item.isShow && optionsList.includes('THREE_IN_ONE_ESPOT')"></app-four-theme-popular-categories>
+      </ng-container>
+      <ng-container *ngSwitchCase="'flashSale'">
+        <app-theme-product-carousel [data]="item" [activeTheme]="dashboardContent.themeName" *ngIf="item.isShow && optionsList.includes('FLASH_SALE')"></app-theme-product-carousel>
+      </ng-container>
+      <ng-container *ngSwitchCase="'bestSeller'">
+        <app-theme-product-carousel [data]="item" [activeTheme]="dashboardContent.themeName" *ngIf="item.isShow && optionsList.includes('BEST_SELLER')"></app-theme-product-carousel>
+      </ng-container>
+      <ng-container *ngSwitchCase="'exclusiveProducts'">
+        <app-theme-product-carousel [data]="item" [activeTheme]="dashboardContent.themeName" *ngIf="item.isShow && optionsList.includes('EXCLUSIVE_PRODUCTS')"></app-theme-product-carousel>
+      </ng-container>
+      <ng-container *ngSwitchCase="'shopByCategory'">
+        <app-theme-product-carousel [data]="item.data" *ngIf="item.isShow"></app-theme-product-carousel>
+      </ng-container>
+      <ng-container *ngSwitchCase="'espotBanner'">
+        <app-four-espot-banner [data]="item" [subdomain]="subdomain" [activeTheme]="dashboardContent.themeName" *ngIf="item.isShow && optionsList.includes('ESPOT_BANNER')"></app-four-espot-banner>
+      </ng-container>
+      <ng-container *ngSwitchCase="'espotTextSlider'">
+        <app-four-theme-textslider-espot [data]="item.data" [activeTheme]="dashboardContent.themeName" *ngIf="item.data !== null && item.isShow && optionsList.includes('ESPOT_TEXT_SLIDER')"></app-four-theme-textslider-espot>
+      </ng-container>
+      <ng-container *ngSwitchCase="'bestRatingProducts'">
+        <app-theme-product-carousel  [data]="item" [activeTheme]="dashboardContent.themeName" *ngIf="item.isShow"></app-theme-product-carousel>
+      </ng-container>
+      <ng-container *ngSwitchCase="'testimonials'">
+        <app-four-customer-reviews *ngIf="dashboardContent?.customerReviews && optionsList.includes('CUSTOMER_REVIEW')"  [data]="item" [sliderStyle]="dashboardContent.customerReviewSliderStyle"></app-four-customer-reviews>
+      </ng-container>
+      <ng-container *ngSwitchCase="'brandLogos'">
+        <app-four-brand-logos-slider [data]="item" *ngIf="item.isShow && optionsList.includes('BRAND_LOGOS_SLIDER')"></app-four-brand-logos-slider>
+      </ng-container>
+      <ng-container *ngSwitchCase="'recentlyViewed'">
+        <app-four-recently-viewed [pageType]= "'home-page'" [activeTheme]="dashboardContent.themeName" *ngIf="item.isShow && optionsList.includes('RECENTLY_VIEWED')"></app-four-recently-viewed>
+      </ng-container>
+    </ng-container>
+  </div>
+</body>

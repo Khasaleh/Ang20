@@ -1,0 +1,127 @@
+<section id="print-div-only" class="py-5 overflow-auto modern-scroll bg-white max-height-screen">
+  <div class="new-container1">
+
+    <div class="d-block mb-3">
+      <div class="d-flex w-100 align-items-center justify-content-between flex-wrap">
+        <div class="d-inline-block">
+          <img  class="w-100 h-80-px object-fit-contain object-position-top-left" onerror="this.src='./assets/img/themelogoplaceholder.svg'" [src]="assetsAwsKey+logoImage" alt="{{'FAZEAL'|translate}}">
+        </div>
+        <div class="d-inline-block">
+          <button (click)="printInvoice()" class="px-3 hide-on-print py-2 text-15 rounded-3 bg-theme-dark-color text-white">
+             {{'PRINT_INVOICE'|translate}}
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="d-block py-3 mb-2">
+    <h5 class="m-0 p-0 text-black text-20 font-weight-600">  {{'NOTIFICATIONS_ORDER_INVOICE'|translate}} </h5>
+    </div>
+    <div class="d-block" *ngIf="order">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-4 col-12 mb-3">
+          <div class="d-block w-100 bg-theme-light-color px-3 py-3 h-100">
+          <h5 class="mt-0 p-0 mb-2 text-black text-15"> <b class="font-weight-600"> {{'O_M_ORDER_DATE'|translate}} :</b> {{order?.orderTime! | FormattedDatePipe }} </h5>
+          <h5 class="mt-0 p-0 mb-2 text-black text-15"> <b class="font-weight-600"> {{'ORDER_ID'|translate}} :</b> {{orderPrefix}}{{order?.orderId}}{{orderSuffix}} </h5>
+          <h5 *ngIf="shippingTracks" class="mt-0 p-0 mb-2 text-black text-15"> <b class="font-weight-600">  {{'SHIPPED_DATE'|translate}} :</b> {{shippingTracks?.updatedTime}}</h5>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-12 mb-3" *ngIf="order.orderType === 'ORDER_ONLINE_SHIP_TO_HOME'">
+          <div class="d-block w-100 bg-theme-light-color px-3 py-3 h-100">
+          <h5 class="mt-0 p-0 mb-1 text-black text-15 font-weight-600"> {{'SHIPPING_ADDRESS'|translate}} </h5>
+          <h5 class="mt-0 p-0 mb-1 text-black text-15"> {{order?.orderAddressResponse?.firstName}} {{order?.orderAddressResponse?.lastName}} </h5>
+          <h5 class="mt-0 p-0 mb-1 text-black text-15"> {{order?.orderAddressResponse?.addressLine1 !== "null" ? order?.orderAddressResponse?.addressLine1 : '' }},
+             {{order?.orderAddressResponse?.addressLine2 !== "null" ? order?.orderAddressResponse?.addressLine2 : ''}} </h5>
+          <h5 class="mt-0 p-0 mb-1 text-black text-15">  {{order?.orderAddressResponse?.city}}, {{order?.orderAddressResponse?.state}}, {{order?.orderAddressResponse?.postalCode}}</h5>
+          <h5 class="mt-0 p-0 mb-1 text-black text-15"> {{order?.orderAddressResponse?.country}}</h5>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-sm-4 col-12 mb-3">
+          <div class="d-block w-100 px-3 text-center">
+          <img class="object-fit-contain w-150-px h-auto" [src]="qrCodeImage">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-block mb-3">
+      <h4 class="m-0 p-0 text-black font-weight-600 text-20">  {{'SHIPMENT_DETAILS'|translate}} </h4>
+    </div>
+
+    <div class="d-block modern-scroll w-100 mb-4" *ngIf="order">
+      <table class="w-100 border border-color-silver rounded-3 bg-white ship-table1">
+        <thead>
+        <tr>
+          <th class="py-3 bg-theme-light-color px-3 text-black font-weight-600 text-15 table-wid1">  {{'ITEM_DESCRIPTION'|translate}} </th>
+          <th class="py-3 bg-theme-light-color px-3 text-black font-weight-600 text-15">   {{'QTY'|translate}} </th>
+          <th class="py-3 bg-theme-light-color px-3 text-black font-weight-600 text-15">  {{'ITEM_PRICE'|translate}} </th>
+          <th class="py-3 bg-theme-light-color px-3 text-black font-weight-600 text-15">  {{'ITEM_SUBTOTAL'|translate}} </th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of order?.orderDetails; let i = index">
+            <td class="text-black font-weight-600 text-15 ps-3 pe-3 pt-4 pb-4 table-wid1">
+              <div class="d-flex align-items-center justify-content-start">
+                <div class="d-inline-block">
+                  <img class="min-w-100-px h-100-px object-fit-contain rounded-2 border border-color-silver"
+                  [src]="item?.product?.mainImageUrl"
+                  onerror= "this.src='./assets/img/default-product.png'">
+                </div>
+                <div class="d-inline-block ps-2">
+                  <h5 class="font-weight-600 text-15 text-black mt-0 mb-1"> {{item?.product?.productName | titlecase}} </h5>
+                  <span *ngIf="item?.skuId !== null" class="text-black text-15 w-100 d-block">  {{'SKU'|translate}} : {{item?.skuId}} </span>
+              <span *ngIf="item?.product?.brandName !== 'null'" class="text-black text-15 w-100 d-block">  {{'BRAND'|translate}}: {{item?.product?.brandName}} </span>
+                </div>
+              </div>
+
+
+            </td>
+            <td class="text-14 text-black px-3 py-4"> {{item?.quantity}} </td>
+            <td *ngIf="item.quantity == 0" class="text-14 text-black px-3 py-4"> {{currency}}  0.00 </td>
+            <td *ngIf="item.quantity > 0" class="text-14 text-black px-3 py-4"> {{currency}}  {{(item.price / item.quantity).toFixed(2) }} </td>
+            <td class="text-14 text-black px-3 py-4"> {{currency}}  {{item?.price?.toFixed(2)}} </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="d-block pb-5" *ngIf="order">
+      <div class="row justify-content-end">
+        <div class="col-lg-4 col-md-5 col-sm-6 col-12">
+        <table class="w-100">
+          <tbody>
+            <tr>
+              <td class="text-15 font-weight-600 text-black">  {{'ITEM_SUBTOTAL'|translate}} </td>
+              <td class="text-15 text-black"> {{currency}}  {{order?.subtotal?.toFixed(2)}} </td>
+            </tr>
+            <tr *ngIf="order.orderType === 'ORDER_ONLINE_SHIP_TO_HOME'">
+              <td class="text-15 font-weight-600 text-black">  {{'SHIPPING_AND_HANDLING'|translate}} (+)</td>
+              <td class="text-15 text-black">  {{currency}}  {{order?.shippingCost?.toFixed(2)}} </td>
+            </tr>
+            <tr>
+              <td class="text-15 font-weight-600 text-black pb-2">  {{'TOTAL_TAX'|translate}}  (+)</td>
+              <td class="text-15 text-black pb-2"> {{currency}}  {{order?.tax?.toFixed(2)}} </td>
+            </tr>
+            <tr>
+              <td class="text-15 font-weight-600 text-black pb-2">  {{'TOTAL_DISCOUNT'|translate}}  (-)</td>
+              <td class="text-15 text-black pb-2"> {{currency}}  {{(order.totalDiscount - order.orderPromotionDiscounts).toFixed(2)}} </td>
+            </tr>
+            <tr>
+              <td class="text-15 font-weight-600 text-black pb-2">  {{'PROMOTION'|translate}}  (-)</td>
+              <td class="text-15 text-black pb-2"> {{currency}} {{order?.orderPromotionDiscounts?.toFixed(2)}} </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th class="text-black text-18 border-top py-2  font-weight-600 border-color-black">  {{'TOTAL'|translate}} </th>
+              <th class="text-black text-18 border-top py-2 font-weight-600 border-color-black"> {{currency}}  {{order?.total?.toFixed(2)}}  </th>
+            </tr>
+          </tfoot>
+        </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

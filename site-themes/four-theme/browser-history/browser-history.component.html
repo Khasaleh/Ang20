@@ -1,0 +1,139 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-18 m-0 p-0">   {{'BROWSERHISTORY'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-transparent p-0 m-0 border-0 d-flex align-items-center justify-content-start">
+                  <li class="breadcrumb-item breadcrumb-slash-off d-flex align-items-center justify-content-start">
+                      <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                        {{'HOME'|translate}}
+                        </button>
+                      <span class="d-inline-block text-grey text-13 px-2"> / </span>
+                  </li>
+                  <li class="breadcrumb-item breadcrumb-slash-off p-0" aria-current="page">
+                      <b class="text-14 font-weight-400 cursor-default text-black text-capitalize">
+                        {{'BROWSERHISTORY'|translate}}
+                      </b>
+                  </li>
+              </ol>
+          </nav>
+        </div>
+    </div>
+  </div>
+</section>
+<section class="py-5">
+  <div class="new-container1">
+    <!-- Listing Filter Starts Here -->
+    <div class="d-block w-100">
+      <div class="form-group d-flex gap-2 align-items-center w-100 justify-content-start w-250-px">
+      <mat-form-field appearance="fill" class="w-100 field-style-drop">
+          <mat-label class="text-black text-15 font-weight-600">  Filter By </mat-label>
+          <mat-select value="ALL" (valueChange)="filterProducts($event)">
+            <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="ALL">{{'ALL'|translate}}</mat-option>
+            <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="LAST_WEEK">{{'LAST_WEEK'|translate}}</mat-option>
+            <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="LAST_FIFTEEN_DAYS">{{'LAST_15_DAYS'|translate}}</mat-option>
+            <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="LAST_ONE_MONTH">{{'LASTONEMONTH'|translate}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <!-- Listing Filter Ends Here -->
+
+      <!-- Loading Starts Here -->
+      <div *ngIf="loading" class="d-block w-100 text-center">
+        <img class="mb-4 h-50-px w-auto spinner-border border-0" src="./assets/img/spinner-icon1.png" alt="{{'UPDATING_YOUR_PRODUCT'|translate}}">
+        <p class="text-black text-14 text-center font-weight-500">    {{'BROWSE_HISTORY_ARE_CURRENTLY_LOADING' | translate}} </p>
+      </div>
+      <!-- Loading Ends Here -->
+
+      <!-- Empty Content Starts Here -->
+      <div *ngIf="!loading && historyProductsInfo.length === 0" class="d-block w-100">
+        <div class="d-block w-100 py-4 text-center">
+            <img class="w-250-px mw-100" src="./assets/img/usefull-info-empty.jpg">
+            <p class="text-center text-black mt-3 mb-3 text-15 font-weight-400">
+             {{'NO_BROWSER_SHITORY_AVAILABLE_FOR_NOW'|translate}}
+            </p>
+            <button [routerLink]="['../home']"  class="px-3 py-2 text-white bg-theme-dark-color rounded-2 text-14 font-weight-500">
+              {{'CONTINUE_SHOPING'|translate}}
+              </button>
+        </div>
+      </div>
+      <!-- Empty Content Ends Here -->
+
+      <!-- Listing Starts Here  -->
+      <div  class="d-block w-100 position-relative">
+
+      <div class="row mb-3 mt-4" *ngIf="!loading && historyProductsInfo.length > 0">
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 mb-3" *ngFor="let hp of historyProductsInfo">
+          <div class="d-block w-100 product-hover-style1 rounded-2">
+            <div class="text-decoration-none d-block w-100">
+                  <div class="card border-0 overflow-hidden new_pr_card plp_pr_card position-relative">
+                      <!-- Sale Price Tag Starts Here -->
+                      <span *ngIf="hp.productResponse.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+                          {{'SALE'|translate}}
+                      </span>
+                      <!-- Sale Price Tag Ends Here -->
+                      <div class="plp_pr_image h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+                          <a class="text-decoration-none d-block w-100 py-2">
+                            <img [src]="hp.productResponse.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+                          </a>
+                          <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+                            <button (click)="pdppopup(hp.productResponse.id)" class="w-100 d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                            <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                            {{'QUICKVIEW'|translate}}
+                            </button>
+                          </div>
+                          <div class="d-flex align-items-center justify-content-end position-absolute top-0 end-0 mt-1 me-1">
+                            <!-- Add to Wishlist Btn Starts Here -->
+                          <button [disabled]="firstTimeCalled" (click)="addItemToFovarite(hp.productResponse)" *ngIf="!hp.productResponse.addedToWishlist" class="d-flex align-items-center justify-content-center rounded-circle border bg-white border-color-silver ms-2 px-2 py-2">
+                            <i class="bi bi-heart text-18 text-black no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                          </button>
+                          <!-- Add to Wishlist Btn Ends Here -->
+                          <!-- Remove from Wishlist Btn Starts Here -->
+                          <button [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(hp.productResponse)" *ngIf="hp.productResponse.addedToWishlist"  class="d-flex align-items-center justify-content-center rounded-circle border border-color-silver bg-white ms-2 px-2 py-2">
+                            <i class="bi bi-heart-fill text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                          </button>
+                          <!-- Remove from Wishlist Btn Ends Here -->
+                          </div>
+                      </div>
+                      <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" routerLink='/{{subdomain}}/product/{{hp.productResponse.productName | replaceSpecialChars}}/{{hp.productResponse.id}}' >
+                        <div class="d-block w-100 mb-2">
+                          <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize"> {{hp.productResponse.productName | titlecase}} </h3>
+                        </div>
+                      <div class="d-block w-100 mb-2">
+                        <div class="d-flex w-100 align-items-center justify-content-start"*ngIf="hp.productResponse.salePrice">
+                          <div class="d-inline-block me-2">
+                            <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"> <s> {{currency.symbol}}{{hp.productResponse.price}}</s>  </h5>
+                          </div>
+                          <div class="d-inline-block">
+                            <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0"> {{currency.symbol}}{{hp.productResponse.salePrice}} </h5>
+                          </div>
+                        </div>
+                        <div class="d-flex w-100 align-items-center justify-content-start" *ngIf="!hp.productResponse.salePrice">
+                          <div class="d-inline-block">
+                            <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0"> {{currency.symbol}}{{hp.productResponse.price}} </h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-start w-100">
+                        <div class="d-flex align-items-center justify-content-start">
+                          <ngb-rating matTooltip="{{hp.productResponse.averageReview}} {{'OUT_OF_5_STARS'|translate}}" matTooltipPosition="below"
+                          matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="hp.productResponse.averageReview" [readonly]="true"></ngb-rating>
+                        <span class="d-inline-block text-black text-14 ms-2"> {{hp.productResponse.reviewsCount}} </span>
+                      </div>
+                      </div>
+                      </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- Listing Ends Here -->
+
+  </div>
+</section>
+

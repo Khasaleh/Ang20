@@ -1,0 +1,331 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">   {{'MY_ACCOUNT'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 m-0 border-0">
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                        <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                          {{'HOME'|translate}}
+                          </button>
+                        <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off" aria-current="page">
+                        <b class="text-14 font-weight-400 cursor-default text-black">
+                          {{'MY_ACCOUNT'|translate}}
+                        </b>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5" *ngIf="user">
+  <div class="new-container1">
+    <div class="d-block w-100">
+      <mat-tab-group animationDuration="0ms" class="chat-setting-tabs">
+        <!-- User Information Tab Starts Here -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="d-block w-100 px-4 py-3 border border-color-silver rounded-top-3 text-center bg-theme-light-color border-bottom-0">
+              <span class="text-black text-15 mob-text-14 d-block w-100 font-weight-600">  {{'USER_INFORMATION'|translate}} </span>
+            </div>
+          </ng-template>
+          <div class="d-block w-100 py-5 px-4 rounded-bottom-3 border border-color-silver">
+            <div class="d-block w-100 mb-4">
+              <div class="d-flex align-items-center justify-content-start">
+                <div class="d-inline-block position-relative">
+                  <img *ngIf="user?.userType == 'FAZEAL_REGISTERED'" src="{{awsUrl}}{{user?.profile}}"
+                  onerror="this.src='./assets/img/default-profile-image.jpg'" class="w-80-px h-80-px rounded-circle object-fit-cover" alt="{{'PROFILE_IMAGE'|translate}}">
+                  <img  *ngIf="!imageSrc && user?.userType !== 'FAZEAL_REGISTERED'" src="{{awsUrl}}{{user?.profile}}"
+                  onerror="this.src='./assets/img/default-profile-image.jpg'" class="w-80-px h-80-px rounded-circle object-fit-cover" alt="{{'PROFILE_IMAGE'|translate}}">
+                  <img *ngIf="imageSrc && user?.userType !== 'FAZEAL_REGISTERED'" [src]="imageSrc" class="w-80-px h-80-px rounded-circle object-fit-cover" alt="{{'PROFILE_IMAGE'|translate}}">
+                  <button *ngIf="user?.userType !== 'FAZEAL_REGISTERED'" (click)="fileInput.click()" class="position-absolute d-flex align-items-center p-1 justify-content-center bottom-0 end-0 bg-white border border-color-silver rounded-circle">
+                    <mat-icon class="text-black text-20 m-0 p-0 no-min-height no-min-width">edit</mat-icon>
+                  </button>
+                  <input class="d-none" type="file" #fileInput (change)="uploadProfileImage($event)" accept="image/*">
+                </div>
+                <div class="d-inline-block ps-4">
+                  <h5 class="text-18 text-black font-weight-600 mt-0 mb-1 p-0"> {{user?.firstName}} {{user?.lastName}} </h5>
+                  <p *ngIf="user?.userType === 'FAZEAL_REGISTERED'" class="text-13 text-black m-0 p-0"> &#64;{{user?.username}} </p>
+                </div>
+              </div>
+            </div>
+            <div class="d-block w-100">
+              <div class="row">
+                <div class="col-lg-8 col-md-10 col-sm-12 col-12">
+                  <div class="row">
+                    <!-- First name Field Starts Here -->
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-12 mb-3">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2 mb-1">
+                        <mat-label class="text-muted text-13">    {{'SIGNUP_INPUTPLACEHOLDFSTNAME'|translate}} </mat-label>
+                        <input [(ngModel)]="user.firstName" readonly matInput type="text" class="form-control bg-white text-black text-15 h-34-px"/>
+                      </mat-form-field>
+                    </div>
+                    </div>
+                    <!-- First name Field Ends Here -->
+                    <!-- Last Name Field Starts Here -->
+                    <div class="col-md-6 col-lg-6 col-sm-6 col-12 mb-3">
+                      <mat-form-field appearance="fill" class="w-100 field-style2 mb-1">
+                        <mat-label class="text-muted text-13">   {{'SIGNUP_INPUTPLACEHOLDLSTNAME'|translate}} </mat-label>
+                        <input [(ngModel)]="user.lastName" readonly matInput type="text" class="form-control bg-white text-black text-15 h-34-px"/>
+                      </mat-form-field>
+                    </div>
+                    <!-- Last Name Field Ends Here -->
+                    <!-- Email Address Field Starts Here -->
+                      <div class="col-md-6 col-lg-6 col-sm-6 col-12 mb-3">
+                        <div class="d-block w-100">
+                          <mat-form-field appearance="fill" class="w-100 field-style2">
+                            <mat-label class="text-muted text-13 text-capitalize"> {{'EMAILADDRESS'|translate}} </mat-label>
+                            <input *ngIf="user?.userType == 'FAZEAL_REGISTERED'" matInput type="email" [(ngModel)]="user.email" readonly class="form-control bg-white text-black text-15 h-34-px"/>
+                            <input *ngIf="user?.userType !== 'FAZEAL_REGISTERED'" matInput type="email" [(ngModel)]="user.email"
+                           (keyup)="changingEmail()" class="form-control bg-white text-black text-15 h-34-px"/>
+                          </mat-form-field>
+                          <span *ngIf="user?.userType !== 'FAZEAL_REGISTERED' && user?.emailVerified && !emailChanged" class="input-group-text border-0 rounded-0">
+                            <mat-icon  class="text-success">verified_user</mat-icon>
+                        </span>
+                        <span *ngIf="user?.userType !== 'FAZEAL_REGISTERED' && user?.emailVerified && emailChanged" class="red border-0 rounded-0">
+                        <mat-icon>highlight_off</mat-icon>
+                      </span>
+                      <div *ngIf="emailNotCorrect" class="red error-message">
+                        {{'ERROR_EMAIL_NOT_VALID'|translate}}
+                      </div>
+                          <button *ngIf="user?.userType !== 'FAZEAL_REGISTERED'" [disabled]="emailButton" (click)="openVerifyEmail()" class="bg-theme-dark-color px-3 py-1 rounded-3 text-14 text-white">
+                             {{'VERIFY_EMAIL'|translate}}
+                          </button>
+                        </div>
+                      </div>
+                     <!-- Email Address Field Ends Here -->
+                     <!-- Phone Number Field Starts Here -->
+                      <div class="col-md-6 col-lg-6 col-sm-6 col-12 mb-3">
+                          <div class="d-block w-100">
+                            <div class="input-group bg-white border border-color-silver rounded-2 overflow-hidden w-100">
+                              <span readonly class="input-group-text bg-white border-0">
+                              <span *ngIf="user?.userType !== 'FAZEAL_REGISTERED'">+{{user.countryCode}}</span>
+                              <span *ngIf="user?.userType == 'FAZEAL_REGISTERED' &&  user.phone !== 'null'"
+                              >+{{user.phone.slice(0,2)}}</span>
+                              <span>
+                              </span>
+                              </span>
+                              <div class="custom-wrapper">
+                              <mat-menu #mobilecodemenu="matMenu" (closed)="onMenuClosedCountry()" class="bottom-menu" yPosition="below"
+                                [overlapTrigger]="false">
+                                <div class="menu-content-countrycode">
+                                  <form class="w-100">
+                                    <div class="w-100 my-3 px-2">
+                                      <input (click)="onMenuItemClick($event)" type="text" [(ngModel)]="searchText"
+                                        class="w-100 border rounded-3 px-2 h-44-px" placeholder="{{'SEARCHCOUNTRY'|translate}}" />
+                                    </div>
+                                    <ul class="w-100 p-0 m-0 list-unstyled">
+                                      <li class="p-2 border-bottom-0" *ngFor="let country of countries | countrysearch:searchText"
+                                        (click)="selectCode(country.code)">
+                                        <span>+ {{country.code}} {{country.countryKey | translate}}</span>
+                                      </li>
+                                    </ul>
+                                  </form>
+                                </div>
+                              </mat-menu>
+                              </div>
+                              <input *ngIf="user.phone !== 'null'" type="text" class="errow_hide px-2 w-75 h-48-px bg-white border-0 rounded-0"
+                              placeholder="{{'PHONE_NUMBER'|translate}}"
+                              [(ngModel)]="user.phone" readonly/>
+
+                              <input *ngIf="user.phone === 'null'" type="text" class="errow_hide px-2 w-75 h-48-px bg-white border-0 rounded-0"
+                              placeholder="{{'NO_PHONE_NUMBER'|translate}}"
+                               readonly/>
+                              </div>
+                          </div>
+                          </div>
+                         <!-- Phone Number Field Ends Here -->
+
+                         <!-- Verify Email Addres Starts Here -->
+                         <div class="col-12 col-md-12 col-lg-12 col-sm-12 mb-3" *ngIf="validateemailshow">
+                          <div class="d-block w-100 w-100 bg-grey1 py-4 px-3 rounded-3 border border-color-silver">
+                            <div class="d-block w-100">
+                              <h5 class="text-black text-14 m-0 p-0 font-weight-500 text-center">
+                                {{'ENTER_AUTH_Email'| translate}} {{ user.email }} </h5>
+                            </div>
+                            <div class="d-block w-100 mt-3 mb-3 text-center">
+                                  <input class="text-30 text-center font-weight-700 inpu_type_number_errow_non text-center otp-design-field-single mx-1"
+                                  *ngFor="let index of [0, 1, 2, 3, 4, 5]; let last = last" placeholder="0"
+                                  type="text" maxlength="1" #otpInput (input)="handleInput($event, index, last)"
+                                  (keydown)="handleKeydown($event, index)" [value]="otp[index] || ''">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center w-100">
+                              <button (click)="openVerifyEmail()" [disabled]="resetEmailOtp" class="px-3 py-2 rounded-2 text-14 bg-green font-weight-500 text-white mx-2 text-capitalize">
+                                {{'RESENT'| translate}}
+                              </button>
+                              <button [disabled]="otp.join('').length<6 || verifyButton" (click)="verifyUserEmail()" class="px-3 py-2 rounded-2 text-14 bg-green font-weight-500 text-white mx-2 text-capitalize">
+                                {{'VERIFYNOW'| translate}}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      <!-- Verify Email Addres Ends Here -->
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </mat-tab>
+         <!-- User Information Tab Ends Here -->
+         <!-- Address Details Tab Starts Here -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="d-block w-100 px-4 py-3 border border-color-silver rounded-top-3 text-center bg-theme-light-color border-bottom-0">
+              <span class="text-black text-15 mob-text-14 d-block w-100 font-weight-600">  {{'ADDRESS_DETAILS'| translate}}  </span>
+            </div>
+          </ng-template>
+          <div class="d-block w-100 py-5 px-4 rounded-bottom-3 border border-color-silver">
+
+            <!-- No Address Available Starts Here -->
+            <div class="d-block w-100 text-center py-3" *ngIf="!showaddAddress && user?.userType !== 'FAZEAL_REGISTERED' && user?.addressList?.length == 0">
+                <img  src='./assets/img/no-address-available.png' class="w-150-px h-auto rounded-circle object-fit-cover mb-3">
+                <p  class="text-14 text-black mt-0 mb-3 p-0 text-center">    {{'YOU_DIDNT_HAVE_ANY_ADDRESS_ADDED'| translate}} </p>
+                <button  (click)="openAddAddress()" class="px-3 py-2 text-15 text-white rounded-3 bg-theme-dark-color text-capitalize">
+                   {{'ADDADDRESS'| translate}}
+                </button>
+            </div>
+            <!-- No Address Available Ends Here -->
+
+            <!-- Add Address When Empty Starts Here -->
+            <div class="d-block w-100 py-3" *ngIf="showaddAddress">
+            <div class="row">
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-4">
+            <div class="d-block w-100 text-center border border-color-silver rounded-3">
+            <div class="d-block w-100 px-3 py-3 bg-theme-light-color border-bottom border-color-silver">
+            <h4 class="text-black m-0 p-0 text-16 font-weight-600">   {{'BILLING_ADDRESS'| translate}}  </h4>
+            </div>
+            <div class="d-flex align-items-center justify-content-center w-100 py-5 px-2">
+            <button  (click)="addAddressPopup()" class="px-3 py-2 text-15 rounded-3 bg-theme-dark-color text-capitalize d-flex align-items-center justify-content-start">
+              <mat-icon class="ms-0 me-2 mt-0 mb-0 p-0 text-17 text-white no-min-height no-min-width"> person_pin_circle</mat-icon>
+            {{'ADDADDRESS'| translate}}
+            </button>
+            </div>
+            </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-4">
+            <div class="d-block w-100 text-center border border-color-silver rounded-3">
+            <div class="d-block w-100 px-3 py-3 bg-theme-light-color border-bottom border-color-silver">
+              <h4 class="text-black m-0 p-0 text-16 font-weight-600">   {{'SHIPPING_ADDRESS'| translate}}  </h4>
+            </div>
+            <div class="d-flex align-items-center justify-content-center w-100 py-5 px-2">
+              <button (click)="addAddressPopup()" class="px-3 py-2 text-15 rounded-3 bg-theme-dark-color text-capitalize d-flex align-items-center justify-content-start">
+                <mat-icon class="ms-0 me-2 mt-0 mb-0 p-0 text-17 text-white no-min-height no-min-width"> person_pin_circle</mat-icon>
+              {{'ADDADDRESS'| translate}}
+              </button>
+            </div>
+            </div>
+            </div>
+
+            </div>
+            </div>
+            <!-- Add Address When Empty Starts Here -->
+
+
+            <!-- Address Added Boxes Starts Here -->
+            <div class="d-block w-100" *ngIf="addresses">
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mb-4" *ngFor="let address of addresses">
+                 <app-address-listing [address]="address" (deleteAddressEvent)="onAddressDeleted($event)"></app-address-listing>
+                </div>
+            </div>
+            <!-- Address Added Boxes Ends Here -->
+
+          </div>
+          </div>
+        </mat-tab>
+         <!-- Address Details Tab Ends Here -->
+         <!-- Payment Details Tab Starts Here -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="d-block w-100 px-4 py-3 border border-color-silver rounded-top-3 text-center bg-theme-light-color border-bottom-0">
+              <span class="text-black text-15 mob-text-14 d-block w-100 font-weight-600">  {{'PAYMENT_DETAILS'| translate}} </span>
+            </div>
+          </ng-template>
+          <div class="d-block w-100 py-5 px-4 rounded-bottom-3 border border-color-silver">
+
+            <!-- No Payment Available Starts Here -->
+            <div class="d-block w-100 text-center py-3" *ngIf="!showaddPayment  && user?.userType !== 'FAZEAL_REGISTERED'">
+              <img  src='./assets/img/payment-infographics.jpg' class="w-140-px h-auto rounded-circle object-fit-cover mb-3">
+              <p class="text-14 text-black mt-0 mb-3 p-0 text-center">    {{'YOU_DIDNT_HAVE_ANY_PAYMENT_ADDED'| translate}} </p>
+              <button (click)="addPaymentPopup()" class="px-3 py-2 text-15 text-white rounded-3 bg-theme-dark-color text-capitalize">
+                 {{'ADD_PAYMENT'| translate}}
+              </button>
+          </div>
+          <!-- No Payment Available Ends Here --> 
+
+            <!-- No Payment Available Starts Here -->
+            <div class="d-block w-100 text-center py-3" *ngIf="!showaddPayment  && user?.userType === 'FAZEAL_REGISTERED'">
+              <img  src='./assets/img/payment-infographics.jpg' class="w-140-px h-auto rounded-circle object-fit-cover mb-3">
+              <p class="text-14 text-black mt-0 mb-3 p-0 text-center">    {{'YOU_DIDNT_HAVE_ANY_PAYMENT_ADDED_ONLY'| translate}} </p>
+             </div>
+          <!-- No Payment Available Ends Here --> 
+
+          <!-- Payment Card Boxes Starts Here -->
+          <div class="d-block w-100 py-3">
+            <div class="row">
+            <div class="col-lg-9 col-md-10 col-sm-12 col-12">
+              <div class="row" *ngIf="user.paymentDetails">
+
+                <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-3" *ngFor="let payment of user?.paymentDetails">
+                  <app-payment-listing [payment]="payment" (deletePaymentEvent)="onPaymentDeleted($event)"></app-payment-listing>
+                </div>
+
+              </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- Payment Card Boxes Starts Here -->
+
+          </div>
+        </mat-tab>
+        <!-- Payment Details Tab Ends Here -->
+        <!-- Notifications & Advertisement Starts Here -->
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="d-block w-100 px-4 py-3 border border-color-silver rounded-top-3 text-center bg-theme-light-color border-bottom-0">
+              <span class="text-black text-15 mob-text-14 d-block w-100 font-weight-600">  {{'NOTIFICATIONS_AND_ADVERTISEMENTS'|translate}}  </span>
+            </div>
+          </ng-template>
+          <div class="d-block w-100 py-5 px-4 rounded-bottom-3 border border-color-silver">
+            <div class="d-block w-100 mb-4">
+              <h4 class="m-0 p-0 text-black font-weight-600 text-18">
+                  {{'SUBSCRIBE_FOR_MARKETING_NOTIFICATIONS'|translate}}
+              </h4>
+            </div>
+            <div class="d-block w-100">
+              <div class="d-flex align-items-center justify-content-between flex-wrap border border-color-silver rounded-3 px-3 py-3">
+                <div class="d-flex align-items-center justify-content-start">
+                  <mat-slide-toggle (change)="onToggleChange()" class="slide_toggle_switch" [(ngModel)]="isSubscribed"></mat-slide-toggle>
+                    <span *ngIf="!isSubscribed" class="text-15 font-weight-600 d-inline-block px-3 text-capitalize">
+                        {{'PICK_A_PLAN_SUBSCRIBE'|translate}}
+                    </span>
+                    <span *ngIf="isSubscribed" class="text-15 font-weight-600 d-inline-block px-3 text-capitalize">
+                      {{'UNSUBSCRIBE'|translate}}
+                  </span>
+                </div>
+                <div class="d-inline-block">
+                  <button routerLink="/{{subdomain}}/terms-and-conditions" class="text-black text-14 font-weight-normal m-0 p-0">
+                      {{'TERMS_CONDITIONS'|translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+        <!-- Notifications & Advertisement Ends Here -->
+      </mat-tab-group>
+    </div>
+  </div>
+</section>

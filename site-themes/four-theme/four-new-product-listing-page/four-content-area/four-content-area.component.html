@@ -1,0 +1,399 @@
+<ng-container>
+  <section *ngIf="!isLoading" class="pt-4 pb-5 plp_pr_section bg-white">
+    <div class="new-container1">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
+          <div class="row align-items-center">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-12">
+              <div class="d-flex w-100 align-items-center justify-content-between">
+                <div class="d-inline-block">
+                  <p class="text-black text-14 mob-text-12 font-weight-500 m-0"> {{'SHOWING'| translate}}  <b class="font-weight-600 text-black">  {{products.length}} </b>  {{'OF'| translate}} {{totalCounts}}  {{'PRODUCT'| translate}} </p>
+                </div>
+                <div class="d-lg-none d-md-block d-sm-block d-block">
+                  <button (click)="toggleFiltersMobile()" class="bg-grey1 d-flex align-items-center justify-content-start px-1 font-weight-600 py-1 text-black rounded-2 text-black">
+                    <i class="bi bi-filter-right text-black text-16 lh-tiny no-min-height no-min-width me-2"></i>
+                     {{'FILTER_PRODUCTS'| translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-12 col-12">
+              <div *ngIf="filtersOnMobile" class="d-lg-flex d-md-flex d-sm-none pt-lg-0 pt-md-0 pt-sm-3 pt-3 gap-3 align-items-center justify-content-end flex-wrap">
+                <div class="form-group d-flex gap-2 align-items-center" *ngIf="data?.sortByFilterEnabled">
+                  <mat-label class="font-weight-600 text-14 mob-text-13 text-black">{{'SHOW'| translate}}</mat-label>
+                  <mat-form-field appearance="fill" class="w-75-px field-style1 field-style2">
+                    <mat-select panelClass="promotionselect" [(ngModel)]="size" (selectionChange)="onPageSizeChange()">
+                      <mat-option class="text-14 mob-text-13" [value]="12">{{'12' | translate}}</mat-option>
+                      <mat-option class="text-14 mob-text-13" [value]="16">{{'16' | translate}}</mat-option>
+                      <mat-option class="text-14 mob-text-13" [value]="20">{{'20' | translate}}</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="d-inline-block">
+                  <div class="form-group d-flex gap-2 align-items-center" *ngIf="data?.sortByFilterEnabled">
+                    <mat-label class="font-weight-600 text-14 mob-text-13 text-black">{{'SORT_BY'| translate}}</mat-label>
+                    <mat-form-field appearance="fill" class="custom-placeholder1 sort-by-filter field-style1 field-style2">
+                      <mat-select class="w-100" panelClass="promotionselect" placeholder="{{'FEATCHERED'| translate}}">
+                        <mat-option class="text-14 mob-text-13" (click)="sort('PRICE','ASC')" value="DEFAULT_SORTING">{{'PRICE_LOW_TO_HIGH' |
+                          translate}}</mat-option>
+                        <mat-option class="text-14 mob-text-13" (click)="sort('PRICE', 'DESC')" value="ASC">{{'PRICE_HIGH_TO_LOW' | translate}}</mat-option>
+                        <mat-option class="text-14 mob-text-13" (click)="sort('REVIEWS', 'ASC')" value="DESC">{{'REVIEWS_LOW_TO_HIGH' |
+                          translate}}</mat-option>
+                        <mat-option class="text-14 mob-text-13" (click)="sort('REVIEWS', 'DESC')" value="DESC">{{'REVIEWS_HIGH_TO_LOW' |
+                          translate}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mx-auto">
+          <div class="d-flex justify-content-between flex-md-column flex-lg-row flex-sm-column flex-column">
+            <div class="left_side_bar_menu" *ngIf="data?.leftPanelEnabled">
+              <div class="d-block w-100" *ngIf="filtersOnMobile">
+                <mat-accordion class="example-headers-align" multi="true">
+                  <!-- Product Categories Panel Starts Here -->
+                  <ng-container class="d-block w-100 pb-3" *ngIf="data?.leftPanelCategoriesEnabled==true && data.categoryDTO.childCategories.length > 0">
+                  <mat-expansion-panel [expanded]="false"
+                    class="mat-elevation-z0 overflow-hidden mb-0  mt-0 rounded-1 filter-expansion-panel mat-expansion-no-pad bg-transparent border">
+                    <mat-expansion-panel-header class="bg-color-f6f6f6 px-3 py-1 border-bottom rounded-0 overflow-hidden">
+                     <div class="d-block w-100">
+                      <h3 class="text-16 mob-text-15 text-color-dark font-weight-700 m-0">{{'PRODUCTCATEGORIES'|translate}}</h3>
+                     </div>
+                    </mat-expansion-panel-header>
+                    <div class="d-block w-100 py-3 px-2">
+                      <ul class="list-unstyled mb-0">
+                        <li class="mb-2 border-bottom-0 pb-2" *ngFor="let category of data.categoryDTO.childCategories">
+                          <a routerLink="../../{{subdomain}}{{category?.url}}/{{category?.id}}"
+                            class="text-15 font-weight-400 text-black text-capitalize">
+                            {{category?.name | titlecase}}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </mat-expansion-panel>
+                  </ng-container>
+                  <!-- Product Categories Panel Ends Here -->
+                    <!-- Reviews Number Panel Starts Here -->
+                    <ng-container class="d-block w-100 pb-3" *ngIf="data?.leftPanelColorEnabled==true">
+                      <mat-expansion-panel [expanded]="false"
+                        class="mat-elevation-z0 overflow-hidden mb-0 mt-3 rounded-1 filter-expansion-panel mat-expansion-no-pad bg-transparent border">
+                        <mat-expansion-panel-header class="bg-color-f6f6f6 px-3 py-1 border-bottom rounded-0 overflow-hidden">
+                         <div class="d-block w-100">
+                          <h3 class="text-16 mob-text-15 text-color-dark font-weight-700 m-0"> {{'TESTIMONIALS'|translate}} </h3>
+                         </div>
+                        </mat-expansion-panel-header>
+                        <div class="d-block w-100 py-3 px-2">
+                          <div class="d-block w-100">
+                            <ul class="list-unstyled mb-0">
+                              <li class="mb-2 border-bottom-0 mb-3 cursor-pointer">
+                                <button (click)="rating = 4; searchProductsByFilters()" class="d-flex align-items-center justify-content-start cursor-pointer p-0">
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <span class="d-inline-block text-14 font-weight-600 ms-2"> -  {{'FOUR_AND_UP'|translate}} </span>
+                                </button>
+                              </li>
+                              <li class="mb-2 border-bottom-0 mb-3 cursor-pointer">
+                                <button (click)="rating = 3; searchProductsByFilters()" class="d-flex align-items-center justify-content-start cursor-pointer p-0">
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <span class="d-inline-block text-14 font-weight-600 ms-2"> -  {{'THREE_AND_UP'|translate}} </span>
+                                </button>
+                              </li>
+                              <li class="mb-2 border-bottom-0 mb-3 cursor-pointer">
+                                <button (click)="rating = 2; searchProductsByFilters()" class="d-flex align-items-center justify-content-start cursor-pointer p-0">
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <span class="d-inline-block text-14 font-weight-600 ms-2"> -  {{'TWO_AND_UP'|translate}} </span>
+                                </button>
+                              </li>
+                              <li class="mb-2 border-bottom-0 mb-3 cursor-pointer">
+                                <button (click)="rating = 1; searchProductsByFilters()" class="d-flex align-items-center justify-content-start cursor-pointer p-0">
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 col-rating1 text-18">star</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <mat-icon class="no-min-height no-min-width text-18 p-0 ms-0 me-1 text-grey-color text-18">star_border</mat-icon>
+                                  <span class="d-inline-block text-14 font-weight-600 ms-2"> -  {{'ONE_AND_UP'|translate}} </span>
+                                </button>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="d-block w-100 mb-2">
+                            <button (click)="rating = null; searchProductsByFilters()" class="text-black text-14 font-weight-500 text-13 bg-color-si d-flex align-items-center justify-content-start px-3 py-1 rounded-pill">
+                            <mat-icon class="text-black no-min-height no-min-width text-15 ms-0 me-1">remove_shopping_cart</mat-icon>
+                              {{'CLEAR_FILTER'|translate}}
+                            </button>
+                          </div>
+                        </div>
+                      </mat-expansion-panel>
+                      </ng-container>
+                      <!-- Reviews Number Panel Ends Here -->
+                      <!-- Filter By Brands Starts Here -->
+                      <ng-container class="d-block w-100 pb-3" *ngIf="data?.leftPanelSizeEnabled==true">
+                        <mat-expansion-panel [expanded]="false"
+                          class="mat-elevation-z0 overflow-hidden mb-0 mt-3 rounded-1 filter-expansion-panel mat-expansion-no-pad bg-transparent border">
+                          <mat-expansion-panel-header class="bg-color-f6f6f6 px-3 py-1 border-bottom rounded-0 overflow-hidden">
+                           <div class="d-block w-100">
+                            <h3 class="text-16 mob-text-15 text-color-dark font-weight-700 m-0"> {{'FILTER_BY_BRANDS'|translate}}  </h3>
+                           </div>
+                          </mat-expansion-panel-header>
+                          <div class="d-block w-100 py-2 px-3">
+                            <div class="d-block w-100">
+                              <ul class="list-unstyled mb-0">
+                                <ng-container *ngFor="let brand of visibleBrands">
+                                  <li class="mb-2 border-bottom-0 pb-2 pl-2">
+                                    <mat-checkbox class="checkbox-new-style1" [checked]="isSelected(brand)" (change)="setselectedBrands(brand, $event)">
+                                      <span class="text-14 font-weigt-500 text-color-344054 text-wrap mob-text-12 font-weight-600 text-capitalize">
+                                        {{ (brand || ('NO_BRAND' | translate)) | titlecase }}
+                                      </span>
+                                    </mat-checkbox>
+                                  </li>
+                                </ng-container>
+                              </ul>
+                              <button class="text-14 text-black" *ngIf="maxVisibleBrands < (brandsNames?.length ?? 0)" (click)="showMoreBrandFilters()">
+                                {{'SHOW_MORE_FILTERS'|translate}}
+                             </button>
+                            </div>
+                            <div class="d-block w-100 mb-2" >
+                              <button (click)="clearSelectedBrands()" class="text-black text-14 font-weight-500 text-13 bg-color-si d-flex align-items-center justify-content-start px-3 py-1 rounded-pill">
+                              <mat-icon class="text-black no-min-height no-min-width text-15 ms-0 me-1">remove_shopping_cart</mat-icon>
+                                {{'CLEAR_FILTER'|translate}}
+                              </button>
+                            </div>
+                            </div>
+                        </mat-expansion-panel>
+                      </ng-container>
+                      <!-- Filter By Brands Ends Here -->
+                       <!-- Filter By Colors Starts Here -->
+                       <ng-container class="d-block w-100 pb-3">
+                        <ng-container *ngFor="let attr of attributes">
+                          <mat-expansion-panel [expanded]="false"
+                          class="mat-elevation-z0 overflow-hidden mb-0 mt-3 rounded-1 filter-expansion-panel mat-expansion-no-pad bg-transparent border">
+                          <mat-expansion-panel-header class="bg-color-f6f6f6 px-3 py-1 border-bottom rounded-0 overflow-hidden">
+                           <div class="d-block w-100">
+                            <h3 class="text-16 mob-text-15 text-color-dark font-weight-700 m-0 text-capitalize">  {{'FILTERBY'|translate}} {{ attr.name | translate | titlecase }}                            </h3>
+                           </div>
+                          </mat-expansion-panel-header>
+                          <div class="d-block w-100 py-2 px-3">
+                              <div *ngIf="attr.isColor">
+                                <div class="row mb-4">
+                                  <div class="col-md-12 ">
+                                    <div class="d-flex list-unstyled flex-wrap color_list">
+                                      <div class="container_colors me-2 mb-2 w-auto h-auto" *ngFor="let value of attr.attributeValues">
+                                        <div (click)="setAttrValue(value.value)">
+                                          <label class="rounded-0 border border-color-silver w-36-px h-36-px rounded-circle position-static"
+                                          [ngClass]="{'filter-color-selected': attrValue.includes(value.value)}"
+                                          [style.backgroundColor]="value.value">
+                                        </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div *ngIf="!attr.isColor">
+                                <div class="row mb-2">
+                                  <div class="col-md-12 ">
+                                    <div class="d-flex flex-wrap">
+                                      <button  *ngFor="let value of attr.attributeValues"
+                                        (click)="setAttrValue(value.value)"
+                                        class="bg-white text-15 font-weight-500 px-0 me-1 mb-2">
+                                       <span [ngClass]="{'filter-selected-black text-white': attrValue.includes(value.value)}" *ngIf="!value.attributeImageUrl" class="px-2 py-1 d-inline-block border border-color-silver rounded-2"> {{value.value | titlecase}} </span>
+                                       <img matTooltip="{{value.value}}"  matTooltipPosition="below"
+                                       matTooltipClass="bg-black text-white text-12 rounded-2" [ngClass]="{'filter-color-selected': attrValue.includes(value.value)}" *ngIf="value.attributeImageUrl" [src]="awsUrl + value.attributeImageUrl" class="w-40-px h-40-px rounded-2 border border-color-silver">
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="d-block w-100 pb-2 px-2" *ngIf="attributes.length > 0">
+                            <button (click)="clearAttrValue()" class="text-black text-14 font-weight-500 text-13 bg-color-si d-flex align-items-center justify-content-start px-3 py-1 rounded-pill">
+                              <mat-icon class="text-black no-min-height no-min-width text-15 ms-0 me-1">remove_shopping_cart</mat-icon>
+                                {{'CLEAR_FILTER'|translate}}
+                              </button>
+                            </div>
+                          </mat-expansion-panel>
+                        </ng-container>
+                      </ng-container>
+                      <!-- Filter By Colors Ends Here -->
+                       <!-- Filter By Price Starts Here -->
+                       <ng-container class="d-block w-100 pb-3" *ngIf="data?.leftPanelPriceEnabled==true">
+                        <mat-expansion-panel [expanded]="false"
+                          class="mat-elevation-z0 overflow-hidden mb-0 mt-3 rounded-1 filter-expansion-panel mat-expansion-no-pad bg-transparent border">
+                          <mat-expansion-panel-header class="bg-color-f6f6f6 px-3 py-1 border-bottom rounded-0 overflow-hidden">
+                           <div class="d-block w-100">
+                            <h3 class="text-16 mob-text-15 text-color-dark font-weight-700 m-0"> {{'FILTER_BY_PRICE'|translate}}</h3>
+                           </div>
+                          </mat-expansion-panel-header>
+                          <div class="d-block w-100 py-2 px-3">
+                            <div class="row ngx_slider_custom">
+                              <div class="col-md-12">
+                                <ngx-slider class="range-slider-design3" #slider [(value)]="gta" [(highValue)]="lte" [options]="options"></ngx-slider>
+                              </div>
+                            </div>
+                            <div class="row align-items-center mt-3">
+                              <div class="col-md-5">
+                                <input type="number" [(ngModel)]="gta" readonly
+                                  class="form-control border border-color-black bg-white rounded-0 text-center text-14 font-weight-500">
+                              </div>
+                              <div class="col-md-2">
+                                <span>{{ 'TO' | translate }}</span>
+                              </div>
+                              <div class="col-md-5">
+                                <input type="number" [(ngModel)]="lte" readonly
+                                  class="form-control border border-color-black bg-white rounded-0 text-center text-14 font-weight-500">
+                              </div>
+                            </div>
+                            <div class="row align-items-center mt-3 mb-2">
+                              <div class="col-md-12">
+                                <button type="button" (click)="setPriceValue(gta, lte)"
+                                  class="border-0 rounded-2 text-white bg-theme-dark-color text-color-w text-first-light-color py-2 w-100 text-16 mob-text-14 font-weight-500 text-uppercase">
+                                  {{'APPLY'|translate}}
+                                </button>
+                              </div>
+                            </div>
+                            <div class="d-block w-100 mb-4">
+                              <button (click)="clearPriceValue()" class="text-black text-14 font-weight-500 text-13 bg-color-si d-flex align-items-center justify-content-start px-3 py-1 rounded-pill">
+                              <mat-icon class="text-black no-min-height no-min-width text-15 ms-0 me-1">remove_shopping_cart</mat-icon>
+                                {{'CLEAR_FILTER'|translate}}
+                              </button>
+                            </div>
+                            </div>
+                        </mat-expansion-panel>
+                      </ng-container>
+                      <!-- Filter By Price Ends Here -->
+                  </mat-accordion>
+              </div>
+            </div>
+            <div class="product_content_area" [ngClass]="{'w-100': !data?.leftPanelEnabled}">
+              <div class="d-block w-100">
+                <div class="row align-items-center">
+                  <div class="col-lg-8 col-md-8 col-sm-8 col-12">
+                    <app-four-breadcrums *ngIf="data.breadcrumbsEnabled && products.length > 0" [data]="data"
+                      [product]="products.length > 0 ? products[0] : null"></app-four-breadcrums>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-12"  *ngIf="products.length > 0 && data.sortByFilterEnabled">
+                    <div class="d-lg-flex d-md-flex d-sm-flex d-none align-items-center justify-content-end">
+                      <button [ngClass]="{'bg-color-CDCDCD font-weight-600': view === 'grid'}" (click)="toggleView('grid')" class="border border-color-silver rounded-2 px-3 py-2 d-flex align-items-center justify-content-start">
+                        <i class="bi bi-grid-3x2-gap-fill text-black text-16 ms-0 me-1 p-0 lh-tiny"></i>
+                        {{'GRID_VIEW'| translate}}
+                      </button>
+                      <button [ngClass]="{'bg-color-CDCDCD font-weight-600': view === 'list'}" (click)="toggleView('list')" class="border border-color-silver rounded-2 px-3 py-2 d-flex align-items-center justify-content-start ms-2">
+                        <i class="bi bi-list-ul text-black text-16 ms-0 me-1 p-0 lh-tiny"></i>
+                        {{'LIST_VIEW'| translate}}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <div class="d-block w-100 mt-3">
+                <div class="d-block w-100" *ngIf="!isLoading">
+                <div class="d-block w-100"  *ngIf="view === 'grid'">
+                  <div class="row" *ngIf="products.length > 0">
+                    <div *ngFor="let product of products" class="col-md-4 col-sm-6 col-6 mb-3"
+                      [ngClass]="{'col-xxl-3 col-xl-3 col-lg-3': data.productsCols =='4','col-xxl-4 col-xl-4 col-lg-4': data.productsCols =='3'}">
+                      <app-product-box [activeTheme]="data.themeName" [attrValues]="attrValue"  [product]="product" [isQuickView]="data.cartButtonEnabled"></app-product-box>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-block w-100"  *ngIf="view === 'list'">
+                  <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-6" *ngFor="let product of products">
+                    <app-product-box-list [activeTheme]="data.themeName" [attrValues]="attrValue" [product]="product"  [isQuickView]="data.cartButtonEnabled"></app-product-box-list>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="products.length > 0" class="d-flex w-100 align-items-center justify-content-between mt-2">
+                  <div class="d-inline-block">
+                   <p class="text-black text-13 font-weight-500 p-0 m-0">  {{ getCurrentRange() }}   {{'OF'| translate}} {{ totalResponses }}   {{'O_M_PRODUCTS'| translate}}  </p>
+                  </div>
+                  <div class="d-inline-block">
+                    <app-custom-paginator [length]="totalResponses"
+                    [pageSize]="size"
+                    [pageIndex]="currentPage"
+                    (page)="handlePageEvent($event)">
+                  </app-custom-paginator>
+                  </div>
+                </div>
+                </div>
+
+                <!-- Products Loading Animation Starts Here -->
+                <!-- <div class="d-block w-100 text-center" *ngIf="isLoading">
+                  <img class="h-400-px h-250-px w-100 object-fit-contain mb-4" src="./assets/img/products-loading.jpg"
+                    alt="{{'PRODUCTS_ARE_LOADING'|translate}}">
+                  <div class="d-flex align-items-center justify-content-center w-100">
+                    <div class="d-inline-block">
+                      <img class="h-20-px w-auto spinner-border border-0" src="./assets/img/spinner-icon.png">
+                    </div>
+                    <div class="d-inline-block ps-3">
+                      <h4 class="text-black text-16 font-weight-500 m-0">{{'PRODUCTS_ARE_LOADING'|translate}}</h4>
+                    </div>
+                  </div>
+                </div> -->
+                <!-- Products Loading Animation Ends Here -->
+
+               
+
+                <!-- Empty Products Starts Here -->
+                <div class="d-block w-100 text-center py-4" *ngIf="!isLoading && allproductsLoaded && products.length == 0">
+                  <img class="h-202-px w-100 object-fit-contain mb-3" src="./assets/img/no-products-availabled.png" alt="{{'PRODUCTS_ARE_LOADING'|translate}}">
+                  <div class="d-block w-100 text-center">
+                    <h4 class="text-black text-14 font-weight-500 m-0">{{'NO_PRODUCT_AVAILABLE_IN_THIS_CATEGORY'|translate}}</h4>
+                  </div>
+                </div>
+                <!-- Empty Products Ends Here -->
+
+              </div>
+            </div>
+          </div>
+          <app-four-releated-products *ngIf="data?.relatedProductsEnabled" [pageType]= "'plp-page'" [data]="data?.bestSellerProducts"></app-four-releated-products>
+          <app-four-best-selling-products *ngIf="data?.bestsellerProductsEnabled"   [pageType]= "'plpbestseller-page'" [data]="data?.bestSellerProducts"
+            ></app-four-best-selling-products>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>
+
+
+
+<!-- Skeleton Loader Starts Here --> 
+ <section class="py-5 my-2 plp_pr_section bg-white"  *ngIf="isLoading">
+  <div class="new-container1">
+    <div class="skeleton-wrapper row">  
+  <div class="col-lg-3 col-md-3 col-sm-12 col-12 d-lg-block d-md-block d-sm-none d-none">
+    <div class="skeleton-box mb-3 h-40-px" style="width: 80%;"></div>
+    <div class="skeleton-box mb-3 h-60-px" style="width: 70%;"></div>
+    <div class="skeleton-box mb-3 h-40-px" style="width: 60%;"></div>
+    <div class="skeleton-box mb-3 h-40-px" style="width: 50%;"></div>
+    <div class="skeleton-box mb-3 h-40-px" style="width: 80%;"></div>
+  </div>
+  <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+    <div class="row">
+      <div class="col-md-4 col-sm-6 col-6 mb-3" *ngFor="let item of skeletonArray">
+        <div class="skeleton-card">
+          <div class="skeleton-box mb-2 h-200-px" style="width: 100%;"></div>
+          <div class="skeleton-box mb-2 h-20-px" style="width: 80%;"></div>
+          <div class="skeleton-box mb-2 h-20-px" style="width: 60%;"></div>
+          <div class="skeleton-box mb-2 h-20-px" style="width: 40%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+ </section>
+<!-- Skeleton Loader Ends Here -->

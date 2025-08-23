@@ -1,0 +1,714 @@
+<!-- Master Theme Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'FourthTheme'">
+  <div class="my-5 new-container1 mx-auto">
+    <h1 class="text-24 mob-text-20 font-weight-700 text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}
+    </h1> 
+  <div class="d-block w-100">
+    <div class="row justify-content-center">
+      <div class="col-12" [ngClass]="{
+        'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+        'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+        'col-lg-9 col-md-9 col-sm-12': data.data.length === 3 
+      }">
+      <owl-carousel-o [ngClass]="{
+        'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent': data.sliderStyle === 'DOTS',
+        'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+      }" [options]="customOptions" class="carousel-not-hidden prod-box-carousel">
+         <ng-template carouselSlide  *ngFor="let product of data.data">
+          <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+            <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+          </div>
+         </ng-template>
+      </owl-carousel-o>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+<!-- Master Theme Ends Here -->
+
+<!-- Retail Theme 2 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme2'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-28 mob-text-20 font-weight-800 text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}
+    </h1>
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 2 Ends Here -->
+
+<!-- Retail Theme 3 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme3'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-28 mob-text-20 font-weight-700 text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}
+    </h1>
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 3 Ends Here -->
+
+<!-- Retail Theme 4 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme4'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-28 mob-text-20 font-weight-700 text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}
+    </h1>
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 4 Ends Here -->
+
+<!-- Retail Theme 5 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme5'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-28 mob-text-20 font-weight-700 text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}
+    </h1>
+    <div class="d-block w-100">
+      <div class="row">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 5 Ends Here -->
+
+<!-- Retail Theme 6 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme6'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-28 mob-text-20 px-3 font-weight-800 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 6 Ends Here -->
+
+<!-- Retail Theme 7 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme7'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-28 mob-text-20 px-3 font-weight-800 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}} 
+    </h1>
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 7 Ends Here -->
+
+<!-- Retail Theme 8 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme8'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-900 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}} 
+    </h1>
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 8 Ends Here -->
+
+<!-- Retail Theme 9 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme9'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-900 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}} 
+    </h1>
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 9 Ends Here -->
+
+<!-- Retail Theme 10 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme10'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-900 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}} 
+    </h1>
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 10 Ends Here -->
+
+<!-- Retail Theme 11 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme11'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 11 Ends Here -->
+
+<!-- Retail Theme 12 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme12'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 12 Ends Here -->
+
+<!-- Retail Theme 13 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme13'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 13 Ends Here -->
+
+<!-- Retail Theme 14 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme14'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 14 Ends Here -->
+
+<!-- Retail Theme 15 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme15'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 15 Ends Here -->
+
+<!-- Retail Theme 16 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme16'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 16 Ends Here -->
+
+<!-- Retail Theme 17 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme17'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 17 Ends Here -->
+
+<!-- Retail Theme 18 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme18'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 18 Ends Here -->
+
+<!-- Retail Theme 19 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme19'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 19 Ends Here -->
+
+<!-- Retail Theme 20 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme20'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 20 Ends Here -->
+
+<!-- Retail Theme 21 Starts Here -->
+<section *ngIf="data.data.length > 0 && activeTheme == 'RetailTheme21'">
+  <div class="my-5 new-container1 mx-auto"  [ngClass]="{'just_for_flashsale': data.data.length < 4}"> 
+    <h1 class="text-32 mob-text-20 px-3 font-weight-700 text-capitalize text-black text-center pt-lg-5 pt-md-5 pt-sm-5 pt-0 mt-lg-5 mb-lg-5 mt-md-5 mb-md-5 mt-sm-5 mb-sm-2"  *ngIf="data?.isShow">
+      {{data?.sliderTitle | titlecase}}  
+    </h1>
+  
+    <div class="d-block w-100">
+      <div class="row justify-content-center">
+        <div class="col-12" [ngClass]="{
+          'col-lg-3 col-md-3 col-sm-4': data.data.length === 1,
+          'col-lg-6 col-md-6 col-sm-8': data.data.length === 2,
+          'col-lg-9 col-md-9 col-sm-12': data.data.length === 3
+        }">
+        <owl-carousel-o [ngClass]="{
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+        }" [options]="customOptions3" class="carousel-not-hidden prod-box-carousel">
+           <ng-template carouselSlide  *ngFor="let product of data.data">
+            <div class="d-block w-100 px-lg-3 px-md-3 px-sm-2 px-2 h-100">
+              <app-product-box  [activeTheme]="activeTheme" [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+            </div>
+           </ng-template>
+        </owl-carousel-o>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Retail Theme 21 Ends Here -->
+
+
+<!-- Product Coming Soon Starts Here -->
+<section *ngIf="data.data.length === 0" class="py-5 w-100 d-block">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-5 pb-2">
+      <h3 
+  *ngIf="data?.sliderTitle; else comingSoon" 
+  class="text-black text-26 font-weight-700 m-0 p-0 text-center">
+  {{ data.sliderTitle | titlecase }}
+</h3>
+
+<ng-template #comingSoon>
+  <h3 class="text-black text-28 font-weight-700 m-0 p-0 text-center">
+     {{'COMINGSOON'|translate}}
+  </h3>
+</ng-template>
+
+    </div>
+
+    <div class="d-block w-100">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="d-lg-block d-md-block d-sm-block d-block w-100 text-center">
+            <img src="./assets/img/product-coming-soon.jpg" class="w-auto h-202-px object-fit-contain">
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="d-lg-block d-md-block d-sm-block d-none w-100 text-center">
+            <img src="./assets/img/product-coming-soon.jpg" class="w-auto h-202-px object-fit-contain">
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="d-lg-block d-md-block d-sm-none d-none w-100 text-center">
+            <img src="./assets/img/product-coming-soon.jpg" class="w-auto h-202-px object-fit-contain">
+          </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+          <div class="d-lg-block d-md-block d-sm-none d-none w-100 text-center">
+            <img src="./assets/img/product-coming-soon.jpg" class="w-auto h-202-px object-fit-contain">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Product Coming Soon Ends Here -->

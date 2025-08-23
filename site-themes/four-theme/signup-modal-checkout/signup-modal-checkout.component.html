@@ -1,0 +1,255 @@
+<section class="w-100 d-block popup-parent-rtl">
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-3 py-3">
+    <div class="d-inline-block">
+    <h3 class="text-black text-18 m-0 p-0 font-weight-600">  {{'SIGNIN_SIGNUPBTN'|translate}} </h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-block w-100 py-4 px-3">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+
+      <!-- First Name Field Starts Here -->
+     <!-- First Name Field -->
+<div class="col-md-6 mb-3">
+  <mat-form-field appearance="fill" class="w-100 field-style1 field-style2 mat-form-field-height-auto">
+    <mat-label class="text-muted text-14">{{'FIRST_NAME'|translate}}</mat-label>
+    <input matInput type="text" class="w-100 h-34-px text-black text-15" formControlName="firstName" />
+  </mat-form-field>
+  <div *ngIf="signUpForm.get('firstName')?.invalid && (signUpForm.get('firstName')?.dirty || signUpForm.get('firstName')?.touched)"
+    class="d-block w-100 pt-2">
+    <p *ngIf="signUpForm.get('firstName')?.errors?.['required']" class="text-danger text-14 m-0 p-0">
+      {{ 'FIRST_NAME_REQUIRED_ERROR' | translate }}
+    </p>
+    <p *ngIf="signUpForm.get('firstName')?.errors?.['pattern']" class="text-danger text-14 m-0 p-0">
+      {{ 'FIRST_NAME_INVALID' | translate }}
+    </p>
+    <p *ngIf="signUpForm.get('firstName')?.errors?.['minlength']" class="text-danger text-14 m-0 p-0">
+      {{ 'FIRST_NAME_MIN_LENGTH_ERROR' | translate }}
+    </p>
+    <p *ngIf="signUpForm.get('firstName')?.errors?.['maxlength']" class="text-danger text-14 m-0 p-0">
+      {{ 'FIRST_NAME_MAX_LENGTH_ERROR' | translate }}
+    </p>
+  </div>
+</div>
+
+<!-- Last Name Field -->
+<div class="col-md-6 mb-3">
+  <mat-form-field appearance="fill" class="w-100 field-style1 field-style2 mat-form-field-height-auto">
+    <mat-label class="text-muted text-14">{{'LAST_NAME'|translate}}</mat-label>
+    <input matInput type="text" class="w-100 h-34-px text-black text-15" formControlName="lastName" />
+  </mat-form-field>
+  <div *ngIf="signUpForm.get('lastName')?.invalid && (signUpForm.get('lastName')?.dirty || signUpForm.get('lastName')?.touched)"
+    class="d-block w-100 pt-2">
+    <p *ngIf="signUpForm.get('lastName')?.errors?.['required']" class="text-danger text-14 m-0 p-0">
+      {{ 'LAST_NAME_REQUIRED_ERROR' | translate }}
+    </p>
+    <p *ngIf="signUpForm.get('lastName')?.errors?.['pattern']" class="text-danger text-14 m-0 p-0">
+      {{ 'LAST_NAME_INVALID' | translate }}
+    </p>
+    <p *ngIf="signUpForm.get('lastName')?.errors?.['minlength']" class="text-danger text-14 m-0 p-0">
+      {{ 'LAST_NAME_MIN_LENGTH_ERROR' | translate }}
+    </p>
+    <p *ngIf="signUpForm.get('lastName')?.errors?.['maxlength']" class="text-danger text-14 m-0 p-0">
+      {{ 'LAST_NAME_MAX_LENGTH_ERROR' | translate }}
+    </p>
+  </div>
+</div>
+      <!-- Last Name Field Ends Here -->
+
+      <!-- Email Address Field Starts Here -->
+      <div class="col-md-6 mb-3">
+        <mat-form-field appearance="fill" class="w-100 field-style1 field-style2 mat-form-field-height-auto">
+          <mat-label class="text-muted text-14">  {{'EMAIL'|translate}} </mat-label>
+          <input matInput type="email" class="w-100 h-34-px text-black text-15" formControlName="email"/>
+        </mat-form-field>
+        <div class="d-flex align-items-center justify-content-end w-100">
+          <div class="d-inline-block w-100 text-start" *ngIf="signUpForm.get('email')?.invalid && (signUpForm.get('email')?.dirty || signUpForm.get('email')?.touched)">
+            <p class="text-danger text-13 m-0 p-0 text-start"> {{ 'SIGNUP_USERDETAILS_EMAIL' | translate }} </p>
+            <p class="text-danger text-13 m-0 p-0 text-start"> {{ 'SIGNUP_USERDETAILS_EMAIL_INVALID' | translate }} </p>
+          </div>
+          <div class="d-inline-block min-width-clear" *ngIf="!verifyEmail && !emailOtpCodeVerified">
+          <button type="button" class="px-3 py-1 text-13 font-weight-600 text-black bg-theme-light-color rounded-2" (click)="createEmailOTP()">
+            {{'VERIFY_EMAIL'|translate}}
+          </button>
+          </div>
+        </div>
+      <div class="d-block w-100 text-start pt-2" *ngIf="emailOtpCodeVerified">
+        <span class="d-inline-block text-13 text-black align-items-center justify-content-center">
+        <i  class="bg-success fa-check fas p-1 rounded-circle text-13 text-white me-2"> </i>
+          {{ 'EMAIL_ADDRESS_VERIFIED_SUCCESSFULLY' | translate }}
+        </span>
+      </div>
+      </div>
+      <!-- Email Address Field Ends Here -->
+
+      <!-- Phone Number Field Starts Here -->
+      <div class="col-md-6 mb-3">
+      <div class="input-group bg-white border border-color-silver rounded-2 overflow-hidden w-100">
+      <span [matMenuTriggerFor]="mobilecodemenu" class="input-group-text bg-white border-0">
+      <span>+{{phoneCode}}</span>
+      <span>
+        <img src="../../../../assets/img/chevron-down.svg" class="w-15-px h-15-px"
+          alt="{{'ICONIMAGES'|translate}}">
+      </span>
+      </span>
+      <div class="custom-wrapper">
+      <mat-menu #mobilecodemenu="matMenu" (closed)="onMenuClosedCountry()" class="bottom-menu" yPosition="below"
+        [overlapTrigger]="false">
+        <div class="menu-content-countrycode">
+          <form class="w-100">
+            <div class="w-100 my-3 px-2">
+              <input (click)="onMenuItemClick($event)" type="text" [(ngModel)]="searchText"
+                class="w-100 border rounded-3 px-2 h-44-px" placeholder="{{'SEARCHCOUNTRY'|translate}}" />
+            </div>
+            <ul class="w-100 p-0 m-0 list-unstyled">
+              <li class="p-2 border-bottom-0" *ngFor="let country of countries | countrysearch:searchText"
+                (click)="selectCode(country.code)">
+                <span>+ {{country.code}} {{country.countryKey | translate}}</span>
+              </li>
+            </ul>
+          </form>
+        </div>
+      </mat-menu>
+      </div>
+      <input type="text"
+       class="errow_hide px-2 w-75 h-48-px bg-white border-0 rounded-0"
+       placeholder="{{'PHONE_NUMBER'|translate}}"
+       formControlName="phoneNumber" />
+      </div>
+       <div class="d-block w-100 text-start pt-2"
+          *ngIf="signUpForm.get('phoneNumber')?.invalid &&
+                (signUpForm.get('phoneNumber')?.dirty ||
+                  signUpForm.get('phoneNumber')?.touched)">
+        <p class="text-danger text-13 m-0 p-0 text-start">
+          <span *ngIf="signUpForm.get('phoneNumber')?.errors?.['required']">
+            {{ 'PHONE_REQUIRED' | translate }}
+          </span>
+          <span *ngIf="signUpForm.get('phoneNumber')?.errors?.['pattern']">
+            {{ 'PHONE_LENGTH_ERROR' | translate }}
+          </span>
+        </p>
+      </div>
+
+      </div>
+      <!-- Phone Number Field Ends Here -->
+
+
+
+      <!-- Verify Email Address Starts Here -->
+      <div class="col-12 col-md-12 col-lg-12 col-sm-12 mb-3" *ngIf="verifyEmail && !emailOtpCodeVerified">
+        <div class="d-block w-100 w-100 bg-grey1 py-4 px-3 rounded-3 border border-color-silver">
+          <div class="d-block w-100">
+            <h5 class="text-black text-14 m-0 p-0 font-weight-500 text-center">
+              {{'ENTER_AUTH_Email'| translate}} {{ email }} </h5>
+          </div>
+          <div class="d-block w-100 mt-3 mb-3 text-center no-direction-change">
+            <ng-container *ngFor="let index of [1, 2, 3, 4, 5, 6]; let i = index;">
+              <mat-form-field appearance="fill" class="otp-design-field-single mx-1">
+                <input
+                  max="9"
+                  min="0"
+                  type="text"
+                  class="text-30 text-center font-weight-700 inpu_type_number_errow_non text-center"
+                  placeholder="0"
+                  matInput
+                  #otpInput
+                  (input)="onEmailOtpCodeChange($event, i, otpInput)"
+                  (keydown)="onEmailOtpCodeKeydown($event, i, otpInput)"
+                  maxlength="1"
+                  [attr.data-index]="i"
+                  formControlName="emailOtpNumber"
+                >
+              </mat-form-field>
+            </ng-container>
+          </div>
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <button (click)="createEmailOTP()"
+              class="px-3 py-2 rounded-2 text-14 bg-green font-weight-500 text-white mx-2 text-capitalize">
+              {{'RESENT'| translate}}
+            </button>
+            <button (click)="verifyEmailOtpCode()"
+              class="px-3 py-2 rounded-2 text-14 bg-green font-weight-500 text-white mx-2 text-capitalize">
+              {{'VERIFYNOW'| translate}}
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- Verify Email Address Ends Here -->
+
+       <!-- Password Field Starts Here -->
+      <div class="col-md-6 mb-3">
+    <mat-form-field appearance="fill" class="w-100 field-style1 field-style2 mat-form-field-height-auto">
+      <mat-label class="text-muted text-14">{{'PASSWORD'|translate}}</mat-label>
+      <input matInput
+             [type]="hidepasswordfield ? 'password' : 'text'"
+             class="w-100 h-34-px text-black text-15"
+             formControlName="password"
+             required>
+      <button (click)="hidepasswordfield = !hidepasswordfield"
+              type="button"
+              class="align-items-center d-flex end-0 justify-content-center p-2 position-absolute pt-1 top-0">
+        <i *ngIf="hidepasswordfield" class="bi bi-eye-slash-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+        <i *ngIf="!hidepasswordfield" class="bi bi-eye-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+      </button>
+    </mat-form-field>
+    <div *ngIf="signUpForm.get('password')?.invalid && (signUpForm.get('password')?.dirty || signUpForm.get('password')?.touched)"
+         class="d-block w-100 pt-2">
+      <p *ngIf="signUpForm.get('password')?.errors?.['required']" class="text-danger text-14 m-0 p-0">
+        {{ 'SIGNUP_USERDETAILS_PASSWORD' | translate }}
+      </p>
+      <p *ngIf="signUpForm.get('password')?.errors?.['minlength']" class="text-danger text-14 m-0 p-0">
+        Password must be at least 8 characters long
+      </p>
+      <p *ngIf="signUpForm.get('password')?.errors?.['pattern']" class="text-danger text-14 m-0 p-0">
+        Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character
+      </p>
+    </div>
+  </div>
+
+  <!-- Confirm Password Field -->
+  <div class="col-md-6 mb-3">
+    <mat-form-field appearance="fill" class="w-100 field-style1 field-style2 mat-form-field-height-auto">
+      <mat-label class="text-muted text-14">{{'SIGNUP_INPUTPLACEHOLDCONFIRMPASSWORD'|translate}}</mat-label>
+      <input matInput
+             [type]="hideconfirmpasswordfield ? 'password' : 'text'"
+             class="w-100 h-34-px text-black text-15"
+             formControlName="confirmPassword"
+             required>
+      <button (click)="hideconfirmpasswordfield = !hideconfirmpasswordfield"
+              type="button"
+              class="align-items-center d-flex end-0 justify-content-center p-2 position-absolute pt-1 top-0">
+        <i *ngIf="hideconfirmpasswordfield" class="bi bi-eye-slash-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+        <i *ngIf="!hideconfirmpasswordfield" class="bi bi-eye-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+      </button>
+    </mat-form-field>
+    <div *ngIf="signUpForm.get('confirmPassword')?.invalid && (signUpForm.get('confirmPassword')?.dirty || signUpForm.get('confirmPassword')?.touched)"
+         class="d-block w-100 pt-2">
+         <p *ngIf="signUpForm.get('confirmPassword')?.errors?.['required']" class="text-danger text-14 m-0 p-0">
+        {{ 'SIGNUP_USERDETAILS_CONFIRMPASSWORD' | translate }}
+      </p>
+    </div>
+      <p *ngIf="signUpForm.hasError('passwordMismatch')" class="text-danger text-14 m-0 p-0">
+        {{ 'PASSWORD_MISMATCH_ERROR' | translate }}
+      </p>
+  </div>
+      <!-- Confirm Password Field Ends Here -->
+
+      <!-- Submit Btn Starts Here -->
+      <div class="col-md-12">
+        <div class="d-flex w-100 align-items-center justify-content-center">
+          <button type="submit" [disabled]="signUpForm.invalid"
+          class="border-0 cursor-pointer rounded-3 bg-theme-dark-color text-color-w px-5 lh-lg text-first-light-color py-2 text-center text-16 font-weight-600 text-white mob-text-14"> {{'SIGNIN_SIGNUPBTN'|translate}} </button>
+        </div>
+      </div>
+      <!-- Submit Btn Ends Here -->
+
+      </div>
+
+    </form>
+  </div>
+</section>

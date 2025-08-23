@@ -1,0 +1,117 @@
+<!-- Icon in Middle Starts Here -->
+<div *ngIf="chatSettings?.iconPosition == 'MIDDLE_OF_PAGE'"
+  class="d-flex align-items-center justify-content-end px-0 position-fixed w-auto bottom-44 end-0 z-index-99"
+  (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+  <button [matMenuTriggerFor]="chatwidgettoggle"
+    class="d-block align-items-center justify-content-center bg-white border border-color-silver rounded-3 px-lg-2 py-md-2 py-2 py-lg-3 py-md-3 py-2 w-60-px mob-w-45-px">
+    <img class="h-40-px w-40-px mob-w-30-px mob-h-30-px object-fit-contain object-position-center bg-theme-dark-color"  src="./assets/img/chat-icon-show1.svg">
+    <span
+      class="text-black text-15 mob-text-13 font-weight-500 d-block w-100 text-center writing-vertical pe-lg-3 pe-md-3 pe-2 mt-lg-3 mt-md-3 mt-2">
+      {{ 'CHAT_NOW' | translate }}
+    </span>
+  </button>
+</div>
+<!-- Icon in Middle Ends Here -->
+
+<!-- Icon in Bottom Starts Here -->
+<div *ngIf="chatSettings?.iconPosition == 'BOTTOM_OF_PAGE'"
+  class="d-flex align-items-center justify-content-end px-3 py-3 position-absolute bottom-0 end-0 z-index-99 chat-widget-fix-icon"
+  (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
+  <button [matMenuTriggerFor]="chatwidgettoggle"
+    class="d-flex align-items-center justify-content-center rounded-circle p-2 w-50-px h-50-px bg-theme-dark-color" >
+    <!-- Chat Icon 1st Starts Here -->
+    <img *ngIf="chatSettings?.iconStyle == 'TWO'" class="h-40-px w-40-px object-fit-contain object-position-center"
+      src="./assets/img/chat-icon-show1.svg">
+    <!-- Chat Icon 1st Ends Here -->
+    <!-- Chat Icon 2nd Starts Here -->
+    <img *ngIf="chatSettings?.iconStyle == 'THREE'"
+      class="h-35-px w-35-px object-fit-contain object-position-center pt-1" src="./assets/img/chat-icon-show2.svg">
+    <!-- Chat Icon 2nd Ends Here -->
+    <!-- Chat Icon 3rd Starts Here -->
+    <img *ngIf="chatSettings?.iconStyle == 'FOUR'" class="h-32-px w-32-px object-fit-contain object-position-center"
+      src="./assets/img/chat-icon-show3.svg">
+    <!-- Chat Icon 3rd Ends Here -->
+    <!-- Chat Icon 4th Starts Here -->
+    <img *ngIf="chatSettings?.iconStyle == 'FIVE'"
+      class="h-36-px w-36-px object-fit-contain object-position-center pt-2" src="./assets/img/chat-icon-show4.svg">
+    <!-- Chat Icon 4th Ends Here -->
+  </button>
+</div>
+<!-- Icon in Bottom Ends Here -->
+
+<mat-menu [ngClass]="{'chatwidgetverticalwrap': chatSettings?.iconPosition == 'MIDDLE_OF_PAGE'}"
+  class="chatwidgetmenuwrap" #chatwidgettoggle="matMenu" xPosition="before" yPosition="below"
+  [backdropClass]="'custom-backdrop'" (wheel)="$event.stopPropagation()" (click)="$event.stopPropagation()">
+  <div class="d-block w-100 bg-white chatwidgetmenuwrap-width border border-color-silver"
+    [ngClass]="{'chatwidgetverticalwrap': chatSettings?.iconPosition == 'MIDDLE_OF_PAGE'}">
+    <div *ngIf="!formInitializing && !linkingToEmployeeInProgress && businessAvailable">
+      <div *ngIf="chatEndedByEmp"
+        class="d-flex align-items-center justify-content-center flex-wrap w-100 chat-widget-height w-100 overflow-auto modern-scroll">
+        <div class="d-block w-100 px-3 py-3">
+          <div class="d-block w-100 text-center">
+            <h6 class="text-18 font-weight-600 mt-0 mb-3"> {{ 'CHAT_ENDED_SUCCESSFULLY' | translate }} </h6>
+            <p class="text-black text-14 text-center mb-4"> {{ 'THANKS_FOR_REACHING_US_OUT_WE_HOPE_QUERY_RESOLVED' |
+              translate }} </p>
+          </div>
+          <div class="d-block w-100 text-center">
+            <button (click)="$event.stopPropagation()" class="bg-04AA6D rounded-3 text-14 px-3 py-2 text-white"
+              (click)="chatEndedByEmp = !chatEndedByEmp">
+              {{ 'CLICK_HERE_TO_START_AGAIN' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!chatEndedByEmp" #chatContainer
+        class="d-block w-100 chat-widget-height w-100 overflow-auto modern-scroll">
+        <div *ngIf="startChatConversation" class="d-block w-100 all-messages-wrapper">
+          <div class="d-block w-100">
+            <app-message-recommendations [user]="user" [questions]="questions" *ngIf="user && !questionSelected"
+              [linkingToEmployeeInProgress]="linkingToEmployeeInProgress" (questionSelected)="selectQuestion($event)"
+              (comment)="createUserWithComment($event)"
+              [commentRequired]="commRequiredForLoggedInUser"></app-message-recommendations>
+          </div>
+        </div>
+
+        <app-chat-view [lastIndex]="chats.length-1" [redirected]="redirected" [oldUserId]="oldUserId"
+          [queueInFront]="queueInFront" [disableSendButton]="disableSendButton" *ngIf="questionSelected"
+          [chatUser]="chatUser" [employee]="employeeInfo" (onMessageSent)="sendMessage($event)" [chats]="chats"
+          [typingData]="typingData"></app-chat-view>
+        <app-guest-data-info *ngIf="!isLoggedUser && acquireInfo.length > 0" [dataRequired]="dataRequired" [user]="user"
+          (startChattingEmiter)="startChatting($event)" [fieldsConfig]="acquireInfo"></app-guest-data-info>
+      </div>
+    </div>
+    <div *ngIf="linkingToEmployeeInProgress && businessAvailable"
+      class="d-flex align-items-center justify-content-center flex-column chat-widget-height modern-scroll overflow-auto">
+      <div class="d-block w-100 text-center px-3">
+        <div class="d-block w-100" *ngIf="!timerOut">
+          <img src="./assets/img/spinner-icon.png" class="spinner-border border-0 overflow-hidden mb-2">
+          <h5 class="text-black text-15 mt-0 mb-3"> {{'WE_ARE_CONNECTING_YOU_TO_THE_CHAT_SUPPORT'|translate}} </h5>
+        </div>
+        <div class="d-block w-100" *ngIf="timerOut">
+          <p class="text-black text-15 mt-0 mb-3">
+            {{'CONNECTION_TIMED_OUT'|translate}}
+          </p>
+          <button class="font-weight-600 text-14 px-2 d-inline-block bg-04AA6D text-white px-3 py-2 rounded-2"
+            (click)="linkingToEmployeeInProgress=!linkingToEmployeeInProgress">
+            {{'TRY_AGAIN'|translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="formInitializing && businessAvailable"
+      class="d-flex align-items-center justify-content-center flex-column chat-widget-height modern-scroll overflow-auto">
+      <div class="d-block w-100 px-3" *ngIf="!timerOut">
+        <img src="./assets/img/spinner-icon.png" class="spinner-border border-0 overflow-hidden mb-3">
+        <h5 class="text-black text-15 mt-0 mb-3"> {{'LOADING_CHAT_FORM'|translate}} </h5>
+      </div>
+    </div>
+    <div *ngIf="!businessAvailable"
+      class="d-flex align-items-center justify-content-center flex-column chat-widget-height modern-scroll overflow-auto">
+      <div class="d-block w-100 px-3 text-center">
+        <h5 class="text-black text-18 mt-0 mb-3"> {{'CHAT_SERVICE_UNAVAILABLE'|translate}} </h5>
+        <h5 class="text-black text-15 mt-0 mb-3"> {{'OUR_CHAT_SERVICE_UNAVAILABLE'|translate}} </h5>
+        <h5 class="text-black text-15 mt-0 mb-3"> {{'THANK_YOU_FOR_UNDERSTANDING'|translate}} </h5>
+      </div>
+    </div>
+  </div>
+</mat-menu>

@@ -1,0 +1,91 @@
+<section class="d-block w-100 py-5">
+  <div class="new-container1">
+      <div class="d-block w-100 mb-5">
+        <h1 
+        class="text-24 mob-text-20 font-weight-700 text-black text-center m-0"
+         *ngIf="data?.sliderShow">
+         {{data?.sliderHeading | titlecase }}
+        </h1>
+
+      </div>
+
+      <div class="d-block w-100">
+           <!-- Logo Item 1 Starts Here -->
+  <div class="d-block w-100" *ngIf="data.data.length === 1">
+    <owl-carousel-o [ngClass]="{ 
+      'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+      'dots-style-consistent': data.sliderStyle === 'DOTS',
+      'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+       }" [options]="customOptions">
+       <ng-template carouselSlide  *ngFor="let logo of data.data">
+        <img [src]="logo.brandLogo"  class="object-fit-contain h-100-px" alt=" {{'BRAND'| translate}}">
+       </ng-template>
+    </owl-carousel-o>
+  </div>
+   <!-- Logo Item 1 Ends Here -->
+
+    <!-- Logo Item 2 Starts Here -->
+  <div class="d-block w-100" *ngIf="data.data.length === 2">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+        <owl-carousel-o [ngClass]="{ 
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+           }" [options]="customOptions">
+           <ng-template carouselSlide  *ngFor="let logo of data.data">
+            <img [src]="logo.brandLogo"  class="object-fit-contain h-100-px" alt=" {{'BRAND'| translate}}">
+           </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+   
+  </div>
+   <!-- Logo Item 2 Ends Here -->
+
+      <!-- Logo Item 3 Starts Here -->
+  <div class="d-block w-100" *ngIf="data.data.length === 3">
+    <div class="row justify-content-center">
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+        <owl-carousel-o [ngClass]="{ 
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+           }" [options]="customOptions">
+           <ng-template carouselSlide  *ngFor="let logo of data.data">
+            <img [src]="logo.brandLogo"  class="object-fit-contain h-100-px" alt=" {{'BRAND'| translate}}">
+           </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+   
+  </div>
+   <!-- Logo Item 3 Ends Here -->
+
+     <!-- Logo Item More than 3 Starts Here -->
+  <div class="d-block w-100" *ngIf="data.data.length > 3">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <owl-carousel-o [ngClass]="{ 
+          'arrows-style-consistent': data.sliderStyle === 'LEFT_AND_RIGHT_ARROWS',
+          'dots-style-consistent': data.sliderStyle === 'DOTS',
+          'slider-style-nothing': data.sliderStyle === 'NO_ARROWS_NO_DOTS'
+           }" [options]="customOptions">
+           <ng-template carouselSlide  *ngFor="let logo of data.data">
+            <img [src]="logo.brandLogo"  class="object-fit-contain h-100-px" alt=" {{'BRAND'| translate}}">
+           </ng-template>
+        </owl-carousel-o>
+      </div>
+    </div>
+   
+  </div>
+   <!-- Logo Item More than 3 Ends Here -->
+      </div>
+  </div>
+</section>
+<div class="my-5 px-3 new-contaienr1 mx-auto">
+
+
+
+  
+</div>

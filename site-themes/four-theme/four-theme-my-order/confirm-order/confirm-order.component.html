@@ -1,0 +1,98 @@
+<section class="popup-parent-rtl w-100">
+<div class="edit-add-cat col-lg-12 col-md-12 col-sm-12 w-100">
+  <div class="box-head d-flex justify-content-between align-items-center">
+    <h2>{{ 'CONFIRM_ORDER_ITEMS' | translate }}</h2>
+    <button type="button" mat-dialog-close=""
+      class="close border-0 d-flex align-items-center justify-content-center bg-transparent">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+  <div class="box-contant">
+
+      <div class="w-100 table-responsive">
+        <table id="productcategories-table"
+          class="table table-bordered zero-configuration dataTable no-footer dtr-inline" aria-describedby="productcategories-table">
+          <thead>
+            <tr>
+
+              <th >{{'O_M_PRODUCT'|translate}}</th>
+              <th >{{'ATTRIBUTES'| translate}}</th>
+              <th > {{'O_M_PRICE' |translate}}</th>
+              <th > {{'DISCOUNT'| translate}}</th>
+              <th > {{'SALE_PRICE'| translate}}</th>
+              <th >{{'O_M_QTY' |translate}}</th>
+              <th >{{'O_M_RAW_TOTAL'|translate}}</th>
+              <th >{{'AVAILABLE'| translate}}</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd" *ngFor="let details of order.orderDetails">
+              <td>{{details.product.productName | titlecase}}</td>
+              <td *ngIf="details.sku">
+                <span *ngFor="let attr of details.sku.productAttributeDTOs">
+                  <span *ngIf="attr.attributeName.toLocaleLowerCase() != 'color'">
+                    <label for="{{attr.attributeName}}">{{attr.attributeName}}:</label>
+                    <span id="{{attr.attributeName}}">{{attr.attributeValueName}}</span>
+                  </span>
+                  <span *ngIf="attr.attributeName.toLocaleLowerCase() == 'color'">
+                    <label for="{{attr.attributeName}}">{{attr.attributeName}}:</label>
+                    <mat-icon id="{{attr.attributeName}}" [style.color]='attr.attributeValueName'>brightness_1</mat-icon>
+                  </span>
+                </span>
+              </td>
+              <td *ngIf="!details.sku">
+                <span>
+                  {{'-'| translate}}
+                </span>
+              </td>
+              <td>{{details.sellingCost}}</td>
+              <td>
+                <span *ngIf="details.discount">
+                  {{details.discount}}
+                </span>
+                <span *ngIf="!details.discount">
+                  0
+                </span>
+              </td>
+              <td>
+                <span *ngIf="details.salePrice">
+                  {{details.salePrice}}
+                </span>
+                <span *ngIf="!details.salePrice">
+                  {{details.sellingCost}}
+                </span>
+              </td>
+              <td>{{details.quantity}}</td>
+              <td>{{details.sellingCost * details.quantity}}</td>
+              <td>
+                <span *ngIf="!details.available">
+                  <mat-icon style="color: red;" >cancel</mat-icon>
+                </span>
+                <span *ngIf="details.available">
+                  <mat-icon style="color: green;" >check_circle</mat-icon>
+                </span>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="d-flex align-items-center text-center w-100 justify-content-center">
+        <button (click)="confirmOrder('CANCELLED')" class="me-3" mat-raised-button>{{ 'CONFIRM_ORDER_CANCEL_ORDER' | translate }}</button>
+        <button  (click)="confirmOrder('ACCEPTED')" mat-raised-button color="primary">{{ 'CONFIRM_ORDER_ACCEPT_ORDER' | translate }}</button>
+      </div>
+      <div class="alert alert-warning text-center" *ngIf="errorMessage">
+        {{ errorMessage}}
+      </div>
+      <div class="alert alert-success text-center" *ngIf="message">
+        {{message}}
+      </div>
+
+  </div>
+
+
+</div>
+</section>
