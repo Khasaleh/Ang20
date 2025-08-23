@@ -11,8 +11,8 @@ describe('FourContentAreaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FourContentAreaComponent ]
-    })
+    declarations: [FourContentAreaComponent]
+})
     .compileComponents();
   }));
 

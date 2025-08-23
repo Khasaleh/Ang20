@@ -8,8 +8,8 @@ describe('FourFooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FourFooterComponent ]
-    })
+    declarations: [FourFooterComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(FourFooterComponent);

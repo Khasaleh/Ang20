@@ -11,8 +11,8 @@ describe('FourThemePopularCategoriesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FourThemePopularCategoriesComponent ]
-    })
+    declarations: [FourThemePopularCategoriesComponent]
+})
     .compileComponents();
   }));
 

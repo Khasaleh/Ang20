@@ -11,8 +11,8 @@ describe('ProcessPaymentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProcessPaymentComponent ]
-    })
+    declarations: [ProcessPaymentComponent]
+})
     .compileComponents();
   }));
 

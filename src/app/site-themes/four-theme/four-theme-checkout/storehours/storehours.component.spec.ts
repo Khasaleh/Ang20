@@ -11,8 +11,8 @@ describe('StorehoursComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StorehoursComponent ]
-    })
+    declarations: [StorehoursComponent]
+})
     .compileComponents();
   }));
 

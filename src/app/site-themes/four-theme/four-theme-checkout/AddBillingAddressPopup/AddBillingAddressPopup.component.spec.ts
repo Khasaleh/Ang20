@@ -11,8 +11,8 @@ describe('AddBillingAddressPopupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddBillingAddressPopupComponent ]
-    })
+    declarations: [AddBillingAddressPopupComponent]
+})
     .compileComponents();
   }));
 

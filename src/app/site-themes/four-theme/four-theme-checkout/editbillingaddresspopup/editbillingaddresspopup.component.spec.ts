@@ -11,8 +11,8 @@ describe('EditbillingaddresspopupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditbillingaddresspopupComponent ]
-    })
+    declarations: [EditbillingaddresspopupComponent]
+})
     .compileComponents();
   }));
 

@@ -11,8 +11,8 @@ describe('EditorderpaymentmethodComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditorderpaymentmethodComponent ]
-    })
+    declarations: [EditorderpaymentmethodComponent]
+})
     .compileComponents();
   }));
 

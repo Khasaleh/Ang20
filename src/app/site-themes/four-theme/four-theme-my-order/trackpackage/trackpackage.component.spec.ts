@@ -11,8 +11,8 @@ describe('TrackpackageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TrackpackageComponent ]
-    })
+    declarations: [TrackpackageComponent]
+})
     .compileComponents();
   }));
 

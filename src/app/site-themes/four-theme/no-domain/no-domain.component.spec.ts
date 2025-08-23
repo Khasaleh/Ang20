@@ -11,8 +11,8 @@ describe('NoDomainComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NoDomainComponent ]
-    })
+    declarations: [NoDomainComponent]
+})
     .compileComponents();
   }));
 

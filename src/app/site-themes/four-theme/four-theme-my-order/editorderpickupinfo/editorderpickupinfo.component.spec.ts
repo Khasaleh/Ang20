@@ -11,8 +11,8 @@ describe('EditorderpickupinfoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditorderpickupinfoComponent ]
-    })
+    declarations: [EditorderpickupinfoComponent]
+})
     .compileComponents();
   }));
 

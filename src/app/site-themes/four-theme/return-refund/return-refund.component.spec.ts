@@ -8,8 +8,8 @@ describe('ReturnRefundComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReturnRefundComponent ]
-    })
+    declarations: [ReturnRefundComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(ReturnRefundComponent);
