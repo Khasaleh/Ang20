@@ -52,6 +52,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { NgxBarcode6Module } from 'ngx-barcode6';
 
 @Component({
+  standalone: true,
   selector: 'app-order-detail-print-modal',
   templateUrl: './order-detail-print-modal.component.html',
   styleUrls: ['./order-detail-print-modal.component.scss']

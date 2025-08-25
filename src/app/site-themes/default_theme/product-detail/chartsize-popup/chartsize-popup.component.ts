@@ -1,7 +1,14 @@
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule
+  ],
   selector: 'app-chartsize-popup',
   templateUrl: './chartsize-popup.component.html',
   styleUrls: ['./chartsize-popup.component.css']

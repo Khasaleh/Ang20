@@ -1,3 +1,4 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { formatDate } from '@angular/common';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -61,6 +62,17 @@ import { ShoppingCartService } from 'src/app/service/ShoppingCart.service';
 import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    TranslateModule
+  ],
   selector: 'app-editpickupinfoforreserve',
   templateUrl: './editpickupinfoforreserve.component.html',
   styleUrls: ['./editpickupinfoforreserve.component.css']

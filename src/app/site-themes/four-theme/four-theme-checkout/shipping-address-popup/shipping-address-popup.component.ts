@@ -54,6 +54,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddShippingAddressComponent } from '../add-shipping-address/add-shipping-address.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatIconModule
+  ],
   selector: 'app-shipping-address-popup',
   templateUrl: './shipping-address-popup.component.html',
   styleUrls: ['./shipping-address-popup.component.css']

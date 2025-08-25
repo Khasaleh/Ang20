@@ -65,6 +65,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { WishListResponse } from 'src/app/models/WishListResponse';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatTooltipModule,
+    TranslateModule
+  ],
   selector: 'app-product-box-list',
   templateUrl: './product-box-list.component.html',
   styleUrls: ['./product-box-list.component.css']

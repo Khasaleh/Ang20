@@ -1,3 +1,6 @@
+import { CommonModule } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
@@ -6,6 +9,13 @@ import { ChatopenserviceService } from 'src/app/service/chatopenservice.service'
 import { TokenStorageService } from 'src/app/service/TokenStorgeService.service';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatExpansionModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
   styleUrls: ['./contact-us.component.css']

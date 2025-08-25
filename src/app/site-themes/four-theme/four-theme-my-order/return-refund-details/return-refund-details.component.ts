@@ -1,3 +1,5 @@
+import { TranslateModule } from '@ngx-translate/core';
+import { ReturnReasonsBoxComponent } from './return-reasons-box/return-reasons-box.component';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,6 +59,13 @@ import { TokenStorageService } from 'src/app/service/TokenStorgeService.service'
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReturnReasonsBoxComponent,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-return-refund-details',
   templateUrl: './return-refund-details.component.html',
   styleUrls: ['./return-refund-details.component.css']

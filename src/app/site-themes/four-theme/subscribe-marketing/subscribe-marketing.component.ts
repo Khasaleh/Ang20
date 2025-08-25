@@ -1,3 +1,9 @@
+import { CommonModule } from '@angular/common';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { NotifacationMessageComponent } from 'src/app/notifacation-message/notifacation-message.component';
@@ -6,6 +12,15 @@ import { BusinessSettingService } from 'src/app/service/business-setting.service
 import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    TranslateModule
+  ],
   selector: 'app-subscribe-marketing',
   templateUrl: './subscribe-marketing.component.html',
   styleUrls: ['./subscribe-marketing.component.css']

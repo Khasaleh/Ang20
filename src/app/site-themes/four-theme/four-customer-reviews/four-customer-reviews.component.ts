@@ -54,6 +54,10 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
   selector: 'app-four-customer-reviews',
   templateUrl: './four-customer-reviews.component.html',
   styleUrls: ['./four-customer-reviews.component.scss']

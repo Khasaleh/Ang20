@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -54,6 +55,11 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    TranslateModule
+  ],
   selector: 'app-four-brand-logos-slider',
   templateUrl: './four-brand-logos-slider.component.html',
   styleUrls: ['./four-brand-logos-slider.component.scss']

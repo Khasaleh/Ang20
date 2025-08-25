@@ -1,3 +1,7 @@
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NotifacationMessageComponent } from 'src/app/notifacation-message/notifacation-message.component';
@@ -6,6 +10,13 @@ import { TokenStorageService } from 'src/app/service/TokenStorgeService.service'
 import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule
+  ],
   selector: 'app-forgotpasswordforstore',
   templateUrl: './forgotpasswordforstore.component.html',
   styleUrls: ['./forgotpasswordforstore.component.css']

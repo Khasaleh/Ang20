@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { RedeemPointValidationPopupComponent } from '../redeem-point-validation-popup/redeem-point-validation-popup.component';
 
 @Component({
+  standalone: true,
   selector: 'app-redeem-voucher-box',
   templateUrl: './redeem-voucher-box.component.html',
   styleUrls: ['./redeem-voucher-box.component.css']

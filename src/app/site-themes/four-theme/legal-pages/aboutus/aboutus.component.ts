@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Page } from 'src/app/models/Pages';
 import { TokenStorageService } from 'src/app/service/TokenStorgeService.service';
@@ -5,6 +7,11 @@ import { BusinessSettingService } from 'src/app/service/business-setting.service
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   selector: 'app-aboutus',
   templateUrl: './aboutus.component.html',
   styleUrls: ['./aboutus.component.css']

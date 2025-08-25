@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from 'src/app/service/auth.service';
@@ -5,6 +7,11 @@ import { RtlService } from 'src/app/service/rtl.service';
 import { TokenStorageService } from 'src/app/service/TokenStorgeService.service';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCheckboxModule
+  ],
   selector: 'app-subscribe-popup',
   templateUrl: './subscribe-popup.component.html',
   styleUrls: ['./subscribe-popup.component.css']

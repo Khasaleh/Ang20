@@ -61,6 +61,11 @@ import { TrackpackageComponent } from '../four-theme-my-order/trackpackage/track
 
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   selector: 'app-return-refund',
   templateUrl: './return-refund.component.html',
   styleUrls: ['./return-refund.component.scss']

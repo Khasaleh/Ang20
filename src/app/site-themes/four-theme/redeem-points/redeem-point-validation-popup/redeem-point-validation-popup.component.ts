@@ -1,6 +1,19 @@
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    ReactiveFormsModule
+  ],
   selector: 'app-redeem-point-validation-popup',
   templateUrl: './redeem-point-validation-popup.component.html',
   styleUrls: ['./redeem-point-validation-popup.component.css']

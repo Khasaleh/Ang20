@@ -1,3 +1,13 @@
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
+import { TranslateModule } from '@ngx-translate/core';
+import { AddressListingComponent } from './address-listing/address-listing.component';
+import { PaymentListingComponent } from './payment-listing/payment-listing.component';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Country } from 'src/app/models/country';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
@@ -19,6 +29,20 @@ import { Subscription } from 'rxjs';
 import { Address, CCInfo } from 'src/app/models/user';
 
 @Component({
+  standalone: true,
+  imports: [
+    AddressListingComponent,
+    CommonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatSlideToggleModule,
+    MatTabsModule,
+    PaymentListingComponent,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-four-theme-my-account',
   templateUrl: './four-theme-my-account.component.html',
   styleUrls: ['./four-theme-my-account.component.css']

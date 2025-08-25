@@ -1,3 +1,5 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TranslateModule } from '@ngx-translate/core';
 import { TokenStorageService } from 'src/app/service/TokenStorgeService.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -73,6 +75,15 @@ import { OrderDetailResponse } from 'src/app/models/OrderDetailResponse';
 
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTooltipModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-four-theme-my-order',
   templateUrl: './four-theme-my-order.component.html',
   styleUrls: ['./four-theme-my-order.component.scss']

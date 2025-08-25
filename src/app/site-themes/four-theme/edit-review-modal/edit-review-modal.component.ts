@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ReviewService } from 'src/app/service/review.service';
@@ -8,6 +10,11 @@ import { ProductResponse } from 'src/app/models/ProductResponse';
 import { TokenStorageService } from 'src/app/service/TokenStorgeService.service';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule
+  ],
   selector: 'app-edit-review-modal',
   templateUrl: './edit-review-modal.component.html',
   styleUrls: ['./edit-review-modal.component.scss']

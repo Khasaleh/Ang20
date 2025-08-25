@@ -1,7 +1,12 @@
+import { MatIconModule } from '@angular/material/icon';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatIconModule
+  ],
   selector: 'app-unsubscribedwarning',
   templateUrl: './unsubscribedwarning.component.html',
   styleUrls: ['./unsubscribedwarning.component.css']

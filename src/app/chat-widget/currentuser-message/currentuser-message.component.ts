@@ -1,14 +1,28 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import * as _ from 'lodash';
 import { ChatMessage, ChatUserResponse } from 'src/app/service/chatServices/rest-api/chat-rest-api.service';
 import { UpdateShareService } from 'src/app/service/chatServices/updateShare/update-share.service';
 import { environment } from 'src/environments/environment';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
+import { AttachementPreviewComponent } from '../attachment-preview/attachement-preview/attachement-preview.component';
+import { TextShowMoreLessComponent } from '../text-show-more-less/text-show-more-less.component';
 
 @Component({
   selector: 'app-currentuser-message',
   templateUrl: './currentuser-message.component.html',
-  styleUrls: ['./currentuser-message.component.css']
+  styleUrls: ['./currentuser-message.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    TranslateModule,
+    MatMenuModule,
+    MatIconModule,
+    AttachementPreviewComponent,
+    TextShowMoreLessComponent,
+  ],
 })
 export class CurrentuserMessageComponent implements OnInit {
   @Input() user!: ChatUserResponse | null

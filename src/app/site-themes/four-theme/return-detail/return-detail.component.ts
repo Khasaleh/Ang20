@@ -54,6 +54,12 @@ import { Options } from '@angular-slider/ngx-slider';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OrderDetailPrintModalComponent } from '../order-detail-print-modal/order-detail-print-modal.component';
 @Component({
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    MatStepperModule,
+    RouterModule
+  ],
   selector: 'app-return-detail',
   templateUrl: './return-detail.component.html',
   styleUrls: ['./return-detail.component.scss']

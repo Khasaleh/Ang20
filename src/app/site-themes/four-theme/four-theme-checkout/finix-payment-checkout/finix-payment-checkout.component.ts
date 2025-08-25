@@ -55,6 +55,7 @@ import { environment } from 'src/environments/environment';
 declare var Finix: any; // Declare Finix for TypeScript
 
 @Component({
+  standalone: true,
   selector: 'app-finix-payment-checkout',
   templateUrl: './finix-payment-checkout.component.html',
   styleUrls: ['./finix-payment-checkout.component.css']

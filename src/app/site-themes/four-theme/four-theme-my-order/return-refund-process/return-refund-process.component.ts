@@ -1,3 +1,5 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -64,6 +66,17 @@ import { NotifacationMessageComponent } from 'src/app/notifacation-message/notif
 import { StorehoursComponent } from '../../four-theme-checkout/storehours/storehours.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatSelectModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-return-refund-process',
   templateUrl: './return-refund-process.component.html',
   styleUrls: ['./return-refund-process.component.css']

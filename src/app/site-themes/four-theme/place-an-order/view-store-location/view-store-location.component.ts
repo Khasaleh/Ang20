@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
 import { Component, OnInit } from '@angular/core';
 import { BusinessSettingService } from 'src/app/service/business-setting.service';
 import { TokenStorageService } from 'src/app/service/TokenStorgeService.service';
@@ -8,6 +10,11 @@ import { StoreLocationModalComponent } from '../../store-location-modal/store-lo
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule
+  ],
   selector: 'app-view-store-location',
   templateUrl: './view-store-location.component.html',
   styleUrls: ['./view-store-location.component.css']

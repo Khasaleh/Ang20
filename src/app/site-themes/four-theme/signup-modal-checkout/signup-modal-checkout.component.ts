@@ -65,6 +65,7 @@ import { TokenStorageService } from 'src/app/service/TokenStorgeService.service'
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-signup-modal-checkout',
   templateUrl: './signup-modal-checkout.component.html',
   styleUrls: ['./signup-modal-checkout.component.scss']

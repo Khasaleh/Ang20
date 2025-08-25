@@ -1,3 +1,6 @@
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddAddressComponent } from '../add-address/add-address.component';
@@ -10,6 +13,12 @@ import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup
 
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    TranslateModule
+  ],
   selector: 'app-address-listing',
   templateUrl: './address-listing.component.html',
   styleUrls: ['./address-listing.component.css']

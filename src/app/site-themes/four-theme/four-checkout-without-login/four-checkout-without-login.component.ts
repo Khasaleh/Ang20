@@ -1,3 +1,12 @@
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SignupModalCheckoutComponent } from '../signup-modal-checkout/signup-modal-checkout.component';
@@ -25,6 +34,22 @@ import { ShippingResponse } from 'src/app/models/ShippingResponse';
 import { ForgotpasswordcheckoutComponent } from 'src/app/forgotpasswordcheckout/forgotpasswordcheckout.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatTabsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-four-checkout-without-login',
   templateUrl: './four-checkout-without-login.component.html',
   styleUrls: ['./four-checkout-without-login.component.scss']

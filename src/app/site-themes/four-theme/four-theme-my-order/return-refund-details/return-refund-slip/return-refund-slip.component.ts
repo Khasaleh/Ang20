@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,6 +58,11 @@ import { TokenStorageService } from 'src/app/service/TokenStorgeService.service'
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    TranslateModule
+  ],
   selector: 'app-return-refund-slip',
   templateUrl: './return-refund-slip.component.html',
   styleUrls: ['./return-refund-slip.component.css']

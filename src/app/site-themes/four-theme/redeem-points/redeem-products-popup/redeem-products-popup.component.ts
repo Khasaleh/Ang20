@@ -1,6 +1,23 @@
+import { CommonModule } from '@angular/common';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatRadioModule,
+    ReactiveFormsModule
+  ],
   selector: 'app-redeem-products-popup',
   templateUrl: './redeem-products-popup.component.html',
   styleUrls: ['./redeem-products-popup.component.css']

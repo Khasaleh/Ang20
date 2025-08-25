@@ -69,6 +69,10 @@ import { CookieDataServiceService } from 'src/app/service/cookie-data-service.se
 import { SessionResponse } from 'src/app/models/SessionResponse';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
   selector: 'app-four-best-selling-products',
   templateUrl: './four-best-selling-products.component.html',
   styleUrls: ['./four-best-selling-products.component.scss']

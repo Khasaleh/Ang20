@@ -2,11 +2,26 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { ChatMessage, ChatUserResponse } from 'src/app/service/chatServices/rest-api/chat-rest-api.service';
 import { ChatEmployeeInfoAfterConnect, SocketService } from 'src/app/service/chatServices/socket/socket.service';
 import { environment } from 'src/environments/environment';
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
+import { OtheruserMessageComponent } from '../otheruser-message/otheruser-message.component';
+import { CurrentuserMessageComponent } from '../currentuser-message/currentuser-message.component';
+import { ChatSendMessageComponent } from '../chat-send-message/chat-send-message.component';
 
 @Component({
   selector: 'app-chat-view',
   templateUrl: './chat-view.component.html',
-  styleUrls: ['./chat-view.component.css']
+  styleUrls: ['./chat-view.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    TranslateModule,
+    OtheruserMessageComponent,
+    CurrentuserMessageComponent,
+    ChatSendMessageComponent,
+  ],
 })
 export class ChatViewComponent implements OnInit {
 

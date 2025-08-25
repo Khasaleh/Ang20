@@ -1,9 +1,15 @@
+import { MatIconModule } from '@angular/material/icon';
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatIconModule,
+    TranslateModule
+  ],
   selector: 'app-sucessmsg-popup',
   templateUrl: './sucessmsg-popup.component.html',
   styleUrls: ['./sucessmsg-popup.component.scss']

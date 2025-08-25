@@ -1,3 +1,25 @@
+import { CommonModule } from '@angular/common';
+import { HeaderThemeThreeComponent } from './header-theme-three/header-theme-three.component';
+import { HeaderThemeTwentyoneComponent } from './header-theme-twentyone/header-theme-twentyone.component';
+import { HeaderThemeSixComponent } from './header-theme-six/header-theme-six.component';
+import { HeaderThemeSeventeenComponent } from './header-theme-seventeen/header-theme-seventeen.component';
+import { HeaderThemeNineComponent } from './header-theme-nine/header-theme-nine.component';
+import { HeaderThemeFifteenComponent } from './header-theme-fifteen/header-theme-fifteen.component';
+import { HeaderThemeSevenComponent } from './header-theme-seven/header-theme-seven.component';
+import { HeaderThemeEightComponent } from './header-theme-eight/header-theme-eight.component';
+import { HeaderThemeSixteenComponent } from './header-theme-sixteen/header-theme-sixteen.component';
+import { HeaderThemeTwelveComponent } from './header-theme-twelve/header-theme-twelve.component';
+import { HeaderThemeTenComponent } from './header-theme-ten/header-theme-ten.component';
+import { HeaderThemeTwentyComponent } from './header-theme-twenty/header-theme-twenty.component';
+import { HeaderThemeFourComponent } from './header-theme-four/header-theme-four.component';
+import { HeaderThemeThirteenComponent } from './header-theme-thirteen/header-theme-thirteen.component';
+import { HeaderThemeFiveComponent } from './header-theme-five/header-theme-five.component';
+import { HeaderThemeElevenComponent } from './header-theme-eleven/header-theme-eleven.component';
+import { HeaderThemeFourteenComponent } from './header-theme-fourteen/header-theme-fourteen.component';
+import { HeaderThemeEighteenComponent } from './header-theme-eighteen/header-theme-eighteen.component';
+import { HeaderThemeTwoComponent } from './header-theme-two/header-theme-two.component';
+import { HeaderThemeFirstComponent } from './header-theme-first/header-theme-first.component';
+import { HeaderThemeNineteenComponent } from './header-theme-nineteen/header-theme-nineteen.component';
 import { GuestShoppingCartService } from './../../../service/guest-shopping-cart.service';
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -45,6 +67,31 @@ import { DrawerControlService } from 'src/app/service/drawer-control.service';
 declare const google: any;
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    HeaderThemeEightComponent,
+    HeaderThemeEighteenComponent,
+    HeaderThemeElevenComponent,
+    HeaderThemeFifteenComponent,
+    HeaderThemeFirstComponent,
+    HeaderThemeFiveComponent,
+    HeaderThemeFourComponent,
+    HeaderThemeFourteenComponent,
+    HeaderThemeNineComponent,
+    HeaderThemeNineteenComponent,
+    HeaderThemeSevenComponent,
+    HeaderThemeSeventeenComponent,
+    HeaderThemeSixComponent,
+    HeaderThemeSixteenComponent,
+    HeaderThemeTenComponent,
+    HeaderThemeThirteenComponent,
+    HeaderThemeThreeComponent,
+    HeaderThemeTwelveComponent,
+    HeaderThemeTwentyComponent,
+    HeaderThemeTwentyoneComponent,
+    HeaderThemeTwoComponent
+  ],
   selector: 'app-four-header',
   templateUrl: './four-header.component.html',
   styleUrls: ['./four-header.component.scss']

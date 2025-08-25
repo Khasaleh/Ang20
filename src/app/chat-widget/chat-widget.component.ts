@@ -5,7 +5,7 @@ import { TokenStorageService } from '../service/TokenStorgeService.service';
 import { AuthService } from '../service/auth.service';
 import * as _ from 'lodash';
 import { AcquireInfo, ChatMessage, ChatRestApiService, ChatUserResponse } from '../service/chatServices/rest-api/chat-rest-api.service';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
 import { ChatBackendQueriesService, ChatDirection } from '../service/chatServices/backend-queries/chat-backend-queries.service';
 import { ChatEmployeeInfoAfterConnect, SocketService } from '../service/chatServices/socket/socket.service';
 import { firstValueFrom, from } from 'rxjs';
@@ -13,11 +13,25 @@ import { ChatSharedInfoService } from '../service/chatServices/chat-shared-info/
 import { ChatSettingResponse } from '../models/ThemeDashboardContent';
 import { SessionResponse } from '../models/SessionResponse';
 import { ChatopenserviceService } from '../service/chatopenservice.service';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
+import { MessageRecommendationsComponent } from './message-recommendations/message-recommendations.component';
+import { ChatViewComponent } from './chat-view/chat-view.component';
+import { GuestDataInfoComponent } from './guest-data-info/guest-data-info.component';
 
 @Component({
   selector: 'app-chat-widget',
   templateUrl: './chat-widget.component.html',
-  styleUrls: ['./chat-widget.component.css']
+  styleUrls: ['./chat-widget.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatMenuModule,
+    TranslateModule,
+    MessageRecommendationsComponent,
+    ChatViewComponent,
+    GuestDataInfoComponent,
+  ],
 })
 export class ChatWidgetComponent implements OnInit, AfterViewInit {
   @ViewChild(MatMenuTrigger) menuTrigger!: MatMenuTrigger;

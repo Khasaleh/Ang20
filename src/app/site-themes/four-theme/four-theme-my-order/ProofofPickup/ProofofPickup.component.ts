@@ -55,6 +55,10 @@ import { OrderResponse } from 'src/app/models/OrderResponse';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatIconModule
+  ],
   selector: 'app-ProofofPickup',
   templateUrl: './ProofofPickup.component.html',
   styleUrls: ['./ProofofPickup.component.css']

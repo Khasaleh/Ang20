@@ -63,6 +63,13 @@ import { environment } from 'src/environments/environment';
 declare var Finix: any;
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatTabsModule,
+    TranslateModule
+  ],
   selector: 'app-editorderpaymentmethod',
   templateUrl: './editorderpaymentmethod.component.html',
   styleUrls: ['./editorderpaymentmethod.component.css']

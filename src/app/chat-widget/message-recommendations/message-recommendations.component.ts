@@ -2,11 +2,17 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { ChatDirection } from 'src/app/service/chatServices/backend-queries/chat-backend-queries.service';
 import { ChatSharedInfoService } from 'src/app/service/chatServices/chat-shared-info/chat-shared-info.service';
 import { ChatUserResponse } from 'src/app/service/chatServices/rest-api/chat-rest-api.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-message-recommendations',
   templateUrl: './message-recommendations.component.html',
-  styleUrls: ['./message-recommendations.component.css']
+  styleUrls: ['./message-recommendations.component.css'],
+  standalone: true,
+  imports: [CommonModule, FormsModule, MatIconModule, TranslateModule],
 })
 export class MessageRecommendationsComponent implements OnInit {
   @Input() user: any

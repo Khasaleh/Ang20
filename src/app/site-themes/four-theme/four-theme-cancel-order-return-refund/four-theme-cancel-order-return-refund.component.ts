@@ -1,6 +1,14 @@
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { RouterModule } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
 @Component({
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    MatCheckboxModule,
+    RouterModule
+  ],
   selector: 'app-four-theme-cancel-order-return-refund',
   templateUrl: './four-theme-cancel-order-return-refund.component.html',
   styleUrls: ['./four-theme-cancel-order-return-refund.component.scss']

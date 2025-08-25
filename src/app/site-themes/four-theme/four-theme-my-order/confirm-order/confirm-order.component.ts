@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -56,6 +57,13 @@ import { ShoppingCartService } from 'src/app/service/ShoppingCart.service';
 import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    TranslateModule
+  ],
   selector: 'app-confirm-order',
   templateUrl: './confirm-order.component.html',
   styleUrls: ['./confirm-order.component.scss']

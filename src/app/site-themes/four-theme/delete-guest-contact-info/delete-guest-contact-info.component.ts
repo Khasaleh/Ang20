@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
+  standalone: true,
   selector: 'app-delete-guest-contact-info',
   templateUrl: './delete-guest-contact-info.component.html',
   styleUrls: ['./delete-guest-contact-info.component.scss']

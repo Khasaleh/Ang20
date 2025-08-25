@@ -1,8 +1,13 @@
+import { CommonModule } from '@angular/common';
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { CookieDataServiceService } from 'src/app/service/cookie-data-service.service';
 import { SharedService } from 'src/app/service/shared-service/shared.service';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
   selector: 'app-announcement-bar',
   templateUrl: './announcement-bar.component.html',
   styleUrls: ['./announcement-bar.component.css']

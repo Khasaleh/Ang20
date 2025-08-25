@@ -65,6 +65,13 @@ import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-four-theme-shopping-cart',
   templateUrl: './four-theme-shopping-cart.component.html',
   styleUrls: ['./four-theme-shopping-cart.component.scss']

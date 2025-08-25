@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -53,6 +54,12 @@ import { NgxBarcode6Module } from 'ngx-barcode6';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    TranslateModule
+  ],
   selector: 'app-storehours',
   templateUrl: './storehours.component.html',
   styleUrls: ['./storehours.component.css']
