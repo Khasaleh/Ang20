@@ -2,38 +2,12 @@ import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular
 import { BusinessSettingService } from '../service/business-setting.service';
 import { SucessmsgPopupComponent } from '../sucessmsg-popup/sucessmsg-popup.component';
 import { NotifacationMessageComponent } from '../notifacation-message/notifacation-message.component';
-<<<<<<< HEAD
 import { MatDialog } from '@angular/material/dialog';
-=======
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { TranslateModule } from '@ngx-translate/core';
-import { MatButtonModule } from '@angular/material/button';
->>>>>>> main
 
 @Component({
   selector: 'app-forgotpasswordcheckout',
   templateUrl: './forgotpasswordcheckout.component.html',
-<<<<<<< HEAD
   styleUrls: ['./forgotpasswordcheckout.component.css']
-=======
-  styleUrls: ['./forgotpasswordcheckout.component.css'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatDialogModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    TranslateModule,
-    MatButtonModule
-  ]
->>>>>>> main
 })
 export class ForgotpasswordcheckoutComponent implements OnInit {
 

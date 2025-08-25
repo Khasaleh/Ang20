@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { GuestShoppingCartService } from './../../../service/guest-shopping-cart.service';
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -1284,21 +1283,4 @@ async onSubmit(type: string, loginType: string) {
   }
 
 
-=======
-import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-@Component({
-  selector: 'app-four-header',
-  template: '<p>four-header works!</p>',
-  standalone: true,
-  imports: [CommonModule],
-})
-export class FourHeaderComponent {
-  @Input() footObject: any;
-  @Input() socialLinks: any;
-  @Input() announcementBar: any;
-  @Input() activeTheme: any;
-  @Input() categories: any;
->>>>>>> main
 }
