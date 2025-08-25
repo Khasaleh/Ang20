@@ -3,5 +3,9 @@ export const environment = {
   env: 'prod',
   awsKey: '',
   assetsAwsKey: '',
-  landingUrl: ''
+  landingUrl: '',
+  baseCustomerGraphQlURL: '',
+  baseURL: '',
+  baseCustomerSiteURL: '',
+  businessChatBaseUrl: ''
 };

@@ -321,7 +321,6 @@ import { FullscreenPdpImageComponent } from "./site-themes/four-theme/four-new-p
       ChatSendMessageComponent,
       MessageRecommendationsComponent,
       PdpQuickViewComponent,
-      ForgotpasswordcheckoutComponent, 
       ProcessPaymentComponent,
       ChatViewComponent,
       GuestDataInfoComponent, 

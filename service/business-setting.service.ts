@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { isPlatformBrowser } from '@angular/common';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { Request } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +14,21 @@ export class BusinessSettingService {
   private BASE_URL = environment.baseURL;
   private SOCIAL_URL = environment.baseCustomerGraphQlURL;
   private CUSTOMER_URL = environment.baseCustomerSiteURL;
-  constructor(private http: HttpClient) { }
+  private isBrowser: boolean;
 
-  getStoreLogoBySiteUrl(siteUrl : string): Observable<any> {
-    if(environment.env !== 'local'){
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: object,
+    @Optional() @Inject(REQUEST) private request: Request
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  getStoreLogoBySiteUrl(siteUrl: string): Observable<any> {
+    if (this.isBrowser && environment.env !== 'local') {
       siteUrl = window.location.hostname;
+    } else if (!this.isBrowser && this.request) {
+      siteUrl = this.request.hostname;
     }
     let form: FormData = new FormData();
     const query = `
@@ -26,7 +39,7 @@ export class BusinessSettingService {
     return this.http.post(this.BASE_URL, form);
   }
 
-  getStoreCurrencyByBusinessId(id : number): Observable<any>{
+  getStoreCurrencyByBusinessId(id: number): Observable<any> {
     let form: FormData = new FormData();
     const query = `query {
       getStoreCurrencyByBusinessId(id : ${id}){
@@ -39,7 +52,7 @@ export class BusinessSettingService {
     return this.http.post(this.BASE_URL, form);
   }
 
-  getBusinessAddressesByBusinessId(id : number): Observable<any>{
+  getBusinessAddressesByBusinessId(id: number): Observable<any> {
     let form: FormData = new FormData();
     const query = `query {
       getBusinessAddressesByBusinessId(businessId:"${id}") {
@@ -65,7 +78,7 @@ export class BusinessSettingService {
     return this.http.post(this.BASE_URL, form);
   }
 
-  getCheckOutTypeById(businessId : number): Observable<any>{
+  getCheckOutTypeById(businessId: number): Observable<any> {
     let form: FormData = new FormData();
     const query = `query{ getCheckOutTypeById(businessId: ${businessId}){
       orderOnlinePickupFromStore
@@ -76,7 +89,7 @@ export class BusinessSettingService {
     return this.http.post(this.BASE_URL, form);
   }
 
-  getBusinessDetailsById(businessId : number): Observable<any>{
+  getBusinessDetailsById(businessId: number): Observable<any> {
     let form: FormData = new FormData();
     const query = `query{
     getBusinessDetailsById(businessId: ${businessId}){
@@ -115,7 +128,7 @@ export class BusinessSettingService {
     return this.http.post(this.BASE_URL, form);
   }
 
-  getBusinessPaymentMethodsForCustomerSide(businessId : number): Observable<any>{
+  getBusinessPaymentMethodsForCustomerSide(businessId: number): Observable<any> {
     let form: FormData = new FormData();
     const query = `query{
       getBusinessPaymentMethodsForCustomerSide(businessId:${businessId})
@@ -124,7 +137,7 @@ export class BusinessSettingService {
     return this.http.post(this.BASE_URL, form);
   }
 
-  subscribe(email: string, storeId : number): Observable<any>{
+  subscribe(email: string, storeId: number): Observable<any> {
     let form: FormData = new FormData();
     const query = `mutation {
       subscribe(request: {
@@ -138,7 +151,7 @@ export class BusinessSettingService {
     return this.http.post(this.BASE_URL, form);
   }
 
-  unSubscribe(email: string, storeId : number): Observable<any>{
+  unSubscribe(email: string, storeId: number): Observable<any> {
     let form: FormData = new FormData();
     const query = `mutation {
       unsubscribe(request: {
@@ -201,9 +214,9 @@ export class BusinessSettingService {
     return this.http.post(this.SOCIAL_URL, form);
   }
 
-  getAllStorePages(businessId: number) : Observable<any> {
+  getAllStorePages(businessId: number): Observable<any> {
     let form: FormData = new FormData();
-        const query = `query {
+    const query = `query {
         getAllStorePages(businessId: ${businessId}) {
           id
           businessId
@@ -211,13 +224,13 @@ export class BusinessSettingService {
           content
         }
       }`
-      form.append('query', query);
-      return this.http.post(this.BASE_URL, form);
-    }
+    form.append('query', query);
+    return this.http.post(this.BASE_URL, form);
+  }
 
   getEnablePickInStoreAddressStatus(businessId: number): Observable<any> {
     let form: FormData = new FormData();
-      const query = `
+    const query = `
       query {
         getEnablePickInStoreAddressStatus(businessId: ${businessId})
       }`
@@ -227,7 +240,7 @@ export class BusinessSettingService {
 
   getSubscribeStatus(businessId: number, email: string): Observable<any> {
     let form: FormData = new FormData();
-      const query = `
+    const query = `
       query{
         getSubscribeStatus(businessId:${businessId}, email:"${email}")
       }`
@@ -235,7 +248,7 @@ export class BusinessSettingService {
     return this.http.post(this.BASE_URL, form);
   }
 
-  getCookiesDataByBusiness(businessId: number):Observable<any>{
+  getCookiesDataByBusiness(businessId: number): Observable<any> {
     let form: FormData = new FormData()
     const query = `query{
       getBusinessCookiesByBusinessId(businessId: ${businessId}) {
@@ -249,13 +262,13 @@ export class BusinessSettingService {
           updatedDate
         }
         }`
-    form.append('query',query)
-    return this.http.post(this.BASE_URL,form)
-    }
+    form.append('query', query)
+    return this.http.post(this.BASE_URL, form)
+  }
 
-    getBusinessHoursOfOperation(businessId: number):Observable<any>{
-      let form: FormData = new FormData()
-      const query = `query {
+  getBusinessHoursOfOperation(businessId: number): Observable<any> {
+    let form: FormData = new FormData()
+    const query = `query {
           getBusinessHoursOfOperation(businessId: ${businessId}) {
           id
           days
@@ -269,7 +282,7 @@ export class BusinessSettingService {
           allDay
       }
     }`
-    form.append('query',query)
-    return this.http.post(this.BASE_URL,form)
-    }
+    form.append('query', query)
+    return this.http.post(this.BASE_URL, form)
+  }
 }

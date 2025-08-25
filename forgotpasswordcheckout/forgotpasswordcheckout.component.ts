@@ -1,13 +1,27 @@
+import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { BusinessSettingService } from '../service/business-setting.service';
-import { SucessmsgPopupComponent } from '../sucessmsg-popup/sucessmsg-popup.component';
 import { NotifacationMessageComponent } from '../notifacation-message/notifacation-message.component';
-import { MatDialog } from '@angular/material/dialog';
+import { SucessmsgPopupComponent } from '../sucessmsg-popup/sucessmsg-popup.component';
 
 @Component({
   selector: 'app-forgotpasswordcheckout',
   templateUrl: './forgotpasswordcheckout.component.html',
-  styleUrls: ['./forgotpasswordcheckout.component.css']
+  styleUrls: ['./forgotpasswordcheckout.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatDialogModule,
+    NotifacationMessageComponent,
+    SucessmsgPopupComponent,
+    TranslateModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
+  ]
 })
 export class ForgotpasswordcheckoutComponent implements OnInit {
 
@@ -61,9 +75,9 @@ export class ForgotpasswordcheckoutComponent implements OnInit {
 
   verifyEmail() {
     this.emailInvalid = false;
-    if(!this.email || !this.email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/)){
-       this.emailInvalid = true;
-       return;
+    if (!this.email || !this.email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,10}$/)) {
+      this.emailInvalid = true;
+      return;
     }
     this.businessService.verifyEmailForResetPassword(this.email).subscribe(
       data => {

@@ -1,0 +1,32 @@
+<div class="container main-container">
+  <div class="my-account-container">
+    <h1 class="page-title">{{ 'my_account' | translate }}</h1>
+    <div class="my-account-tab-container">
+      <mat-tab-group
+        class="my-account-tabs"
+        (selectedIndexChange)="onTabChange($event)"
+        [selectedIndex]="selectedIndex"
+      >
+        <mat-tab *ngFor="let tab of myaccountTabs" [label]="tab.label">
+        </mat-tab>
+      </mat-tab-group>
+      <div class="my-account-tab-content">
+        <ng-container [ngSwitch]="selectedTab">
+          <app-my-profile *ngSwitchCase="'MyProfileComponent'"></app-my-profile>
+          <app-my-orders *ngSwitchCase="'MyOrdersComponent'"></app-my-orders>
+          <app-my-quotes *ngSwitchCase="'MyQuotesComponent'"></app-my-quotes>
+          <app-my-transaction-history
+            *ngSwitchCase="'MyTransactionHistoryComponent'"
+          ></app-my-transaction-history>
+          <app-my-subscriptions
+            *ngSwitchCase="'MySubscriptionsComponent'"
+          ></app-my-subscriptions>
+          <app-my-cases *ngSwitchCase="'MyCasesComponent'"></app-my-cases>
+          <app-my-wallet *ngSwitchCase="'MyWalletComponent'"></app-my-wallet>
+          <app-my-company *ngSwitchCase="'MyCompanyComponent'"></app-my-company>
+          <app-my-users *ngSwitchCase="'MyUsersComponent'"></app-my-users>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
