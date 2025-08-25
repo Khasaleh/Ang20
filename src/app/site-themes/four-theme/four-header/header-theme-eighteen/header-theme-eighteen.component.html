@@ -1,0 +1,608 @@
+<section class="four-header-theme z-index-999 position-relative">
+  
+  <!-- Top Bar Starts Here -->
+  <div class="d-block w-100 bg-black py-2">
+    <div class="new-container1">
+    <div class="row align-items-center">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <div class="d-flex align-items-center justify-content-lg-start justify-content-md-start justify-content-sm-center justify-content-center">
+          <!-- Store Info Starts Here -->
+         <div class="d-inline-block me-3" *ngIf="dashboardContent?.topMenu?.storeDetails">
+          <button [matMenuTriggerFor]="storeinfopopup" type="button" class="d-flex align-items-center justify-content-start position-relative rounded-3">
+          <img src="./assets/img/countries/{{dashboardContent?.topMenu?.country}}.svg"
+          onerror="this.src='./assets/img/store-info-default.png'"
+           class="w-26-px h-auto rounded-2">
+          <span class="text-white font-weight-400 text-14 d-lg-inline-block d-md-inline-block d-sm-none d-inline-block ps-2 pe-2 min-width-clear">
+             {{'STORE_INFO'|translate}} 
+          </span>
+          <i class="bi bi-chevron-down lh-tiny text-white text-13 ms-lg-0 ms-md-0 ms-sm-2 ms-2"></i>
+          </button>
+          <mat-menu #storeinfopopup="matMenu" xPosition="before" yPosition="below">
+            <div class="d-block w-100 bg-white px-3 py-3">
+              <div class="d-block w-100 mb-3">
+                <h4 class="text-14 font-weight-600 m-0 text-black">
+                   {{'THIS_IS_HOW_YOU_SHOP_WITH_US'|translate}}
+                </h4>
+              </div>
+              <div class="row align-items-center py-2 my-1 border-bottom border-color-silver">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+                  <h5 class="text-black text-13 text-start m-0 p-0 font-weight-400 min-width-clear text-capitalize">  {{'SHIP_TO'|translate}} </h5>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-7">
+                  <h5 class="text-black text-13 text-start m-0 p-0 font-weight-400 text-capitalize"> {{dashboardContent?.topMenu?.country}} </h5>
+                </div>
+              </div>
+              <div class="row align-items-center py-2 my-1 border-bottom border-color-silver">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+                  <h5 class="text-black text-13 text-start m-0 p-0 font-weight-400 min-width-clear text-capitalize">  {{'CURRANCY'|translate}} </h5>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-7">
+                  <h5 class="text-black text-13 text-start m-0 p-0 font-weight-400 min-width-clear text-capitalize"> {{dashboardContent?.topMenu?.currency}} </h5>
+                </div>
+              </div>
+              <div class="row align-items-center py-2 my-1">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-5">
+                  <h5 class="text-black text-13 text-start m-0 p-0 font-weight-400 min-width-clear text-capitalize">  {{'LANGUAGE'|translate}} </h5>
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7 col-7">
+                  <h5 class="text-black text-13 text-start m-0 p-0 font-weight-400 min-width-clear text-capitalize"> {{dashboardContent?.topMenu?.language}} </h5>
+                </div>
+              </div>
+            </div>
+          </mat-menu>
+         </div> 
+          <!-- Store Info Ends Here -->
+         <!-- G Translate Widget Starts Here -->
+         <div class="d-inline-block">
+          <button [matMenuTriggerFor]="alllangtranslate" type="button" class="d-flex align-items-center justify-content-center">
+          <i class="bi bi-globe text-20 mob-text-20 text-white lh-tiny m-0 no-min-height no-min-width"></i>
+          <span class="text-white font-weight-400 text-14 d-lg-inline-block d-md-inline-block d-sm-none d-inline-block ps-2 pe-2">
+            Language
+          </span>
+          <i class="bi bi-chevron-down lh-tiny text-white text-13 ms-lg-0 ms-md-0 ms-sm-2 ms-2"></i>
+          </button>
+          <mat-menu #alllangtranslate="matMenu" xPosition="before" yPosition="below">
+          <div class="d-flex flex-column w-100 bg-white px-2 py-2 h-300-px modern-scroll overflow-auto">
+              <button
+                *ngFor="let lang of languages"
+                (click)="changeLanguage(lang.code)"
+                class="px-2 py-1 text-black d-block text-15 font-weight-500 w-100 text-start border-bottom">
+                {{ lang.name }}
+              </button>
+          </div>
+          </mat-menu> 
+          <div id="google_translate_element"></div>
+         </div>
+         <!-- G Translate Widget Ends Here -->
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-6 col-sm-12 col-12 pt-lg-0 pt-md-0 pt-sm-2 pt-2">
+        <app-announcement-bar [user]="user" [loggedIn]="isLoggedIn" [showalerttop]="showalerttop"
+        [announcementBar]="announcementBar"></app-announcement-bar>
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <div class="d-lg-flex d-md-flex d-sm-none d-none align-items-center justify-content-lg-end justify-content-md-end justify-content-sm-center justify-content-center">
+        <button routerLink="/{{subdomain}}/about-us" class="px-2 py-1 text-white cursor-pointer font-weight-400 text-14 me-3">
+          {{'SIGNIN_ABOUTUS'|translate}} 
+         </button>
+         <button routerLink="/{{subdomain}}/my-wishlist" class="px-2 py-1 text-white font-weight-400 text-14 me-3">
+             {{'MY_WISHLIST'|translate}} 
+         </button>
+         <button routerLink="/{{subdomain}}/viewcart" class="px-2 py-1 text-white font-weight-400 text-14 me-3">
+          {{'MY_CART'|translate}} 
+         </button> 
+         </div>
+      </div>
+    </div> 
+    </div>
+  </div>
+  <!-- Top Bar Ends Here -->
+
+
+  <!-- Header Starts Here --> 
+  <div class="d-block w-100 py-2">
+    <div class="bg-white theme-four-main-header z-index-1">
+        <div class="new-container1">
+          <div class="d-flex flex-wrap w-100 position-relative align-items-center justify-content-between">
+            <!-- Logo Starts Here -->
+            <div class="header-logo-box18 p-0">
+              <div class="d-flex align-items-center justify-content-start">
+                <button routerLink="/{{subdomain}}/home">
+                  <img class="w-170-px mob-w-100-px h-80-px mob-h-60 object-fit-contain object-position-center-left" onerror="this.src='./assets/img/themelogoplaceholder.svg'" [src]="assetsAwsKey+logoImage"
+                      alt="{{'LOGOIMAGETHEMEFOUR'|translate}}" />
+                </button>
+                
+              </div>
+            </div>
+            <!-- Logo Ends Here -->
+
+            <!-- Header Menu Starts Here -->
+            <div class="header-menu-box18 position-relative">
+              <div class="d-flex align-items-center justify-content-start w-100">
+                <div class="d-block">
+                  <div (mouseleave)="closeAllCards()"> 
+                    <nav  class="mt-1 mb-0 d-block w-100 rounded-0 overflow-x-auto"
+                      role="navigation" aria-labelledby="secondarynavheading">
+                        <div class="row m-0">
+                          <div class="align-content-center align-items-center d-flex p-0">
+                            <ng-container *ngFor="let category of categories; let i = index" >
+                              <span class="d-lg-block d-md-none d-sm-none d-none" *ngIf="i < 3"> 
+                              <button  [ngClass]="{ 'active': isCardOpen[i] }" class="align-items-center mx-2 px-3 py-2 d-flex font-weight-500 text-15 text-color-b min-width-clear"
+                              (click)="toggleCard(i, category)"   (mouseover)="toggleCard(i, category)"
+                              routerLink="/{{subdomain}}/category/{{category?.url}}/{{category?.id}}">
+                                {{ category.name | titlecase  }}
+                                <mat-icon  *ngIf="category.childCategories.length >  0">{{ isCardOpen[i] ? 'keyboard_arrow_up' :
+                                  'keyboard_arrow_down' }}</mat-icon>
+                              </button> 
+                              </span>
+                            </ng-container>
+                          </div>
+                        </div>
+                    </nav>
+                    <div class="d-block w-100"
+                      *ngFor="let category of categories; let i = index" >
+                      <div *ngIf="isCardOpen[i]"  [ngClass]="{ 'display-card': isCardOpen[i] }" class="card-container position-static col-12 col-lg-11 popup-parent-rtl">
+                        <mat-card   (mouseleave)="closeCardWithDelay(i)" *ngIf="category.childCategories.length > 0"
+                          class="fourheader-menu max-h-450-px overflow-auto modern-scroll shadow-none border border-color-silver card border-1-BBC2CD w-100 position-absolute rounded-2 z-3" style=" z-index: 1000;">
+                          <div class="row mx-0">
+                          <div class="subcategory-container d-flex flex-wrap col-md-8">
+                            <ng-container *ngFor="let suCat of category.childCategories">
+                              <div class="subcategory-group">
+                                <div class="subcategory-name  font-weight-700 text-15 px-3 py-2">
+                                  <a  (click)="closeCardWithDelay(i)" (mouseover)="setSelectedCat(suCat)"  class="font-weight-700 active-child text-15 border-0 text-decoration-none text-black mb-2 cursor-pointer"
+                                    routerLink="/{{subdomain}}/category/{{suCat?.url}}/{{suCat?.id}}">
+                                    {{ suCat.name | titlecase  }}
+                                  </a>
+                                </div>
+                                <div  class="d-flex flex-column justify-content-start subsubcategories">
+                                  <button   mat-menu-item class="font-weight-400 text-14  " *ngFor="let subSubCat of suCat.childCategories">
+                                    <a (click)="closeCardWithDelay(i)" (mouseover)="setSelectedCat(subSubCat)" class="text-14 border-0 active-subchild text-decoration-none font-weight-400 text-black mb-2 cursor-pointer"
+                                      routerLink="/{{subdomain}}/category/{{suCat?.url}}/{{subSubCat?.url}}/{{subSubCat?.id}}">
+                                      {{ subSubCat.name | titlecase  }}
+                                    </a>
+                                  </button>
+                                </div>
+                              </div>
+                            </ng-container>
+                          </div>
+                          <div *ngIf="selectedCategory && !selectedCategory.imageUrl.includes('null')" class="position-relative overflow-hidden col-md-3 text-center font-weight-700 text-15 ">
+                            <img [src]="selectedCategory.imageUrl" class="position-relative d-block w-100 h-250-px object-fit-contain rounded-2 shadow-none" style="box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);border-radius: 6%;">
+                            <div  class="mt-3 mb-3">
+                              <a  class="text-15 text-black active-child cursor-pointer" routerLink="/{{subdomain}}/category/{{selectedCategory?.url}}/{{selectedCategory?.id}}" routerLinkActive="router-link-active" >
+                                <b>  {{'SHOP'|translate}} {{selectedCategory.name | titlecase }} ></b>
+                              </a>
+                            </div>
+                          </div>
+                          </div>
+                        </mat-card>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+                <div *ngIf="CategoryExceed" class="list-unstyled d-flex w-100 mini_nav_theme_four mb-0 mt-1">
+                  <li class="border-0 d-block w-100">
+                    <div
+                      class="d-flex align-items-center position-relative justify-content-start cursor-pointer text-black text-15 font-weight-500"
+                      (click)="drawer.toggle()">
+                      <span class="d-lg-none d-md-none d-sm-block d-block">
+                      {{'CATEGORIES'|translate}}
+                      </span>
+                      <span class="d-lg-block d-md-block d-sm-none d-none">
+                        {{'MORE'|translate}}
+                      </span>
+                      <span class="ms-2">
+                        <i class="fa fa-bars text-color-b"></i>
+                      </span>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+            <!-- Header Menu Ends Here -->
+
+            <!-- Header Search Starts Here -->
+            <div class="header-search-box18 mt-lg-0 mt-md-0 mt-sm-2 mt-2">
+              <div class="w-100">
+              <div class="collapse navbar-collapse px-0 show">
+                <form class="d-flex mx-auto align-items-center justify-content-start" role="search">
+                  <div class="input-group h-50-px w-100 overflow-hidden position-relative">
+                    <input type="text" [(ngModel)]="keyword"
+                    class="w-100 bg-white text-black text-14 font-weight-400 ps-5 h-100 border border-color-silver rounded-2 px-2"
+                    placeholder="{{'SEARCH_PRODUCT'|translate}}"
+                    [matAutocomplete]="auto"
+                    [formControl]="searchControl"
+                    (keyup.enter)="onEnterKeyPress($event)">
+                    <span class="input-group-text position-absolute top-0 start-0 ms-2 bg-transparent h-100 border-0 rounded-0 px-lg-2 px-md-2 px-sm-2 px-2"
+                    (click)="onSearchClickn()">
+                      <i class="fa fa-search text-color-b"></i>
+                    </span>
+                  </div>
+                </form>
+              <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngIf="keyword" [value]="keyword" (onSelectionChange)="optionSelection($event)" (click)="keyword = ''">{{keyword}}</mat-option>
+              <mat-option *ngFor="let product of products" [value]="product.name" routerLink='/{{subdomain}}/product/{{product.name | replaceSpecialChars}}/{{product.id}}' (click)="keyword = ''">{{product.name}}</mat-option>
+              </mat-autocomplete>
+              </div>
+              </div>
+            </div>
+            <!-- Header Search Ends Here -->
+
+           <!-- Header Action Btns Starts Here -->
+          <div class="header-actions-box18">
+            <div class="d-flex w-100 align-items-center justify-content-end">
+
+            <!-- User Profile Starts Here -->
+            <div class="d-inline-block me-lg-3 me-md-3 me-sm-2 me-2" *ngIf="dashboardContent?.topMenu?.signInAndSignUp">
+            <div class="d-block w-100">
+              <button #userInfoMenuTrigger="matMenuTrigger"
+              [matMenuTriggerFor]="userinfoheadpopup" type="button" class="d-flex p-0 align-items-center justify-content-center position-relative">
+              <span class="bg-grey2 w-36-px h-36-px rounded-circle d-flex align-items-center justify-content-center">
+                <img *ngIf="user" class="rounded-circle mob-w-35-px mob-h-35-px w-36-px h-36-px object-fit-cover" [src]="this.awsURL + user?.profile"
+                onerror="this.src='./assets/img/default-profile-image.jpg'" alt="{{'PROFILE_IMAGE'|translate}}" >
+                <i *ngIf="!user" class="bi bi bi-person lh-tiny no-min-height no-min-width text-22 mob-text-20 text-black"></i>
+              </span> 
+                </button> 
+                <mat-menu #userinfoheadpopup="matMenu" xPosition="before" yPosition="below">
+                  <div class="d-block w-100" *ngIf="isLoggedIn">
+                        <div class="d-block w-100 px-3 py-3 border-bottom border-color-silver" *ngIf="user">
+                          <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center justify-content-start">
+                              <div class="d-inline-block me-3">
+                                <img  onerror="this.src='./assets/img/default-profile-image.jpg'"
+                                [src]="this.awsURL + user?.profile" class="w-40-px h-40-px rounded-circle"
+                                alt="{{'ICONIMAGES'|translate}}" >
+                              </div>
+                              <div class="d-inline-block">
+                                <p class="m-0 text-16 font-weight-600 text-color-four-theme-blackshade text-start">
+                                {{user.firstName + ' ' + user.lastName}}
+                                </p>
+                              </div>
+                            </div>
+                            <!-- <div class="d-inline-block min-width-clear">
+                              <div class="d-block w-100 bg-white border border-color-silver rounded-3">
+                                <div class="d-flex align-items-center justify-content-start w-100 px-2 py-2">
+                                  <img src="../../../assets/img/coins-icon.svg" alt="{{'ICONIMAGES'|translate}}" class="w-40-px me-2">
+                                  <span class="text-black text-18 font-weight-600 m-0 p-0 d-inline-block">
+                                  <b class="text-12 font-weight-400 d-block w-100"> {{'POINTS_EARN'|translate}} </b>
+                                  619
+                                  </span>
+                                </div>
+                                <div class="d-block w-100 px-2 py-1 border-top border-color-silver">
+                                <p class="m-0 p-0 text-black text-12">   {{'POINTS_TO_DOLLAR_CONVERSION'|translate}} </p>
+                                </div>
+                              </div>
+                            </div> -->
+                          </div>
+
+                        </div>
+                        <div class="d-block w-100 px-3 py-3 border-bottom border-color-silver">
+                          <button routerLink="/{{subdomain}}/my-account" class="w-100 text-start text-black font-weight-500 text-15 mt-0 mb-2">
+                            {{'MY_ACCOUNT'|translate}}
+                          </button>
+                          <button routerLink="/{{subdomain}}/my-order" class="w-100 text-start text-black font-weight-500 text-15 mt-0 mb-2">
+                          {{'MYORDERS'|translate}}
+                        </button>
+                        <button routerLink="/{{subdomain}}/redeem-points" class="w-100 pointer-events-none text-start text-black font-weight-500 text-15 mt-0 mb-2">
+                          {{'POINTS_OR_EARNING'|translate}}
+                          <span class="d-inline-block bg-warning text-black text-13 font-weight-500 px-2 py-1 rounded-2 ms-2">
+                            {{'COMINGSOON'|translate}}
+                            </span>
+                        </button>
+                        <button routerLink="/{{subdomain}}/view-browser-history" class="w-100 text-start text-black font-weight-500 text-15 mt-0 mb-2">
+                          {{'BROWSERHISTORY'|translate}}
+                        </button>
+                        </div>
+                        <div class="d-block w-100 px-3 py-2">
+                          <button id="account-signout-btn" (click)="logout()" class="w-100 text-black font-weight-500 text-15 mt-0 mb-2 d-flex align-items-center justify-content-start">
+                            <img src="../../../assets/img/items/log-out-03.svg"
+                            alt="{{'ICONIMAGES'|translate}}" class="me-2">
+                            {{'SIGNOUT'|translate}}
+                          </button>
+                        </div>
+                  </div>
+                    <!-- Login Form Starts Here -->
+                    <div class="d-block w-100" *ngIf="!isLoggedIn" (click)="$event.stopPropagation()">
+                    <div class="d-block w-100 px-3 py-3 border-bottom border-color-silver bg-theme-light-color text-center">
+                    <h3 class="text-black text-16 font-weight-600 m-0 p-0">  {{'LOGIN_TO_YOUR_ACCOUNT'|translate}} </h3>
+                    </div>
+                    <div class="d-block w-100 px-3 py-3">
+                      <mat-tab-group (selectedIndex)="0" class="login-type-tabs forced-ltr border border-color-silver rounded-3 overflow-hidden" animationDuration="0ms">
+                        <!-- Social User Login Form Starts Here -->
+                        <mat-tab>
+                        <ng-template mat-tab-label>
+                          <div class="d-flex inside-rtl align-items-center justify-content-center w-100 px-4 pt-3 pb-3 text-center bg-theme-light-color border-bottom-0">
+                            <i class="bi bi-postcard-heart lh-tiny no-min-height no-min-width p-0 me-2 text-18 text-black"></i>
+                            <span  class="text-black text-15 d-inline-block font-weight-600">   {{'SOCIAL'|translate}} </span>
+                        </div>
+                        </ng-template>
+                        <div class="d-block inside-rtl w-100 px-2 py-3 border-top-0">
+                          <form class="d-block w-100"  name="form" (ngSubmit)="f.form.valid && onSubmit('FOURTH', 'FAZEAL')" #f="ngForm" novalidate>
+                            <div class="d-block w-100 mb-2">
+                              <input id="social-username-input-field" type="text" class="form-control font-weight-400 text-16 input-focus-none"
+                                            placeholder="{{'USERNAME_ONLY'|translate}}" [(ngModel)]="form.username" required #username="ngModel" >
+                                <p class="m-0 pt-2 text-danger text-14 font-weight-400" *ngIf="username.errors && f.submitted">
+                                  {{'ENTERUSERNAME'|translate}}  
+                                </p>
+                            </div>
+                            <div class="d-block w-100 mb-2">
+                              <div class="d-block w-100 position-relative">
+                                <input id="social-password-input-field" [type]=" hidepassword ? 'password' : 'text'" class="form-control font-weight-400 text-16 input-focus-none"
+                              placeholder="{{'SIGNUP_INPUTPLACEHOLDPASSWORD'|translate}}" [(ngModel)]="form.password" required #password="ngModel" >
+                                <button (click)="hidepassword = !hidepassword" type="button" class="position-absolute end-0 top-0 p-2 mt-1 d-flex align-items-center justify-content-center me-1">
+                                  <i *ngIf="hidepassword" class="bi bi-eye-slash-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+                                  <i *ngIf="!hidepassword" class="bi bi-eye-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+                                </button>
+                              </div>
+                              <p class="m-0 pt-2 text-danger text-14 font-weight-400" *ngIf="password.errors && password.errors['required'] && f.submitted">
+                                {{'SIGNIN_ERROR_INPUTPSWD'|translate}}
+                              </p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center w-100 mb-2">
+                            <mat-checkbox [checked]="isRememberMe" (change)="toggleRememberMe()">
+                              <span class="text-14 text-black px-2">
+                                  {{'SIGNIN_REMEMBERME'|translate}} </span>
+                            </mat-checkbox>
+                            </div>
+                            <div class="d-block w-100 mb-3">
+                              <button id="social-signin-btn" type="submit" class="rounded-2 w-100 bg-theme-dark-color text-color-w text-first-light-color py-2 font-weight-600 text-16"
+                              >  {{'SIGNIN'|translate}}
+                              </button>
+                              <p class="text-14 pt-2 m-0 text-danger" *ngIf="f.submitted && isLoginFailed">
+                                {{errorMessage}}
+                              </p>
+                            </div>
+                        </form>
+                        <div class="d-block w-100 text-center">
+                        <button (click)="forgotPassword()" class="px-2 text-13 m-0 border-bottom text-black border-color-black">
+                          {{'SIGNIN_FORGOTPSWD'|translate}}
+                        </button>
+                        </div>
+                        </div>
+                        </mat-tab>
+                        <!-- Social User Login Form Ends Here -->
+                        <!-- Store User Login Form Starts Here -->
+                        <mat-tab>
+                          <ng-template mat-tab-label>
+                            <div class="d-flex inside-rtl align-items-center justify-content-center w-100 px-4 pt-3 pb-3 text-center bg-theme-light-color border-bottom-0">
+                              <i class="bi bi-shop-window lh-tiny no-min-height no-min-width p-0 me-2 text-18 text-black"></i>
+                              <span  class="text-black text-15 d-inline-block font-weight-600">   {{'STORE'|translate}} </span>
+                          </div>
+                          </ng-template>
+                          <div class="d-block inside-rtl w-100 px-2 py-3 border-top-0">
+                            <form class="d-block w-100"  name="form" (ngSubmit)="f.form.valid && onSubmit('FOURTH', 'STORE')" #f="ngForm" novalidate>
+                              <div class="d-block w-100 mb-2">
+                                <input id="store-username-input-field" type="text" class="form-control font-weight-400 text-16 input-focus-none"
+                                              placeholder="{{'EMAILADDRESS'|translate}}" [(ngModel)]="form.username" required #username="ngModel" >
+                                  <p class="m-0 pt-2 text-danger text-14 font-weight-400" *ngIf="username.errors && f.submitted">
+                                    {{'SIGNIN_ERROR_INPUTUSER'|translate}}
+                                  </p>
+                              </div>
+                              <div class="d-block w-100 mb-2">
+                                <div class="d-block w-100 position-relative">
+                                  <input id="store-password-input-field" [type]=" hidepassword ? 'password' : 'text'" class="form-control font-weight-400 text-16 input-focus-none"
+                                placeholder="{{'SIGNUP_INPUTPLACEHOLDPASSWORD'|translate}}" [(ngModel)]="form.password" required #password="ngModel" >
+                                  <button (click)="hidepassword = !hidepassword" type="button" class="position-absolute end-0 top-0 p-2 mt-1 d-flex align-items-center justify-content-center me-1">
+                                    <i *ngIf="hidepassword" class="bi bi-eye-slash-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+                                    <i *ngIf="!hidepassword" class="bi bi-eye-fill lh-tiny text-black no-min-height no-min-width text-18"></i>
+                                  </button>
+                                </div>
+                                <p class="m-0 pt-2 text-danger text-14 font-weight-400" *ngIf="password.errors && password.errors['required'] && f.submitted">
+                                  {{'SIGNIN_ERROR_INPUTPSWD'|translate}}
+                                </p>
+                              </div>
+                              <div class="d-flex align-items-center justify-content-center w-100 mb-2">
+                              <mat-checkbox [checked]="isRememberMe" (change)="toggleRememberMe()">
+                                <span class="text-14 text-black px-2">   {{'SIGNIN_REMEMBERME'|translate}} </span>
+                              </mat-checkbox>
+                              </div>
+                              <div class="d-block w-100 mb-3">
+                                <button id="store-signin-btn" type="submit" class="rounded-2 w-100 bg-theme-dark-color text-color-w text-first-light-color py-2 font-weight-600 text-16"
+                                >  {{'SIGNIN'|translate}}
+                                </button>
+                                <p class="text-14 pt-2 m-0 text-danger" *ngIf="f.submitted && isLoginFailed">
+                                  {{errorMessage}}
+                                </p>
+                              </div>
+                          </form>
+                          <div class="d-block w-100 text-center">
+                          <button (click)="forgotPasswordforStore()" class="px-2 text-13 m-0 border-bottom text-black border-color-black">
+                            {{'SIGNIN_FORGOTPSWD'|translate}}
+                          </button>
+                          </div>
+                          </div>
+                          </mat-tab>
+                          <!-- Store User Login Form Ends Here -->
+                      </mat-tab-group>
+                    <div class="d-block w-100 text-center">
+                      <p class="text-14 text-black mt-2 p-0 mb-0">   {{'NEW_CUSTOMER'|translate}}
+                        <button (click)="openCreateAccount()" class="px-1 font-weight-600 text-14 m-0 text-color-dark border-bottom border-dark pb-1">
+                            {{'CREATE_YOUR_ACCOUNT'|translate}}
+                        </button>
+                      </p>
+                    </div>
+                    </div>
+                    </div>
+                    <!-- Login Form Ends Here -->
+                </mat-menu>
+            </div>
+            </div>
+            <!-- User Profile Ends Here --> 
+            
+            <!-- Wishlist Btn Starts Here -->
+            <div class="d-inline-block me-lg-2 me-md-2 me-sm-1 me-1" *ngIf="dashboardContent?.topMenu?.wishlist">
+                <button routerLink="/{{subdomain}}/my-wishlist" type="button" class="d-flex align-items-center position-relative justify-content-center position-relative bg-grey2 w-36-px h-36-px rounded-circle">
+                <i class="bi bi-heart-fill lh-tiny no-min-height no-min-width text-18 mob-text-18 text-black"></i>
+                <span *ngIf="wishlists.length > 0" 
+                  class="d-flex align-items-center justify-content-center rounded-circle w-18-px h-18-px text-white d-flex align-items-center text-13 font-weight-400 d-inline-block position-absolute top-0 start-80 heart_circle bg-theme-dark-color text-color-w">
+                  {{wishlists.length}}
+                  </span>
+                </button>
+            </div>
+            <!-- Wishlist Btn Starts Here -->
+
+            <!-- Shopping Cart Starts Here -->
+            <div class="d-inline-block" *ngIf="dashboardContent?.topMenu?.cart">
+                <button [matMenuTriggerFor]="shoppingcart" type="button" class="d-flex align-items-center justify-content-start position-relative rounded-0">
+                <span class="d-flex align-items-center justify-content-center bg-grey2 w-36-px h-36-px rounded-circle">
+                <i class="bi m-1 bi-basket-fill lh-tiny no-min-height no-min-width text-20 mob-text-18 text-black"></i>
+                </span>
+                <span *ngIf="shoppingCart && shoppingCart.cartItemResponseList &&shoppingCart.cartItemResponseList.length > 0" 
+                  class="d-flex align-items-center justify-content-center rounded-circle w-18-px h-18-px text-white d-flex align-items-center text-13 font-weight-400 d-inline-block position-absolute top-0 start-80 heart_circle bg-theme-dark-color text-color-w">
+                  {{shoppingCart.cartItemResponseList.length}}
+                </span> 
+                </button>
+                <mat-menu #shoppingcart="matMenu" (opened)="onMenuOpened()" (closed)="onMenuClosed()"
+                      class="custom-menu-panel">
+                      <div class="p-3 custom-vertical-height3 modern-scroll overflow-auto w-100" *ngIf="shoppingCart">
+                          <button class="w-100 mb-2" *ngFor="let item of  shoppingCart?.cartItemResponseList">
+                              <div class="d-flex align-items-center w-100">
+                                  <div class="flex-shrink-0 border p-2">
+                                      <img src="{{item.itemImage}}" onerror="this.src='../../../assets/img/default-product.png'"
+                                          class="w-87-px h-56-px mob-w-35-px mob-h-35-px"
+                                          alt="{{'ICONIMAGES'|translate}}">
+                                  </div>
+                                  <div class="ms-2 mr-3">
+                                      <p class="mb-0 text-16 font-weight-400 text-black mob-text-14 text-ellipse-100-px">{{item.productName | titlecase}}</p>
+                                      <p *ngIf="item.salePrice" class="mb-0 text-16 font-weight-400 text-black mob-text-12 text-ellipse-100-px">
+                                        {{item.cacheQuantity? item.cacheQuantity : item.quantity}}
+                                        <mat-icon class="no-min-height no-min-width text-16 text-black mx-1 p-0">close</mat-icon>
+                                         {{currencySymbol}}  {{item.salePrice}}
+                                      </p>
+                                      <p *ngIf="!item.salePrice" class="mb-0 text-16 font-weight-400 text-black mob-text-12 text-ellipse-100-px">{{item.cacheQuantity? item.cacheQuantity : item.quantity}} X  {{currencySymbol}}  {{item.price}}
+                                      </p>
+                                  </div>
+                                  <img src="../../../assets/img/items/buttonclosex.png"
+                                    (click)="removeItemFromCart(item.id, shoppingCart.id, item)"
+                                      class="w-25-px h-25-px mob-w-20-px mob-h-20-px position-absolute cross_cart end-0 me-2"
+                                      alt="{{'ICONIMAGES'|translate}}">
+                              </div>
+                          </button>
+                      </div>
+                      <div class="w-100 border-top p-3">
+                          <div class="row pt-3 pb-4">
+                              <div class="col-6">
+                                  <p class="mb-0 text-15 font-weight-400 text-black mob-text-12">  {{'CART_TOTAL'|translate}} :</p>
+                              </div>
+                              <div class="col-6">
+                                  <p class="mb-0 text-15 font-weight-400 text-black text-right mob-text-12" *ngIf="this.shoppingCart && this.shoppingCart.totalPrice != null">{{currencySymbol}}  {{this.shoppingCart?.totalPrice| number:'1.2-2'}}</p>
+                                  <p class="mb-0 text-15 font-weight-400 text-black text-right mob-text-12" *ngIf="!this.shoppingCart"> 0.00 </p>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-6">
+                                  <button type="button" routerLink="/{{subdomain}}/viewcart"
+                                      class="rounded-2 py-1 px-3 text-15 font-weight-400 bg-white border text-black mob-text-12">
+                                        {{'VIEWCART'|translate}}
+                                  </button>
+                              </div>
+                              <div class="col-6 d-flex justify-content-end">
+                                  <button  [disabled]="!this.shoppingCart" type="button" routerLink="/{{subdomain}}/checkout"
+                                      class="rounded-2 py-1 px-3 text-15 font-weight-400 bg-theme-dark-color text-color-w text-first-light-color text-white mob-text-12">
+                                     {{'CHECKOUT'|translate}}
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                </mat-menu>
+            </div>
+            <!-- Shopping Cart SEnds Here -->
+
+            <!-- Shopping Cart Starts Here -->
+            <div class="d-lg-none d-md-none d-sm-inline-block d-inline-block">
+              <button (click)="drawer.toggle()" type="button" class="d-flex align-items-center justify-content-start position-relative py-2 rounded-0">
+              <span class="d-flex align-items-center justify-content-center bg-grey2 w-36-px h-36-px rounded-circle">
+              <i class="bi m-1 bi-justify-right lh-tiny no-min-height no-min-width text-20 mob-text-20 text-black"></i>
+              </span> 
+              </button> 
+          </div>
+          <!-- Shopping Cart SEnds Here -->
+
+            </div>
+          </div>
+           <!-- Header Action Btns Ends Here -->
+        </div>
+        </div>
+      </div>
+  </div> 
+  <!-- Header Ends Here -->
+
+  <!-- Category Drawer Starts Here -->
+  <mat-drawer-container class="d-block w-100 z-index-9999" autosize>
+    <mat-drawer #drawer class="example-sidenav overflow-x-hidden mobile-half-drawer four_theme_side_nav start-0" [disableClose]="false" mode="side" (opened)="onSidenavOpened()" (closed)="onSidenavClosed()">
+        <div class="w-100 h-100 position-absolute z-index-999 bg-white pt-3">
+            <div class="row mb-3">
+                <div class="col-md-12 d-flex justify-content-between align-items-center py-3">
+                    <div class="d-flex align-items-center position-relative justify-content-start text-black text-18 px-3 font-weight-500" (click)="drawer.toggle()">
+                      <h4 class="text-black text-16 font-weight-600 m-0">   {{'CATEGORIES'|translate}} </h4>
+                    </div>
+                    <div class="d-inline-block pe-3">
+                        <span (click)="drawer.toggle()">
+                            <img src="../../../assets/img/items/arrow-left.svg" alt="{{'ICONIMAGES'|translate}}"
+                                class="w-100 m-0">
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-unstyled" *ngIf="parentcategorylist">
+                      <ng-container *ngFor="let category of categories">
+                        <li *ngIf="category.childCategories.length > 0" class="d-flex border-bottom justify-content-between align-items-center px-3 mb-0 py-2 cursor-pointer" (click)="changetab(category)">
+                          <span class="text-black font-weight-600 text-14 cursor-pointer">
+                            {{category.name | titlecase }}
+                          </span>
+                          <span>
+                            <img class="m-0" src="../../../assets/img/items/chevron-right.svg" alt="{{'ICONIMAGES' | translate}}">
+                          </span>
+                        </li>
+                        <li *ngIf="category.childCategories.length < 1" class="d-flex border-bottom justify-content-between align-items-center px-3 mb-0 py-2 cursor-pointer" (click)="changetabrouter(category)">
+                          <span class="text-black font-weight-600 text-14 cursor-pointer">
+                            {{category.name | titlecase }}
+                          </span>
+                        </li>
+                      </ng-container>
+                    </ul>
+                    <div class="w-100" *ngIf="!parentcategorylist">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" class="w-100 py-3 px-3 text-start text-green-four-theme text-15 font-weight-700 bg-color-BBC2CD cursor-pointer" (click)="parentcategorylist = true">
+                                    <span>
+                                        <img src="../../../assets/img/items/arrow-left-back.svg" alt="{{'ICONIMAGES'|translate}}">
+                                    </span>
+                                    {{selectedCat.name | titlecase }}
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row inner_category_parent" *ngFor="let subCat of selectedCat.childCategories">
+                            <div class="col-md-12">
+                                <mat-accordion>
+                                    <mat-expansion-panel *ngIf="subCat.childCategories.length > 0">
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <span class="text-15 font-weight-5600 text-black cursor-pointer" routerLink="/{{subdomain}}/category/{{subCat?.url}}/{{subCat?.id}}">{{subCat.name}}</span>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <ul *ngFor="let subSubCat of subCat.childCategories" class="list-unstyled bg-color-E9FFF3 pt-3">
+                                            <li (click)="drawer.toggle()" routerLink="/{{subdomain}}/category/{{subCat?.url}}/{{subSubCat?.url}}/{{subSubCat?.id}}"
+                                                class="text-14 border-bottom font-weight-600 text-black mb-3 cursor-pointer">
+                                                {{subSubCat.name | titlecase  }}
+                                            </li>
+                                        </ul>
+                                    </mat-expansion-panel>
+                                    <button (click)="drawer.toggle()" class="py-2 text-start text-black font-weight-600 text-15 text-capitalize w-100 px-3 mt-2 cursor-pointer" routerLink="/{{subdomain}}/category/{{subCat?.url}}/{{subCat?.id}}" *ngIf="subCat.childCategories.length  < 1">
+                                      {{subCat.name| titlecase }}
+                                    </button>
+                                </mat-accordion>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-drawer>
+  </mat-drawer-container>
+  <!-- Category Drawer Ends Here -->
+
+ </section>

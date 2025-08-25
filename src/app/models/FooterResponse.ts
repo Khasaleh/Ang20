@@ -1,0 +1,31 @@
+export class FooterResponse {
+  id!: number;
+  aboutUsPosition!: number;
+  contactUsPosition!: number;
+  backgroundColor!: string;
+  description!: string;
+  facebookAccount!: string;
+  faqPosition!: number;
+  fazealSocialAccount!: string;
+  footerDesign!: string;
+  linkedinAccount!: string;
+  locationPosition!: number;
+  logoImage!: string;
+  footerLogoImage!:string;
+  showFacebook!: boolean;
+  showFazealSocial!: boolean;
+  showLinkedin!: boolean;
+  showTwitter!: boolean;
+  showYoutube!: boolean;
+  textColor!: string;
+  twitterAccount!: string;
+  unsubscribePosition!: number;
+  youtubeAccount!: string;
+  createdDate!: Date;
+  updatedDate!: Date;
+  imageFile!: File|null;
+  showInstagram!: boolean;
+  showPinterest!: boolean;
+  instagramAccount!: string;
+  pinterestAccount!: string;
+}

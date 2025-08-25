@@ -1,0 +1,776 @@
+  <section class="pb-2 pt-4 bg-white" *ngIf="data && product">
+     <div class="new-container1">
+      <div class="d-block w-100 mb-4" *ngIf="data.breadcrumbsDesign == 'verticle'">
+        <div class="d-flex flex-column align-items-start justify-content-start flex-wrap">
+          <button routerLink="/{{subdomain}}/home" class="text-black text-14 font-weight-500 px-2 py-1">
+            {{'HOME' | translate}}
+          </button>
+          <button  *ngIf="product?.categoryL3" routerLink="/{{subdomain}}/category/{{product?.categoryL3?.url}}/{{product?.categoryL3?.id}}" class="text-black text-14 font-weight-500 px-2 py-1">
+            {{product?.categoryL3?.name | titlecase}}
+          </button>
+          <button *ngIf="product?.categoryL2" routerLink="/{{subdomain}}/category/{{product?.categoryL2?.url}}/{{product?.categoryL2?.id}}" class="text-black text-14 font-weight-500 px-2 py-1">
+            {{product?.categoryL2?.name | titlecase}}
+          </button>
+          <button routerLink="/{{subdomain}}/category/{{product?.categoryL1?.url}}/{{product?.categoryL1?.id}}" class="text-black text-14 font-weight-500 px-2 py-1">
+            {{product?.categoryL1?.name | titlecase}}
+           </button>
+        </div>
+      </div>
+      <div class="d-block w-100 mb-4" *ngIf="data.breadcrumbsDesign == 'horizantal'">
+        <div class="d-flex align-items-center justify-content-start flex-wrap">
+          <button routerLink="/{{subdomain}}/home" class="text-black text-14 font-weight-500 px-2 py-1">
+            {{'HOME' | translate}}
+          </button>
+          <span class="text-black text-15 font-weight-500 px-1" *ngIf="product?.categoryL3">
+            /
+          </span>
+          <button *ngIf="product?.categoryL3" routerLink="/{{subdomain}}/category/{{product?.categoryL3?.url}}/{{product?.categoryL3?.id}}" class="text-black text-14 font-weight-500 px-2 py-1">
+            {{product?.categoryL3?.name | titlecase}}
+          </button>
+          <span *ngIf="product?.categoryL2"  class="text-black text-15 font-weight-500 px-1">
+            /
+          </span>
+          <button *ngIf="product?.categoryL2" routerLink="/{{subdomain}}/category/{{product?.categoryL2?.url}}/{{product?.categoryL2?.id}}" class="text-black text-14 font-weight-500 px-2 py-1">
+            {{product?.categoryL2?.name | titlecase}}
+          </button>
+          <span class="text-black text-15 font-weight-500 px-1">
+            /
+          </span>
+          <button routerLink="/{{subdomain}}/category/{{product?.categoryL1?.url}}/{{product?.categoryL1?.id}}" class="text-black text-14 font-weight-500 px-2 py-1">
+            {{product?.categoryL1?.name | titlecase}}
+           </button>
+        </div>
+        </div>
+      <div class="d-block w-100">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 position-relative">
+            <div *ngIf="product.images.length > 0" class="d-block w-100">
+
+            <!-- Desktop Images Starts Here -->
+            <div class="d-lg-block d-md-block d-sm-none d-none">
+
+            <!-- Images Grid Layout Starts Here -->
+            <div class="d-block w-100" *ngIf="data.pdpLayout=='GRID_LAYOUT'">
+            <div class="row">
+              <div class="col-md-6 col-lg-6 col-sm-6 col-12" *ngFor="let image of product?.images; let i = index">
+                 <img *ngIf="i <=5" onerror="this.src='./assets/img/default-product.png'"  [src]="image" alt="{{'PRODUCT_IMAGE'|translate}}" class="mb-4 w-100 h-300-px object-fit-contain">
+              </div>
+              <div class="col-12" [ngClass]="{'col-md-12 col-lg-12 col-sm-12': product.images.length === 2 || product.images.length === 4 || product.images.length === 6}" [ngClass]="{'col-md-6 col-lg-6 col-sm-6': product.images.length === 1 || product.images.length === 3 || product.images.length === 5}" *ngIf="product.videoUrl">
+                <video #videoPlayer  [controls]="showControls"  (play)="onPlay()" (pause)="onPause()" class="w-100 h-300-px rounded-2 object-fit-contain border border-color-silver rounded-2">
+                  <source [src]="product.videoUrl">
+                </video>
+                   <div *ngIf="!isPlaying" (click)="playVideo()"
+                      class="d-flex cursor-pointer align-items-center justify-content-center w-100 position-absolute top-0 start-0 h-100">
+                      <button class="w-100 text-center d-flex align-items-center justify-content-center"> 
+                        <i
+                          class="bi bi-play-circle-fill text-60 mob-text-40 text-white bg-black rounded-circle lh-tiny no-min-height no-min-width"></i>
+                      </button>
+                    </div>
+              </div>
+            </div>
+            <div *ngIf="product?.inStock == false" class="position-absolute top-0 start-0 ms-3 mt-3 z-index-99 d-flex align-items-center justify-content-center">
+                    <img *ngIf="themeName == 'FourthTheme'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme1.png">
+                    <img *ngIf="themeName == 'RetailTheme2'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme2.png">
+                    <img *ngIf="themeName == 'RetailTheme3'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme3.png">
+                    <img *ngIf="themeName == 'RetailTheme4'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme4.png">
+                    <img *ngIf="themeName == 'RetailTheme5'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme5.png">
+                    <img *ngIf="themeName == 'RetailTheme6'" class="h-150-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme6.png">
+                    <img *ngIf="themeName == 'RetailTheme7'" class="h-100-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme7.png">
+                    <img *ngIf="themeName == 'RetailTheme8'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme8.png">
+                    <img *ngIf="themeName == 'RetailTheme9'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme9.png">
+                    <img *ngIf="themeName == 'RetailTheme10'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme10.png">
+                    <img *ngIf="themeName == 'RetailTheme11'" class="h-50-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme11.png">
+                    <img *ngIf="themeName == 'RetailTheme12'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme12.png">
+                    <img *ngIf="themeName == 'RetailTheme13'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme13.png">
+                    <img *ngIf="themeName == 'RetailTheme14'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme14.png">
+                    <img *ngIf="themeName == 'RetailTheme15'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme15.png">
+                    <img *ngIf="themeName == 'RetailTheme16'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme16.png">
+                    <img *ngIf="themeName == 'RetailTheme17'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme17.png">
+                    <img *ngIf="themeName == 'RetailTheme18'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme18.png">
+                    <img *ngIf="themeName == 'RetailTheme19'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme19.png">
+                    <img *ngIf="themeName == 'RetailTheme20'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme20.png">
+                    <img *ngIf="themeName == 'RetailTheme21'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme21.png">
+            </div>
+            </div>
+            <!-- Images Grid Layout Ends Here -->
+            <!-- Images on Left Layout Starts Here -->
+            <div class="d-block w-100" *ngIf="data.pdpLayout=='CLASSIC_FLOAT_LEFT'">
+              <div class="row">
+                <div class="col-md-3 col-lg-3 col-sm-3 col-12 px-4 order-lg-1 order-md-1 order-sm-1 order-2">
+                  <div class="d-flex align-items-center justify-content-center w-100">
+                    <button *ngIf="product.images.length > 4 || (product.images.length > 3 && product.videoUrl)" 
+                      class="w-30-px z-index-1 top-0 mt-1 h-30-px p-1 d-flex align-items-center justify-content-center" (click)="scrollToTop()">
+                      <mat-icon class="m-0 p-0 text-24 text-black no-min-height no-min-width">keyboard_arrow_up</mat-icon>
+                    </button>
+                  </div>
+                  <div #scrollContainer class="d-block w-100 pdp-images-leftbar overflow-hidden">
+                   <img (click)="onImageClick(i, image)" [ngClass]="{'border-color-black border-2': i === selectedImageIndex && !showVideo}"
+                   *ngFor="let image of product.images; let i = index" (click)="product.mainImageUrl = image;
+                   showVideo = false;" onerror="this.src='./assets/img/default-product.png'"
+                    [src]="image" alt="{{'PRODUCT_IMAGE'|translate}}"
+                     class="h-100-px  object-fit-contain border border-color-silver rounded-2 cursor-pointer w-100 mb-2">
+                   <div class="d-block w-100 position-relative" (click)="enableVideo()" *ngIf="product.videoUrl">
+                     <video class="w-100 h-100-px rounded-2 object-fit-cover border border-color-silver rounded-2" [ngClass]="{'border-color-black border-2': showVideo}">
+                      <source [src]="product.videoUrl">
+                    </video>
+                    <span class="d-flex w-100 h-100 position-absolute top-0 align-items-center justify-content-center">
+                      <i class="bg-black bi bi-play-circle-fill lh-tiny no-min-height no-min-width rounded-circle text-35 text-white"></i>
+                    </span>
+                   </div>
+                  </div>
+                   <div class="d-flex align-items-center justify-content-center w-100">
+                    <button  
+                    *ngIf="product.images.length > 4 || (product.images.length > 3 && product.videoUrl)" 
+                     class="w-30-px z-index-1 top-0 mt-1 h-30-px p-1 d-flex align-items-center justify-content-center" (click)="scrollToBottom()">
+                      <mat-icon class="m-0 p-0 text-24 text-black no-min-height no-min-width">keyboard_arrow_down</mat-icon>
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-9 col-lg-9 col-sm-9 col-12 order-lg-2 order-md-2 order-sm-2 order-1 position-relative">
+                  <div class="d-block w-100 left-side-big-image" *ngIf="!showVideo">
+                  <lib-ngx-image-zoom
+                  thumbImage={{product?.mainImageUrl}}
+                  fullImage={{product?.mainImageUrl}}
+                  [magnification]="1"
+                  [enableScrollZoom]="true"
+                  [enableLens]="true"
+                  [lensWidth]="200"
+                  [lensHeight]="200">
+                  </lib-ngx-image-zoom>
+                  </div>
+                  <div class="d-block w-100" *ngIf="showVideo">
+                    <video #videoPlayer [controls]="showControls" (play)="onPlay()" (pause)="onPause()"
+                      class="w-100 h-450-px rounded-2 border border-color-silver rounded-2">
+                      <source [src]="product.videoUrl">
+                    </video>
+                    <div *ngIf="!isPlaying" (click)="playVideo()"
+                      class="d-flex cursor-pointer align-items-center justify-content-center w-100 position-absolute top-0 start-0 h-100">
+                      <button class="w-100 text-center d-flex align-items-center justify-content-center">
+                        <i
+                          class="bi bi-play-circle-fill text-60 mob-text-40 text-white bg-black rounded-circle lh-tiny no-min-height no-min-width"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div *ngIf="product?.inStock == false" class="position-absolute top-0 start-0 ms-3 mt-3 z-index-99 d-flex align-items-center justify-content-center">
+                    <img *ngIf="themeName == 'FourthTheme'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme1.png">
+                    <img *ngIf="themeName == 'RetailTheme2'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme2.png">
+                    <img *ngIf="themeName == 'RetailTheme3'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme3.png">
+                    <img *ngIf="themeName == 'RetailTheme4'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme4.png">
+                    <img *ngIf="themeName == 'RetailTheme5'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme5.png">
+                    <img *ngIf="themeName == 'RetailTheme6'" class="h-150-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme6.png">
+                    <img *ngIf="themeName == 'RetailTheme7'" class="h-100-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme7.png">
+                    <img *ngIf="themeName == 'RetailTheme8'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme8.png">
+                    <img *ngIf="themeName == 'RetailTheme9'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme9.png">
+                    <img *ngIf="themeName == 'RetailTheme10'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme10.png">
+                    <img *ngIf="themeName == 'RetailTheme11'" class="h-50-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme11.png">
+                    <img *ngIf="themeName == 'RetailTheme12'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme12.png">
+                    <img *ngIf="themeName == 'RetailTheme13'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme13.png">
+                    <img *ngIf="themeName == 'RetailTheme14'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme14.png">
+                    <img *ngIf="themeName == 'RetailTheme15'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme15.png">
+                    <img *ngIf="themeName == 'RetailTheme16'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme16.png">
+                    <img *ngIf="themeName == 'RetailTheme17'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme17.png">
+                    <img *ngIf="themeName == 'RetailTheme18'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme18.png">
+                    <img *ngIf="themeName == 'RetailTheme19'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme19.png">
+                    <img *ngIf="themeName == 'RetailTheme20'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme20.png">
+                    <img *ngIf="themeName == 'RetailTheme21'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme21.png">
+                  </div>
+                </div>
+             </div>
+            </div>
+            <!-- Images On Left Layout Ends Here -->
+            <!-- Images on Bottom Layout Starts Here -->
+            <div class="carousel-container"  *ngIf="data.pdpLayout=='CLASSIC_FLOAT_BOTTOM'">
+              <div class="row">
+                 <div class="col-md-12 position-relative">
+                  <div class="d-block w-100" *ngIf="!showVideo">
+                  <lib-ngx-image-zoom
+                thumbImage={{product?.mainImageUrl}}
+                fullImage={{product?.mainImageUrl}}
+                [magnification]="1"
+                [enableScrollZoom]="true"
+                [enableLens]="true"
+                [lensWidth]="200"
+                [lensHeight]="200">
+                </lib-ngx-image-zoom>
+                </div>
+                  <div class="d-block w-100 position-relative" *ngIf="showVideo">
+                    <video #videoPlayer [controls]="showControls" (play)="onPlay()" (pause)="onPause()"
+                      class="w-100 h-450-px rounded-2 border border-color-silver rounded-2">
+                      <source [src]="product.videoUrl">
+                    </video>
+                    <div *ngIf="!isPlaying" (click)="playVideo()"
+                      class="d-flex cursor-pointer align-items-center justify-content-center w-100 position-absolute top-0 start-0 h-100">
+                      <button class="w-100 text-center d-flex align-items-center justify-content-center">
+                        <i
+                          class="bi bi-play-circle-fill text-60 mob-text-40 text-white bg-black rounded-circle lh-tiny no-min-height no-min-width"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div *ngIf="product?.inStock == false" class="position-absolute top-0 start-0 ms-3 mt-3 z-index-99 d-flex align-items-center justify-content-center">
+                    <img *ngIf="themeName == 'FourthTheme'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme1.png">
+                    <img *ngIf="themeName == 'RetailTheme2'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme2.png">
+                    <img *ngIf="themeName == 'RetailTheme3'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme3.png">
+                    <img *ngIf="themeName == 'RetailTheme4'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme4.png">
+                    <img *ngIf="themeName == 'RetailTheme5'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme5.png">
+                    <img *ngIf="themeName == 'RetailTheme6'" class="h-150-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme6.png">
+                    <img *ngIf="themeName == 'RetailTheme7'" class="h-100-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme7.png">
+                    <img *ngIf="themeName == 'RetailTheme8'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme8.png">
+                    <img *ngIf="themeName == 'RetailTheme9'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme9.png">
+                    <img *ngIf="themeName == 'RetailTheme10'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme10.png">
+                    <img *ngIf="themeName == 'RetailTheme11'" class="h-50-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme11.png">
+                    <img *ngIf="themeName == 'RetailTheme12'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme12.png">
+                    <img *ngIf="themeName == 'RetailTheme13'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme13.png">
+                    <img *ngIf="themeName == 'RetailTheme14'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme14.png">
+                    <img *ngIf="themeName == 'RetailTheme15'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme15.png">
+                    <img *ngIf="themeName == 'RetailTheme16'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme16.png">
+                    <img *ngIf="themeName == 'RetailTheme17'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme17.png">
+                    <img *ngIf="themeName == 'RetailTheme18'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme18.png">
+                    <img *ngIf="themeName == 'RetailTheme19'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme19.png">
+                    <img *ngIf="themeName == 'RetailTheme20'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme20.png">
+                    <img *ngIf="themeName == 'RetailTheme21'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme21.png">
+                  </div>
+                  </div>
+              </div>
+              <div class="row gallery_slider mt-3 justify-content-center"> 
+
+                <!-- Item less than 3 Starts Here -->
+                <div class="col-lg-7 col-md-8 col-sm-10 col-12" *ngIf="product.images.length < 3">
+                <owl-carousel-o [options]="customOptions" class="carousel-not-hidden slider-left-right-arrows">
+                  <ng-template carouselSlide  *ngFor="let image of product?.images; let i = index">
+                    <div 
+                    class="swiper-slide cursor-pointer w-100 text-center px-2 d-flex align-items-center justify-content-center"  
+                    (click)="selectImage(image,i)">
+                      <img 
+                      onerror="this.src='./assets/img/default-product.png'"  
+                      [src]="image" 
+                      [ngClass]="{'border-color-black border-2': i === currentIndex && !showVideo}"  
+                      class="h-100-px w-130-px mob-w-70-px object-fit-contain border border-color-silver rounded-2 cursor-pointer" alt="{{'ICONIMAGES'|translate}}">
+                    </div>
+                  </ng-template>
+                  <ng-template carouselSlide  *ngIf="product?.videoUrl">
+                    <div class="d-flex w-100 align-items-center justify-content-center">
+                    <div 
+                    class="swiper-slide cursor-pointer product-images-single-l position-relative px-2 d-flex align-items-center justify-content-center"  
+                      (click)="enableVideo()">
+
+                      <video class="w-130-px mob-w-70-px h-100-px rounded-2 object-fit-cover border border-color-silver rounded-2" [ngClass]="{'border-color-black border-2': showVideo}">
+                        <source [src]="product.videoUrl">
+                      </video>
+                      <span class="d-flex w-100 h-100 position-absolute top-0 align-items-center justify-content-center">
+                        <i class="bg-black bi bi-play-circle-fill lh-tiny no-min-height no-min-width rounded-circle text-35 text-white"></i>
+                      </span>
+                      </div>
+                      </div>
+                  </ng-template>
+                </owl-carousel-o>  
+                </div> 
+                <!-- Item less than 3 Ends Here -->
+
+                <!-- Item 3 Starts Here -->
+                <div class="col-lg-9 col-md-10 col-sm-12 col-12" *ngIf="product.images.length === 3">
+                  <owl-carousel-o [options]="customOptions" class="carousel-not-hidden slider-left-right-arrows">
+                    <ng-template carouselSlide  *ngFor="let image of product?.images; let i = index">
+                      <div 
+                      class="swiper-slide cursor-pointer w-100 text-center px-2 d-flex align-items-center justify-content-center"  
+                      (click)="selectImage(image,i)">
+                        <img 
+                        onerror="this.src='./assets/img/default-product.png'"  
+                        [src]="image" 
+                        [ngClass]="{'border-color-black border-2': i === currentIndex && !showVideo}"  
+                        class="h-100-px w-130-px mob-w-70-px object-fit-contain border border-color-silver rounded-2 cursor-pointer" alt="{{'ICONIMAGES'|translate}}">
+                      </div>
+                    </ng-template>
+                    <ng-template carouselSlide  *ngIf="product?.videoUrl">
+                      <div class="d-flex w-100 align-items-center justify-content-center">
+                      <div 
+                      class="swiper-slide cursor-pointer product-images-single-l position-relative px-2 d-flex align-items-center justify-content-center"  
+                        (click)="enableVideo()">
+  
+                        <video class="w-130-px mob-w-70-px h-100-px rounded-2 object-fit-cover border border-color-silver rounded-2" [ngClass]="{'border-color-black border-2': showVideo}">
+                          <source [src]="product.videoUrl">
+                        </video>
+                        <span class="d-flex w-100 h-100 position-absolute top-0 align-items-center justify-content-center">
+                          <i class="bg-black bi bi-play-circle-fill lh-tiny no-min-height no-min-width rounded-circle text-35 text-white"></i>
+                        </span>
+                        </div>
+                        </div>
+                    </ng-template>
+                  </owl-carousel-o>  
+                  </div> 
+                  <!-- Item 3 Ends Here -->
+                
+                <!-- Item more than 3 Starts Here -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12" *ngIf="product.images.length > 3">
+                    <owl-carousel-o [options]="customOptions" class="carousel-not-hidden slider-left-right-arrows">
+                       <ng-template carouselSlide  *ngFor="let image of product?.images; let i = index">
+                         <div 
+                         class="swiper-slide cursor-pointer w-100 text-center px-2 d-flex align-items-center justify-content-center"  
+                         (click)="selectImage(image,i)">
+                           <img 
+                           onerror="this.src='./assets/img/default-product.png'"  
+                           [src]="image" 
+                           [ngClass]="{'border-color-black border-2': i === currentIndex && !showVideo}"  
+                           class="h-100-px w-130-px mob-w-70-px object-fit-contain border border-color-silver rounded-2 cursor-pointer" alt="{{'ICONIMAGES'|translate}}">
+                         </div>
+                       </ng-template>
+                       <ng-template carouselSlide  *ngIf="product?.videoUrl">
+                         <div class="d-flex w-100 align-items-center justify-content-center">
+                         <div 
+                         class="swiper-slide cursor-pointer product-images-single-l position-relative px-2 d-flex align-items-center justify-content-center"  
+                          (click)="enableVideo()">
+   
+                           <video class="w-130-px mob-w-70-px h-100-px rounded-2 object-fit-cover border border-color-silver rounded-2" [ngClass]="{'border-color-black border-2': showVideo}">
+                             <source [src]="product.videoUrl">
+                           </video>
+                           <span class="d-flex w-100 h-100 position-absolute top-0 align-items-center justify-content-center">
+                             <i class="bg-black bi bi-play-circle-fill lh-tiny no-min-height no-min-width rounded-circle text-35 text-white"></i>
+                           </span>
+                          </div>
+                          </div>
+                       </ng-template>
+                     </owl-carousel-o>  
+                </div> 
+                <!-- Item more than 3 Ends Here -->
+
+           </div>
+            </div>
+            <!-- Images on Bottom Layout Ends Here -->
+            
+            </div>
+            <!-- Desktop Images Ends Here -->
+
+            <!-- Mobile Images Starts Here -->
+            <div class="d-lg-none d-md-none d-sm-block d-block pb-lg-0 pb-md-0 pb-sm-4 pb-4">
+              <div class="d-block w-100">
+                <div class="row"> 
+                  <div class="col-md-12 col-lg-12 col-sm-12 col-12 position-relative">
+                    <div class="d-block w-100 left-side-big-image border border-color-silver rounded-2" *ngIf="!showVideo">
+                    <div>
+                    <img (click)="fulscreenImage()" [src]="product?.mainImageUrl" class="w-100 h-350-px object-fit-contain"/>
+                    </div> 
+                    </div>
+                    <div class="d-block w-100" *ngIf="showVideo">
+                      <video #videoPlayer [controls]="showControls" (play)="onPlay()" (pause)="onPause()"
+                        class="w-100 h-350-px rounded-2 border rounded-2">
+                        <source [src]="product.videoUrl">
+                      </video>
+                      <div *ngIf="!isPlaying" (click)="playVideo()"
+                        class="d-flex cursor-pointer align-items-center justify-content-center w-100 position-absolute top-0 start-0 h-100">
+                        <button class="w-100 text-center d-flex align-items-center justify-content-center">
+                          <i
+                            class="bi bi-play-circle-fill text-60 mob-text-40 text-white bg-black rounded-circle lh-tiny no-min-height no-min-width"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div *ngIf="product?.inStock == false" class="position-absolute top-0 start-0 ms-3 mt-3 z-index-99 d-flex align-items-center justify-content-center">
+                      <img *ngIf="themeName == 'FourthTheme'" class="h-80-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme1.png">
+                      <img *ngIf="themeName == 'RetailTheme2'" class="h-80-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme2.png">
+                      <img *ngIf="themeName == 'RetailTheme3'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme3.png">
+                      <img *ngIf="themeName == 'RetailTheme4'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme4.png">
+                      <img *ngIf="themeName == 'RetailTheme5'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme5.png">
+                      <img *ngIf="themeName == 'RetailTheme6'" class="h-120-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme6.png">
+                      <img *ngIf="themeName == 'RetailTheme7'" class="h-80-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme7.png">
+                      <img *ngIf="themeName == 'RetailTheme8'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme8.png">
+                      <img *ngIf="themeName == 'RetailTheme9'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme9.png">
+                      <img *ngIf="themeName == 'RetailTheme10'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme10.png">
+                      <img *ngIf="themeName == 'RetailTheme11'" class="h-50-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme11.png">
+                      <img *ngIf="themeName == 'RetailTheme12'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme12.png">
+                      <img *ngIf="themeName == 'RetailTheme13'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme13.png">
+                      <img *ngIf="themeName == 'RetailTheme14'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme14.png">
+                      <img *ngIf="themeName == 'RetailTheme15'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme15.png">
+                      <img *ngIf="themeName == 'RetailTheme16'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme16.png">
+                      <img *ngIf="themeName == 'RetailTheme17'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme17.png">
+                      <img *ngIf="themeName == 'RetailTheme18'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme18.png">
+                      <img *ngIf="themeName == 'RetailTheme19'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme19.png">
+                      <img *ngIf="themeName == 'RetailTheme20'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme20.png">
+                      <img *ngIf="themeName == 'RetailTheme21'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme21.png">
+                    </div>
+                  </div>
+
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                     <!-- Item less than 3 Starts Here -->
+                <div class="col-lg-7 col-md-8 col-sm-10 col-12" *ngIf="product.images.length < 3">
+                <owl-carousel-o [options]="customOptions" class="carousel-not-hidden slider-left-right-arrows">
+                  <ng-template carouselSlide  *ngFor="let image of product?.images; let i = index">
+                    <div 
+                    class="swiper-slide cursor-pointer w-100 text-center px-2 d-flex align-items-center justify-content-center"  
+                    (click)="selectImage(image,i)">
+                      <img 
+                      onerror="this.src='./assets/img/default-product.png'"  
+                      [src]="image" 
+                      [ngClass]="{'border-color-black border-2': i === currentIndex && !showVideo}"  
+                      class="h-70-px w-70-px object-fit-contain border border-color-silver rounded-2 cursor-pointer" alt="{{'ICONIMAGES'|translate}}">
+                    </div>
+                  </ng-template>
+                  <ng-template carouselSlide  *ngIf="product?.videoUrl">
+                    <div class="d-flex w-100 align-items-center justify-content-center">
+                    <div 
+                    class="swiper-slide cursor-pointer product-images-single-l position-relative px-2 d-flex align-items-center justify-content-center"  
+                      (click)="enableVideo()">
+
+                      <video class="h-70-px w-70-px rounded-2 object-fit-cover border border-color-silver rounded-2" [ngClass]="{'border-color-black border-2': showVideo}">
+                        <source [src]="product.videoUrl">
+                      </video>
+                      <span class="d-flex w-100 h-100 position-absolute top-0 align-items-center justify-content-center">
+                        <i class="bg-black bi bi-play-circle-fill lh-tiny no-min-height no-min-width rounded-circle text-35 text-white"></i>
+                      </span>
+                      </div>
+                      </div>
+                  </ng-template>
+                </owl-carousel-o>  
+                </div> 
+                <!-- Item less than 3 Ends Here -->
+
+                <!-- Item 3 Starts Here -->
+                <div class="col-lg-9 col-md-10 col-sm-12 col-12" *ngIf="product.images.length === 3">
+                  <owl-carousel-o [options]="customOptions" class="carousel-not-hidden slider-left-right-arrows">
+                    <ng-template carouselSlide  *ngFor="let image of product?.images; let i = index">
+                      <div 
+                      class="swiper-slide cursor-pointer w-100 text-center px-2 d-flex align-items-center justify-content-center"  
+                      (click)="selectImage(image,i)">
+                        <img 
+                        onerror="this.src='./assets/img/default-product.png'"  
+                        [src]="image" 
+                        [ngClass]="{'border-color-black border-2': i === currentIndex && !showVideo}"  
+                        class="h-70-px w-70-px object-fit-contain border border-color-silver rounded-2 cursor-pointer" alt="{{'ICONIMAGES'|translate}}">
+                      </div>
+                    </ng-template>
+                    <ng-template carouselSlide  *ngIf="product?.videoUrl">
+                      <div class="d-flex w-100 align-items-center justify-content-center">
+                      <div 
+                      class="swiper-slide cursor-pointer product-images-single-l position-relative px-2 d-flex align-items-center justify-content-center"  
+                        (click)="enableVideo()">
+  
+                        <video class="w-70-px h-70-px rounded-2 object-fit-cover border border-color-silver rounded-2" [ngClass]="{'border-color-black border-2': showVideo}">
+                          <source [src]="product.videoUrl">
+                        </video>
+                        <span class="d-flex w-100 h-100 position-absolute top-0 align-items-center justify-content-center">
+                          <i class="bg-black bi bi-play-circle-fill lh-tiny no-min-height no-min-width rounded-circle text-35 text-white"></i>
+                        </span>
+                        </div>
+                        </div>
+                    </ng-template>
+                  </owl-carousel-o>  
+                  </div> 
+                  <!-- Item 3 Ends Here -->
+                
+                <!-- Item more than 3 Starts Here -->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12" *ngIf="product.images.length > 3">
+                    <owl-carousel-o [options]="customOptions" class="carousel-not-hidden slider-left-right-arrows">
+                       <ng-template carouselSlide  *ngFor="let image of product?.images; let i = index">
+                         <div 
+                         class="swiper-slide cursor-pointer w-100 text-center px-2 d-flex align-items-center justify-content-center"  
+                         (click)="selectImage(image,i)">
+                           <img 
+                           onerror="this.src='./assets/img/default-product.png'"  
+                           [src]="image" 
+                           [ngClass]="{'border-color-black border-2': i === currentIndex && !showVideo}"  
+                           class="h-70-px w-70-px object-fit-contain border border-color-silver rounded-2 cursor-pointer" alt="{{'ICONIMAGES'|translate}}">
+                         </div>
+                       </ng-template>
+                       <ng-template carouselSlide  *ngIf="product?.videoUrl">
+                         <div class="d-flex w-100 align-items-center justify-content-center">
+                         <div 
+                         class="swiper-slide cursor-pointer product-images-single-l position-relative px-2 d-flex align-items-center justify-content-center"  
+                          (click)="enableVideo()">
+   
+                           <video class="w-70-px h-70-px rounded-2 object-fit-cover border border-color-silver rounded-2" [ngClass]="{'border-color-black border-2': showVideo}">
+                             <source [src]="product.videoUrl">
+                           </video>
+                           <span class="d-flex w-100 h-100 position-absolute top-0 align-items-center justify-content-center">
+                             <i class="bg-black bi bi-play-circle-fill lh-tiny no-min-height no-min-width rounded-circle text-35 text-white"></i>
+                           </span>
+                          </div>
+                          </div>
+                       </ng-template>
+                     </owl-carousel-o>  
+                </div> 
+                <!-- Item more than 3 Ends Here -->
+                  </div>
+               </div>
+              </div>
+            </div>
+            <!-- Mobile Images Ends Here -->
+
+
+            </div>
+            <div *ngIf="product.images.length == 0" class="d-block w-100 px-2 position-relative">
+              <img src='./assets/img/default-product.png' class="w-100 h-450-px object-fit-contain border border-color-silver rounded-2">
+              <div *ngIf="product?.inStock == false" class="position-absolute top-0 start-0 ms-3 mt-3 z-index-99 d-flex align-items-center justify-content-center">
+                <img *ngIf="themeName == 'FourthTheme'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme1.png">
+                    <img *ngIf="themeName == 'RetailTheme2'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme2.png">
+                    <img *ngIf="themeName == 'RetailTheme3'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme3.png">
+                    <img *ngIf="themeName == 'RetailTheme4'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme4.png">
+                    <img *ngIf="themeName == 'RetailTheme5'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme5.png">
+                    <img *ngIf="themeName == 'RetailTheme6'" class="h-150-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme6.png">
+                    <img *ngIf="themeName == 'RetailTheme7'" class="h-100-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme7.png">
+                    <img *ngIf="themeName == 'RetailTheme8'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme8.png">
+                    <img *ngIf="themeName == 'RetailTheme9'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme9.png">
+                    <img *ngIf="themeName == 'RetailTheme10'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme10.png">
+                    <img *ngIf="themeName == 'RetailTheme11'" class="h-50-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme11.png">
+                    <img *ngIf="themeName == 'RetailTheme12'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme12.png">
+                    <img *ngIf="themeName == 'RetailTheme13'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme13.png">
+                    <img *ngIf="themeName == 'RetailTheme14'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme14.png">
+                    <img *ngIf="themeName == 'RetailTheme15'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme15.png">
+                    <img *ngIf="themeName == 'RetailTheme16'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme16.png">
+                    <img *ngIf="themeName == 'RetailTheme17'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme17.png">
+                    <img *ngIf="themeName == 'RetailTheme18'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme18.png">
+                    <img *ngIf="themeName == 'RetailTheme19'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme19.png">
+                    <img *ngIf="themeName == 'RetailTheme20'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme20.png">
+                    <img *ngIf="themeName == 'RetailTheme21'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme21.png">
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+
+        <!-- Master Theme Starts Here -->
+        <app-pdp-theme1
+        *ngIf="themeName == 'FourthTheme'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol" 
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme1>
+        <!-- Master THeme Ends Here -->
+
+        <!-- Retail Theme 2 Starts Here -->
+        <app-pdp-theme2
+        *ngIf="themeName == 'RetailTheme2'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol" 
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme2>
+        <!-- Retail Theme 2 Ends Here -->
+
+        <!-- Retail Theme 3 Starts Here -->
+        <app-pdp-theme3
+        *ngIf="themeName == 'RetailTheme3'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol" 
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme3>
+        <!-- Retail Theme 3 Ends Here -->
+
+        <!-- Retail Theme 4 Starts Here -->
+        <app-pdp-theme4
+        *ngIf="themeName == 'RetailTheme4'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol" 
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme4>
+        <!-- Retail Theme 4 Ends Here -->
+
+        <!-- Retail Theme 5 Starts Here -->
+        <app-pdp-theme5
+        *ngIf="themeName == 'RetailTheme5'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol"
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme5>
+        <!-- Retail Theme 5 Ends Here -->
+
+        <!-- Retail Theme 6 Starts Here -->
+         <app-pdp-theme6
+        *ngIf="themeName == 'RetailTheme6'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol"
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme6>
+        <!-- Retail Theme 6 Ends Here -->
+
+        <!-- Retail Theme 7 Starts Here -->
+        <app-pdp-theme7
+        *ngIf="themeName == 'RetailTheme7'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol"
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme7>
+        <!-- Retail Theme 7 Ends Here -->
+
+        <!-- Retail Theme 8 Starts Here -->
+        <app-pdp-theme8
+        *ngIf="themeName == 'RetailTheme8'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol"
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme8>
+        <!-- Retail Theme 8 Ends Here -->
+
+        <!-- Retail Theme 9 Starts Here -->
+        <app-pdp-theme9
+        *ngIf="themeName == 'RetailTheme9'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol"
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme9>
+        <!-- Retail Theme 9 Ends Here -->
+
+        <!-- Retail Theme 10 Starts Here -->
+        <app-pdp-theme10
+        *ngIf="themeName == 'RetailTheme10'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol"
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme10>
+        <!-- Retail Theme 10 Ends Here -->
+
+        <!-- Retail Theme 11 Starts Here -->
+        <app-pdp-theme11
+        *ngIf="themeName == 'RetailTheme11'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol"
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme11>
+        <!-- Retail Theme 11 Ends Here -->
+
+        <!-- Retail Theme 12 Starts Here -->
+        <app-pdp-theme12
+        *ngIf="themeName == 'RetailTheme12'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol"
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme12>
+        <!-- Retail Theme 12 Ends Here -->
+
+        <!-- Retail Theme 13 Starts Here -->
+        <app-pdp-theme13
+        *ngIf="themeName == 'RetailTheme13'"
+        [data]="data"
+        [product]="product"
+        [currencySymbol]="currencySymbol"
+        (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme13>
+        <!-- Retail Theme 13 Ends Here -->
+
+         <!-- Retail Theme 14 Starts Here -->
+         <app-pdp-theme14
+         *ngIf="themeName == 'RetailTheme14'"
+         [data]="data"
+         [product]="product"
+         [currencySymbol]="currencySymbol"
+         (productSkuChanges)="onProductSkuChanges($event)">
+         </app-pdp-theme14>
+         <!-- Retail Theme 14 Ends Here -->
+
+         <!-- Retail Theme 15 Starts Here -->
+         <app-pdp-theme15
+         *ngIf="themeName == 'RetailTheme15'"
+         [data]="data"
+         [product]="product"
+         [currencySymbol]="currencySymbol"
+         (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme15>
+         <!-- Retail Theme 15 Ends Here -->
+
+         <!-- Retail Theme 16 Starts Here -->
+         <app-pdp-theme16
+         *ngIf="themeName == 'RetailTheme16'"
+         [data]="data"
+         [product]="product"
+         [currencySymbol]="currencySymbol"
+         (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme16>
+         <!-- Retail Theme 16 Ends Here -->
+
+         <!-- Retail Theme 17 Starts Here -->
+         <app-pdp-theme17
+         *ngIf="themeName == 'RetailTheme17'"
+         [data]="data"
+         [product]="product"
+         [currencySymbol]="currencySymbol"
+         (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme17>
+         <!-- Retail Theme 17 Ends Here -->
+
+         <!-- Retail Theme 18 Starts Here -->
+         <app-pdp-theme18
+         *ngIf="themeName == 'RetailTheme18'"
+         [data]="data"
+         [product]="product"
+         [currencySymbol]="currencySymbol"
+         (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme18>
+         <!-- Retail Theme 18 Ends Here -->
+
+
+         <!-- Retail Theme 19 Starts Here -->
+         <app-pdp-theme19
+         *ngIf="themeName == 'RetailTheme19'"
+         [data]="data"
+         [product]="product"
+         [currencySymbol]="currencySymbol"
+         (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme19>
+         <!-- Retail Theme 19 Ends Here -->
+
+
+         <!-- Retail Theme 20 Starts Here -->
+         <app-pdp-theme20
+         *ngIf="themeName == 'RetailTheme20'"
+         [data]="data"
+         [product]="product"
+         [currencySymbol]="currencySymbol"
+         (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme20>
+         <!-- Retail Theme 20 Ends Here -->
+
+
+
+         <!-- Retail Theme 21 Starts Here -->
+         <app-pdp-theme21
+         *ngIf="themeName == 'RetailTheme21'"
+         [data]="data"
+         [product]="product"
+         [currencySymbol]="currencySymbol"
+         (productSkuChanges)="onProductSkuChanges($event)">
+        </app-pdp-theme21>
+         <!-- Retail Theme 21 Ends Here -->
+
+        
+
+          </div>
+        </div>
+      </div>
+     </div>
+  </section>
+
+<!-- Skeleton Loader Starts Here -->
+<section class="py-5 my-5" *ngIf="!data || !product">
+  <div class="new-container1">
+    <div class="row skeleton-wrapper">
+      <div class="col-lg-6 col-md-6 col-12 mb-3">
+        <div class="skeleton-box mb-3 w-100 h-400-px rounded-3"></div>
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-3 me-2" *ngFor="let t of [1,2,3,4]">
+            <div class="skeleton-box h-80-px w-100 rounded-2">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="skeleton-box mb-3" style="width: 70%; height: 28px;"></div>
+        <div class="skeleton-box mb-4" style="width: 150px; height: 20px;"></div>
+        <div class="skeleton-box mb-4" style="width: 120px; height: 28px;"></div>
+        <div class="skeleton-box mb-3" style="width: 180px; height: 45px; border-radius: 8px;"></div>
+        <div class="skeleton-box mb-4" style="width: 160px; height: 40px; border-radius: 8px;"></div>
+        <div class="skeleton-box mb-2" style="width: 100%; height: 18px;"></div>
+        <div class="skeleton-box mb-2" style="width: 90%; height: 18px;"></div>
+        <div class="skeleton-box mb-2" style="width: 80%; height: 18px;"></div>
+        <div class="skeleton-box mb-2" style="width: 70%; height: 18px;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Skeleton Loader Ends Here -->

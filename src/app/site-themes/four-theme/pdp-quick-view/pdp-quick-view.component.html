@@ -1,0 +1,221 @@
+<section class="d-block popup-parent-rtl position-relative overflow-auto modern-scroll w-100 pdp-quickview-wrapper" *ngIf="product">
+  <button (click)="closePopup()"
+    class="d-flex align-items-center justify-content-center p-1 z-index-1 position-absolute bg-theme-light-color rounded-circle top-0 end-0 me-3 mt-3">
+    <mat-icon class="text-black text-20 m-0 p-0 no-min-height no-min-width">close</mat-icon>
+  </button>
+  <div class="row m-0">
+    <!-- Product Images Starts Here -->
+    <div class=" col-sm-12 col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+      <div class="d-block w-100 pdp-quick-imageview px-2 py-2 position-relative">
+        <div class="d-block w-100" *ngIf="product?.mainImageUrl">
+          <div class="row mx-0">
+            <div    class="col-md-3 col-lg-3 col-sm-3 col-3 d-block cursor-pointer ps-0 pe-4  pb-3">
+              <div class="d-flex align-items-center justify-content-center w-100">
+                <button *ngIf="product.images.length > 3 || (product.images.length > 2 && product.videoUrl)"  class="w-30-px z-index-1 top-0 mt-1 h-30-px p-1 d-flex align-items-center justify-content-center" (click)="scrollToTop()">
+                  <mat-icon class="m-0 p-0 text-24 text-black no-min-height no-min-width">keyboard_arrow_up</mat-icon>
+                </button>
+              </div>
+              <div #scrollContainer class="d-block w-100 product-slideimage-quickview overflow-hidden">
+              <img (click)="onImageClick(i, image)" [ngClass]="{'border-color-black': i === selectedImageIndex && !showVideo}"
+                *ngFor="let image of product?.images; let i = index" (click)="product.mainImageUrl = image; showVideo = false;"
+                onerror="this.src='./assets/img/default-product.png'" [src]="image"
+                alt="{{'PRODUCT_IMAGE'|translate}}"
+                class="d-block w-100 h-90-px mb-2 object-fit-contain border rounded-2 py-2 border-color-silver">
+                <div class="d-block w-100 position-relative" (click)="enableVideo()" *ngIf="product.videoUrl">
+                  <video class="w-100 h-100-px rounded-2 object-fit-cover border border-color-silver" [ngClass]="{'border-color-black': showVideo}">
+                    <source [src]="product.videoUrl">
+                  </video>
+                  <span class="d-flex w-100 h-100 position-absolute top-0 align-items-center justify-content-center">
+                    <i class="bg-black bi bi-play-circle-fill lh-tiny no-min-height no-min-width rounded-circle text-35 text-white"></i>
+                  </span>
+                 </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-center w-100">
+                  <button *ngIf="product.images.length > 3 || (product.images.length > 2 && product.videoUrl)"  class="w-30-px z-index-1 top-0 mt-1 h-30-px p-1 d-flex align-items-center justify-content-center" (click)="scrollToBottom()">
+                    <mat-icon class="m-0 p-0 text-24 text-black no-min-height no-min-width">keyboard_arrow_down</mat-icon>
+                  </button>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-9 position-relative">
+              <div class="d-block w-100" *ngIf="!showVideo">
+               <lib-ngx-image-zoom class="pdpquickview-mag"
+               thumbImage={{product?.mainImageUrl}}
+               fullImage={{product?.mainImageUrl}}
+               [magnification]="1"
+               [enableScrollZoom]="true"
+               [enableLens]="true"
+               [lensWidth]="200"
+               [lensHeight]="200">
+               </lib-ngx-image-zoom>
+               </div>
+               <div class="d-block w-100" *ngIf="showVideo">
+                <video #videoPlayer  [controls]="showControls"  (play)="onPlay()" (pause)="onPause()" class="w-100 h-450-px rounded-2 border border-color-silver rounded-2">
+                  <source [src]="product.videoUrl">
+                </video>
+                   <div *ngIf="!isPlaying" (click)="playVideo()"
+                      class="d-flex cursor-pointer align-items-center justify-content-center w-100 position-absolute top-0 start-0 h-100">
+                      <button class="w-100 text-center d-flex align-items-center justify-content-center">
+                        <i class="bi bi-play-circle-fill text-60 mob-text-40 text-white bg-black rounded-circle lh-tiny no-min-height no-min-width"></i>
+                      </button>
+                    </div>
+              </div>
+              <div *ngIf="product?.inStock == false" class="position-absolute top-0 start-0 ms-3 mt-3 z-index-99 d-flex align-items-center justify-content-center">
+                <img *ngIf="themeName == 'FourthTheme'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme1.png">
+                    <img *ngIf="themeName == 'RetailTheme2'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme2.png">
+                    <img *ngIf="themeName == 'RetailTheme3'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme3.png">
+                    <img *ngIf="themeName == 'RetailTheme4'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme4.png">
+                    <img *ngIf="themeName == 'RetailTheme5'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme5.png">
+                    <img *ngIf="themeName == 'RetailTheme6'" class="h-150-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme6.png">
+                    <img *ngIf="themeName == 'RetailTheme7'" class="h-100-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme7.png">
+                    <img *ngIf="themeName == 'RetailTheme8'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme8.png">
+                    <img *ngIf="themeName == 'RetailTheme9'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme9.png">
+                    <img *ngIf="themeName == 'RetailTheme10'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme10.png">
+                    <img *ngIf="themeName == 'RetailTheme11'" class="h-50-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme11.png">
+                    <img *ngIf="themeName == 'RetailTheme12'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme12.png">
+                    <img *ngIf="themeName == 'RetailTheme13'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme13.png">
+                    <img *ngIf="themeName == 'RetailTheme14'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme14.png">
+                    <img *ngIf="themeName == 'RetailTheme15'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme15.png">
+                    <img *ngIf="themeName == 'RetailTheme16'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme16.png">
+                    <img *ngIf="themeName == 'RetailTheme17'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme17.png">
+                    <img *ngIf="themeName == 'RetailTheme18'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme18.png">
+                    <img *ngIf="themeName == 'RetailTheme19'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme19.png">
+                    <img *ngIf="themeName == 'RetailTheme20'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme20.png">
+                    <img *ngIf="themeName == 'RetailTheme21'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme21.png">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-block w-100 position-relative" *ngIf="!product?.mainImageUrl">
+          <img src="./assets/img/default-product.png" alt="{{'PRODUCT_IMAGE'|translate}}"
+            class="product-detail-size1 w-100 object-fit-contain object-position-center">
+            <div *ngIf="product?.inStock == false" class="position-absolute top-0 start-0 ms-3 mt-3 z-index-99 d-flex align-items-center justify-content-center">
+                    <img *ngIf="themeName == 'FourthTheme'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme1.png">
+                    <img *ngIf="themeName == 'RetailTheme2'" class="h-100-px w-auto rounded-0" src="./assets/img/soldout/sold-out-tag-theme2.png">
+                    <img *ngIf="themeName == 'RetailTheme3'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme3.png">
+                    <img *ngIf="themeName == 'RetailTheme4'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme4.png">
+                    <img *ngIf="themeName == 'RetailTheme5'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme5.png">
+                    <img *ngIf="themeName == 'RetailTheme6'" class="h-150-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme6.png">
+                    <img *ngIf="themeName == 'RetailTheme7'" class="h-100-px w-auto rounded-0 mt-3" src="./assets/img/soldout/sold-out-tag-theme7.png">
+                    <img *ngIf="themeName == 'RetailTheme8'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme8.png">
+                    <img *ngIf="themeName == 'RetailTheme9'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme9.png">
+                    <img *ngIf="themeName == 'RetailTheme10'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme10.png">
+                    <img *ngIf="themeName == 'RetailTheme11'" class="h-50-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme11.png">
+                    <img *ngIf="themeName == 'RetailTheme12'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme12.png">
+                    <img *ngIf="themeName == 'RetailTheme13'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme13.png">
+                    <img *ngIf="themeName == 'RetailTheme14'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme14.png">
+                    <img *ngIf="themeName == 'RetailTheme15'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme15.png">
+                    <img *ngIf="themeName == 'RetailTheme16'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme16.png">
+                    <img *ngIf="themeName == 'RetailTheme17'" class="h-80-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme17.png">
+                    <img *ngIf="themeName == 'RetailTheme18'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme18.png">
+                    <img *ngIf="themeName == 'RetailTheme19'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme19.png">
+                    <img *ngIf="themeName == 'RetailTheme20'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme20.png">
+                    <img *ngIf="themeName == 'RetailTheme21'" class="h-100-px w-auto rounded-0 mt-2" src="./assets/img/soldout/sold-out-tag-theme21.png">
+            </div>
+        </div>
+      </div>
+    </div>
+    <!-- Product Images Ends Here -->
+    <!-- Product Details Starts Here -->
+    <div class="col-sm-12 col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 p-0">
+      <div class="d-block w-100 pdp-quick-imageview overflow-auto pt-3 px-lg-0 px-md-0 px-3 modern-scroll">
+
+          <!-- Master Theme Starts Here -->
+          <app-quickview-theme1 *ngIf="themeName == 'FourthTheme'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme1>
+          <!-- Master Theme Ends Here -->
+
+          <!-- Retail Theme 2 Starts Here -->
+          <app-quickview-theme2 *ngIf="themeName == 'RetailTheme2'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme2>
+          <!-- Retail Theme 2 Ends Here -->
+
+           <!-- Retail Theme 3 Starts Here -->
+           <app-quickview-theme3 *ngIf="themeName == 'RetailTheme3'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme3>
+           <!-- Retail Theme 3 Ends Here -->
+
+           <!-- Retail Theme 4 Starts Here -->
+           <app-quickview-theme4 *ngIf="themeName == 'RetailTheme4'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme4>
+           <!-- Retail Theme 4 Ends Here -->
+
+           <!-- Retail Theme 5 Starts Here -->
+           <app-quickview-theme5 *ngIf="themeName == 'RetailTheme5'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme5>
+           <!-- Retail Theme 5 Ends Here -->
+
+           <!-- Retail Theme 6 Starts Here -->
+           <app-quickview-theme6 *ngIf="themeName == 'RetailTheme6'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme6>
+           <!-- Retail Theme 6 Ends Here -->
+
+           <!-- Retail Theme 7 Starts Here -->
+           <app-quickview-theme7 *ngIf="themeName == 'RetailTheme7'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme7>
+           <!-- Retail Theme 7 Ends Here -->
+
+           <!-- Retail Theme 8 Starts Here -->
+           <app-quickview-theme8 *ngIf="themeName == 'RetailTheme8'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme8>
+           <!-- Retail Theme 8 Ends Here -->
+
+           <!-- Retail Theme 9 Starts Here -->
+           <app-quickview-theme9 *ngIf="themeName == 'RetailTheme9'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme9>
+           <!-- Retail Theme 9 Ends Here -->
+
+           <!-- Retail Theme 10 Starts Here -->
+           <app-quickview-theme10 *ngIf="themeName == 'RetailTheme10'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme10>
+           <!-- Retail Theme 10 Ends Here -->
+
+           <!-- Retail Theme 11 Starts Here -->
+           <app-quickview-theme11 *ngIf="themeName == 'RetailTheme11'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme11>
+           <!-- Retail Theme 11 Ends Here -->
+
+           <!-- Retail Theme 12 Starts Here -->
+           <app-quickview-theme12 *ngIf="themeName == 'RetailTheme12'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme12>
+           <!-- Retail Theme 12 Ends Here -->
+
+           <!-- Retail Theme 13 Starts Here -->
+           <app-quickview-theme13 *ngIf="themeName == 'RetailTheme13'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme13>
+           <!-- Retail Theme 13 Ends Here -->
+
+           <!-- Retail Theme 14 Starts Here -->
+           <app-quickview-theme14 *ngIf="themeName == 'RetailTheme14'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme14>
+           <!-- Retail Theme 14 Ends Here -->
+
+           <!-- Retail Theme 15 Starts Here -->
+           <app-quickview-theme15 *ngIf="themeName == 'RetailTheme15'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme15>
+           <!-- Retail Theme 15 Ends Here -->
+
+           <!-- Retail Theme 16 Starts Here -->
+           <app-quickview-theme16 *ngIf="themeName == 'RetailTheme16'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme16>
+           <!-- Retail Theme 16 Ends Here -->
+
+           <!-- Retail Theme 17 Starts Here -->
+           <app-quickview-theme17 *ngIf="themeName == 'RetailTheme17'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme17>
+           <!-- Retail Theme 17 Ends Here -->
+
+           <!-- Retail Theme 18 Starts Here -->
+           <app-quickview-theme18 *ngIf="themeName == 'RetailTheme18'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme18>
+           <!-- Retail Theme 18 Ends Here -->
+
+            <!-- Retail Theme 19 Starts Here -->
+            <app-quickview-theme19 *ngIf="themeName == 'RetailTheme19'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme19>
+            <!-- Retail Theme 19 Ends Here -->
+
+            <!-- Retail Theme 20 Starts Here -->
+            <app-quickview-theme20 *ngIf="themeName == 'RetailTheme20'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme20>
+            <!-- Retail Theme 20 Ends Here -->
+
+            <!-- Retail Theme 21 Starts Here -->
+            <app-quickview-theme21 *ngIf="themeName == 'RetailTheme21'" [attrValues]="data.attrValues" (productSkuChanges)="onProductSkuChanges($event)"></app-quickview-theme21>
+            <!-- Retail Theme 21 Ends Here -->
+
+
+
+        <div class="d-block position-absolute start-0 bottom-0 z-index-1 bg-white w-100 rounded-2">
+         <div class="d-block w-100 px-3 mb-3">
+          <button [ngClass]="{'rounded-pill': themeName == 'RetailTheme4'}" mat-dialog-close (click)="navigateTOProduct()"
+          class=" px-4 py-2 lh-lg w-100 text-16 font-weight-600 text-black border border-color-silver rounded-3">
+          {{'VIEW_FULL_PRODUCT_INFORMATION'|translate}}
+          </button>
+          </div>
+
+        </div>
+      </div>
+    <!-- Product Details Ends Here -->
+  </div>
+  </div>
+</section>

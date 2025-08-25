@@ -1,0 +1,39 @@
+<div class="d-block w-100 bg-theme-light-color rounded-2 border px-3 py-4 position-relative">
+  <div class="d-block w-100">
+    <div class="d-flex w-100 align-items-center justify-content-between px-2 mb-3">
+      <div class="d-inline-block">
+        <span *ngIf="payment?.isDefault" class="bg-white border border-color-silver d-inline-block font-weight-400 px-3 py-2 rounded-2 text-13 text-black">
+          {{'DEFAULT_PAYMENT_CARD'|translate}}
+        </span>
+      </div>
+      <div class="d-inline-block">
+        <button *ngIf="user.userType !== 'FAZEAL_REGISTERED'" (click)="deletePayment(payment.id)" class="bg-white rounded-circle p-1 d-flex align-itemss-center justify-content-center border border-color-silver">
+          <mat-icon class="m-0 p-0 text-22 no-min-height no-min-width text-black">delete_forever</mat-icon>
+        </button>
+      </div>
+  </div>
+
+  <div class="d-block w-100 mb-3">
+    <img  src='./assets/img/visa-logo.png' alt="{{'CARDNUMBER'|translate}}" class="w-100-px h-auto">
+  </div>
+  <div class="d-block w-100 mb-4">
+    <h4 class="text-black text-30 mob-text-22 font-weight-700 m-0 p-0 word-break-break-word"> {{payment?.lastFourDigits}} </h4>
+  </div>
+  <div class="d-block w-100">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8 col-12">
+        <p class="text-14 text-black mt-0 mb-2"> {{'NAME'|translate}} </p>
+        <h4 class="text-black font-weight-600 m-0 p-0"> {{payment?.cardHolderName}} </h4>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+        <p class="text-14 text-black mt-0 mb-2"> {{'PLAN_CARD_EXPIRATION_DATE'|translate}} </p>
+        <h4 class="text-black font-weight-600 m-0 p-0"> {{payment?.expiryDate}} </h4>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="user.userType !== 'FAZEAL_REGISTERED'" class="d-block w-100 text-end mt-3">
+  <button (click)="addPaymentPopup()" class="text-color-6941C6 text-14 font-weight-normal m-0 p-0">
+       {{'ADD_MORE_PAYMENTS'| translate}}
+  </button>
+</div>

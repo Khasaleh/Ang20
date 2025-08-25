@@ -1,0 +1,73 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0 text-capitalize">  {{'TERMS_OF_USE'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12"> 
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-transparent p-0 m-0 border-0 d-flex align-items-center justify-content-start">
+                  <li class="breadcrumb-item breadcrumb-slash-off d-flex align-items-center justify-content-start">
+                      <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                        {{'HOME'|translate}}
+                        </button>
+                      <span class="d-inline-block text-grey text-13 px-2"> / </span>
+                  </li>
+                  <li class="breadcrumb-item breadcrumb-slash-off p-0" aria-current="page">
+                      <b class="text-14 font-weight-400 cursor-default text-black text-capitalize">
+                        {{'TERMS_OF_USE'|translate}}
+                      </b>
+                  </li>
+              </ol>
+          </nav>
+        </div>
+    </div>
+  </div>
+</section>
+<section class="py-5">
+  <div class="new-container1">
+
+    <!-- Page Content Starts Here -->
+    <div class="d-block w-100"  *ngIf="!isLoading && !isContentEmpty()">
+      <div class="row">
+        <div class="col-lg-11 col-md-12 col-sm-12 col-12">
+           <div class="editor-view" [innerHTML]="sanitizedPageContent"></div>
+         </div>
+      </div>
+    </div>
+    <!-- Page Content Starts Here -->
+
+
+    <!-- Empty Content Starts Here -->
+    <div class="d-block w-100"  *ngIf="!isLoading && isContentEmpty()">
+      <div class="d-block w-100 py-4 text-center">
+          <img class="w-300-px mw-100" src="./assets/img/usefull-info-empty.jpg">
+          <p class="text-center text-black mt-3 mb-3 text-15 font-weight-400">
+            {{'THE_STORE_HAS_STILL_NOT_PREPARED_THE_CONTENT_FOR_TERMOFUSEPAGE'|translate}}
+            <br/>
+            {{'PLEASE_VISIT_AGAIN_LATER'|translate}}
+          </p>
+          <button [routerLink]="['../home']"  class="px-3 py-2 text-white bg-theme-dark-color rounded-2 text-14 font-weight-500">
+            {{'CONTINUE_SHOPING'|translate}}
+            </button>
+      </div>
+    </div>
+    <!-- Empty Content Ends Here -->
+
+
+     <!-- Loading Starts Here -->
+     <div class="d-block w-100 text-center py-5 my-5" *ngIf="isLoading"> 
+      <div class="d-flex flex-wrap align-items-center justify-content-center w-100 py-3">
+        <div class="d-block w-100">
+          <img class="h-40-px w-auto spinner-border border-0" src="./assets/img/spinner-icon1.png">
+        </div>
+        <div class="d-block w-100 pt-4">
+          <h4 class="text-black text-17 font-weight-500 m-0">{{'TERMS_OF_USE_CONTENT_IS_LOADING'|translate}}</h4>
+        </div>
+      </div>
+    </div>
+    <!-- Loading Ends Here -->
+
+
+  </div>
+</section>

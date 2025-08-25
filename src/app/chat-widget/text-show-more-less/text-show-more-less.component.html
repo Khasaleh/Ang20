@@ -1,0 +1,12 @@
+<div class="d-block w-100" *ngIf="!showMore && text.length > wordLimit">
+  <span class="d-inline text-14 text-black w-100 word-break-break-word" [innerHTML]="truncatedText"></span>
+  <button class="font-weight-500 px-2 text-14 col-blue text-capitalize" (click)="toggleShowMore()">
+    {{ 'SHOW_MORE' | translate }}
+  </button>
+</div>
+<div class="d-block w-100" *ngIf="showMore || text.length <= wordLimit">
+  <span class="d-inline text-14 text-black w-100 word-break-break-word" [innerHTML]="linkifiedText"></span>
+  <button *ngIf="showMore" class="font-weight-500 px-2 text-14 col-blue text-capitalize" (click)="toggleShowMore()">
+    {{ 'SHOW_LESS' | translate }}
+  </button>
+</div>

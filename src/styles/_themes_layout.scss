@@ -1,0 +1,479 @@
+
+// Theme Seperate Stylings
+// Theme2 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,100..900;1,100..900&display=swap');
+.theme2-body-main {
+  label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: "Overpass", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  }
+  .new-container1 {
+    width:100% !important;
+    max-width:1220px !important;
+    padding-left:15px !important;
+    padding-right:15px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+header.theme2-header-fixed {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  background: white;
+  z-index: 999;
+  box-shadow: 1px 1px 5px silver;
+  .header-desk {
+    padding: 5px 0px !important;
+}
+}
+.bg-alpha-black {
+  background:rgba(0,0,0,0.6) !important;
+}
+.z-index999 {
+  z-index:999 !important;
+}
+.object-position-top {
+  object-position:top center !important;
+}
+.header-theme2 {
+    z-index: 999;
+    position: relative;
+    background: none;
+}
+.banner-theme2-sec {
+margin-top:-116px;
+}
+.theme2-banner-image-height {
+  min-height:96vh !important;
+}
+.theme2-overlay-white1 {
+  &::before {
+    content:"";
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.7) !important;
+    z-index:99 !important;
+  }
+  div {
+    z-index:99 !important;
+  }
+}
+
+.theme2-overlay-black1 {
+  &::before {
+    content:"";
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.75) !important;
+    z-index:99 !important;
+  }
+  div {
+    z-index:99 !important;
+  }
+} 
+.banner-img-style2  {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100%;
+  object-fit:cover !important;
+}
+.hover-inner {
+opacity:0 !important;
+visibility: hidden !important;
+transition:all 0.4s ease-in-out;
+-webkit-transition:all 0.4s ease-in-out
+}
+.hover-parent-wrapper:hover {
+.hover-inner {
+  opacity:1 !important;
+  visibility: visible !important;
+}
+}
+// Media Querires for All
+@media (max-width: 767px) and (min-width: 577px) {
+  .theme2-banner-image-height {
+    height: 600px !important;
+    min-height: 0px;
+}
+}
+@media (max-width: 576px) and (min-width: 320px) {
+  .theme2-banner-image-height {
+    height: 600px !important;
+    min-height: 0px;
+}
+}
+.product-intro__size-radio_active-new-filter {
+  background: black !important;
+    border: 1px solid black !important;
+* {
+  color:white !important;
+}
+}
+.arrows-style1 {
+.swiper-container-rtl {
+   .swiper-button-next {
+    left: 15px !important;
+    right: auto !important;
+}
+  .swiper-button-prev {
+  right: -14px !important;
+  left: auto !important;
+}
+}
+}
+// Theme2 Custom CSS Ends Here
+
+// Theme 3 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+.theme3-body-main {
+ &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: "Jost", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  }
+}
+// Theme 3 Custom CSS Ends Here
+
+// Theme 4 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+.theme4-body-main {
+ &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: "Lato", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  }
+}
+// Theme 4 Custom CSS Ends Here
+
+
+// Theme 5 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.theme5-body-main {
+ &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: "Roboto", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  }
+}
+// Theme 5 Custom CSS Ends Here
+
+
+// Theme 6 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.theme6-body-main {
+ &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: "Poppins", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  }
+}
+.product-box-theme6:hover {
+    .product-box-theme6-actions1 , .product-box-theme6-actions2 , .product-box-theme6-actions3 {
+     -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+    }
+}
+.product-box-theme6-actions1, .product-box-theme6-actions2 ,  .product-box-theme6-actions3 {
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: color .4s .001s ease-out, background .4s .001s ease-out, visibility .4s .1s ease-out, opacity .4s .15s ease-out, transform .4s .1s ease-out, -webkit-transform .4s .1s ease-out;
+}
+.product-box-theme6-actions2{
+    transition: color .4s .001s ease-out, background .4s .001s ease-out, visibility .4s .20s ease-out, opacity .4s .20s ease-out, transform .4s .20s ease-out, -webkit-transform .4s .20s ease-out;
+}
+.product-box-theme6-actions3{
+    transition: color .4s .001s ease-out, background .4s .001s ease-out, visibility .4s .40s ease-out, opacity .4s .40s ease-out, transform .4s .40s ease-out, -webkit-transform .4s .40s ease-out;
+}
+// Theme 6 Custom CSS Ends Here
+
+
+// Theme 7 Custom CSS Starts Here
+.theme7-body-main {
+ &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: "Poppins", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+  }
+
+  
+  
+  }
+
+  .banner-theme7-sec {
+    margin-top: 0px;
+}
+  
+
+.header-theme7 {
+  background:rgba(0,0,0,0.9) !important;
+ &.theme2-header-fixed {
+  background:rgba(0,0,0,0.9) !important;
+ }
+}
+ 
+
+.theme7-overlay-1 {
+  &::before {
+    content:"";
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8) !important;
+    z-index:99 !important;
+  }
+  div {
+    z-index:99 !important;
+  }
+}
+// Theme 7 Custom Ends Here
+
+.div-sticky-fixed {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  left: 0px;
+  background: white;
+  z-index: 999;
+  box-shadow: 1px 1px 5px silver;
+}
+
+// Theme 8 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=El+Messiri:wght@400..700&display=swap');
+
+.theme8-body-main {
+  &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button , a {
+   font-family: "El Messiri", sans-serif !important;
+   font-optical-sizing: auto;
+   font-style: normal;
+   }
+}
+
+
+
+// Theme 9 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+.theme9-body-main {
+  &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button , a {
+    font-family: "Plus Jakarta Sans", serif !important;
+   font-optical-sizing: auto;
+   font-style: normal;
+   }
+}
+
+
+
+// Theme 10 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+.theme10-body-main {
+  &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button , a {
+    font-family: "Raleway", serif !important;
+   font-optical-sizing: auto;
+   font-style: normal;
+   }
+}
+
+
+
+
+// Theme 11 Custom CSS Starts Here
+ 
+.theme11-body-main {
+  &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button , a {
+    font-family: "Poppins", sans-serif !important;
+   font-optical-sizing: auto;
+   font-style: normal;
+   }
+}
+
+
+// Theme 12 Custom CSS Starts Here
+.theme12-product-tabs {
+  border:1px solid silver !important;
+  padding:20px;
+  .mat-mdc-tab-header {
+    border-bottom:1px solid silver !important;
+    margin-bottom:10px !important; 
+    .mat-mdc-tab-labels {
+      align-items:center;
+      justify-content:start;
+      .mat-mdc-tab { 
+        flex-grow: initial !important;
+        .mdc-tab__text-label {
+          font-size: 18px;
+          font-weight:700;
+        color: grey;
+        }
+        &.mdc-tab--active  {
+          .mdc-tab__text-label {
+            font-size: 18px;
+          color: black;
+          font-weight:700;
+          }
+         
+        }
+    }
+    }
+    
+ 
+}
+}
+
+// Theme 13 Custom CSS Starts Here
+.theme13-product-tabs {
+  .mat-mdc-tab-header {
+    border-bottom:1px solid silver !important;
+    margin-bottom:10px !important; 
+    .mat-mdc-tab-labels {
+      align-items:center;
+      justify-content:center;
+      .mat-mdc-tab {
+        flex-grow: initial !important;
+        border-bottom:2px solid silver;
+        .mdc-tab__text-label {
+          font-size: 18px;
+          font-weight:700;
+        color: black;
+        }
+    }
+    }
+    
+ 
+}
+}
+
+
+
+// Theme 14 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+.theme14-body-main {
+  &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button , a {
+    font-family: "Rubik", sans-serif !important;
+   font-optical-sizing: auto;
+   font-style: normal;
+   }
+}
+.header-logo-box14 {
+  width: 22%;
+}
+.header-actions-box14 {
+  width: 25%;
+}
+.header-search-box14 {
+  width: 52%;
+}
+.theme14-product-tabs {
+  .mat-mdc-tab-header {
+    box-shadow: 1px 1px 10px #d1d1d1;
+    padding: 12px 0px;
+    .mat-mdc-tab .mdc-tab__text-label {
+      font-size: 18px;
+      font-weight:700;
+    color: black;
+    }
+}
+}
+
+
+// Theme 15 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.theme15-body-main {
+  &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button , a {
+    font-family: "Montserrat", sans-serif !important;
+   font-optical-sizing: auto;
+   font-style: normal;
+   }
+}
+.header-searchbox-15 {
+  width: 40%;
+}
+.header-logobox-15 {
+  width: 20%;
+}
+.header-actionbox-15 {
+  width: 40%;
+}
+
+
+
+
+// Theme 16 Custom CSS Starts Here
+
+
+
+
+
+
+// Theme 17 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+.theme17-body-main {
+  &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button , a {
+    font-family: "Josefin Sans", serif !important;
+   font-optical-sizing: auto;
+   font-style: normal;
+   }
+}
+
+
+
+
+
+// Theme 18 Custom CSS Starts Here
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+.theme18-body-main {
+  &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button , a {
+    font-family: "Rubik", serif !important;
+   font-optical-sizing: auto;
+   font-style: normal;
+   }
+
+ 
+}
+
+.header-logo-box18 {
+  width: 15%;
+}
+.header-menu-box18 {
+width: 45%;
+}
+.header-actions-box18 {
+width: 13%;
+}
+.header-search-box18 {
+width: 25%;
+}
+
+
+// Theme 19 Custom CSS Starts Here
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+.theme19-body-main {
+  &, label, span, p, h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, button , a {
+    font-family: "Work Sans", serif !important;
+   font-optical-sizing: auto;
+   font-style: normal;
+   }
+
+ 
+}
+ 

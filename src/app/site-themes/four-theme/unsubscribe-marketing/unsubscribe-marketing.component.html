@@ -1,0 +1,31 @@
+<section class="d-block w-100 position-relative rounded-2 overflow-hidden">
+  <button mat-dialog-close class="bg-color-ECECEC z-index-1 d-flex align-items-center justify-content-center p-1 rounded-circle outline-none position-absolute top-0 end-0 me-2 mt-2">
+    <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+  </button>
+<div class="row m-0 align-items-center">
+  <div class="col-lg-5 col-md-5 col-sm-12 col-12 p-0">
+  <div class="d-block w-100">
+    <img class="w-100 h-350-px mob-h-250-px object-position-top object-fit-cover" src="./assets/img/subscribe-offer-min.jpg" alt="{{ 'UNSUBSCRIBE' | translate }}">
+  </div>
+  </div>
+
+  <div class="col-lg-7 col-md-7 col-sm-12 col-12 p-0">
+    <div class="d-block w-100 px-3 py-lg-2 py-md-2 py-sm-4 py-4 text-center">
+      <h3 class="text-20 font-weight-600 mt-0 mb-2 text-black text-capitalize">   {{ 'UNSUBSCRIBE' | translate }} </h3>
+      <p class="text-14 text-black mt-0 lh-base mb-3">   {{ 'STOP_SUBSCRIBING_EMAILS_MARKETING' | translate }}  </p>
+      <div class="d-block w-100 px-3 text-center">
+      <mat-form-field appearance="fill" class="w-100 field-style2 mb-2">
+        <mat-label class="text-muted text-13">  {{ 'EMAILADDRESS' | translate }} </mat-label>
+        <input matInput type="email" [(ngModel)]="email" class="form-control text-black text-15 h-30-px"  />
+      </mat-form-field>
+      </div>
+      <div class="d-block w-100 px-3 text-center">
+      <mat-error style="text-align: center" *ngIf="emailInvalid"><strong>{{ 'EMAIL_INVALID' | translate }}</strong></mat-error>
+      <button (click)="unSubscribe()" class="bg-theme-dark-color px-4 py-2 text-14 rounded-2 text-capitalize">
+         {{ 'UNSUBSCRIBE' | translate }}
+      </button>
+      </div>
+      </div>
+    </div>
+  </div>
+</section>
