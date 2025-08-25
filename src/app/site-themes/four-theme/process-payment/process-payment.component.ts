@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -66,6 +67,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    TranslateModule
+  ],
   selector: 'app-process-payment',
   templateUrl: './process-payment.component.html',
   styleUrls: ['./process-payment.component.css']

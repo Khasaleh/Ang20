@@ -53,6 +53,11 @@ import { NgxBarcode6Module } from 'ngx-barcode6';
 import { Options } from '@angular-slider/ngx-slider';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatCheckboxModule,
+    RouterModule
+  ],
   selector: 'app-four-theme-write-edit-reviews',
   templateUrl: './four-theme-write-edit-reviews.component.html',
   styleUrls: ['./four-theme-write-edit-reviews.component.scss']

@@ -54,6 +54,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddBillingAddressPopupComponent } from '../AddBillingAddressPopup/AddBillingAddressPopup.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatIconModule
+  ],
   selector: 'app-BillingAddressPopup',
   templateUrl: './BillingAddressPopup.component.html',
   styleUrls: ['./BillingAddressPopup.component.css']

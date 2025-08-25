@@ -1,3 +1,6 @@
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddPaymentComponent } from '../add-payment/add-payment.component';
@@ -8,6 +11,12 @@ import { AddressService } from 'src/app/service/Address.service';
 import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    TranslateModule
+  ],
   selector: 'app-payment-listing',
   templateUrl: './payment-listing.component.html',
   styleUrls: ['./payment-listing.component.css']

@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -61,6 +62,12 @@ import { DrawerControlService } from 'src/app/service/drawer-control.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-track-order',
   templateUrl: './track-order.component.html',
   styleUrls: ['./track-order.component.scss']

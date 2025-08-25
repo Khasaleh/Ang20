@@ -54,6 +54,11 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoryPath } from 'src/app/models/CategoryPath';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   selector: 'app-four-breadcrums',
   templateUrl: './four-breadcrums.component.html',
   styleUrls: ['./four-breadcrums.component.scss']

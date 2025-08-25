@@ -59,6 +59,10 @@ import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup
 import { OrderResponse } from 'src/app/models/OrderResponse';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
   selector: 'app-return-reasons-box',
   templateUrl: './return-reasons-box.component.html',
   styleUrls: ['./return-reasons-box.component.css']

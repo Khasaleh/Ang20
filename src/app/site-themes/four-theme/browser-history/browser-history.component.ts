@@ -1,3 +1,8 @@
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { environment } from 'src/environments/environment';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CurrencyResponse } from 'src/app/models/CurrencyResponse';
@@ -17,6 +22,15 @@ import { CookieDataServiceService } from 'src/app/service/cookie-data-service.se
 import { SessionResponse } from 'src/app/models/SessionResponse';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatTooltipModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-browser-history',
   templateUrl: './browser-history.component.html',
   styleUrls: ['./browser-history.component.scss']

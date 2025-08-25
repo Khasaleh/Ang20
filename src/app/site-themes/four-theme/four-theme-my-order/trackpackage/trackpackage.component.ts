@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,6 +58,14 @@ import { environment } from 'src/environments/environment';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    MatTooltipModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-trackpackage',
   templateUrl: './trackpackage.component.html',
   styleUrls: ['./trackpackage.component.css']

@@ -1,3 +1,9 @@
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { TranslateModule } from '@ngx-translate/core';
 import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Address } from 'src/app/models/user';
@@ -6,6 +12,15 @@ import { TokenStorageService } from 'src/app/service/TokenStorgeService.service'
 import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatSelectModule,
+    TranslateModule
+  ],
   selector: 'app-edit-address',
   templateUrl: './edit-address.component.html',
   styleUrls: ['./edit-address.component.css']

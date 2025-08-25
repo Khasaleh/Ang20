@@ -1,3 +1,26 @@
+import { CommonModule } from '@angular/common';
+import { MatIconModule } from '@angular/material/icon';
+import { QuickviewTheme5Component } from './quickview-theme5/quickview-theme5.component';
+import { QuickviewTheme12Component } from './quickview-theme12/quickview-theme12.component';
+import { QuickviewTheme8Component } from './quickview-theme8/quickview-theme8.component';
+import { QuickviewTheme11Component } from './quickview-theme11/quickview-theme11.component';
+import { QuickviewTheme1Component } from './quickview-theme1/quickview-theme1.component';
+import { QuickviewTheme10Component } from './quickview-theme10/quickview-theme10.component';
+import { QuickviewTheme15Component } from './quickview-theme15/quickview-theme15.component';
+import { QuickviewTheme16Component } from './quickview-theme16/quickview-theme16.component';
+import { QuickviewTheme19Component } from './quickview-theme19/quickview-theme19.component';
+import { QuickviewTheme2Component } from './quickview-theme2/quickview-theme2.component';
+import { QuickviewTheme9Component } from './quickview-theme9/quickview-theme9.component';
+import { QuickviewTheme20Component } from './quickview-theme20/quickview-theme20.component';
+import { QuickviewTheme21Component } from './quickview-theme21/quickview-theme21.component';
+import { QuickviewTheme7Component } from './quickview-theme7/quickview-theme7.component';
+import { QuickviewTheme13Component } from './quickview-theme13/quickview-theme13.component';
+import { QuickviewTheme6Component } from './quickview-theme6/quickview-theme6.component';
+import { QuickviewTheme14Component } from './quickview-theme14/quickview-theme14.component';
+import { QuickviewTheme17Component } from './quickview-theme17/quickview-theme17.component';
+import { QuickviewTheme3Component } from './quickview-theme3/quickview-theme3.component';
+import { QuickviewTheme4Component } from './quickview-theme4/quickview-theme4.component';
+import { QuickviewTheme18Component } from './quickview-theme18/quickview-theme18.component';
 import { ChangeDetectorRef, Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AttributeResponse } from 'src/app/models/AttributeResponse';
@@ -22,6 +45,32 @@ import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    QuickviewTheme10Component,
+    QuickviewTheme11Component,
+    QuickviewTheme12Component,
+    QuickviewTheme13Component,
+    QuickviewTheme14Component,
+    QuickviewTheme15Component,
+    QuickviewTheme16Component,
+    QuickviewTheme17Component,
+    QuickviewTheme18Component,
+    QuickviewTheme19Component,
+    QuickviewTheme1Component,
+    QuickviewTheme20Component,
+    QuickviewTheme21Component,
+    QuickviewTheme2Component,
+    QuickviewTheme3Component,
+    QuickviewTheme4Component,
+    QuickviewTheme5Component,
+    QuickviewTheme6Component,
+    QuickviewTheme7Component,
+    QuickviewTheme8Component,
+    QuickviewTheme9Component
+  ],
   selector: 'app-pdp-quick-view',
   templateUrl: './pdp-quick-view.component.html',
   styleUrls: ['./pdp-quick-view.component.css']

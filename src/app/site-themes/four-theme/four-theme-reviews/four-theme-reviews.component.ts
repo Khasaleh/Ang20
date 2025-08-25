@@ -61,6 +61,12 @@ import { OrderDetailResponse } from 'src/app/models/OrderDetailResponse';
 import { ReviewService } from 'src/app/service/review.service';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatStepperModule,
+    RouterModule
+  ],
   selector: 'app-four-theme-reviews',
   templateUrl: './four-theme-reviews.component.html',
   styleUrls: ['./four-theme-reviews.component.scss']

@@ -1,3 +1,8 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TranslateModule } from '@ngx-translate/core';
+import { ProductBoxComponent } from '../product-box/product-box.component';
+import { ProductBoxListComponent } from '../product-box-list/product-box-list.component';
+import { CustomPaginatorComponent } from '../custom-paginator/custom-paginator.component';
 import { ChangeDetectorRef, Component,  ElementRef,  OnInit, ViewChild  } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -72,6 +77,20 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { SlpContent } from 'src/app/models/SlpContent';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    CustomPaginatorComponent,
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule,
+    MatTooltipModule,
+    ProductBoxComponent,
+    ProductBoxListComponent,
+    TranslateModule
+  ],
   selector: 'app-four-theme-product-search',
   templateUrl: './four-theme-product-search.component.html',
   styleUrls: ['./four-theme-product-search.component.scss']

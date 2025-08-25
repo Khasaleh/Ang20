@@ -14,6 +14,11 @@ import { environment } from 'src/environments/environment';
 
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   selector: 'app-place-an-order',
   templateUrl: './place-an-order.component.html',
   styleUrls: ['./place-an-order.component.scss']

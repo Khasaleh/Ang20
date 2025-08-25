@@ -1,3 +1,6 @@
+import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, Inject, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { AttributeResponse } from 'src/app/models/AttributeResponse';
@@ -21,6 +24,12 @@ import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatTooltipModule,
+    TranslateModule
+  ],
   selector: 'app-quickview-theme14',
   templateUrl: './quickview-theme14.component.html',
   styleUrls: ['./quickview-theme14.component.css']

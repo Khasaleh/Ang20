@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, Inject, ViewChild, OnInit} from '
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
+  standalone: true,
   selector: 'app-fullscreen-pdp-image',
   templateUrl: './fullscreen-pdp-image.component.html',
   styleUrls: ['./fullscreen-pdp-image.component.css']

@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ProgressBarMode } from '@angular/material/progress-bar';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +14,11 @@ import { NotifacationMessageComponent } from 'src/app/notifacation-message/notif
 
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatProgressBarModule
+  ],
   selector: 'app-four-product-details-customer-reviews',
   templateUrl: './four-product-details-customer-reviews.component.html',
   styleUrls: ['./four-product-details-customer-reviews.component.scss']

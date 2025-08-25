@@ -52,6 +52,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { NgxBarcode6Module } from 'ngx-barcode6';
 
 @Component({
+  standalone: true,
   selector: 'app-four-footer-banner',
   templateUrl: './four-footer-banner.component.html',
   styleUrls: ['./four-footer-banner.component.scss']

@@ -1,3 +1,4 @@
+import { ProductBoxComponent } from '../product-box/product-box.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -64,6 +65,11 @@ import { DataService } from 'src/app/service/data.service';
 import { WishListResponse } from 'src/app/models/WishListResponse';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    ProductBoxComponent
+  ],
   selector: 'app-theme-product-carousel',
   templateUrl: './theme-product-carousel.component.html',
   styleUrls: ['./theme-product-carousel.component.scss']

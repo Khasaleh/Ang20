@@ -1,3 +1,6 @@
+import { FourBreadcrumsComponent } from './four-breadcrums/four-breadcrums.component';
+import { FourContentAreaComponent } from './four-content-area/four-content-area.component';
+import { FourFooterBannerComponent } from './four-footer-banner/four-footer-banner.component';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -58,6 +61,13 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    FourBreadcrumsComponent,
+    FourContentAreaComponent,
+    FourFooterBannerComponent
+  ],
   selector: 'app-four-new-product-listing-page',
   templateUrl: './four-new-product-listing-page.component.html',
   styleUrls: ['./four-new-product-listing-page.component.scss']

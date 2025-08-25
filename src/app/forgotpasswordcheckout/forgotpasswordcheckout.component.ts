@@ -1,3 +1,7 @@
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { BusinessSettingService } from '../service/business-setting.service';
 import { SucessmsgPopupComponent } from '../sucessmsg-popup/sucessmsg-popup.component';
@@ -5,6 +9,13 @@ import { NotifacationMessageComponent } from '../notifacation-message/notifacati
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule
+  ],
   selector: 'app-forgotpasswordcheckout',
   templateUrl: './forgotpasswordcheckout.component.html',
   styleUrls: ['./forgotpasswordcheckout.component.css']

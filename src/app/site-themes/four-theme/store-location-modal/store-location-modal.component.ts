@@ -5,6 +5,7 @@ import { Address } from 'src/app/models/address';
 import { TokenStorageService } from 'src/app/service/TokenStorgeService.service';
 
 @Component({
+  standalone: true,
   selector: 'app-store-location-modal',
   templateUrl: './store-location-modal.component.html',
   styleUrls: ['./store-location-modal.component.scss']

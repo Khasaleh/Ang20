@@ -1,3 +1,6 @@
+import { CommonModule } from '@angular/common';
+import { FourProductLayoutComponent } from './four-product-layout/four-product-layout.component';
+import { FourProductInfoComponent } from './four-product-info/four-product-info.component';
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AttributeResponse } from 'src/app/models/AttributeResponse';
@@ -12,6 +15,12 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    FourProductInfoComponent,
+    FourProductLayoutComponent
+  ],
   selector: 'app-four-new-product-details',
   templateUrl: './four-new-product-details.component.html',
   styleUrls: ['./four-new-product-details.component.scss']

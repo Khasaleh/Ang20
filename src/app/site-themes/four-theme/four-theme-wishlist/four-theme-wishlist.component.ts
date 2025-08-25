@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { ProductBoxComponent } from '../product-box/product-box.component';
 import { firstValueFrom } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
@@ -15,6 +17,12 @@ import { SessionResponse } from 'src/app/models/SessionResponse';
 import { ThemeDashboardContent } from 'src/app/models/ThemeDashboardContent';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    ProductBoxComponent,
+    RouterModule
+  ],
   selector: 'app-four-theme-wishlist',
   templateUrl: './four-theme-wishlist.component.html',
   styleUrls: ['./four-theme-wishlist.component.css']

@@ -53,6 +53,10 @@ import { NgxBarcode6Module } from 'ngx-barcode6';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatCheckboxModule
+  ],
   selector: 'app-thanks-forlogin-modal',
   templateUrl: './thanks-forlogin-modal.component.html',
   styleUrls: ['./thanks-forlogin-modal.component.scss']

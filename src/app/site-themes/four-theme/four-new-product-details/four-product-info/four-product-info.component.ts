@@ -1,3 +1,7 @@
+import { CommonModule } from '@angular/common';
+import { MatTabsModule } from '@angular/material/tabs';
+import { TranslateModule } from '@ngx-translate/core';
+import { FourProductDetailsCustomerReviewsComponent } from '../four-product-details-customer-reviews/four-product-details-customer-reviews.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { PdpContent } from 'src/app/models/PdpContent';
 import { ProductResponse } from 'src/app/models/ProductResponse';
@@ -12,6 +16,13 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    FourProductDetailsCustomerReviewsComponent,
+    MatTabsModule,
+    TranslateModule
+  ],
   selector: 'app-four-product-info',
   templateUrl: './four-product-info.component.html',
   styleUrls: ['./four-product-info.component.scss']

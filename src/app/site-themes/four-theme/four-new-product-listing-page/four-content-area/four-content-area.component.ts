@@ -1,3 +1,8 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TranslateModule } from '@ngx-translate/core';
+import { FourBreadcrumsComponent } from '../four-breadcrums/four-breadcrums.component';
+import { FourBestSellingProductsComponent } from '../four-best-selling-products/four-best-selling-products.component';
+import { FourReleatedProductsComponent } from '../four-releated-products/four-releated-products.component';
 import { ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -72,6 +77,21 @@ import { SessionResponse } from 'src/app/models/SessionResponse';
 import { CookieDataServiceService } from 'src/app/service/cookie-data-service.service';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    FourBestSellingProductsComponent,
+    FourBreadcrumsComponent,
+    FourReleatedProductsComponent,
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatSelectModule,
+    MatTooltipModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-four-content-area',
   templateUrl: './four-content-area.component.html',
   styleUrls: ['./four-content-area.component.scss']

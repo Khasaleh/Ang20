@@ -10,6 +10,10 @@ import { DOCUMENT } from '@angular/common';
 import { Subject, Subscription, firstValueFrom, take} from 'rxjs';
  
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule
+  ],
   selector: 'app-print-order-summary',
   templateUrl: './print-order-summary.component.html',
   styleUrls: ['./print-order-summary.component.css']

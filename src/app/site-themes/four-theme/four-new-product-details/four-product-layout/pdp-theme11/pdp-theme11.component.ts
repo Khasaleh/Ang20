@@ -1,3 +1,5 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { PromotionService } from 'src/app/service/promotion.service';
 import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild, Renderer2, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -28,6 +30,12 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SharedService } from 'src/app/service/shared-service/shared.service';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatTooltipModule,
+    TranslateModule
+  ],
   selector: 'app-pdp-theme11',
   templateUrl: './pdp-theme11.component.html',
   styleUrls: ['./pdp-theme11.component.css']

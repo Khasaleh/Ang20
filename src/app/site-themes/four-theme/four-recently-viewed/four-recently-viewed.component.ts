@@ -1,3 +1,5 @@
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
@@ -11,6 +13,12 @@ import { PdpContent } from 'src/app/models/PdpContent';
 import { SharedService } from 'src/app/service/shared-service/shared.service';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-four-recently-viewed',
   templateUrl: './four-recently-viewed.component.html',
   styleUrls: ['./four-recently-viewed.component.scss']

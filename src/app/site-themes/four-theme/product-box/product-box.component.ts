@@ -1,3 +1,6 @@
+import { CommonModule } from '@angular/common';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { CatalogServiceService } from 'src/app/service/CatalogService.service';
 import { ProductResponse } from 'src/app/models/ProductResponse';
@@ -16,6 +19,12 @@ import { CookieDataServiceService } from 'src/app/service/cookie-data-service.se
 
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatTooltipModule,
+    TranslateModule
+  ],
   selector: 'app-product-box',
   templateUrl: './product-box.component.html',
   styleUrls: ['./product-box.component.css']

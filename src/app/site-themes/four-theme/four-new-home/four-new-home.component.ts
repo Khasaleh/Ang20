@@ -1,3 +1,12 @@
+import { FourThemeComponent } from '../four-theme.component';
+import { ThemeProductCarouselComponent } from '../theme-product-carousel/theme-product-carousel.component';
+import { FourThemeTextsliderEspotComponent } from '../four-theme-textslider-espot/four-theme-textslider-espot.component';
+import { FourMainHeaderEspotComponent } from '../four-main-header-espot/four-main-header-espot.component';
+import { FourBrandLogosSliderComponent } from '../four-brand-logos-slider/four-brand-logos-slider.component';
+import { FourThemePopularCategoriesComponent } from '../four-theme-popular-categories/four-theme-popular-categories.component';
+import { FourRecentlyViewedComponent } from '../four-recently-viewed/four-recently-viewed.component';
+import { FourCustomerReviewsComponent } from '../four-customer-reviews/four-customer-reviews.component';
+import { FourEspotBannerComponent } from '../four-espot-banner/four-espot-banner.component';
 import { Component, Inject, Input, OnInit, Renderer2 } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -62,6 +71,19 @@ import { environment } from 'src/environments/environment';
 
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    FourBrandLogosSliderComponent,
+    FourCustomerReviewsComponent,
+    FourEspotBannerComponent,
+    FourMainHeaderEspotComponent,
+    FourRecentlyViewedComponent,
+    FourThemeComponent,
+    FourThemePopularCategoriesComponent,
+    FourThemeTextsliderEspotComponent,
+    ThemeProductCarouselComponent
+  ],
   selector: 'app-four-new-home',
   templateUrl: './four-new-home.component.html',
   styleUrls: ['./four-new-home.component.scss']

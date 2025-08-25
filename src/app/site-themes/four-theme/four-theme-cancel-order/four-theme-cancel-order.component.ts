@@ -52,6 +52,11 @@ import { NgChartsModule } from 'ng2-charts';
 import { NgxBarcode6Module } from 'ngx-barcode6';
 import { Options } from '@angular-slider/ngx-slider';
 @Component({
+  standalone: true,
+  imports: [
+    MatButtonModule,
+    RouterModule
+  ],
   selector: 'app-four-theme-cancel-order',
   templateUrl: './four-theme-cancel-order.component.html',
   styleUrls: ['./four-theme-cancel-order.component.scss']

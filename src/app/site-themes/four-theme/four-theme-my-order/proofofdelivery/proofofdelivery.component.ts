@@ -55,6 +55,10 @@ import { OrderResponse } from 'src/app/models/OrderResponse';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatIconModule
+  ],
   selector: 'app-proofofdelivery',
   templateUrl: './proofofdelivery.component.html',
   styleUrls: ['./proofofdelivery.component.css']

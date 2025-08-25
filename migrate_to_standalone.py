@@ -121,7 +121,8 @@ def migrate_component_to_standalone(component_path, all_components):
     existing_imports = re.findall(r'import\s+.*\s+from\s+[\'"](.*)[\'"]', content)
     new_imports = ""
 
-    for imp in sorted(list(set(dependencies) - set(used_components.values()))):
+    used_component_class_names = {info['class_name'] for info in used_components.values()}
+    for imp in sorted(list(set(dependencies) - used_component_class_names)):
         if imp in angular_imports and angular_imports[imp] not in existing_imports:
              new_imports += f"import {{ {imp} }} from '{angular_imports[imp]}';\n"
 

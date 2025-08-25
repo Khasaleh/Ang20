@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -54,6 +55,12 @@ import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-four-espot-banner',
   templateUrl: './four-espot-banner.component.html',
   styleUrls: ['./four-espot-banner.component.scss']

@@ -55,6 +55,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { TranslateSiteService } from 'src/app/service/translate-site.service';
 
 @Component({
+  standalone: true,
+  imports: [
+    TranslateModule
+  ],
   selector: 'app-no-domain',
   templateUrl: './no-domain.component.html',
   styleUrls: ['./no-domain.component.css']

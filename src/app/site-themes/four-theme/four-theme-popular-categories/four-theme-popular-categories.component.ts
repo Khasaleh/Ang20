@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -60,6 +61,12 @@ import { ThemeService } from 'src/app/service/theme.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-four-theme-popular-categories',
   templateUrl: './four-theme-popular-categories.component.html',
   styleUrls: ['./four-theme-popular-categories.component.scss']

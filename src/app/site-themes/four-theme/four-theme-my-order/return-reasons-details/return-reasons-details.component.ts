@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -55,6 +56,12 @@ import { OrderResponse } from 'src/app/models/OrderResponse';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    TranslateModule
+  ],
   selector: 'app-return-reasons-details',
   templateUrl: './return-reasons-details.component.html',
   styleUrls: ['./return-reasons-details.component.css']

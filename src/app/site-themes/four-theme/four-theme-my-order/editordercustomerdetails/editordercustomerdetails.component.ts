@@ -1,3 +1,4 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -58,6 +59,12 @@ import { ShoppingCartService } from 'src/app/service/ShoppingCart.service';
 import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup.component';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule
+  ],
   selector: 'app-editordercustomerdetails',
   templateUrl: './editordercustomerdetails.component.html',
   styleUrls: ['./editordercustomerdetails.component.css']

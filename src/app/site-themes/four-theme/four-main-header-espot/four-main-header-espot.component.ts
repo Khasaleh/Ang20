@@ -1,8 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   selector: 'app-four-main-header-espot',
   templateUrl: './four-main-header-espot.component.html',
   styleUrls: ['./four-main-header-espot.component.scss']

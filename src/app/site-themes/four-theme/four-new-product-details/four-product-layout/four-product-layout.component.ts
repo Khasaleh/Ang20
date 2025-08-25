@@ -1,3 +1,26 @@
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
+import { PdpTheme20Component } from './pdp-theme20/pdp-theme20.component';
+import { PdpTheme4Component } from './pdp-theme4/pdp-theme4.component';
+import { PdpTheme13Component } from './pdp-theme13/pdp-theme13.component';
+import { PdpTheme1Component } from './pdp-theme1/pdp-theme1.component';
+import { PdpTheme3Component } from './pdp-theme3/pdp-theme3.component';
+import { PdpTheme12Component } from './pdp-theme12/pdp-theme12.component';
+import { PdpTheme19Component } from './pdp-theme19/pdp-theme19.component';
+import { PdpTheme14Component } from './pdp-theme14/pdp-theme14.component';
+import { PdpTheme9Component } from './pdp-theme9/pdp-theme9.component';
+import { PdpTheme16Component } from './pdp-theme16/pdp-theme16.component';
+import { PdpTheme5Component } from './pdp-theme5/pdp-theme5.component';
+import { PdpTheme10Component } from './pdp-theme10/pdp-theme10.component';
+import { PdpTheme11Component } from './pdp-theme11/pdp-theme11.component';
+import { PdpTheme15Component } from './pdp-theme15/pdp-theme15.component';
+import { PdpTheme2Component } from './pdp-theme2/pdp-theme2.component';
+import { PdpTheme7Component } from './pdp-theme7/pdp-theme7.component';
+import { PdpTheme6Component } from './pdp-theme6/pdp-theme6.component';
+import { PdpTheme18Component } from './pdp-theme18/pdp-theme18.component';
+import { PdpTheme17Component } from './pdp-theme17/pdp-theme17.component';
+import { PdpTheme8Component } from './pdp-theme8/pdp-theme8.component';
+import { PdpTheme21Component } from './pdp-theme21/pdp-theme21.component';
 import { PromotionService } from 'src/app/service/promotion.service';
 import { ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild, Renderer2, Inject, AfterViewInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -32,6 +55,34 @@ import { FullscreenPdpImageComponent } from './fullscreen-pdp-image/fullscreen-p
 
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    PdpTheme10Component,
+    PdpTheme11Component,
+    PdpTheme12Component,
+    PdpTheme13Component,
+    PdpTheme14Component,
+    PdpTheme15Component,
+    PdpTheme16Component,
+    PdpTheme17Component,
+    PdpTheme18Component,
+    PdpTheme19Component,
+    PdpTheme1Component,
+    PdpTheme20Component,
+    PdpTheme21Component,
+    PdpTheme2Component,
+    PdpTheme3Component,
+    PdpTheme4Component,
+    PdpTheme5Component,
+    PdpTheme6Component,
+    PdpTheme7Component,
+    PdpTheme8Component,
+    PdpTheme9Component,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-four-product-layout',
   templateUrl: './four-product-layout.component.html',
   styleUrls: ['./four-product-layout.component.scss']

@@ -53,6 +53,11 @@ import { NgxBarcode6Module } from 'ngx-barcode6';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule
+  ],
   selector: 'app-custom-paginator',
   templateUrl: './custom-paginator.component.html',
   styleUrls: ['./custom-paginator.component.css']

@@ -1,6 +1,7 @@
-import { CommonModule } from '@angular/common';
+import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Inject, PLATFORM_ID } from '@angular/core';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -248,6 +249,7 @@ export class HeaderThemeEightComponent implements OnInit {
 
 
 
+  private isBrowser: boolean;
   constructor(public dialog: MatDialog,
     private businessSettings: BusinessSettingService,
     private drawerControlService: DrawerControlService,
@@ -269,18 +271,22 @@ export class HeaderThemeEightComponent implements OnInit {
     private stoeSession: StoreUsersSessionsService,
     private cookieDate: CookieDataServiceService,
     private sharedService: SharedService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
-    let subdomainForSite;
-    if(environment.env !== 'local'){
-      subdomainForSite = window.location.hostname;
-    } else {
-      subdomainForSite = this.route.snapshot.params['subdomain'];
-    }
-    if (subdomainForSite) {
-      this.translateSite.setSiteLanguage(subdomainForSite);
-    }
-    if(this.businessId &&  cookieDate.getCookie(this.businessId!.toString()) != ''){
-      this.sessionResponse = JSON.parse(cookieDate.getCookie(this.businessId!.toString()));
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser) {
+      let subdomainForSite;
+      if(environment.env !== 'local'){
+        subdomainForSite = window.location.hostname;
+      } else {
+        subdomainForSite = this.route.snapshot.params['subdomain'];
+      }
+      if (subdomainForSite) {
+        this.translateSite.setSiteLanguage(subdomainForSite);
+      }
+      if(this.businessId &&  cookieDate.getCookie(this.businessId!.toString()) != ''){
+        this.sessionResponse = JSON.parse(cookieDate.getCookie(this.businessId!.toString()));
+      }
     }
 
   }
@@ -294,68 +300,71 @@ export class HeaderThemeEightComponent implements OnInit {
 
   @HostListener('window:click', ['$event'])
   listenToOutsideClick(event: PointerEvent) {
-    const target = event.target as HTMLElement;
-    const isToggler = target.getAttribute('id') === 'navbarDropdown'
-    if (!this.menuExpanded || isToggler) {
-      return;
-    }
+    if (this.isBrowser) {
+      const target = event.target as HTMLElement;
+      const isToggler = target.getAttribute('id') === 'navbarDropdown'
+      if (!this.menuExpanded || isToggler) {
+        return;
+      }
 
-    this.menuExpanded = false;
+      this.menuExpanded = false;
+    }
   };
 
 
   async ngOnInit() {
-    this.subdomain = this.route.snapshot.params['subdomain'];
-    this.getUpdatedUserData();
-    const businessURL = await this.tokenStorage.getBusinessURL();
-    if (this.subdomain && !businessURL) {
-      await this.tokenStorage.saveBusinessData(this.subdomain, this.subdomain);
-      this.loadUserData();
-    } else {
-      this.loadUserData();
-    }
-    this.isRememberMe = this.tokenStorage.getRememberMe();
-    this.sharedService.refreshShoppingCart$.subscribe(() => {
-      this.shoppingCart = null;
-    });
-    this.dataService.count$.subscribe(count => {
-      this.wishlists.length = this.wishlists?.length + count;
-    });
-    this.dataService.notifyObservable$.subscribe(notify => {
-      if(notify.refresh){
-        this.loadCartAndFav();
+    if (this.isBrowser) {
+      this.subdomain = this.route.snapshot.params['subdomain'];
+      this.getUpdatedUserData();
+      const businessURL = await this.tokenStorage.getBusinessURL();
+      if (this.subdomain && !businessURL) {
+        await this.tokenStorage.saveBusinessData(this.subdomain, this.subdomain);
+        this.loadUserData();
+      } else {
+        this.loadUserData();
       }
-    })
-    // await this.loadUserData();
-    this.titleService.setTitle(this.storeName ?? 'Fazeal Ecommerce Store');
-    this.getStoreLogo();
-    this.getStoreCategories();
-    this.searchControl.valueChanges
-      .pipe(
-        debounceTime(300),
-        distinctUntilChanged()
-      )
-      .subscribe((searchQuery) => {
-        this.keyword = searchQuery!;
-        this.products = [];
-        if (searchQuery && searchQuery.trim().length > 0 && this.keyword.length >= 2) {
-          this.searchProductsByCategoryAndBrand(this.keyword);
+      this.isRememberMe = this.tokenStorage.getRememberMe();
+      this.sharedService.refreshShoppingCart$.subscribe(() => {
+        this.shoppingCart = null;
+      });
+      this.dataService.count$.subscribe(count => {
+        this.wishlists.length = this.wishlists?.length + count;
+      });
+      this.dataService.notifyObservable$.subscribe(notify => {
+        if(notify.refresh){
+          this.loadCartAndFav();
+        }
+      })
+      // await this.loadUserData();
+      this.titleService.setTitle(this.storeName ?? 'Fazeal Ecommerce Store');
+      this.getStoreLogo();
+      this.getStoreCategories();
+      this.searchControl.valueChanges
+        .pipe(
+          debounceTime(300),
+          distinctUntilChanged()
+        )
+        .subscribe((searchQuery) => {
+          this.keyword = searchQuery!;
+          this.products = [];
+          if (searchQuery && searchQuery.trim().length > 0 && this.keyword.length >= 2) {
+            this.searchProductsByCategoryAndBrand(this.keyword);
+          }
+        });
+
+        this.checkTranslateWidget();
+      this.drawerControlService.openDrawer$.subscribe(() => {
+        this.userProfileDrawer.open();
+      });
+      this.drawerControlService.openDropdown$.subscribe(() => {
+        if (this.userInfoMenuTrigger) {
+          this.userInfoMenuTrigger.openMenu();
         }
       });
 
-      this.checkTranslateWidget();
-    this.drawerControlService.openDrawer$.subscribe(() => {
-      this.userProfileDrawer.open();
-    });
-    this.drawerControlService.openDropdown$.subscribe(() => {
-      if (this.userInfoMenuTrigger) {
-        this.userInfoMenuTrigger.openMenu();
-      }
-    });
+      this.listBusinessAddresses();
 
-    this.listBusinessAddresses();
-
-
+    }
   }
 
 
@@ -376,65 +385,73 @@ export class HeaderThemeEightComponent implements OnInit {
 
 
   waitForIframeToLoad(): void {
-    const maxRetries = 10; // Maximum retries to avoid infinite loop
-    let attempts = 0;
+    if (this.isBrowser) {
+      const maxRetries = 10; // Maximum retries to avoid infinite loop
+      let attempts = 0;
 
-    const checkInterval = setInterval(() => {
-      const iframe = document.querySelector('iframe.goog-te-menu-frame') as HTMLIFrameElement;
+      const checkInterval = setInterval(() => {
+        const iframe = document.querySelector('iframe.goog-te-menu-frame') as HTMLIFrameElement;
 
-      if (iframe && iframe.contentDocument) {
-        clearInterval(checkInterval); // Stop checking
-        this.iframeReady = true;
-        console.log('Google Translate iframe is ready!');
-      } else {
-        attempts++;
-        if (attempts >= maxRetries) {
-          clearInterval(checkInterval); // Stop checking after max retries
-          console.error('Google Translate iframe not loaded after maximum retries.');
+        if (iframe && iframe.contentDocument) {
+          clearInterval(checkInterval); // Stop checking
+          this.iframeReady = true;
+          console.log('Google Translate iframe is ready!');
+        } else {
+          attempts++;
+          if (attempts >= maxRetries) {
+            clearInterval(checkInterval); // Stop checking after max retries
+            console.error('Google Translate iframe not loaded after maximum retries.');
+          }
         }
-      }
-    }, 500); // Check every 500ms
+      }, 500); // Check every 500ms
+    }
   }
 
   checkTranslateWidget(): void {
-    const translateElement = document.getElementById('google_translate_element');
-    if (!translateElement) {
-      console.error('Google Translate widget not loaded.');
-    } else {
-      console.log('Google Translate widget is ready.');
+    if (this.isBrowser) {
+      const translateElement = document.getElementById('google_translate_element');
+      if (!translateElement) {
+        console.error('Google Translate widget not loaded.');
+      } else {
+        console.log('Google Translate widget is ready.');
+      }
     }
   }
 
 
   changeLanguage(langCode: string): void {
-    let storeKey;
-    if (environment.env !== 'local') {
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    localStorage.setItem('selectedLang'+`_${storeKey}`, langCode);
-    this.translateSite.loadGoogleTranslate(langCode);
+    if (this.isBrowser) {
+      let storeKey;
+      if (environment.env !== 'local') {
+        storeKey = window.location.hostname;
+      } else {
+        const path = window.location.pathname;
+        storeKey = path.split('/')[1];
+      }
+      localStorage.setItem('selectedLang'+`_${storeKey}`, langCode);
+      this.translateSite.loadGoogleTranslate(langCode);
 
-    const googleTranslateDropdown = document.querySelector(
-      '.goog-te-combo'
-    ) as HTMLSelectElement;
+      const googleTranslateDropdown = document.querySelector(
+        '.goog-te-combo'
+      ) as HTMLSelectElement;
 
-    if (!googleTranslateDropdown) {
-      console.error('Google Translate dropdown not found.');
-      return;
+      if (!googleTranslateDropdown) {
+        console.error('Google Translate dropdown not found.');
+        return;
+      }
+      googleTranslateDropdown.value = langCode;
+      googleTranslateDropdown.dispatchEvent(new Event('change'));
+      console.log(`Language changed to: ${langCode}`);
     }
-    googleTranslateDropdown.value = langCode;
-    googleTranslateDropdown.dispatchEvent(new Event('change'));
-    console.log(`Language changed to: ${langCode}`);
   }
 
   checkingCategoriesMobile(): void {
-    if (window.innerWidth < 768) {
-      this.CategoryExceed = true
-    } else {
-      this.CategoryExceed = false
+    if (this.isBrowser) {
+      if (window.innerWidth < 768) {
+        this.CategoryExceed = true
+      } else {
+        this.CategoryExceed = false
+      }
     }
   }
 
@@ -486,11 +503,13 @@ export class HeaderThemeEightComponent implements OnInit {
   }
 
   private loadSubscribeAfterMerge() {
-    const modalValue = sessionStorage.getItem('check_subscribe');
-    const modal = modalValue ? JSON.parse(modalValue) : false;
-    if (modal) {
-      this.loadSubscribeModal('FOURTH');
-      sessionStorage.removeItem('check_subscribe');
+    if (this.isBrowser) {
+      const modalValue = sessionStorage.getItem('check_subscribe');
+      const modal = modalValue ? JSON.parse(modalValue) : false;
+      if (modal) {
+        this.loadSubscribeModal('FOURTH');
+        sessionStorage.removeItem('check_subscribe');
+      }
     }
   }
 
@@ -927,46 +946,50 @@ export class HeaderThemeEightComponent implements OnInit {
   }
 
   async getShoppingCartItems() {
-    const data = await firstValueFrom(await this.shoppingCartService.listUserCartItems(Number(this.tokenStorage.getBusinessID())))
-    if (data?.errors) return;
-    this.shoppingCart = data?.data?.listUserCartItems;
-    this.totalPrice = 0;
-    if (this.shoppingCart?.cartItemResponseList)
-      this.shoppingCart?.cartItemResponseList.forEach(cartItem => {
-        if (cartItem.salePrice) {
-          this.totalPrice = this.totalPrice + (cartItem.salePrice * cartItem.quantity);
-        } else {
-          this.totalPrice = this.totalPrice + (cartItem.price * cartItem.quantity);
-        }
-      });
+    if (this.isBrowser) {
+      const data = await firstValueFrom(await this.shoppingCartService.listUserCartItems(Number(this.tokenStorage.getBusinessID())))
+      if (data?.errors) return;
+      this.shoppingCart = data?.data?.listUserCartItems;
+      this.totalPrice = 0;
+      if (this.shoppingCart?.cartItemResponseList)
+        this.shoppingCart?.cartItemResponseList.forEach(cartItem => {
+          if (cartItem.salePrice) {
+            this.totalPrice = this.totalPrice + (cartItem.salePrice * cartItem.quantity);
+          } else {
+            this.totalPrice = this.totalPrice + (cartItem.price * cartItem.quantity);
+          }
+        });
+    }
   }
 
   async getWhishlist() {
-    let added = false;
-    const res = await firstValueFrom(await this.wishlistService.getCustomerWishList())
-    if (res?.errors) return
-    this.wishlists = res?.data?.getCustomerWishList;
-    this.wishlists = this.wishlists.filter(whishItem => whishItem.businessId == this.businessId);
+    if (this.isBrowser) {
+      let added = false;
+      const res = await firstValueFrom(await this.wishlistService.getCustomerWishList())
+      if (res?.errors) return
+      this.wishlists = res?.data?.getCustomerWishList;
+      this.wishlists = this.wishlists.filter(whishItem => whishItem.businessId == this.businessId);
 
-    let gfl: any[] = this.guestFavoriteService.getFavoriteItemsByBusinessId(Number(this.tokenStorage.getBusinessID()))
-    gfl.forEach(async i => {
-      const piwl = this.wishlists.find(wl => wl.businessId === i.businessId && wl.id === i.id)
-      if (!piwl) {
-        const addRes = await firstValueFrom(await this.wishlistService.addItemToWishList(Number(this.tokenStorage.getBusinessID()), i.id))
-        this.guestFavoriteService.removeFromFavorite(i.id)
-        if (addRes.errors) return
-        this.wishlists = [...this.wishlists, ...gfl]
-        added = true;
+      let gfl: any[] = this.guestFavoriteService.getFavoriteItemsByBusinessId(Number(this.tokenStorage.getBusinessID()))
+      gfl.forEach(async i => {
+        const piwl = this.wishlists.find(wl => wl.businessId === i.businessId && wl.id === i.id)
+        if (!piwl) {
+          const addRes = await firstValueFrom(await this.wishlistService.addItemToWishList(Number(this.tokenStorage.getBusinessID()), i.id))
+          this.guestFavoriteService.removeFromFavorite(i.id)
+          if (addRes.errors) return
+          this.wishlists = [...this.wishlists, ...gfl]
+          added = true;
+        }
+      })
+      if (added) {
+        this.reload = true;
+        sessionStorage.setItem('check_subscribe', JSON.stringify(true))
+        this.dialog.open(SucessmsgPopupComponent,
+          {
+            backdropClass: 'notificationmodal-popup-sucess',
+            data: { title: 'SUCCESS', message: 'FAV_LIST_UPDATED' }
+          });
       }
-    })
-    if (added) {
-      this.reload = true;
-      sessionStorage.setItem('check_subscribe', JSON.stringify(true))
-      this.dialog.open(SucessmsgPopupComponent,
-        {
-          backdropClass: 'notificationmodal-popup-sucess',
-          data: { title: 'SUCCESS', message: 'FAV_LIST_UPDATED' }
-        });
     }
   }
 
@@ -1298,12 +1321,14 @@ export class HeaderThemeEightComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    if (this.isBrowser) {
+      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-    if (scrollPosition > 100) {
-      this.isHeaderFixed = true;
-    } else {
-      this.isHeaderFixed = false;
+      if (scrollPosition > 100) {
+        this.isHeaderFixed = true;
+      } else {
+        this.isHeaderFixed = false;
+      }
     }
   }
 

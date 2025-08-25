@@ -54,6 +54,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { environment } from 'src/environments/environment';
 
 @Component({
+  standalone: true,
+  imports: [
+    MatIconModule
+  ],
   selector: 'app-view-qr-code',
   templateUrl: './view-qr-code.component.html',
   styleUrls: ['./view-qr-code.component.css']

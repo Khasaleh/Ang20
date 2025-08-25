@@ -1,3 +1,5 @@
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TranslateModule } from '@ngx-translate/core';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,6 +59,16 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    ReactiveFormsModule,
+    TranslateModule
+  ],
   selector: 'app-pick-order-person-popup',
   templateUrl: './pick-order-person-popup.component.html',
   styleUrls: ['./pick-order-person-popup.component.css']
