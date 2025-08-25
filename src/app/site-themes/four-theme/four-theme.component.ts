@@ -63,12 +63,78 @@ import { environment } from 'src/environments/environment';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CookieDataServiceService } from 'src/app/service/cookie-data-service.service';
+import { FourHeaderComponent } from './four-header/four-header.component';
+import { FourFooterComponent } from './four-footer/four-footer.component';
+import { ChatWidgetComponent } from 'src/app/shared/chat-widget/chat-widget.component';
+import { CookiesbarComponent } from 'src/app/shared/cookiesbar/cookiesbar.component';
 
 
 @Component({
   selector: 'app-four-theme',
   templateUrl: './four-theme.component.html',
-  styleUrls: ['./four-theme.component.scss']
+  styleUrls: ['./four-theme.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
+    A11yModule,
+    ClipboardModule,
+    CdkStepperModule,
+    CdkTableModule,
+    CdkTreeModule,
+    DragDropModule,
+    OverlayModule,
+    PortalModule,
+    ScrollingModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatRippleModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+    CarouselModule,
+    NgxSliderModule,
+    NgbRatingModule,
+    NgbCarouselModule,
+    NgbDropdown,
+    NgChartsModule,
+    NgxBarcode6Module,
+    FourHeaderComponent,
+    FourFooterComponent,
+    ChatWidgetComponent,
+    CookiesbarComponent,
+  ],
 })
 export class FourThemeComponent implements OnInit, OnDestroy  {
 

@@ -1,5 +1,5 @@
-import { TranslateSiteService } from 'src/app/service/translate-site.service';
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../models/user';
 import { CurrencyResponse } from '../models/CurrencyResponse';
@@ -14,6 +14,8 @@ import { ChatUserResponse } from './chatServices/rest-api/chat-rest-api.service'
 import { ChatEmployeeInfoAfterConnect } from './chatServices/socket/socket.service';
 import { OrderResponse } from '../models/OrderResponse';
 import { environment } from 'src/environments/environment';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { Request } from 'express';
 
 const FAMILY_USER_KEY = 'family-user';
 const FAMILY_FRIENDS_KEY = 'family-friend';
@@ -39,653 +41,411 @@ const PRINT_ORDER = 'print-order';
 const ORDER_DETAILS = 'order-details';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TokenStorageService {
 
-  isRememberMe = false;
-  theme = 'DefaultTheme';
-  siteSetting!: SiteSettings;
-  currencySymbol: string = '';
-  orderIdFormat!: OrderIdFormatResponse;
-  constructor(
-    private router: Router,private route: ActivatedRoute,
-    private catalogService: CatalogServiceService,
-    private businessSettingService: BusinessSettingService,
-    private translateService: TranslateSiteService
-  ) { }
+    isRememberMe = false;
+    theme = 'DefaultTheme';
+    siteSetting!: SiteSettings;
+    currencySymbol: string = '';
+    orderIdFormat!: OrderIdFormatResponse;
 
-  signOut(): void {
-    let storeKey;
-    if (environment.env !== 'local') {
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(TOKEN_KEY + `_${storeKey}`);
-    window.sessionStorage.removeItem(USER_KEY + `_${storeKey}`);
-    window.sessionStorage.removeItem(REFRESHTOKEN_KEY + `_${storeKey}`);
-    window.sessionStorage.removeItem(COOKIES_KEY + `_${storeKey}`);
+    private isBrowser: boolean;
+    private storeKey: string = '';
+    private storage: Map<string, any> = new Map();
 
-    this.removeStorage(TOKEN_KEY + `_${storeKey}`);
-    this.removeStorage(USER_KEY + `_${storeKey}`);
-    this.removeStorage(REFRESHTOKEN_KEY + `_${storeKey}`);
-    this.removeStorage(COOKIES_KEY + `_${storeKey}`);
-    window.dispatchEvent(new StorageEvent('storage', {
-      key: TOKEN_KEY + `_${storeKey}`,
-      oldValue: 'some_value',
-      newValue: null,
-      storageArea: sessionStorage
-    }));
-}
-
-  clearSessionData(): void {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(TOKEN_KEY + `_${storeKey}`);
-    window.sessionStorage.removeItem(USER_KEY + `_${storeKey}`);
-    window.sessionStorage.removeItem(REFRESHTOKEN_KEY + `_${storeKey}`);
-    window.sessionStorage.removeItem(COOKIES_KEY + `_${storeKey}`);
-
-    this.removeStorage(TOKEN_KEY + `_${storeKey}`);
-    this.removeStorage(USER_KEY + `_${storeKey}`);
-    this.removeStorage(REFRESHTOKEN_KEY + `_${storeKey}`);
-    this.removeStorage(COOKIES_KEY + `_${storeKey}`);
-    window.dispatchEvent(new StorageEvent('storage', {
-      key: TOKEN_KEY + `_${storeKey}`,
-      oldValue: 'some_value',
-      newValue: null,
-      storageArea: sessionStorage
-    }));
-  }
-
-  public saveToken(token: string) {
-    if(environment.env !== 'local'){
-      const storeKey = window.location.hostname;
-      window.sessionStorage.removeItem(TOKEN_KEY+`_${storeKey}`);
-      window.sessionStorage.setItem(TOKEN_KEY+`_${storeKey}`, token);
-      this.setStorage(TOKEN_KEY+`_${storeKey}`, token);
-    } else {
-      const path = window.location.pathname;
-      const storeKey = path.split('/')[1];
-      window.sessionStorage.removeItem(TOKEN_KEY+`_${storeKey}`);
-      window.sessionStorage.setItem(TOKEN_KEY+`_${storeKey}`, token);
-      this.setStorage(TOKEN_KEY+`_${storeKey}`, token);
-    }
-  }
-
-  public saveThemeDashboard(theme: ThemeDashboardContent) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(THEME_DASHBOARD+`_${storeKey}`);
-    window.sessionStorage.setItem(THEME_DASHBOARD+`_${storeKey}`, JSON.stringify(theme));
-  }
-
-  public getThemeDashboard(): ThemeDashboardContent | null {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    if (window.sessionStorage.getItem(THEME_DASHBOARD+`_${storeKey}`) == null) {
-      return null;
-    }
-    return JSON.parse(window.sessionStorage.getItem(THEME_DASHBOARD+`_${storeKey}`)!);
-  }
-
-  public savePdp(theme: PdpContent) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(PDP+`_${storeKey}`);
-    window.sessionStorage.setItem(PDP+`_${storeKey}`, JSON.stringify(theme));
-  }
-
-  public getPdp(): PdpContent | null {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    if (window.sessionStorage.getItem(PDP+`_${storeKey}`) == null) {
-      return null;
-    }
-    return JSON.parse(window.sessionStorage.getItem(PDP+`_${storeKey}`)!);
-  }
-
-  public saveBusinessURL(url: string) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(BUSINESSURL_KEY+`_${storeKey}`);
-    window.sessionStorage.setItem(BUSINESSURL_KEY+`_${storeKey}`, url);
-    this.setStorage(BUSINESSURL_KEY+`_${storeKey}`, url);
-  }
-
-  public getBusinessURL(): string | null {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    return window.sessionStorage.getItem(BUSINESSURL_KEY+`_${storeKey}`);
-  }
-
-  public getBusinessURLFromLocalStorage(): string | null {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-    storeKey = path.split('/')[1];
-    }
-    return window.localStorage.getItem(BUSINESSURL_KEY+`_${storeKey}`);
-  }
-
-  public saveBusinessID(id: string) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-    storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(BUSINESSID_KEY+`_${storeKey}`);
-    window.sessionStorage.setItem(BUSINESSID_KEY+`_${storeKey}`, id);
-  }
-
-  public getBusinessID(): string | null {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-    storeKey = path.split('/')[1];
-    }
-    return window.sessionStorage.getItem(BUSINESSID_KEY+`_${storeKey}`);
-  }
-
-  public saveCookiesonBrowser(cookie: string) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-    storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(COOKIES_KEY+`_${storeKey}`);
-    window.sessionStorage.setItem(COOKIES_KEY+`_${storeKey}`, cookie);
-  }
-
-  public getCookies(): string | null {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    return window.sessionStorage.getItem(COOKIES_KEY+`_${storeKey}`);
-  }
-
-  public saveStoreName(id: string) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(STORE_NAME+`_${storeKey}`);
-    window.sessionStorage.setItem(STORE_NAME+`_${storeKey}`, id);
-  }
-
-  public getBStoreName(): string | null {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    const storeName = window.sessionStorage.getItem(STORE_NAME+`_${storeKey}`);
-    return storeName ? this.toTitleCase(storeName) : null;
-
-  }
-
-  private toTitleCase(str: string): string {
-    return str
-        .toLowerCase()
-        .split(' ')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-}
-
-  public saveCurrency(currency: CurrencyResponse) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(CURRENCY_KEY+`_${storeKey}`);
-    window.sessionStorage.setItem(CURRENCY_KEY+`_${storeKey}`, JSON.stringify(currency));
-  }
-  public getCurrency(): CurrencyResponse {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    const currency = window.sessionStorage.getItem(CURRENCY_KEY+`_${storeKey}`)!;
-    return JSON.parse(currency);
-  }
-  public saveOrderFormat(format: OrderIdFormatResponse) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(ORDER_FORMAT+`_${storeKey}`);
-    window.sessionStorage.setItem(ORDER_FORMAT+`_${storeKey}`, JSON.stringify(format));
-  }
-  public getOrderFormat(): OrderIdFormatResponse {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    const format = window.sessionStorage.getItem(ORDER_FORMAT+`_${storeKey}`)!;
-    return JSON.parse(format);
-  }
-  public saveUser(user: User, isRememberMe: boolean) {
-    this.isRememberMe = isRememberMe;
-    if(environment.env !== 'local'){
-      const storeKey = window.location.hostname;
-      window.sessionStorage.removeItem(USER_KEY+`_${storeKey}`);
-      window.sessionStorage.setItem(USER_KEY+`_${storeKey}`, JSON.stringify(user));
-      this.setStorage(USER_KEY+`_${storeKey}`, JSON.stringify(user));
-    } else {
-      const path = window.location.pathname;
-      const storeKey = path.split('/')[1];
-      window.sessionStorage.removeItem(USER_KEY+`_${storeKey}`);
-      window.sessionStorage.setItem(USER_KEY+`_${storeKey}`, JSON.stringify(user));
-      this.setStorage(USER_KEY+`_${storeKey}`, JSON.stringify(user));
-    }
-  }
-
-  public saveRememberMe(rememberMe: boolean) {
-    if(environment.env !== 'local'){
-      const storeKey = window.location.hostname;
-      window.sessionStorage.removeItem(REMEMBER_ME_KEY+`_${storeKey}`);
-      window.sessionStorage.setItem(REMEMBER_ME_KEY+`_${storeKey}`, JSON.stringify(rememberMe));
-      this.setStorage(REMEMBER_ME_KEY+`_${storeKey}`, JSON.stringify(rememberMe));
-    } else {
-      const path = window.location.pathname;
-      const storeKey = path.split('/')[1];
-      window.sessionStorage.removeItem(REMEMBER_ME_KEY+`_${storeKey}`);
-      window.sessionStorage.setItem(REMEMBER_ME_KEY+`_${storeKey}`, JSON.stringify(rememberMe));
-      this.setStorage(REMEMBER_ME_KEY+`_${storeKey}`, JSON.stringify(rememberMe));
-    }
-  }
-
-  public getRememberMe(): boolean {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    const rememberMe = window.localStorage.getItem(REMEMBER_ME_KEY+`_${storeKey}`);
-    return rememberMe === 'true';
-  }
-
-  public saveUserOrderInfo(order: PlaceOrderDto) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem('order-info'+`_${storeKey}`);
-    window.sessionStorage.setItem('order-info'+`_${storeKey}`, JSON.stringify(order));
-  }
-
-  public getUserOrderInfo(): PlaceOrderDto {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    const order = window.sessionStorage.getItem('order-info'+`_${storeKey}`)!;
-    return JSON.parse(order);
-  }
-
-  public savePlaceOrderInfoPaypal(order: OrderResponse) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem('order-info-paypal'+`_${storeKey}`);
-    window.sessionStorage.setItem('order-info-paypal'+`_${storeKey}`, JSON.stringify(order));
-  }
-
-  public getPlaceOrderInfoPaypal(): OrderResponse {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    const order = window.sessionStorage.getItem('order-info-paypal'+`_${storeKey}`)!;
-    return JSON.parse(order);
-  }
-
-  public getToken(): string | null {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    return window.localStorage.getItem(TOKEN_KEY+`_${storeKey}`);
-  }
-
-  public getUser(): User {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    const localuser = window.localStorage.getItem(USER_KEY+`_${storeKey}`)!;
-    return JSON.parse(localuser);
-  }
-
-  public setUserTheme(color: string) {
-    let user = this.getUser();
-    user.theme = color;
-    this.saveUser(user, this.isRememberMe);
-  }
-
-  public saveRefreshToken(token: string): void {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(REFRESHTOKEN_KEY+`_${storeKey}`);
-    window.sessionStorage.setItem(REFRESHTOKEN_KEY+`_${storeKey}`, token);
-    this.setStorage(REFRESHTOKEN_KEY+`_${storeKey}`, token);
-  }
-
-  public getRefreshToken(): string {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    return window.localStorage.getItem(REFRESHTOKEN_KEY+`_${storeKey}`)!;
-  }
-
-  public saveUserID(id: number): void {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(USER_ID+`_${storeKey}`);
-    window.sessionStorage.setItem(USER_ID+`_${storeKey}`, id.toString());
-    this.setStorage(USER_ID+`_${storeKey}`, id.toString());
-  }
-
-  public getUserID(): number {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    return Number(window.localStorage.getItem(USER_ID+`_${storeKey}`)!);
-  }
-
-  public saveUserType(id: string): void {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem(USER_TYPE+`_${storeKey}`);
-    window.sessionStorage.setItem(USER_TYPE+`_${storeKey}`, id);
-    this.setStorage(USER_TYPE+`_${storeKey}`, id.toString());
-  }
-
-  public getUserType(): string {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    return window.localStorage.getItem(USER_TYPE+`_${storeKey}`)!;
-  }
-
-  public saveBrowserLanguage(language: string) {
-    window.localStorage.removeItem(LANGUAGE_KEY);
-    window.localStorage.setItem(LANGUAGE_KEY, language);
-    this.setStorage(LANGUAGE_KEY, language);
-  }
-
-  public getBrowserLanguage(): string {
-    return window.localStorage.getItem(LANGUAGE_KEY)!;
-  }
-
-  public saveReturnOrder(order: OrderResponse): void {
-    window.sessionStorage.removeItem(RETURN_ORDER);
-    window.sessionStorage.setItem(RETURN_ORDER, JSON.stringify(order));
-  }
-
-  public getReturnOrder(): OrderResponse {
-    return JSON.parse(window.sessionStorage.getItem(RETURN_ORDER)!);
-  }
-
-  public saveOrderForPrint(order: OrderResponse): void {
-    window.sessionStorage.removeItem(PRINT_ORDER);
-    window.sessionStorage.setItem(PRINT_ORDER, JSON.stringify(order));
-  }
-
-  public getOrderForPrint(): OrderResponse {
-    return JSON.parse(window.sessionStorage.getItem(PRINT_ORDER)!);
-  }
-
-  public saveOrderForOrderDetails(order: OrderResponse): void {
-    window.sessionStorage.removeItem(ORDER_DETAILS);
-    window.sessionStorage.setItem(ORDER_DETAILS, JSON.stringify(order));
-  }
-
-  public getOrderForOrderDetails(): OrderResponse {
-    return JSON.parse(window.sessionStorage.getItem(ORDER_DETAILS)!);
-  }
-
-  private setStorage(key: string, value: string): void {
-    window.localStorage.removeItem(key);
-    window.localStorage.setItem(key, value);
-  }
-
-  private removeStorage(key: string): void {
-      window.localStorage.removeItem(key);
-  }
-
-  getFazealLanguages() {
-    return JSON.parse(window.localStorage.getItem(SYSTEM_LANGUAGES_KEY)!);
-  }
-
-  public savePlaceOrderRequest(orderDetails: any){
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    window.sessionStorage.removeItem('place-order-request'+`_${storeKey}`);
-    window.sessionStorage.setItem('place-order-request'+`_${storeKey}`, JSON.stringify(orderDetails));
-    this.setStorage('place-order-request'+`_${storeKey}`, JSON.stringify(orderDetails));
-  }
-
-  public getPlaceOrderRequest(): any {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      storeKey = path.split('/')[1];
-    }
-    return JSON.parse(window.localStorage.getItem('place-order-request'+`_${storeKey}`)!);
-  }
-
-  async saveBusinessData(subdomain: string, param: any) {
-    if(environment.env !== 'local'){
-      subdomain = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
-      subdomain = path.split('/')[1];
-    }
-    if (subdomain) {
-      this.saveBusinessURL(subdomain);
-      await this.catalogService.getBusinessThemeSettings(subdomain).toPromise().then(
-        async data => {
-          this.siteSetting = data?.data?.getBusinessThemeSettings;
-          this.theme = this.siteSetting?.themeName;
-          await this.getStoreCurrencyByBusinessId(this.siteSetting.businessId);
-          await this.getOrderIdFormatByBusinessId(this.siteSetting.businessId);
-          this.saveBusinessID(this.siteSetting.businessId.toString());
-          this.saveStoreName(data?.data?.getBusinessThemeSettings?.storeName);
-          this.translateService.setSiteLanguage(subdomain);
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private catalogService: CatalogServiceService,
+        private businessSettingService: BusinessSettingService,
+        @Inject(PLATFORM_ID) private platformId: object,
+        @Optional() @Inject(REQUEST) private request: Request,
+    ) {
+        this.isBrowser = isPlatformBrowser(this.platformId);
+        if (this.isBrowser) {
+            if (environment.env !== 'local') {
+                this.storeKey = window.location.hostname;
+            } else {
+                const path = window.location.pathname;
+                this.storeKey = path.split('/')[1];
+            }
+        } else if (this.request) {
+            this.storeKey = this.request.hostname.split('.')[0];
         }
-      );
     }
-  }
 
-  public getStoreCurrencyByBusinessId(businessID: number) {
-    this.businessSettingService.getStoreCurrencyByBusinessId(businessID).subscribe(
-      data => {
-        if (data?.data?.getStoreCurrencyByBusinessId) {
-          this.currencySymbol = data?.data?.getStoreCurrencyByBusinessId?.symbol;
-          this.saveCurrency(data?.data?.getStoreCurrencyByBusinessId);
+    private getItem(key: string): any {
+        if (this.isBrowser) {
+            return localStorage.getItem(key);
         }
-      }
-    );
-  }
+        return this.storage.get(key);
+    }
 
-  getOrderIdFormatByBusinessId(businessID: number) {
-    this.catalogService.getOrderIdFormatByBusinessId(businessID).subscribe(
-      data => {
-        if (data?.data?.getOrderIdFormatByBusinessId != null) {
-          this.orderIdFormat = data?.data?.getOrderIdFormatByBusinessId;
-          this.saveOrderFormat(this.orderIdFormat);
+    private setItem(key: string, value: any): void {
+        if (this.isBrowser) {
+            localStorage.setItem(key, value);
+        } else {
+            this.storage.set(key, value);
         }
-      }
-    );
-  }
-
-  getChatUserFromSession(): ChatUserResponse | null {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
- storeKey = path.split('/')[1];
     }
-    const userData = sessionStorage.getItem(`chatUserData_${storeKey}`);
-    return userData ? JSON.parse(userData) : null;
-  }
 
-  saveChatUser(user: ChatUserResponse | null) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
- storeKey = path.split('/')[1];
+    private removeItem(key: string): void {
+        if (this.isBrowser) {
+            localStorage.removeItem(key);
+        } else {
+            this.storage.delete(key);
+        }
     }
-    sessionStorage.setItem(`chatUserData_${storeKey}`, JSON.stringify(user));
-  }
 
-  saveEmpInfo(employeeInfo: any) {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
- storeKey = path.split('/')[1];
+    private getSessionItem(key: string): any {
+        if (this.isBrowser) {
+            return sessionStorage.getItem(key);
+        }
+        return this.storage.get(key);
     }
-    sessionStorage.setItem(`chatEmployeeData_${storeKey}`, JSON.stringify(employeeInfo));
-    this.setStorage(`chatEmployeeData_${storeKey}`, JSON.stringify(employeeInfo));
-  }
 
-  getEmpInfo() {
-    let storeKey;
-    if(environment.env !== 'local'){
-      storeKey = window.location.hostname;
-    } else {
-      const path = window.location.pathname;
- storeKey = path.split('/')[1];
+    private setSessionItem(key: string, value: any): void {
+        if (this.isBrowser) {
+            sessionStorage.setItem(key, value);
+        } else {
+            this.storage.set(key, value);
+        }
     }
-    const userData = localStorage.getItem(`chatEmployeeData_${storeKey}`);
-    return userData ? JSON.parse(userData) : null;
-  }
 
+    private removeSessionItem(key: string): void {
+        if (this.isBrowser) {
+            sessionStorage.removeItem(key);
+        } else {
+            this.storage.delete(key);
+        }
+    }
+
+    signOut(): void {
+        this.removeSessionItem(TOKEN_KEY + `_${this.storeKey}`);
+        this.removeSessionItem(USER_KEY + `_${this.storeKey}`);
+        this.removeSessionItem(REFRESHTOKEN_KEY + `_${this.storeKey}`);
+        this.removeSessionItem(COOKIES_KEY + `_${this.storeKey}`);
+
+        this.removeItem(TOKEN_KEY + `_${this.storeKey}`);
+        this.removeItem(USER_KEY + `_${this.storeKey}`);
+        this.removeItem(REFRESHTOKEN_KEY + `_${this.storeKey}`);
+        this.removeItem(COOKIES_KEY + `_${this.storeKey}`);
+        if (this.isBrowser) {
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: TOKEN_KEY + `_${this.storeKey}`,
+                oldValue: 'some_value',
+                newValue: null,
+                storageArea: sessionStorage
+            }));
+        }
+    }
+
+    clearSessionData(): void {
+        this.signOut();
+    }
+
+    public saveToken(token: string) {
+        this.removeSessionItem(TOKEN_KEY + `_${this.storeKey}`);
+        this.setSessionItem(TOKEN_KEY + `_${this.storeKey}`, token);
+        this.setItem(TOKEN_KEY + `_${this.storeKey}`, token);
+    }
+
+    public saveThemeDashboard(theme: ThemeDashboardContent) {
+        this.removeSessionItem(THEME_DASHBOARD + `_${this.storeKey}`);
+        this.setSessionItem(THEME_DASHBOARD + `_${this.storeKey}`, JSON.stringify(theme));
+    }
+
+    public getThemeDashboard(): ThemeDashboardContent | null {
+        const theme = this.getSessionItem(THEME_DASHBOARD + `_${this.storeKey}`);
+        return theme ? JSON.parse(theme) : null;
+    }
+
+    public savePdp(theme: PdpContent) {
+        this.removeSessionItem(PDP + `_${this.storeKey}`);
+        this.setSessionItem(PDP + `_${this.storeKey}`, JSON.stringify(theme));
+    }
+
+    public getPdp(): PdpContent | null {
+        const pdp = this.getSessionItem(PDP + `_${this.storeKey}`);
+        return pdp ? JSON.parse(pdp) : null;
+    }
+
+    public saveBusinessURL(url: string) {
+        this.removeSessionItem(BUSINESSURL_KEY + `_${this.storeKey}`);
+        this.setSessionItem(BUSINESSURL_KEY + `_${this.storeKey}`, url);
+        this.setItem(BUSINESSURL_KEY + `_${this.storeKey}`, url);
+    }
+
+    public getBusinessURL(): string | null {
+        return this.getSessionItem(BUSINESSURL_KEY + `_${this.storeKey}`);
+    }
+
+    public getBusinessURLFromLocalStorage(): string | null {
+        return this.getItem(BUSINESSURL_KEY + `_${this.storeKey}`);
+    }
+
+    public saveBusinessID(id: string) {
+        this.removeSessionItem(BUSINESSID_KEY + `_${this.storeKey}`);
+        this.setSessionItem(BUSINESSID_KEY + `_${this.storeKey}`, id);
+    }
+
+    public getBusinessID(): string | null {
+        return this.getSessionItem(BUSINESSID_KEY + `_${this.storeKey}`);
+    }
+
+    public saveCookiesonBrowser(cookie: string) {
+        this.removeSessionItem(COOKIES_KEY + `_${this.storeKey}`);
+        this.setSessionItem(COOKIES_KEY + `_${this.storeKey}`, cookie);
+    }
+
+    public getCookies(): string | null {
+        return this.getSessionItem(COOKIES_KEY + `_${this.storeKey}`);
+    }
+
+    public saveStoreName(id: string) {
+        this.removeSessionItem(STORE_NAME + `_${this.storeKey}`);
+        this.setSessionItem(STORE_NAME + `_${this.storeKey}`, id);
+    }
+
+    public getBStoreName(): string | null {
+        const storeName = this.getSessionItem(STORE_NAME + `_${this.storeKey}`);
+        return storeName ? this.toTitleCase(storeName) : null;
+    }
+
+    private toTitleCase(str: string): string {
+        return str
+            .toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+
+    public saveCurrency(currency: CurrencyResponse) {
+        this.removeSessionItem(CURRENCY_KEY + `_${this.storeKey}`);
+        this.setSessionItem(CURRENCY_KEY + `_${this.storeKey}`, JSON.stringify(currency));
+    }
+
+    public getCurrency(): CurrencyResponse {
+        const currency = this.getSessionItem(CURRENCY_KEY + `_${this.storeKey}`);
+        return currency ? JSON.parse(currency) : null;
+    }
+
+    public saveOrderFormat(format: OrderIdFormatResponse) {
+        this.removeSessionItem(ORDER_FORMAT + `_${this.storeKey}`);
+        this.setSessionItem(ORDER_FORMAT + `_${this.storeKey}`, JSON.stringify(format));
+    }
+
+    public getOrderFormat(): OrderIdFormatResponse {
+        const format = this.getSessionItem(ORDER_FORMAT + `_${this.storeKey}`);
+        return format ? JSON.parse(format) : null;
+    }
+
+    public saveUser(user: User, isRememberMe: boolean) {
+        this.isRememberMe = isRememberMe;
+        this.removeSessionItem(USER_KEY + `_${this.storeKey}`);
+        this.setSessionItem(USER_KEY + `_${this.storeKey}`, JSON.stringify(user));
+        this.setItem(USER_KEY + `_${this.storeKey}`, JSON.stringify(user));
+    }
+
+    public saveRememberMe(rememberMe: boolean) {
+        this.removeSessionItem(REMEMBER_ME_KEY + `_${this.storeKey}`);
+        this.setSessionItem(REMEMBER_ME_KEY + `_${this.storeKey}`, JSON.stringify(rememberMe));
+        this.setItem(REMEMBER_ME_KEY + `_${this.storeKey}`, JSON.stringify(rememberMe));
+    }
+
+    public getRememberMe(): boolean {
+        const rememberMe = this.getItem(REMEMBER_ME_KEY + `_${this.storeKey}`);
+        return rememberMe === 'true';
+    }
+
+    public saveUserOrderInfo(order: PlaceOrderDto) {
+        this.removeSessionItem('order-info' + `_${this.storeKey}`);
+        this.setSessionItem('order-info' + `_${this.storeKey}`, JSON.stringify(order));
+    }
+
+    public getUserOrderInfo(): PlaceOrderDto {
+        const order = this.getSessionItem('order-info' + `_${this.storeKey}`);
+        return order ? JSON.parse(order) : null;
+    }
+
+    public savePlaceOrderInfoPaypal(order: OrderResponse) {
+        this.removeSessionItem('order-info-paypal' + `_${this.storeKey}`);
+        this.setSessionItem('order-info-paypal' + `_${this.storeKey}`, JSON.stringify(order));
+    }
+
+    public getPlaceOrderInfoPaypal(): OrderResponse {
+        const order = this.getSessionItem('order-info-paypal' + `_${this.storeKey}`);
+        return order ? JSON.parse(order) : null;
+    }
+
+    public getToken(): string | null {
+        return this.getItem(TOKEN_KEY + `_${this.storeKey}`);
+    }
+
+    public getUser(): User {
+        const localuser = this.getItem(USER_KEY + `_${this.storeKey}`);
+        return localuser ? JSON.parse(localuser) : null;
+    }
+
+    public setUserTheme(color: string) {
+        let user = this.getUser();
+        if (user) {
+            user.theme = color;
+            this.saveUser(user, this.isRememberMe);
+        }
+    }
+
+    public saveRefreshToken(token: string): void {
+        this.removeSessionItem(REFRESHTOKEN_KEY + `_${this.storeKey}`);
+        this.setSessionItem(REFRESHTOKEN_KEY + `_${this.storeKey}`, token);
+        this.setItem(REFRESHTOKEN_KEY + `_${this.storeKey}`, token);
+    }
+
+    public getRefreshToken(): string {
+        return this.getItem(REFRESHTOKEN_KEY + `_${this.storeKey}`);
+    }
+
+    public saveUserID(id: number): void {
+        this.removeSessionItem(USER_ID + `_${this.storeKey}`);
+        this.setSessionItem(USER_ID + `_${this.storeKey}`, id.toString());
+        this.setItem(USER_ID + `_${this.storeKey}`, id.toString());
+    }
+
+    public getUserID(): number {
+        const userId = this.getItem(USER_ID + `_${this.storeKey}`);
+        return userId ? Number(userId) : 0;
+    }
+
+    public saveUserType(id: string): void {
+        this.removeSessionItem(USER_TYPE + `_${this.storeKey}`);
+        this.setSessionItem(USER_TYPE + `_${this.storeKey}`, id);
+        this.setItem(USER_TYPE + `_${this.storeKey}`, id.toString());
+    }
+
+    public getUserType(): string {
+        return this.getItem(USER_TYPE + `_${this.storeKey}`);
+    }
+
+    public saveBrowserLanguage(language: string) {
+        this.removeItem(LANGUAGE_KEY);
+        this.setItem(LANGUAGE_KEY, language);
+    }
+
+    public getBrowserLanguage(): string {
+        return this.getItem(LANGUAGE_KEY);
+    }
+
+    public saveReturnOrder(order: OrderResponse): void {
+        this.removeSessionItem(RETURN_ORDER);
+        this.setSessionItem(RETURN_ORDER, JSON.stringify(order));
+    }
+
+    public getReturnOrder(): OrderResponse {
+        const order = this.getSessionItem(RETURN_ORDER);
+        return order ? JSON.parse(order) : null;
+    }
+
+    public saveOrderForPrint(order: OrderResponse): void {
+        this.removeSessionItem(PRINT_ORDER);
+        this.setSessionItem(PRINT_ORDER, JSON.stringify(order));
+    }
+
+    public getOrderForPrint(): OrderResponse {
+        const order = this.getSessionItem(PRINT_ORDER);
+        return order ? JSON.parse(order) : null;
+    }
+
+    public saveOrderForOrderDetails(order: OrderResponse): void {
+        this.removeSessionItem(ORDER_DETAILS);
+        this.setSessionItem(ORDER_DETAILS, JSON.stringify(order));
+    }
+
+    public getOrderForOrderDetails(): OrderResponse {
+        const order = this.getSessionItem(ORDER_DETAILS);
+        return order ? JSON.parse(order) : null;
+    }
+
+    getFazealLanguages() {
+        const languages = this.getItem(SYSTEM_LANGUAGES_KEY);
+        return languages ? JSON.parse(languages) : null;
+    }
+
+    public savePlaceOrderRequest(orderDetails: any) {
+        this.removeSessionItem('place-order-request' + `_${this.storeKey}`);
+        this.setSessionItem('place-order-request' + `_${this.storeKey}`, JSON.stringify(orderDetails));
+        this.setItem('place-order-request' + `_${this.storeKey}`, JSON.stringify(orderDetails));
+    }
+
+    public getPlaceOrderRequest(): any {
+        const request = this.getItem('place-order-request' + `_${this.storeKey}`);
+        return request ? JSON.parse(request) : null;
+    }
+
+    async saveBusinessData(subdomain: string, param: any) {
+        if (this.isBrowser) {
+            if (environment.env !== 'local') {
+                subdomain = window.location.hostname;
+            } else {
+                const path = window.location.pathname;
+                subdomain = path.split('/')[1];
+            }
+        }
+
+        if (subdomain) {
+            this.saveBusinessURL(subdomain);
+            await this.catalogService.getBusinessThemeSettings(subdomain).toPromise().then(
+                async (data: any) => {
+                    this.siteSetting = data?.data?.getBusinessThemeSettings;
+                    this.theme = this.siteSetting?.themeName;
+                    await this.getStoreCurrencyByBusinessId(this.siteSetting.businessId);
+                    await this.getOrderIdFormatByBusinessId(this.siteSetting.businessId);
+                    this.saveBusinessID(this.siteSetting.businessId.toString());
+                    this.saveStoreName(data?.data?.getBusinessThemeSettings?.storeName);
+                }
+            );
+        }
+    }
+
+    public getStoreCurrencyByBusinessId(businessID: number) {
+        this.businessSettingService.getStoreCurrencyByBusinessId(businessID).subscribe(
+            (data: any) => {
+                if (data?.data?.getStoreCurrencyByBusinessId) {
+                    this.currencySymbol = data?.data?.getStoreCurrencyByBusinessId?.symbol;
+                    this.saveCurrency(data?.data?.getStoreCurrencyByBusinessId);
+                }
+            }
+        );
+    }
+
+    getOrderIdFormatByBusinessId(businessID: number) {
+        this.catalogService.getOrderIdFormatByBusinessId(businessID).subscribe(
+            (data: any) => {
+                if (data?.data?.getOrderIdFormatByBusinessId != null) {
+                    this.orderIdFormat = data?.data?.getOrderIdFormatByBusinessId;
+                    this.saveOrderFormat(this.orderIdFormat);
+                }
+            }
+        );
+    }
+
+    getChatUserFromSession(): ChatUserResponse | null {
+        const userData = this.getSessionItem(`chatUserData_${this.storeKey}`);
+        return userData ? JSON.parse(userData) : null;
+    }
+
+    saveChatUser(user: ChatUserResponse | null) {
+        this.setSessionItem(`chatUserData_${this.storeKey}`, JSON.stringify(user));
+    }
+
+    saveEmpInfo(employeeInfo: any) {
+        this.setSessionItem(`chatEmployeeData_${this.storeKey}`, JSON.stringify(employeeInfo));
+        this.setItem(`chatEmployeeData_${this.storeKey}`, JSON.stringify(employeeInfo));
+    }
+
+    getEmpInfo() {
+        const userData = this.getItem(`chatEmployeeData_${this.storeKey}`);
+        return userData ? JSON.parse(userData) : null;
+    }
 }

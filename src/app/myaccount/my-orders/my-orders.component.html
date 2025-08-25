@@ -1,0 +1,163 @@
+<div class="my-orders-container">
+  <div class="page-description">
+    <p class="page-description-text">
+      {{ 'my_orders_page_description' | translate }}
+    </p>
+  </div>
+  <div class="my-orders-filter">
+    <div class="filter-item">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'search' | translate }}</mat-label>
+        <input
+          matInput
+          [(ngModel)]="filterJson.search_text"
+          (keyup)="searchUpdate.next($event)"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <div class="filter-item">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'order_status' | translate }}</mat-label>
+        <mat-select
+          [(ngModel)]="filterJson.order_status"
+          (selectionChange)="applyFilter()"
+        >
+          <mat-option value="">{{ 'all' | translate }}</mat-option>
+          <mat-option
+            *ngFor="let status of orderStatusList"
+            [value]="status.value"
+            >{{ status.label }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="filter-item">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'from' | translate }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerFrom"
+          [value]="filterJson.date_from"
+          (dateChange)="onDateChange($event, 'date_from')"
+          readonly
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerFrom"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerFrom></mat-datepicker>
+      </mat-form-field>
+      <button
+        mat-icon-button
+        *ngIf="filterJson.date_from"
+        (click)="clearDate('date_from')"
+        class="clear-date-btn"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    <div class="filter-item">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'to' | translate }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="pickerTo"
+          [value]="filterJson.date_to"
+          (dateChange)="onDateChange($event, 'date_to')"
+          readonly
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="pickerTo"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #pickerTo></mat-datepicker>
+      </mat-form-field>
+      <button
+        mat-icon-button
+        *ngIf="filterJson.date_to"
+        (click)="clearDate('date_to')"
+        class="clear-date-btn"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="my-orders-table-container">
+    <table
+      mat-table
+      [dataSource]="orderList"
+      matSort
+      class="my-orders-table"
+    >
+      <ng-container matColumnDef="increment_id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'order_id' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let order">
+          <a
+            (click)="navigateToOrderView(order.entity_id)"
+            class="order-id-link"
+            >{{ order.increment_id }}</a
+          >
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="created_at">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'order_date' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.created_at | date: 'mediumDate' }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="shipped_to">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'shipped_to' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.customer_firstname }} {{ order.customer_lastname }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="order_total">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'order_total' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let order">{{ order.grand_total }}</td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ 'status' | translate }}
+        </th>
+        <td mat-cell *matCellDef="let order">{{ order.status }}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>{{ 'actions' | translate }}</th>
+        <td mat-cell *matCellDef="let order">
+          <div class="actions-container">
+            <a
+              (click)="navigateToOrderView(order.entity_id)"
+              class="action-link"
+              >{{ 'view_order' | translate }}</a
+            >
+            <a
+              *ngIf="order.can_reorder"
+              (click)="openReorderDialog(order.entity_id, false)"
+              class="action-link"
+              >{{ 'reorder' | translate }}</a
+            >
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator
+      [length]="totalOrders"
+      [pageSize]="filterJson.pageSize"
+      [pageSizeOptions]="[10, 20, 50]"
+      (page)="onPageChanged($event)"
+      showFirstLastButtons
+    >
+    </mat-paginator>
+  </div>
+</div>

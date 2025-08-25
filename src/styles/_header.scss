@@ -1,0 +1,415 @@
+@import "./responsive";
+@import "./mixins";
+@import "./colors";
+
+/*header footer css start*/
+.container {
+  padding-left: 70px;
+  padding-right: 70px;
+  max-width: 100%;
+}
+.header-wrap .links ul li button.username span.mat-button-wrapper {
+  border: solid 1px #ccc;
+  border-radius: 50px;
+}
+
+.header-wrap {
+  a {
+    img {
+      max-width: 120px;
+      width: 100%;
+      margin: 0px 5px 0px 0px;
+    }
+  }
+  a.logotxt {
+    font-size: 40px;
+    color: $default !important;
+    display: flex;
+    line-height: normal;
+    text-decoration: none;
+    align-items: center;
+    letter-spacing: 0.4px;
+  }
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  justify-content: space-between;
+  padding: 10px 13px 10px !important;
+  background: $white;
+  overflow: initial;
+  max-width: 1920px !important;
+  margin: 0 auto;
+  .links {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: inline-flex;
+      li {
+        font-size: small;
+        padding: 0px 2px 0px 0px;
+        align-items: center;
+        display: flex;
+        button.username {
+          padding: 0;
+          min-width: 28px;
+
+          background: white;
+          line-height: normal;
+          height: 30px;
+          width: 30px;
+          img {
+            width: 24px;
+            border-radius: 30px;
+          }
+        }
+        a {
+          font-size: 18px;
+          font-weight: 500;
+          font-family: "Myriad Pro";
+          letter-spacing: 0.2px;
+          min-width: 30px;
+          height: 30px;
+          line-height: normal;
+          padding: 0 5px;
+          span.mat-button-wrapper {
+            color: $default;
+          }
+        }
+      }
+      .mat-form-field-wrapper {
+        padding: 0px !important;
+      }
+    }
+  }
+  button {
+    span.mat-button-wrapper {
+      display: flex;
+      height: 30px;
+      width: 30px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  a.icon {
+    display: none;
+  }
+}
+.footer-static {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  justify-content: space-between;
+  padding: 10px 13px 10px !important;
+  background: $white;
+  overflow: initial;
+  padding: 6px 15px 10px;
+  .links {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: inline-flex;
+      li {
+        font-size: small;
+        padding: 0px 15px 0px 0px;
+        align-items: center;
+        display: flex;
+        a {
+          font-size: 15px;
+          font-weight: 500;
+          font-family: "Myriad Pro";
+          letter-spacing: 0.2px;
+        }
+      }
+    }
+  }
+  .links.links.sociallinks {
+    a {
+      align-items: center;
+      display: flex;
+      color: $default !important;
+    }
+  }
+}
+.field-icon {
+  float: right;
+  margin-top: -31px;
+  position: relative;
+  z-index: 2;
+  right: 13px;
+}
+.nowrap {
+  flex-wrap: nowrap !important;
+}
+.header {
+  background: $white;
+}
+footer {
+  background: $white;
+}
+.center-content {
+  height: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.mat-select-panel {
+  position: relative;
+  top: 38px;
+}
+img.media-object {
+  max-width: 61px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .p-size-topbtns.d-flex.align-items-center .p-size {
+    padding: 8px 0 8px 0;
+  }
+
+  .p-size-topbtns.d-flex.align-items-center {
+    flex-wrap: wrap;
+  }
+
+  .header-wrap a.logotxt img {
+    min-width: 35px;
+    display: block;
+  }
+
+  .header-wrap .links {
+    display: flex !important;
+  }
+
+  .dashboard-main .sidemenu-sidenav {
+    display: none !important;
+  }
+
+  .dashboard-main .sidemenu-sidenav {
+    position: absolute;
+    max-width: 100% !important;
+    z-index: 1000;
+    background: #fff;
+  }
+
+  .headercenter {
+    display: inline-flex;
+  }
+
+  .footer-static .center-content .links {
+    padding-bottom: 6px !important;
+  }
+
+  .header-wrap .icon {
+    display: block;
+    margin: 9px;
+    padding: 3px 12px;
+    font-size: 18px;
+  }
+
+  .header-wrap {
+    position: relative;
+    flex-wrap: nowrap !important;
+  }
+
+  .header-wrap button {
+    color: #000;
+    padding: 0px;
+    text-decoration: none;
+    font-size: 24px;
+    display: block;
+  }
+
+  .header-wrap .icon {
+    background: $white;
+    color: $black-one;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .header-wrap a:hover {
+    background-color: $white;
+    color: $default;
+  }
+
+  .header-wrap #myLinks ul {
+    flex-wrap: wrap;
+  }
+
+  .header-wrap #myLinks ul li {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .header-wrap #myLinks {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 51px;
+    background: $default;
+    z-index: 1000;
+    padding: 10px 20px;
+  }
+
+  .header-wrap.header-wrap .icon {
+    display: block;
+    margin: 2px;
+    padding: 7px 12px 0px 4px;
+    font-size: 28px;
+  }
+
+  .header-wrap,
+  .footer-static {
+    flex-wrap: wrap;
+    padding: 8px 10px !important;
+  }
+
+  .header-wrap a img {
+    max-width: 90px;
+  }
+
+  .center-content {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-static {
+    justify-content: center;
+  }
+
+  mat-sidenav {
+    width: 100%;
+  }
+
+  mat-sidenav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  mat-sidenav li {
+    padding: 5px 18px;
+    display: flex;
+    align-items: center;
+    border-bottom: solid 1px #dbdddf;
+  }
+
+  mat-sidenav li .userloginbtn img.logoutimage {
+    height: 24px;
+    border-radius: 50px;
+  }
+
+  mat-sidenav li svg {
+    width: 30px;
+  }
+
+  .mat-sidenav-container {
+    height: calc(97vh - 100px) !important;
+    min-height: 400px !important;
+  }
+
+  mat-sidenav li button {
+    box-shadow: none !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    background: transparent !important;
+  }
+
+  /* .cdk-overlay-pane {    top: 0;    position: absolute !important;   width: 100vw !important;    min-width: 100vw !important;    margin: 0 auto;} */
+  .tabWraper button span.mat-button-wrapper img.logoutimage {
+    width: 26px !important;
+    margin: 2px !important;
+  }
+
+  .hidemobile {
+    display: none !important;
+  }
+
+  .hidedesktop {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .c-loginscrn .login-header p br {
+    display: none;
+  }
+
+  .inv-buttons .btn.btn-primary {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .p-3.d-flex.item-child-row {
+    flex-wrap: wrap;
+  }
+
+  section.section.showimagesbox-design form.box-head {
+    flex-wrap: wrap;
+    min-height: 100px !important;
+  }
+
+  section.section.showimagesbox-design form.box-head mat-form-field {
+    width: 50%;
+  }
+
+  .family-section .box-head {
+    flex-wrap: wrap;
+  }
+}
+
+.hidedesktop {
+  display: none;
+}
+.mat-toolbar.mat-primary button {
+  padding: 5px 10px;
+  height: 45px;
+  background: #fff;
+  margin: 4px;
+  border: solid 1px #e5e5e5;
+  display: inline-block;
+  max-height: 44px;
+}
+/*header footer css end*/
+.header-wrap .links ul li a span.mat-button-wrapper span#n_count {
+  top: -4px !important;
+  left: 16px !important;
+  padding: 0px;
+  font-size: 14px;
+  width: 20px;
+  height: 20px;
+  line-height: normal;
+}
+/*footer start*/
+.footer {
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  min-height: 35px;
+  background-color: $white;
+  padding-top: 12px;
+}
+span.no-count {
+  border: solid 1px #ccc;
+  padding: 3px;
+  background: aliceblue;
+  min-width: 28px;
+  display: block;
+  text-align: center;
+}
+/*footer end*/

@@ -1,21 +1,39 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FooterResponse } from '../models/FooterResponse';
+import { isPlatformBrowser } from '@angular/common';
+import { REQUEST } from '@nguniversal/express-engine/tokens';
+import { Request } from 'express';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
 
-  private BASE_URL= environment.baseURL;
-  constructor(private http: HttpClient) { }
+  private BASE_URL = environment.baseURL;
+  private isBrowser: boolean;
 
-  getThemeDashboardContentBySiteUrl(siteUrl: string):Observable<any>{
-    if(environment.env !== 'local'){
-      siteUrl = window.location.hostname;
+  constructor(
+    private http: HttpClient,
+    @Inject(PLATFORM_ID) private platformId: object,
+    @Optional() @Inject(REQUEST) private request: Request
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  private getSiteUrl(siteUrl: string): string {
+    if (this.isBrowser && environment.env !== 'local') {
+      return window.location.hostname;
+    } else if (!this.isBrowser && this.request) {
+      return this.request.hostname;
     }
+    return siteUrl;
+  }
+
+  getThemeDashboardContentBySiteUrl(siteUrl: string): Observable<any> {
+    siteUrl = this.getSiteUrl(siteUrl);
     let form: FormData = new FormData()
     const query = `query {
         getThemeDashboardContentBySiteUrl(siteUrl: "${siteUrl}") {
@@ -304,14 +322,12 @@ export class ThemeService {
         }
         }
       }`
-    form.append('query',query)
-    return this.http.post(this.BASE_URL,form)
+    form.append('query', query)
+    return this.http.post(this.BASE_URL, form)
   }
 
-  getBusinessProductListingPageContentBySiteUrl(siteUrl: string,id: number):Observable<any>{
-    if(environment.env !== 'local'){
-      siteUrl = window.location.hostname;
-    }
+  getBusinessProductListingPageContentBySiteUrl(siteUrl: string, id: number): Observable<any> {
+    siteUrl = this.getSiteUrl(siteUrl);
     let form: FormData = new FormData()
     const query = `query {
         getBusinessProductListingPageContentBySiteUrl(siteUrl: "${siteUrl}", categoryId: "${id}") {
@@ -400,14 +416,12 @@ export class ThemeService {
           }
         }
       }`
-    form.append('query',query);
-    return this.http.post(this.BASE_URL,form)
+    form.append('query', query);
+    return this.http.post(this.BASE_URL, form)
   }
 
-  getPdpContentBySiteUrl(siteUrl: string):Observable<any>{
-    if(environment.env !== 'local'){
-      siteUrl = window.location.hostname;
-    }
+  getPdpContentBySiteUrl(siteUrl: string): Observable<any> {
+    siteUrl = this.getSiteUrl(siteUrl);
     let form: FormData = new FormData()
     const query = `
     query {
@@ -513,24 +527,20 @@ export class ThemeService {
         }
     }
     }`
-    form.append('query',query);
-    return this.http.post(this.BASE_URL,form)
+    form.append('query', query);
+    return this.http.post(this.BASE_URL, form)
   }
 
-  getLanguageBySiteUrl(siteUrl: string):Observable<any>{
-    if(environment.env !== 'local'){
-      siteUrl = window.location.hostname;
-    }
+  getLanguageBySiteUrl(siteUrl: string): Observable<any> {
+    siteUrl = this.getSiteUrl(siteUrl);
     let form: FormData = new FormData()
     const query = `query {  getLanguageBySiteUrl(siteUrl: "${siteUrl}")}`
-    form.append('query',query);
-    return this.http.post(this.BASE_URL,form)
+    form.append('query', query);
+    return this.http.post(this.BASE_URL, form)
   }
 
-  getSlpContentBySiteUrl(siteUrl: string):Observable<any>{
-    if(environment.env !== 'local'){
-      siteUrl = window.location.hostname;
-    }
+  getSlpContentBySiteUrl(siteUrl: string): Observable<any> {
+    siteUrl = this.getSiteUrl(siteUrl);
     let form: FormData = new FormData()
     const query = `query {
     getSlpContentBySiteUrl(siteUrl: "${siteUrl}") {
@@ -595,8 +605,8 @@ export class ThemeService {
         }
     }
     }`
-    form.append('query',query);
-    return this.http.post(this.BASE_URL,form)
+    form.append('query', query);
+    return this.http.post(this.BASE_URL, form)
   }
 
 }

@@ -3,5 +3,9 @@ export const environment = {
   env: 'local',
   awsKey: '',
   assetsAwsKey: '',
-  landingUrl: ''
+  landingUrl: '',
+  baseCustomerGraphQlURL: '',
+  baseURL: '',
+  baseCustomerSiteURL: '',
+  businessChatBaseUrl: ''
 };

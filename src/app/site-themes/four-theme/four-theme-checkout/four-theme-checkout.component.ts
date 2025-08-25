@@ -1,5 +1,5 @@
 import { CookieDataServiceService } from 'src/app/service/cookie-data-service.service';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, DOCUMENT } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { A11yModule } from '@angular/cdk/a11y';
@@ -21,7 +21,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -29,7 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule, ThemePalette } from '@angular/material/core';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -53,9 +53,8 @@ import { NgxBarcode6Module } from 'ngx-barcode6';
 import { formatDate } from '@angular/common';
 import { Component, ElementRef, Inject, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ThemePalette } from '@angular/material/core';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CardResponse } from 'src/app/models/CardResponse';
 import { OrderIdFormatResponse } from 'src/app/models/OrderIdFormatResponse';
 import { OrderResponse } from 'src/app/models/OrderResponse';
@@ -70,7 +69,6 @@ import { DataService } from 'src/app/service/data.service';
 import { PromotionService } from 'src/app/service/promotion.service';
 import { environment } from 'src/environments/environment';
 import { StoreLocationModalComponent } from '../store-location-modal/store-location-modal.component';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DeleteGuestContactInfoComponent } from '../delete-guest-contact-info/delete-guest-contact-info.component';
 import { ShippingResponse } from 'src/app/models/ShippingResponse';
 import { EstimateShippingResponse } from 'src/app/models/EstimateShippingResponse';
@@ -92,7 +90,6 @@ import { StorehoursComponent } from './storehours/storehours.component';
 import { EditShippingAddressComponent } from './edit-shipping-address/edit-shipping-address.component';
 import { EditbillingaddresspopupComponent } from './editbillingaddresspopup/editbillingaddresspopup.component';
 import { SucessmsgPopupComponent } from 'src/app/sucessmsg-popup/sucessmsg-popup.component';
-import { DOCUMENT } from '@angular/common';
 import { TranslateSiteService } from 'src/app/service/translate-site.service';
 
 
@@ -201,7 +198,8 @@ standalone: true,
     NgbCarouselModule,
     NgbDropdown,
     NgChartsModule,
-    NgxBarcode6Module
+    NgxBarcode6Module,
+    TranslateModule
   ],
 })
 export class FourThemeCheckoutComponent implements OnInit {
@@ -310,8 +308,8 @@ export class FourThemeCheckoutComponent implements OnInit {
   zoom: number = 5;
   markerLatitude: number = 0;
   markerLongitude: number = 0;
-  mapClickListener: any
-  mappp: any
+  mapClickListener: any;
+  mappp: any;
   addressForm!: FormGroup;
   countrytext:boolean=true;
   selectedcode:boolean=false;

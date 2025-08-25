@@ -1,0 +1,21 @@
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+.b-0 {
+  border: 0px !important;
+}
+.listof-items .mat-expansion-panel-content .mat-expansion-panel-body {
+  padding: 0 0px 0px;
+}
+.m-auto {
+  margin: 0 auto;
+}
+.icon {
+  display: block;
+}
+.h-a {
+  height: auto !important;
+}
+.mat-form-field:not(.mat-form-field-appearance-legacy)
+  .mat-form-field-suffix
+  .mat-icon-button {
+  height: 3.1em !important;
+}

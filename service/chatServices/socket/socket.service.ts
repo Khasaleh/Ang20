@@ -1,5 +1,5 @@
-
-import { HostListener, Injectable, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, OnInit, PLATFORM_ID } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { io } from 'socket.io-client';
 import { environment } from 'src/environments/environment';
@@ -13,12 +13,20 @@ import { ChatMessage, ChatUserResponse } from '../rest-api/chat-rest-api.service
 export class SocketService implements OnInit {
   private nodeChatUrl = environment.businessChatBaseUrl;
   private socket: any = null;
-  businessId: number = Number(this.tokenStorage.getBusinessID())
+  businessId: number | null = null;
+  isBrowser: boolean;
 
   constructor(
     private tokenStorage: TokenStorageService,
     private sanitizer: DomSanitizer,
-  ) { }
+    @Inject(PLATFORM_ID) private platformId: object,
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser) {
+      this.businessId = Number(this.tokenStorage.getBusinessID());
+      window.addEventListener('beforeunload', this.beforeUnloadHandler.bind(this));
+    }
+  }
   ngOnInit(): void {
   }
 
@@ -27,6 +35,9 @@ export class SocketService implements OnInit {
   }
 
   async socketConnect(chatUser: any = null) {
+    if (!this.isBrowser) {
+      return;
+    }
     const token = this.tokenStorage.getToken();
     if (chatUser) {
       const query = {
@@ -151,7 +162,6 @@ export class SocketService implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  @HostListener('window:beforeunload', ['$event'])
   beforeUnloadHandler(event: Event) {
     if (this.socket) {
       this.disconnect();
@@ -164,9 +174,11 @@ export class SocketService implements OnInit {
 
   onNewMessage() {
     return new Observable((observer) => {
-      this.socket.on('newMessage', (data: any) => {
-        observer.next(data);
-      })
+      if (this.socket) {
+        this.socket.on('newMessage', (data: any) => {
+          observer.next(data);
+        })
+      }
     });
   }
   async emitCheckEmployees(userId: number, employeeIds: number[], chatUser: ChatUserResponse | null): Promise<any> {
@@ -209,84 +221,96 @@ export class SocketService implements OnInit {
 
   onUpdateMessage(): Observable<ChatMessage> {
     return new Observable((observer) => {
-      this.socket.on('updateMessage', (data: any) => {
-        if (!!data) observer.next(data);
-      })
+      if (this.socket) {
+        this.socket.on('updateMessage', (data: any) => {
+          if (!!data) observer.next(data);
+        })
+      }
     });
   }
 
   onDeleteMessage() {
     return new Observable((observer) => {
-      this.socket.on('deleteMessage', (data: any) => {
-        if (!!data) observer.next(data);
-      })
+      if (this.socket) {
+        this.socket.on('deleteMessage', (data: any) => {
+          if (!!data) observer.next(data);
+        })
+      }
     });
   }
 
   offAllListeners() {
     if (this.socket) {
-        this.socket.off('deleteMessage');
-        this.socket.off('typingChat');
-        this.socket.off('updateMessage');
-        this.socket.off('newMessage');
+      this.socket.off('deleteMessage');
+      this.socket.off('typingChat');
+      this.socket.off('updateMessage');
+      this.socket.off('newMessage');
     }
   }
 
   onEndChat() {
     return new Observable((observer) => {
-      this.socket.on('endChat', (data: any) => {
-        if (!!data) observer.next(data);
-      })
+      if (this.socket) {
+        this.socket.on('endChat', (data: any) => {
+          if (!!data) observer.next(data);
+        })
+      }
     });
   }
 
   onTypingChat(): Observable<ChatMessage> {
     return new Observable((observer) => {
-      this.socket.on('typingChat', (data: any) => {
-        if (!!data) observer.next(data);
-      })
+      if (this.socket) {
+        this.socket.on('typingChat', (data: any) => {
+          if (!!data) observer.next(data);
+        })
+      }
     });
   }
 
   emitTypingChat(data: any) {
-    this.socket.emit('typingChat', {
-      typing: data.isTyping,
-      roomName: data.roomName,
-      userId: data.userId,
-    });
+    if (this.socket) {
+      this.socket.emit('typingChat', {
+        typing: data.isTyping,
+        roomName: data.roomName,
+        userId: data.userId,
+      });
+    }
   }
 
   onUpdateEmployee(): Observable<ChatMessage> {
     return new Observable((observer) => {
-      this.socket.on('updateEmployee', (data: any) => {
-        if (!!data) observer.next(data);
-      })
+      if (this.socket) {
+        this.socket.on('updateEmployee', (data: any) => {
+          if (!!data) observer.next(data);
+        })
+      }
     });
   }
 
   emitChatMessageReaction(messageId: string, userId: any, likeType: string, roomName: any) {
-    this.socket.emit('newReaction', {
-      type: likeType,
-      messageId: messageId,
-      userId: userId,
-      userType: 'employee',
-      roomName: roomName
-    });
+    if (this.socket) {
+      this.socket.emit('newReaction', {
+        type: likeType,
+        messageId: messageId,
+        userId: userId,
+        userType: 'employee',
+        roomName: roomName
+      });
+    }
   }
 
   OnChatMessageReaction(): Observable<ChatMessage> {
     return new Observable((observer) => {
-      this.socket.on('newReaction', (data: any) => {
-        if (!!data) observer.next(data);
-      })
+      if (this.socket) {
+        this.socket.on('newReaction', (data: any) => {
+          if (!!data) observer.next(data);
+        })
+      }
     });
   }
 
 }
-
-
-
-
 
 export interface ChatEmployeeInfoAfterConnect {
   activated: boolean;
