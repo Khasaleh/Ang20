@@ -1,15 +1,33 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import * as _ from 'lodash';
 import { firstValueFrom } from 'rxjs';
 import { ChatMessage, ChatRestApiService, ChatUserResponse } from 'src/app/service/chatServices/rest-api/chat-rest-api.service';
 import { SocketService } from 'src/app/service/chatServices/socket/socket.service';
 import { UpdateShareService } from 'src/app/service/chatServices/updateShare/update-share.service';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
+import { AttachementPreviewComponent } from '../attachment-preview/attachement-preview/attachement-preview.component';
 
 @Component({
   selector: 'app-chat-send-message',
   templateUrl: './chat-send-message.component.html',
-  styleUrls: ['./chat-send-message.component.css']
+  styleUrls: ['./chat-send-message.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    TranslateModule,
+    AttachementPreviewComponent,
+  ],
 })
 export class ChatSendMessageComponent implements OnInit {
   @Output() messageSent = new EventEmitter<any>();

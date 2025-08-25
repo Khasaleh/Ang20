@@ -1,3 +1,9 @@
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 import { Component, ElementRef, HostListener, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
@@ -46,6 +52,18 @@ import { MatOptionSelectionChange } from '@angular/material/core';
 declare const google: any;
 
 @Component({
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatMenuModule,
+    MatTabsModule,
+    RouterModule,
+    TranslateModule
+  ],
   selector: 'app-header-theme-two',
   templateUrl: './header-theme-two.component.html',
   styleUrls: ['./header-theme-two.component.css']

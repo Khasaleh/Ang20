@@ -1,12 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { LinkifyPipe } from '../linkifyPipe/linkify.pipe';
+import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-text-show-more-less',
   templateUrl: './text-show-more-less.component.html',
   styleUrls: ['./text-show-more-less.component.css'],
-  providers: [LinkifyPipe]
+  standalone: true,
+  imports: [CommonModule, TranslateModule, LinkifyPipe],
 })
 export class TextShowMoreLessComponent {
   @Input() text: string = '';

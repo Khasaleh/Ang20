@@ -1,13 +1,27 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { User } from 'src/app/models/user';
 import { AcquireInfo } from 'src/app/service/chatServices/rest-api/chat-rest-api.service';
+import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-guest-data-info',
   templateUrl: './guest-data-info.component.html',
-  styleUrls: ['./guest-data-info.component.css']
+  styleUrls: ['./guest-data-info.component.css'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    TranslateModule,
+  ],
 })
 export class GuestDataInfoComponent implements OnInit {
   @Output() startChattingEmiter = new EventEmitter<{ start: boolean, firstName: string, lastName: string, email: string, phone: string, comment: string }>();
