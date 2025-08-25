@@ -1,0 +1,200 @@
+<!-- Best Selling Products for PLP Starts Here -->
+<section  *ngIf="pageType === 'plpbestseller-page'"  >
+<div class="d-block w-100" *ngIf="productResponse.bestsellerProductsEnabled">
+   <div class="d-block w-100" *ngIf="productResponse.bestSellerProducts.length > 0">
+  <div class="new-container1 mx-auto p-4 rounded-1  mt-5">
+    <div class="d-block w-100 pb-4">
+   <h1 class="text-20 font-weight-600 text-black text-center p-0 m-0" *ngIf="productResponse.bestSellerProductHeadingEnabled">
+    {{productResponse.bestSellerProductHeading | titlecase}}
+  </h1>
+   </div>
+   <div class="d-block w-100">
+
+    <!-- Product 1 Starts Here -->
+   <div class="row justify-content-center" *ngIf="productResponse.bestSellerProducts.length === 1">
+    <div class="col-lg-3 col-md-3 col-sm-4 col-12" >
+      <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+      [ngClass]="{ 
+        'arrows-style-consistent': productResponse.bestSellerProductSliderStyle  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  productResponse.bestSellerProductSliderStyle === 'DOTS',
+        'slider-style-nothing':  productResponse.bestSellerProductSliderStyle  === 'NO_ARROWS_NO_DOTS'
+         }">
+        <ng-template carouselSlide  *ngFor="let product of productResponse.bestSellerProducts">
+         <div class="d-block w-100 px-3 h-100">
+            <app-product-box [activeTheme]="themeName"  [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+           </div>
+        </ng-template>
+     </owl-carousel-o>
+    </div>
+   </div>  
+   <!-- Product 1 Ends Here -->
+
+   <!-- Product 2 Starts Here -->
+   <div class="row justify-content-center" *ngIf="productResponse.bestSellerProducts.length === 2">
+    <div class="col-lg-6 col-md-6 col-sm-9 col-12">
+      <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+      [ngClass]="{ 
+        'arrows-style-consistent': productResponse.bestSellerProductSliderStyle  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  productResponse.bestSellerProductSliderStyle === 'DOTS',
+        'slider-style-nothing':  productResponse.bestSellerProductSliderStyle  === 'NO_ARROWS_NO_DOTS'
+         }">
+        <ng-template carouselSlide  *ngFor="let product of productResponse.bestSellerProducts">
+         <div class="d-block w-100 px-3 h-100">
+            <app-product-box [activeTheme]="themeName"  [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+           </div>
+        </ng-template>
+     </owl-carousel-o>
+    </div>
+   </div>  
+   <!-- Product 2 Ends Here -->
+
+
+   <!-- Product 3 Starts Here -->
+   <div class="row justify-content-center" *ngIf="productResponse.bestSellerProducts.length === 3">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+      <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+      [ngClass]="{ 
+        'arrows-style-consistent': productResponse.bestSellerProductSliderStyle  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  productResponse.bestSellerProductSliderStyle === 'DOTS',
+        'slider-style-nothing':  productResponse.bestSellerProductSliderStyle  === 'NO_ARROWS_NO_DOTS'
+         }">
+        <ng-template carouselSlide  *ngFor="let product of productResponse.bestSellerProducts">
+         <div class="d-block w-100 px-3 h-100">
+            <app-product-box [activeTheme]="themeName"  [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+           </div>
+        </ng-template>
+     </owl-carousel-o>
+    </div>
+   </div>  
+   <!-- Product 3 Ends Here -->
+
+
+
+
+   <!-- More than Product 3 Starts Here -->
+   <div class="row justify-content-center" *ngIf="productResponse.bestSellerProducts.length > 3" >
+    <div class="col-12">
+      <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+      [ngClass]="{ 
+        'arrows-style-consistent': productResponse.bestSellerProductSliderStyle  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  productResponse.bestSellerProductSliderStyle === 'DOTS',
+        'slider-style-nothing':  productResponse.bestSellerProductSliderStyle  === 'NO_ARROWS_NO_DOTS'
+         }">
+        <ng-template carouselSlide  *ngFor="let product of productResponse.bestSellerProducts">
+         <div class="d-block w-100 px-3 h-100">
+            <app-product-box [activeTheme]="themeName"  [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+           </div>
+        </ng-template>
+     </owl-carousel-o>
+    </div>
+   </div>  
+   <!-- More than Product 3 Ends Here -->
+
+
+
+   </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- Best Selling Products for PLP Ends Here -->
+
+<!-- Best Selling Products for PDP Starts Here -->
+  <section  *ngIf="pageType === 'pdpbestseller-page'">
+  <div class="d-block w-100" *ngIf="productPdpResponse.showBestSellingProducts">
+   <div class="new-container1 mx-auto p-4 rounded-1  mt-5">
+
+    <div class="d-block w-100 pb-4">
+      <h1 class="text-20 font-weight-600 text-black text-center p-0 m-0" *ngIf="productPdpResponse.showBestSellingHeading">
+        {{productPdpResponse.bestSellingHeading}}
+      </h1>
+    </div>
+    <div class="d-block w-100">
+
+    <!-- Product Box 1 Starts Here -->
+    <div class="row justify-content-center" *ngIf="productPdpResponse.bestSellerProducts.length === 1">
+      <div class="col-lg-3 col-md-3 col-sm-4 col-12" >
+      <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+      [ngClass]="{ 
+        'arrows-style-consistent': productPdpResponse.bestSellingSlider  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  productPdpResponse.bestSellingSlider === 'DOTS',
+        'slider-style-nothing':  productPdpResponse.bestSellingSlider   === 'NO_ARROWS_NO_DOTS'
+         }">
+        <ng-template carouselSlide  *ngFor="let product of productPdpResponse.bestSellerProducts">
+          <div class="d-block w-100 px-3 h-100">
+            <app-product-box [activeTheme]="themeName"  [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+           </div>
+        </ng-template>
+     </owl-carousel-o>
+      </div>
+    </div>
+    <!-- Product Box 1 Ends Here -->
+
+
+    <!-- Product Box 2 Starts Here -->
+    <div class="row justify-content-center" *ngIf="productPdpResponse.bestSellerProducts.length === 2">
+      <div class="col-lg-6 col-md-6 col-sm-9 col-12">
+      <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+      [ngClass]="{ 
+        'arrows-style-consistent': productPdpResponse.bestSellingSlider  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  productPdpResponse.bestSellingSlider === 'DOTS',
+        'slider-style-nothing':  productPdpResponse.bestSellingSlider   === 'NO_ARROWS_NO_DOTS'
+         }">
+        <ng-template carouselSlide  *ngFor="let product of productPdpResponse.bestSellerProducts">
+          <div class="d-block w-100 px-3 h-100">
+            <app-product-box [activeTheme]="themeName"  [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+           </div>
+        </ng-template>
+     </owl-carousel-o>
+      </div>
+    </div>
+    <!-- Product Box 2 Ends Here -->
+
+
+    <!-- Product Box 3 Starts Here -->
+    <div class="row justify-content-center" *ngIf="productPdpResponse.bestSellerProducts.length === 3">
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+      <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+      [ngClass]="{ 
+        'arrows-style-consistent': productPdpResponse.bestSellingSlider  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  productPdpResponse.bestSellingSlider === 'DOTS',
+        'slider-style-nothing':  productPdpResponse.bestSellingSlider   === 'NO_ARROWS_NO_DOTS'
+         }">
+        <ng-template carouselSlide  *ngFor="let product of productPdpResponse.bestSellerProducts">
+          <div class="d-block w-100 px-3 h-100">
+            <app-product-box [activeTheme]="themeName"  [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+           </div>
+        </ng-template>
+     </owl-carousel-o>
+      </div>
+    </div>
+    <!-- Product Box 3 Ends Here -->
+
+
+    <!-- More Than Product 3 Starts Here -->
+    <div class="row justify-content-center" *ngIf="productPdpResponse.bestSellerProducts.length > 3">
+      <div class="col-12">
+      <owl-carousel-o [options]="customOptions" class="carousel-not-hidden prod-box-carousel"
+      [ngClass]="{ 
+        'arrows-style-consistent': productPdpResponse.bestSellingSlider  === 'LEFT_AND_RIGHT_ARROWS',
+        'dots-style-consistent':  productPdpResponse.bestSellingSlider === 'DOTS',
+        'slider-style-nothing':  productPdpResponse.bestSellingSlider   === 'NO_ARROWS_NO_DOTS'
+         }">
+        <ng-template carouselSlide  *ngFor="let product of productPdpResponse.bestSellerProducts">
+          <div class="d-block w-100 px-3 h-100">
+            <app-product-box [activeTheme]="themeName"  [product]="product" [isQuickView]="AlwaysShow"></app-product-box>
+           </div>
+        </ng-template>
+     </owl-carousel-o>
+      </div>
+    </div>
+    <!-- More Than Product 3 Ends Here -->
+
+
+
+
+    </div>
+   </div>
+ </div>
+  </section>
+<!-- Best Selling Products for PLP Ends Here -->

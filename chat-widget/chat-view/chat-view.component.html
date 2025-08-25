@@ -1,0 +1,68 @@
+<div class="d-block w-100">
+  <div class="d-block w-100 px-3  sticky-top border-bottom bg-theme-dark-color position-relative">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <div class="d-inline-block w-100 py-3" (click)="$event.stopPropagation()">
+        <div class="d-flex w-100 align-items-center justify-content-start ">
+          <div class="d-inline-block min-width-clear">
+            <img class="w-40-px h-40-px object-fit-cover rounded-circle" [src]="awsUrl + employee?.profilePhoto"
+              onerror="this.src='../../assets/img/default-profile-image.jpg'" alt="{{'PROFILE_IMAGE'|translate}}">
+          </div>
+          <div class="d-inline-block ps-3 w-100">
+            <h4 class="text-white text-14 font-weight-600 mt-0 mb-1">
+              {{employee?.firstName}} {{employee?.lastName}}
+            </h4>
+            <p class="text-white font-weight-300 p-0 text-13 m-0"> {{employee?.email}} </p>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block min-width-clear py-3">
+        <button class="d-flex align-items-center justify-content-center p-1 border rounded-2">
+          <mat-icon class="no-min-height no-min-width text-20 text-white">keyboard_arrow_down</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="position-absolute top-100 start-0 w-100">
+      <span class="text-13 text-black w-100 d-block text-center py-1 bg-color-f6fef9 border-bottom border-color-silver"
+        *ngIf="typingData && typingData.typing && this.chatUser?.userId !== typingData.userId">
+        {{'USER_IS_TYPING'|translate}}
+      </span>
+    </div>
+  </div>
+  <div *ngIf="queueInFront > 0" class="d-block w-100 px-3 py-3 all-messages-wrapper">
+    <div class="d-block w-100">
+      {{'PLEASE_WAIT'|translate}} ,
+      {{'OUR_REPRESENTATIVE_WILL_BE_WITH_YOU'|translate}}   {{'THERE'|translate}}
+
+      {{queueInFront === 1 ? 'is' : 'are'}}
+      {{queueInFront}}
+      {{'INFRONT_OF_YOU'|translate}}
+    </div>
+  </div>
+  <div #scrollContainer class="d-block all-message-wrapper-height modern-scroll overflow-auto">
+  <div class="d-block w-100 px-2 py-2 all-messages-wrapper" (click)="$event.stopPropagation()"
+    *ngFor="let message of chats; let i = index">
+    <div class="d-block w-100 my-4" *ngIf="i === 0 || isNewDate(message.createdAt, chats[i - 1]?.createdAt)">
+      <div class="d-flex align-items-center justify-content-center">
+        <span class="bg-theme-dark-color rounded-pill d-inline-block px-4 py-2 text-white rounded-circle">
+          {{ message.createdAt | date:'longDate' }}
+        </span>
+      </div>
+    </div>
+    <div class="d-block w-100">
+      <app-otheruser-message *ngIf="message.senderType == 'employee'" [messageData]="message"
+        (messageReactionEmitter)="reactOnOtherUserMessage($event)"></app-otheruser-message>
+    </div>
+    <div class="d-block w-100">
+      <app-currentuser-message [user]="chatUser" *ngIf="message.senderType != 'employee'"
+        [messageData]="message"></app-currentuser-message>
+    </div>
+    <div *ngIf="redirected && lastIndex === i">{{'REDIRECTED_CHAT'|translate}}</div>
+  </div>
+  </div>
+
+  <div class="d-block w-100 px-3 pt-3 pb-0 position-sticky bg-color-F2F4F7 bottom-0 start-0 w-100 "
+    (click)="$event.stopPropagation()">
+    <app-chat-send-message (messageSent)="sendMessage($event)" [user]="chatUser"
+      [disableSendButton]="disableSendButton"></app-chat-send-message>
+  </div>
+</div>

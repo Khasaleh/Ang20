@@ -1,0 +1,384 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">  {{'RETURNREFUND'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 m-0 border-0">
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                        <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                          {{'HOME'|translate}}
+                          </button>
+                        <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                      <button routerLink="../my-order" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                        {{'ORDERS'|translate}}
+                        </button>
+                      <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                  </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off" aria-current="page">
+                        <b class="text-14 font-weight-400 cursor-default text-black">
+                          {{'RETURNREFUND'|translate}}
+                        </b>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+  </div>
+</section>
+<section class="py-5 px-md-3 px-sm-0 px-0 plp_pr_section">
+    <div class="new-container1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between flex-md-column flex-lg-row flex-sm-column flex-column">
+                    <div class="product_content_area m-0 w-100 pb-4 px-lg-4 px-md-0 return_refund_product_content_area">
+                        <div class="w-100 h-100">
+                            <div class="row">
+                                <div class="col-md-12 return_stepform_tab">
+                                    <mat-stepper labelPosition="bottom" animationDuration="0ms">
+                                        <mat-step [editable]="false" state="done">
+                                            <div class="w-100 h-100">
+                                                <div class="w-100 border overflow-hidden rounded-3 h-100 pb-3">
+                                                    <div class="row mb-3">
+                                                        <div class="col-md-12">
+                                                            <div class="searchbar_parent bg-color-F2F3F5 d-flex justify-content-start align-items-center py-3 px-4">
+                                                                <div class="row w-100">
+                                                                    <div class="col-md-4 col-sm-12 col-12 d-flex flex-column justify-content-end">
+                                                                        <p class="text-15 font-weight-600 text-black mb-1 mob-text-13">{{'ORDER-SEC'|translate}} #abc15405431</p>
+                                                                        <p class="text-14 font-weight-400 text-color-475467 mb-0 mob-text-12">{{'PLACEDON'|translate}} 12 jan 2023 02:27:58</p>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-12 col-12 d-flex align-items-end">
+                                                                        <p class="text-14 font-weight-400 text-color-475467 mb-0 mob-text-12">{{'DELIVEREDON'|translate}} 16 jan 2023</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-100 p-sm-4 p-2">
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12 overflow-x-auto">
+                                                                <table class="table order_table">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td class="border-0 w-100-px">
+                                                                                <div class="border rounded-2 w-100-px h-100-px d-flex align-items-center justify-content-center">
+                                                                                    <img src="../../../assets/img/items/5.webp" class="w-100"
+                                                                                    alt="{{'ICONIMAGES'|translate}}">
+                                                                                </div>
+                                                                            </td>
+                                                                            <td class="border-0">
+                                                                                <p class="text-15 font-weight-500 text-black mb-1 mob-text-13 mob-180-px">Waterproof Rain Poncho Lightweight Poncho -OrangeOrder #abc15405431</p>
+                                                                                <p class="text-14 font-weight-400 xt-lightgrey mb-3 mob-text-12">{{'COLORFAMILY'|translate}}:Orange</p>
+                                                                            </td>
+                                                                            <td class="border-0 align-items-center">
+                                                                                <div class="d-flex align-items-center">
+                                                                                    <span class="me-2 text-14 font-weight-400 text-black mob-text-12 white-space-nowrap">$25 X</span>
+                                                                                    <input type="text" class="form-control text-center border rounded-2 w-50-px input-focus-none-checkout" value="1">
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <h4 class="text-18 font-weight-600 text-black mob-text-12">{{'RETURN_REASON'|translate}}</h4>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <form>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12 select_language">
+                                                                            <label class="text-15 mb-4 font-weight-400 text-black mob-text-12">{{'PLEASE_SELECT_RETURN'|translate}} </label>
+                                                                            <mat-select [(value)]="def" class="form-select form-select-lg w-100 px-0 py-3 border text-16 mob-text-12 font-weight-400 text-lightgrey" panelClass="field-exact-dropdown-width v_scroll_custom">
+                                                                                <mat-option [value]="0">{{'SELECT_REASON'|translate}}</mat-option>
+                                                                                <mat-option value="Item has damaged/broken/dent or scratches">{{'ITEM-HAS-DAMAGED'|translate}}</mat-option>
+                                                                                <mat-option value="Item is not working">{{'Item is not working'|translate}}</mat-option>
+                                                                                <mat-option value="Components or accessory is missing from the box">{{'COMPONENTORACCESSORY'|translate}}</mat-option>
+                                                                                <mat-option value="Item does not match description or picture">{{'ITEM_DOES_NOT_MATCH'|translate}}</mat-option>
+                                                                                <mat-option value="product size is wrong">{{'PRODUCT_IS_WRONG'|translate}}</mat-option>
+                                                                                <mat-option value="I received the wrong item">{{'I_RECIEVED_WRONG_ITEM'|translate}}</mat-option>
+                                                                                <mat-option value="Don't want the item anymore">{{'DONT-WANT'|translate}}</mat-option>
+                                                                                <mat-option value="The product is fake">{{'FAKE-PRODUCT'|translate}}</mat-option>
+                                                                            </mat-select>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="border rounded-3 px-4 pt-4 pb-5">
+                                                                    <div class="row mb-5">
+                                                                        <div class="col-md-12">
+                                                                            <h4 class="text-18 font-weight-600 text-black mob-text-14">{{'UPLOADPHOTO'|translate}}</h4>
+                                                                            <p class="text-15 font-weight-400 text-black mob-text-12">{{'UPLOAD_PHOTOS_CLAIM'|translate}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row justify-content-center">
+                                                                        <div class="col-lg-6 col-md-8 col-sm-12 col-12">
+                                                                            <div class="border px-2 rounded-3 py-4 bg-four-theme-lightgrey d-flex justify-content-center align-items-center flex-md-row flex-sm-column flex-column">
+
+                                                                                <div class="me-3">
+                                                                                    <img src="../../../assets/img/items/imageupload.svg" width="52px" height="52px"
+                                                                                        alt="{{'ICONIMAGES'|translate}}">
+                                                                                </div>
+                                                                                <div>
+                                                                                    <p class="mb-0 text-12 font-weight-400 mob-text-11 text-md-start text-sm-start text-center"><span class="text-14 font-weight-600 mob-text-12 text-color-6941C6">{{'UPLOAD_YOUR'|translate}}</span><span class="textcolorgrey text-12 mob-text-12 font-weight-400"> {{'DRAG_DROP'|translate}}</span></p>
+                                                                                    <p class="mb-0 text-12 font-weight-400 textcolorgrey mob-text-11 text-md-start text-sm-start text-center">{{'IMAGEFORMAT'|translate}}</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="d-flex align-items-center justify-content-center mt-2">
+                                                                                <span class="text-13 font-weight-600 text-lightgrey me-2 white-space-nowrap">{{'NOTE'|translate}}</span><span class="me-2 white-space-nowrap text-lightgrey text-12 font-weight-400">{{'UPTOIMAGES'|translate}}</span><span class="text-12 white-space-nowrap text-lightgrey mob-text-12 font-weight-400">{{'MAXMB'|translate}}</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="border rounded-3 px-4 pt-4 pb-5">
+                                                                    <form>
+                                                                        <div class="row mb-5">
+                                                                            <div class="col-md-12">
+                                                                                <label for="exampleInputEmail1" class="text-15 mb-4 font-weight-400 text-black">{{'CUSTOMER_COMMENTS'|translate}}</label>
+                                                                                <div class="position-relative">
+                                                                                    <textarea class="form-control border input-focus-none-checkout four-theme-lightgrey" rows="7"></textarea>
+                                                                                    <span class="position-absolute words_counter text-15 font-weight-400 text-lightblack mob-text-12">0 / 300</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="border rounded-3 px-sm-4 px-4 pt-sm-4 pt-4 pb-sm-4 pb-4">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="accept_checkbox mb-3">
+                                                                                <mat-checkbox class="example-margin">
+                                                                                    <p class="text-16 font-weight-400 text-black mob-text-12 mb-0 ">{{'IACCEPTTHE'|translate}} <span class="text-16 font-weight-500 mob-text-12 text-green-theme-four-light-027A48">{{'RETURN_POLICY'|translate}}</span> {{'FAZEAL_STORE'|translate}}</p>
+                                                                                </mat-checkbox>
+                                                                            </div>
+                                                                            <p class="text-16 font-weight-400 text-black mob-text-12 mb-2">{{'YOUR_TOTAL_REFUND'|translate}}</p>
+                                                                            <h4 class="text-36 font-weight-400 text-black mob-text-16 mb-0">$25</h4>
+                                                                        </div>
+                                                                        <div class="col-md-6 d-flex align-items-end justify-content-end">
+                                                                            <button type="button" mat-button matStepperNext
+                                                                                class="border-0 rounded-2 text-white bg-green-four-theme next_btn_return_order px-5 py-0 text-16 mob-text-12 font-weight-600">
+                                                                                {{'SIGNUP_NEXTBTN'|translate}}
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </mat-step>
+                                        <mat-step [editable]="false" state="done">
+                                            <div class="w-100 h-100">
+                                                <div class="w-100 border overflow-hidden rounded-3 h-100 pb-3">
+                                                    <div class="row mb-3">
+                                                        <div class="col-md-12">
+                                                            <div class="searchbar_parent bg-color-F2F3F5 d-flex justify-content-start align-items-center py-3 px-4">
+                                                                <div class="row w-100">
+                                                                    <div class="col-md-4 col-sm-12 col-12 d-flex flex-column justify-content-end">
+                                                                        <p class="text-15 font-weight-600 text-black mb-1 mob-text-13">{{'ORDER-SEC'|translate}} #abc15405431</p>
+                                                                        <p class="text-14 font-weight-400 text-color-475467 mb-0 mob-text-12">{{'PLACEDON'|translate}} 12 jan 2023 02:27:58</p>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-12 col-12 d-flex align-items-end">
+                                                                        <p class="text-14 font-weight-400 text-color-475467 mb-0 mob-text-12">{{'DELIVEREDON'|translate}} 16 jan 2023</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-100 p-sm-4 p-2">
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <h4 class="text-18 font-weight-600 text-black mob-text-14 mb-4">{{'SELECTRETURNSHIPMENT'|translate}}</h4>
+                                                                <div class="accept_checkbox mb-3">
+                                                                    <mat-checkbox [(ngModel)]="checkBoxChecked">
+                                                                        <p class="text-15 font-weight-600text-greycolor mb-sm-0 mb-3 w-100">{{'PICKUPPRODUCTS'|translate}}</p>
+                                                                        <p class="text-14 font-weight-400 text-grey-color mob-text-12 mb-0 w-100">{{'BY_SELECTING'|translate}}
+                                                                            <span class="text-14 font-weight-400 mob-text-12 text-green-theme-four-light-027A48"> {{'SERVICECHARGES'|translate}}</span>
+                                                                        </p>
+                                                                    </mat-checkbox>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-5" *ngIf="checkBoxChecked">
+                                                            <div class="col-md-7">
+                                                                <div class="border rounded-3 px-3 py-3">
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-md-12 select_language">
+                                                                            <mat-select class="form-select form-select-lg border text-16 mob-text-12 font-weight-400 text-lightgrey" aria-label=".form-select-lg example">
+                                                                                <mat-option selected>TNT</mat-option>
+                                                                            </mat-select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <h4 class="text-15 font-weight-600 text-black mob-text-12">{{'RETURNATTHENEAREST'|translate}}</h4>
+                                                                            <p class="text-15 font-weight-400 text-black mob-text-12">{{'PLEASEPACKTHEPRODUCT'|translate}}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="border rounded-3 px-sm-4 px-4 pt-sm-4 pt-4 pb-sm-4 pb-4">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="accept_checkbox mb-3">
+                                                                                <mat-checkbox class="example-margin">
+                                                                                    <p class="text-16 font-weight-400 text-black mob-text-12 mb-0">{{'IACCEPTTHE'|translate}}
+                                                                                        <span class="text-16 font-weight-500 mob-text-12 text-green-theme-four-light-027A48">{{'CANCEL_POLICY'|translate}}</span> {{'FAZEAL_STORE'|translate}}
+                                                                                    </p>
+                                                                                </mat-checkbox>
+                                                                            </div>
+                                                                            <p class="text-16 font-weight-400 text-black mob-text-12 mb-2">{{'YOUR_TOTAL_REFUND'|translate}}</p>
+                                                                            <h4 class="text-36 font-weight-400 text-black mob-text-16 mb-0">$25</h4>
+                                                                        </div>
+                                                                        <div class="col-md-6 d-flex align-items-end justify-content-end">
+                                                                            <button type="button" mat-button matStepperNext
+                                                                                class="border-0 rounded-2 text-white bg-green-four-theme next_btn_return_order px-5 py-0 text-16 mob-text-12 font-weight-600">
+                                                                                {{'NEXT'|translate}}
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </mat-step>
+                                        <mat-step [editable]="false" state="done">
+                                            <div class="w-100 h-100">
+                                                <div class="w-100 border overflow-hidden rounded-3 h-100 pb-3">
+                                                    <div class="row mb-3">
+                                                        <div class="col-md-12">
+                                                            <div class="searchbar_parent bg-color-F2F3F5 d-flex justify-content-start align-items-center py-3 px-4">
+                                                                <div class="row w-100">
+                                                                    <div class="col-md-4 col-sm-12 col-12 d-flex flex-column justify-content-end">
+                                                                        <p class="text-15 font-weight-600 text-black mb-1 mob-text-13">{{'ORDER-SEC'|translate}} #abc15405431</p>
+                                                                        <p class="text-14 font-weight-400 text-color-475467 mb-0 mob-text-12">{{'PLACEDON'|translate}} 12 jan 2023 02:27:58</p>
+                                                                    </div>
+                                                                    <div class="col-md-4 col-sm-12 col-12 d-flex align-items-end">
+                                                                        <p class="text-14 font-weight-400 text-color-475467 mb-0 mob-text-12">{{'DELIVEREDON'|translate}} 16 jan 2023</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-100 p-sm-4 p-2">
+                                                        <div class="row mb-4">
+                                                            <div class="col-md-6 mb-md-0 mb-sm-4 mb-4">
+                                                                <div class="border p-sm-4 p-2 rounded-3">
+                                                                    <p class="text-start text-15 font-weight-400 mob-text-12">{{'YOUR_AMOUNT_BANK_ACCOUNT'|translate}}</p>
+                                                                    <div>
+                                                                        <ul class="list-unstyled p-0 m-0">
+                                                                            <li class="py-2 border-bottom-0 d-flex">
+                                                                                <span class="text-15 w-100-px d-block font-weight-500 text-lightgrey mob-text-12">{{'NAME'|translate}}</span>
+                                                                                <span class="text-15 font-weight-500 ms-3 text-color-four-theme-blackshade mob-text-12">Rich Wilson</span>
+                                                                            </li>
+                                                                            <li class="py-2 border-bottom-0 d-flex">
+                                                                                <span class="text-15 w-100-px d-block font-weight-500 text-lightgrey mob-text-12">{{'BANKNAME'|translate}}</span>
+                                                                                <span class="text-15 font-weight-500 ms-3 text-color-four-theme-blackshade mob-text-12">{{'USBANK'|translate}}</span>
+                                                                            </li>
+                                                                            <li class="py-2 border-bottom-0 d-flex">
+                                                                                <span class="text-15 w-100-px d-block font-weight-500 text-lightgrey mob-text-12">{{'ACCOUNT_NO'|translate}}</span>
+                                                                                <span class="text-15 font-weight-500 ms-3 text-color-four-theme-blackshade mob-text-12">125-554158213-54</span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="border rounded-3">
+                                                                    <div class="px-sm-4 p-2 pb-4 pt-3">
+                                                                        <ul class="list-unstyled p-0 m-0">
+                                                                            <li class="py-2 border-bottom-0 d-flex justify-content-between alig-items-center">
+                                                                                <span class="text-18 font-weight-600 text-black">{{'REFUND_DETAILS'|translate}}</span>
+                                                                            </li>
+                                                                            <li class="py-2 border-bottom-0 d-flex justify-content-between alig-items-center">
+                                                                                <span class="text-15 font-weight-500 text-black">{{'ITEM_PRICE'|translate}} </span>
+                                                                                <span class="text-15 font-weight-500 text-black">$ 28</span>
+                                                                            </li>
+                                                                            <li class="py-2 border-bottom-0 d-flex justify-content-between alig-items-center">
+                                                                                <span class="text-15 font-weight-500 text-black">{{'DELIVERY_FEE'|translate}}</span>
+                                                                                <span class="text-15 font-weight-500 text-black">$ 0</span>
+                                                                            </li>
+                                                                            <li class="py-2 border-bottom-0 d-flex justify-content-between alig-items-center">
+                                                                                <span class="text-15 font-weight-500 text-black">{{'SERVICES_CHARGES'|translate}}</span>
+                                                                                <span class="text-15 font-weight-500 text-black"></span>
+                                                                            </li>
+                                                                            <li class="py-2 border-bottom-0 d-flex justify-content-between alig-items-center">
+                                                                                <span class="text-15 font-weight-500 text-black">{{'COURIER_FEE'|translate}}</span>
+                                                                                <span class="text-15 font-weight-500 text-black">$ 3</span>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                    <div class="d-flex align-items-center justify-content-end border-top py-4 px-3">
+                                                                        <div>
+                                                                            <span class="text-15 text-black font-weight-500">{{'TOTAL_REFUND_AMOUNT'|translate}} :</span>  <span class="text-19 text-black font-weight-500">$25</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-12">
+                                                                <div class="border rounded-3 px-sm-4 px-4 pt-sm-4 pt-4 pb-sm-4 pb-4">
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <div class="accept_checkbox mb-3">
+                                                                                <mat-checkbox class="example-margin">
+                                                                                    <p class="text-16 font-weight-400 text-black mob-text-12 mb-0">{{'IACCEPTTHE'|translate}}
+                                                                                        <span class="text-16 font-weight-500 mob-text-12 text-green-theme-four-light-027A48">{{'RETURN_POLICY'|translate}}</span> {{'FAZEAL_STORE'|translate}}
+                                                                                    </p>
+                                                                                </mat-checkbox>
+                                                                            </div>
+                                                                            <p class="text-16 font-weight-400 text-black mob-text-12 mb-2">{{'YOUR_TOTAL_REFUND'|translate}}</p>
+                                                                            <h4 class="text-36 font-weight-400 text-black mob-text-16 mb-0">$25</h4>
+                                                                        </div>
+                                                                        <div class="col-md-6 d-flex align-items-end justify-content-end">
+                                                                            <button [routerLink]="['/FourTheme/return-detail']" type="button" mat-button matStepperNext
+                                                                                class="border-0 rounded-2 text-white bg-green-four-theme next_btn_return_order px-5 py-0 text-16 mob-text-12 font-weight-600">
+                                                                                {{'NEXT'|translate}}
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </mat-step>
+                                    </mat-stepper>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -1,0 +1,51 @@
+<!-- Product Content Starts Here -->
+<section class="new-product-details-page" *ngIf="product && !isLoading">
+    <app-four-product-layout  [data]="pdpResponse" [product]="product" [currencySymbol]="currencySymbol"></app-four-product-layout>
+    <app-four-product-info  [pageType]= "'pdp-page'" [data]="pdpResponse" [product]="product" [productReviews]="productReviews"></app-four-product-info>
+</section> 
+<!-- Product Content Ends Here -->  
+
+
+<!-- Skeleton Loader Starts Here -->
+<section class="py-5 my-5" *ngIf="isLoading">
+    <div class="new-container1"> 
+    <div class="row skeleton-wrapper">
+      <div class="col-lg-6 col-md-6 col-12 mb-3">
+        <div class="skeleton-box mb-3 w-100 h-400-px rounded-3"></div>
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-3 me-2" *ngFor="let t of [1,2,3,4]">
+            <div class="skeleton-box h-80-px w-100 rounded-2">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-12">
+        <div class="skeleton-box mb-3" style="width: 70%; height: 28px;"></div>
+        <div class="skeleton-box mb-4" style="width: 150px; height: 20px;"></div>
+        <div class="skeleton-box mb-4" style="width: 120px; height: 28px;"></div>
+        <div class="skeleton-box mb-3" style="width: 180px; height: 45px; border-radius: 8px;"></div>
+        <div class="skeleton-box mb-4" style="width: 160px; height: 40px; border-radius: 8px;"></div>
+        <div class="skeleton-box mb-2" style="width: 100%; height: 18px;"></div>
+        <div class="skeleton-box mb-2" style="width: 90%; height: 18px;"></div>
+        <div class="skeleton-box mb-2" style="width: 80%; height: 18px;"></div>
+        <div class="skeleton-box mb-2" style="width: 70%; height: 18px;"></div>
+      </div>
+    </div> 
+    </div>
+  </section>
+  <!-- Skeleton Loader Ends Here -->
+
+
+<!-- Product Not Available Starts Here -->
+<section *ngIf="!isProductAvailable" class="py-5 my-5">
+<div class="new-container1">
+    <div class="d-block w-100 py-3 text-center">
+        <img src="./assets/img/product-not-available.jpg" class="h-160-px mb-3 w-auto mw-100 object-fit-contain">
+        <h5 class="text-14 text-black d-flex w-100 align-items-center justify-content-center">
+            <i class="bi bi-info-circle-fill text-15 lh-tiny me-2 text-black"></i>
+            {{'THE_PRODUCT_IS_EITHER_UNAVAILABLE_OR_MAY_HAVEBEEN_REMOVED'|translate}} 
+        </h5>
+    </div>
+</div>
+</section>
+<!-- Product Not Available Ends Here -->

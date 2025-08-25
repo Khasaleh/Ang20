@@ -1,0 +1,46 @@
+<section class="w-100 d-block popup-parent-rtl">
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-3 py-3">
+    <div class="d-inline-block">
+    <h3 class="text-black text-18 m-0 p-0 font-weight-600">   {{'MY_SHIPPING_ADDRESS'|translate}}   </h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-block w-100 py-4 px-3">
+    <div class="d-block w-100 mb-2">
+      <div class="d-block w-100 border px-3 py-3 border-color-silver rounded-2">
+        <div class="d-flex align-items-start justify-content-between w-100">
+          <div class="d-inline-block pe-2 w-100">
+            <p class="text-black text-14 p-0 m-0">  House number R-131 jahangeer Town near Met Office, Jahangir Town, <br/> Karachi - Scheme 33, Sindh       </p>
+          </div>
+          <div class="d-inline-block">
+            <button class="d-flex align-items-center text-14 px-2 py-1 justify-content-center border rounded-pill border-color-black">
+              <i class="bi bi-pencil-fill text-15 no-min-height no-min-width text-black me-2 p-0 lh-tiny"></i>
+                {{'EDIT'|translate}}
+            </button>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-end w-100">
+          <span class="d-flex align-items-center px-2 py-1 text-14 justify-content-center border rounded-pill border-color-black">
+            <i class="bi bi-check-circle-fill text-16 no-min-height no-min-width text-black me-2 p-0 lh-tiny"></i>
+              {{'DEFAULT'|translate}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="d-block w-100 mb-4">
+      <button (click)="addshippingAddressPopup()" class="bg-white border-color-silver border px-3 py-2 lh-lg rounded-2 d-flex align-items-center justify-content-start">
+        <i class="bi bi-plus text-20 text-black no-min-height no-min-width lh-tiny me-2"></i>
+        <span class="text-black text-14 font-weight-500 text-capitalize"> {{'ADDADDRESS'|translate}} </span>
+      </button>
+    </div>
+    <div class="d-block w-100 text-end">
+      <button (click)="addshippingAddressPopup()" class="px-3 py-2 text-14 bg-theme-dark-color rounded-2 text-color-w">
+          {{'CONFIRM_ADDRESS'|translate}}
+      </button>
+    </div>
+  </div>
+</section>

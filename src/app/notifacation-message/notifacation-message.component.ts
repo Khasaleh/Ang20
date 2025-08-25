@@ -1,12 +1,22 @@
-
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { TranslateService } from '@ngx-translate/core';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-notifacation-message',
   templateUrl: './notifacation-message.component.html',
-  styleUrls: ['./notifacation-message.component.scss']
+  styleUrls: ['./notifacation-message.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    MatIconModule,
+    TranslateModule,
+    MatDialogModule,
+    MatButtonModule
+  ]
 })
 export class NotifacationMessageComponent implements OnInit {
   errormessage!: string;
@@ -27,8 +37,4 @@ export class NotifacationMessageComponent implements OnInit {
       this.dialogRef.close();
     }, 7000);
   }
-  
-
 }
-
-

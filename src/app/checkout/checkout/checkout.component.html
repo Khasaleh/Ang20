@@ -1,0 +1,35 @@
+<div class="container main-container">
+  <div class="checkout-container">
+    <h1 class="page-title">{{ 'checkout' | translate }}</h1>
+    <mat-tab-group
+      class="checkout-stepper"
+      [selectedIndex]="currentStep"
+      (selectedIndexChange)="onStepChange($event)"
+    >
+      <mat-tab *ngFor="let step of steps" [label]="step.label"> </mat-tab>
+    </mat-tab-group>
+
+    <div class="checkout-content">
+      <ng-container [ngSwitch]="currentStep">
+        <app-checkout-address
+          *ngSwitchCase="0"
+          (nextStep)="currentStep = 1"
+        ></app-checkout-address>
+        <app-checkout-shipping
+          *ngSwitchCase="1"
+          (nextStep)="currentStep = 2"
+          (prevStep)="currentStep = 0"
+        ></app-checkout-shipping>
+        <app-checkout-payment
+          *ngSwitchCase="2"
+          (nextStep)="currentStep = 3"
+          (prevStep)="currentStep = 1"
+        ></app-checkout-payment>
+        <app-checkout-review
+          *ngSwitchCase="3"
+          (prevStep)="currentStep = 2"
+        ></app-checkout-review>
+      </ng-container>
+    </div>
+  </div>
+</div>

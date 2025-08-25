@@ -8,8 +8,8 @@ describe('FourThemeCancelOrderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FourThemeCancelOrderComponent ]
-    })
+    declarations: [FourThemeCancelOrderComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(FourThemeCancelOrderComponent);

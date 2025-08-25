@@ -1,0 +1,140 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">  {{'CONTACT_US'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12"> 
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-transparent p-0 m-0 border-0 d-flex align-items-center justify-content-start">
+                  <li class="breadcrumb-item breadcrumb-slash-off d-flex align-items-center justify-content-start">
+                      <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black focus-visible focus-visible-rounded">
+                        {{'HOME'|translate}}
+                        </button>
+                      <span class="d-inline-block text-grey text-13 px-2"> / </span>
+                  </li>
+                  <li class="breadcrumb-item breadcrumb-slash-off p-0" aria-current="page">
+                      <b class="text-14 font-weight-400 cursor-default text-black text-capitalize">
+                        {{'CONTACT_US'|translate}}
+                      </b>
+                  </li>
+              </ol>
+          </nav>
+        </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="py-5">
+<div class="d-block w-100 py-3">
+<div class="new-container1">
+<div class="d-block w-100 mb-5">
+<h3 class="text-black font-weight-700 m-0 p-0 text-center text-25">   {{'GET_IN_TOUCH'|translate}} </h3> 
+</div>
+<div class="d-block w-100">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-3">
+    <div class="bg-theme-light-color px-3 py-5 text-center rounded-3 border border-color-silver h-100 d-flex flex-column align-items-center justify-content-center">
+      <h4 class="text-black font-weight-700 text-18 mt-0 mb-3">   {{'FIND_US'|translate}}  </h4>
+      <p class="text-15 m-0 p-0"> {{contactCountry}} </p>
+    </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-3">
+      <div class="bg-theme-light-color px-3 py-5 text-center rounded-3 border border-color-silver  h-100 d-flex flex-column align-items-center justify-content-center">
+        <h4 class="text-black font-weight-700 text-18 mt-0 mb-3">  {{'CALL_US'|translate}}  </h4>
+        <a [href]="contactPhone" class="text-15 m-0 p-0 focus-visible focus-visible-rounded"> 
+          {{contactPhone}} 
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-3">
+      <div class="bg-theme-light-color px-3 py-5 text-center rounded-3 border border-color-silver  h-100 d-flex flex-column align-items-center justify-content-center">
+        <h4 class="text-black font-weight-700 text-18 mt-0 mb-3">  {{'CHAT_WITH_US'|translate}}  </h4>
+         <button  (click)="openChatMenu()" class="bg-theme-dark-color text-white px-3 py-2 text-white rounded-2 text-14 font-weight-500 focus-visible">
+            {{'START_CHAT'|translate}} 
+         </button>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-12 mb-3">
+        <div class="bg-theme-light-color px-3 py-5 text-center rounded-3 border border-color-silver  h-100 d-flex flex-column align-items-center justify-content-center">
+          <h4 class="text-black font-weight-700 text-18 mt-0 mb-3">  {{'EMAIL_US'|translate}}  </h4>
+          <a [href]="'mailto:' + contactEmail" class="text-15 m-0 p-0 focus-visible focus-visible-rounded">
+            {{contactEmail}}
+          </a>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pb-5">
+  <div class="new-container1">
+<div class="d-block w-100 mb-4">
+  <div class="row justify-content-center"> 
+    <div class="col-lg-8 col-sm-10 col-md-9 col-12">
+      <div class="d-block w-100">
+        <div class="d-block w-100 mb-4 text-center">
+          <h3 class="text-black font-weight-600 text-25 mt-0 mb-2"> {{ 'NEED_ANY_SUPPORT' | translate }}  </h3>
+          <p class="text-black text-15 font-weight-400 m-0"> {{ 'FOR_ANY_TYPE_OF_SUPPORT_PLEASE_FEEL_FREE_TO_REACHOUT' | translate }}   </p>
+        </div>
+        <div class="d-block w-100">
+          <mat-accordion class="example-headers-align" multi="false" *ngFor="let contact of businessContacts">
+            <mat-expansion-panel [expanded]="true"
+              class="mat-elevation-z0 overflow-hidden mb-0 mt-0 border border-color-silver rounded-2 rounded-0 filter-expansion-panel mat-expansion-no-pad bg-transparent rounded-2">
+              <mat-expansion-panel-header class="px-3 py-0 rounded-0 overflow-hidden bg-theme-light-color">
+               <div class="d-block w-100">
+                <h3 class="text-black text-uppercase text-16 mob-text-15 font-weight-700 m-0"> {{contact?.contactHeading}} </h3>
+               </div>
+              </mat-expansion-panel-header>
+              <div class="d-block w-100 py-3 px-3">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-3" *ngFor="let contactInfo of contact?.businessContactInfo">
+                    <div class="d-block w-100 py-2 px-3 rounded-2 border-color-silver border">
+                      <h4 class="text-black text-16 font-weight-600 mt-0 mb-3"> {{contactInfo?.firstName}} {{contactInfo?.lastName}} </h4>
+                      <div class="d-block w-100 mb-1">
+                      <a href="#" class="d-flex align-items-center justify-content-start text-black cursor-pointer focus-visible focus-visible-rounded">
+                       <i class="bi bi-envelope-fill text-color-dark lh-tiny text-15 no-min-height no-min-width me-3"></i>
+                       <span class="d-inline-block font-weight-500 text-14"> {{contactInfo?.email}} </span>
+                      </a>
+                      </div>
+                      <div class="d-block w-100 mb-1">
+                        <a class="d-flex align-items-center justify-content-start text-black cursor-pointer">
+                         <i class="bi bi-globe text-color-dark lh-tiny text-15 no-min-height no-min-width me-3"></i>
+                         <span class="d-inline-block font-weight-500 text-14"> {{contactInfo?.country}} </span>
+                        </a>
+                        </div>
+                        <div class="d-block w-100 mb-1">
+                          <a [href]="'tel:+' + contactInfo?.landlineCountryCode + contactInfo?.landlineNumber"
+                            class="d-flex align-items-center justify-content-start text-black cursor-pointer focus-visible focus-visible-rounded">
+                            <i class="bi bi-telephone-fill text-color-dark lh-tiny text-15 no-min-height no-min-width me-3"></i>
+                            <span class="d-inline-block font-weight-500 text-14">
+                              +{{contactInfo?.landlineCountryCode}} {{contactInfo?.landlineNumber}}
+                            </span>
+                          </a>
+
+                          </div>
+                          <div class="d-block w-100 mb-1">
+                            <a [href]="'tel:+' + contactInfo?.phoneCountryCode + contactInfo?.phoneNumber"
+                              class="d-flex align-items-center justify-content-start text-black cursor-pointer focus-visible focus-visible-rounded">
+                              <i class="bi bi-phone-fill text-color-dark lh-tiny text-15 no-min-height no-min-width me-3"></i>
+                              <span class="d-inline-block font-weight-500 text-14">
+                                +{{contactInfo?.phoneCountryCode}} {{contactInfo?.phoneNumber}}
+                              </span>
+                            </a>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</section>

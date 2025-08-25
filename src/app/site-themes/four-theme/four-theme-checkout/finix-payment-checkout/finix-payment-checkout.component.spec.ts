@@ -11,8 +11,8 @@ describe('FinixPaymentCheckoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FinixPaymentCheckoutComponent ]
-    })
+    declarations: [FinixPaymentCheckoutComponent]
+})
     .compileComponents();
   }));
 

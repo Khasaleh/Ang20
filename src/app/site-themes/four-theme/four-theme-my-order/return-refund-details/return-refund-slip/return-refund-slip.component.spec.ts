@@ -11,8 +11,8 @@ describe('ReturnRefundSlipComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReturnRefundSlipComponent ]
-    })
+    declarations: [ReturnRefundSlipComponent]
+})
     .compileComponents();
   }));
 

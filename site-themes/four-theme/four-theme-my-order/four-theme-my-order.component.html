@@ -1,0 +1,490 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">   {{'MYORDERS'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 m-0 border-0">
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                        <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                          {{'HOME'|translate}}
+                          </button>
+                        <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off" aria-current="page">
+                        <b class="text-14 font-weight-400 cursor-default text-black">
+                            {{'MYORDER'|translate}}
+                        </b>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+  </div>
+</section>
+<section class="py-4">
+    <div class="new-container1">
+
+        <!-- New Orders Design Starts Here -->
+        <div class="d-block w-100">
+
+          <!-- Filters Starts Here -->
+          <div class="d-block w-100  mb-4">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+              <div class="row">
+                <div class="col-lg-6 col-md-4 col-sm-6 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-2">
+                  <mat-form-field appearance="fill" class="w-100 field-style-drop">
+                    <mat-label class="text-black text-16 font-weight-600">  {{'FILTER_BY_STATUS'|translate}} </mat-label>
+                    <mat-select value="ALL" (valueChange)="filterOrdersByOrderStatus($event)">
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="ALL">  {{'ALL'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="COMPLETED">  {{'DELIVERED_PICKED_PURCHASED'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="PROCESSING">  {{'ORDER_PROCESS'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="PENDING">   {{'PENDING'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="CANCELLED">  {{'CANCEL_ORDER'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="ACCEPTED">  {{'OS_ACCEPTED'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="RETURNED">  {{'O_M_RETURNED'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="REFUNDED">  {{'O_M_REFUNDED'|translate}}  </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-lg-6 col-md-4 col-sm-6 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-2">
+                  <mat-form-field appearance="fill" class="w-100 field-style-drop">
+                    <mat-label class="text-black text-16 font-weight-600">  {{'FILTER_BY_CHECKOUT_TYPE'|translate}} </mat-label>
+                    <mat-select value="ALL" (valueChange)="filterOrdersByOrderType($event)">
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="ALL">  {{'ALL'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="ORDER_ONLINE_SHIP_TO_HOME">  {{'ORDER_ONLINE_SHIP_TO_HOME'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="ORDER_ONLINE_PICK_IN_STORE">  {{'ORDER_ONLINE_PICK_IN_STORE'|translate}}  </mat-option>
+                      <mat-option class="text-black text-14 font-weight-600 text-capitalize" value="RESERVE_ONLINE_TRY_IN_STORE">   {{'RESERVE_ONLINE_TRY_IN_STORE'|translate}}  </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="row justify-content-end">
+                  <div class="col-lg-4 col-md-4 col-sm-8 col-12">
+                    <mat-form-field appearance="fill" class="w-100 field-style-drop">
+                      <mat-label class="text-muted text-16 fontweight-600">  {{'FILTER_BY_DATE'|translate}} </mat-label>
+                      <mat-select value="last-30-days" (valueChange)="filterOrdersByOrderDate($event)">
+                        <mat-option *ngIf="orderYear === '2021' || orderYear === '2022' || orderYear === '2023' || orderYear === '2024' || orderYear === '2025'" class="text-black text-14 font-weight-600 text-capitalize" value="last-30-days">  {{'LAST_30_DAYS'|translate}}  </mat-option>
+                        <mat-option *ngIf="orderYear === '2021' || orderYear === '2022' || orderYear === '2023' || orderYear === '2024' || orderYear === '2025'" class="text-black text-14 font-weight-600 text-capitalize" value="last-3-months">  {{'LAST_3_MONTHS'|translate}}  </mat-option>
+                        <mat-option *ngIf="orderYear === '2021' || orderYear === '2022' || orderYear === '2023' || orderYear === '2024' || orderYear === '2025'" class="text-black text-14 font-weight-600 text-capitalize" value="year-{{ currentYear }}"> {{ currentYear }}  </mat-option>
+                        <mat-option *ngIf="orderYear === '2021' || orderYear === '2022' || orderYear === '2023' || orderYear === '2024'" class="text-black text-14 font-weight-600 text-capitalize" value="year-{{ currentYear - 1 }}"> {{ currentYear - 1 }}  </mat-option>
+                        <mat-option *ngIf="orderYear === '2021' || orderYear === '2022' || orderYear === '2023'" class="text-black text-14 font-weight-600 text-capitalize" value="year-{{ currentYear - 2 }}"> {{ currentYear - 2 }}  </mat-option>
+                        <mat-option *ngIf="orderYear === '2021' || orderYear === '2022'" class="text-black text-14 font-weight-600 text-capitalize" value="year-{{ currentYear - 3 }}"> {{ currentYear - 3 }}  </mat-option>
+                        <mat-option *ngIf="orderYear === '2021'" class="text-black text-14 font-weight-600 text-capitalize" value="year-{{ currentYear - 4 }}"> {{ currentYear - 4 }}  </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Filters Ends Here -->
+
+        <!-- Single Order Block Starts Here -->
+        <div class="d-block bg-white rounded-3 border border-1 border-color-silver overflow-hidden mb-4" *ngFor="let order of orders">
+          <div class="d-flex align-items-lg-center align-items-md-center align-items-sm-center justify-content-lg-between justify-content-md-between justify-content-sm-between justify-content-between py-1 px-3 bg-color-E9FFF3 w-100 flex-lg-row flex-md-row flex-wrap">
+            <div class="d-inline-block mb-lg-0 mb-md-0 mb-sm-0 mb-3">
+              <span class="text-black text-15 font-weight-600">  {{'ORDER_ID'|translate}}  {{order?.businessOrderId}}  <span class="font-weight-400 d-inline-block ps-2"> {{order.orderType|translate}} </span> </span>
+            </div>
+            <div class="d-inline-block white-space-nowrap overflow-auto modern-scroll pb-lg-0 pb-md-0 pb-sm-2 pb-2">
+              <div class="d-flex w-100 align-items-center justify-content-lg-end justify-content-md-end justify-content-sm-end justify-contetn-start">
+              <button *ngIf="getOrderSales(order).length !== getItemReturnBlocked(order).length && getOrderSales(order).length > 0 &&
+              (order.status === 'COMPLETED' || order.status === 'DELIVERED' || order.status === 'PURCHASED' || order.status === 'PICKED')"
+               (click)="openReturnOrder(order)"
+                class="text-black text-13 font-weight-500 bg-white px-3 py-2 rounded-2 border me-2">
+                 {{'RETURN_ORDER'|translate}}
+              </button>
+              <button *ngIf="order.returnOrderStatus !== null && getOrderSales(order).length > 0 &&
+              (order.status === 'COMPLETED' || order.status === 'DELIVERED' || order.status === 'PURCHASED' || order.status === 'PICKED')"
+               (click)="openReturnOrderDetails(order)"
+                class="text-black text-13 font-weight-500 bg-white px-3 py-2 rounded-2 border me-2">
+                   {{'RETURN_DETAILS'|translate}}
+              </button>
+              <button *ngIf="order.status !== 'CANCELLED'"
+              class="text-black text-13 font-weight-500 bg-white px-3 py-2 rounded-2 border me-2"
+              (click)="openLinkInNewTab(order)">
+              {{'PRINT_INVOICE'|translate}}
+              </button>
+              <button *ngIf="order.orderType === 'ORDER_ONLINE_SHIP_TO_HOME' && order.status !== 'CANCELLED' && order?.status !== 'PENDING'"
+              class="text-black text-13 font-weight-500 bg-white px-3 py-2 rounded-2 border me-2"
+              (click)="openTrackPackage(order)"
+              >
+              {{'TRACK_PACKAGE'|translate}}
+              </button>
+              <button *ngIf="order.status !== 'CANCELLED'"
+              class="text-black text-13 font-weight-500 bg-white px-3 py-2 rounded-2 border me-2"
+              (click)="openOrderDetailsInNewTab(order)">
+                 {{'VIEW_DETAILS'|translate}}
+              </button>
+              <button *ngIf="order.status === 'NEW' || order?.status === 'PENDING' || order?.status === 'ACCEPTED'"
+              class="text-white text-13 font-weight-500 bg-danger px-3 py-2 rounded-2 border me-2"
+              (click)="cancelOrder(order)">
+              {{'CONFIRM_ORDER_CANCEL_ORDER'|translate}}
+              </button>
+              <button
+                matTooltipPosition="above"
+                matTooltip="{{'VIEW_ORDER_QR_CODE'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+                class="text-black text-14 font-weight-600 bg-white px-2 py-2 rounded-2 border d-flex align-items-center justify-content-center"
+                (click)="viewQrCode(order)">
+                <i class="bi bi-qr-code text-black text-19 px-0 m-0 lh-tiny"></i>
+               </button>
+              </div>
+            </div>
+          </div>
+          <div class="d-block bg-grey2 px-3 py-3 w-100">
+            <div class="row">
+              <div class="col-md-2 col-lg-2 col-sm-3 col-6 mb-lg-0 mb-md-0 mb-sm-0 mb-3 order-lg-1 order-md-1 order-sm-1 order-2">
+                <h5 class="text-black text-14 mt-0 p-0 font-weight-600 mb-1">  {{'O_M_ORDER_DATE'|translate}} </h5>
+                <p class="m-0 text-black text-15"> {{order?.orderTime! | FormattedDatePipe }} </p>
+              </div>
+              <div class="col-md-2 col-lg-2 col-sm-3 col-6 mb-lg-0 mb-md-0 mb-sm-0 mb-3 order-lg-2 order-md-2 order-sm-2 order-3">
+                <h5 class="text-black text-14 mt-0 p-0 font-weight-600 mb-1">  {{'SHIPPED_TO'|translate}} </h5>
+                <p class="m-0 text-black text-15"> {{order?.orderAddressResponse?.firstName}} {{order?.orderAddressResponse?.lastName}} </p>
+              </div>
+              <div class="col-md-1 col-lg-1 col-sm-3 col-6 mb-lg-0 mb-md-0 mb-sm-0 mb-3 order-lg-3 order-md-3 order-sm-3 order-4">
+                <h5 class="text-black text-14 mt-0 p-0 font-weight-600 mb-1">  {{'ITEMS'|translate}}  </h5>
+                <p class="m-0 text-black text-15"> {{order?.orderDetails?.length}} </p>
+              </div>
+              <div class="col-md-1 col-lg-1 col-sm-3 col-6 mb-lg-0 mb-md-0 mb-sm-0 mb-3 order-lg-4 order-md-3 order-sm-3 order-5">
+                <h5 class="text-black text-14 mt-0 p-0 font-weight-600 mb-1">    {{'POINTS'|translate}}   </h5>
+                <p class="m-0 text-black text-15"> 16.5 </p>
+              </div>
+              <div class="col-md-2 col-lg-2 col-sm-3 col-6 mb-lg-0 mb-md-0 mb-sm-0 mb-3 order-lg-5 order-md-5 order-sm-5 order-6">
+                <h5 class="text-black text-14 mt-0 p-0 font-weight-600 mb-1">  {{'TOTAL'|translate}} </h5>
+                <p class="m-0 text-black text-15"> {{currency}} {{order?.total?.toFixed(2)}} </p>
+              </div>
+              <div class="col-md-4 col-lg-4 col-sm-12 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-4 order-lg-5 order-md-5 order-sm-5 order-1">
+                <div class="d-flex align-items-center justify-content-lg-end justify-content-md-end jsutify-content-sm-end justify-content-start">
+                  <div class="d-flex align-items-center justify-content-start text-center">
+                    <span class="bg-0BA5EC d-inline-block font-weight-500 lh-lg px-4 py-2 rounded-pill ">
+                    <span class="font-weight-400 text-14 text-white" *ngIf="order?.status === 'NEW'"> {{'ORDER_SUBMITTED'|translate}} </span>
+                    <span class="font-weight-400 text-14 text-white" *ngIf="order?.status === 'PENDING'"> {{'ORDER_WAITING_APPROVAL'|translate}} </span>
+                    <span class="font-weight-400 text-14 text-white" *ngIf="order?.status !== 'NEW' && order?.status !== 'PENDING'">
+                      {{order.status | translate}}
+                    </span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-block w-100 px-3 pt-2">
+            <div class="d-block w-100 align-items-center justify-content-start mb-4">
+              <div class="d-flex align-items-center justify-content-start w-100 mb-2" *ngIf="order?.contactCustomerReason && !getTracks(order).includes('VALIDATED') && order.status !== 'CANCELLED'">
+                 <button (click)="openOrderDetailsInNewTab(order)"  class="m-0 p-0 text-black text-14 bg-danger-subtle cursor-pointer px-2 py-2">
+                  <span class="font-weight-600 text-14"> {{'PLEASE_UPDATE_YOUR_ORDER_DETAILS'| translate}}:  </span>
+                  <span class="font-weight-600 text-14 ps-2"> {{order?.contactCustomerReason}} </span>
+                 </button>
+              </div>
+              <div class="d-block w-100" *ngIf="order.status === 'PICKED' && order.orderType === 'ORDER_ONLINE_PICK_IN_STORE'">
+                <h5 class="text-black text-16 font-weight-600 mt-0 mb-1 d-flex align-items-center justify-content-start w-100">
+                   {{'PICKED_ON'|translate}}
+                  <button (click)="seeProofofPickup(order)" class="text-color-dark text-16 font-weight-600 px-2 py-1">
+                     {{'PROOF_OF_PICKUP'|translate}}
+                  </button>
+                </h5>
+               </div>
+               <div class="d-block w-100" *ngIf="order.status === 'PURCHASED' && order.orderType === 'RESERVE_ONLINE_TRY_IN_STORE'">
+                <h5 class="text-black text-16 font-weight-600 mt-0 mb-1">
+                   {{'PURCHASED'|translate}}
+                </h5>
+                <p class="m-0 p-0 text-black text-14">   {{'ORDER_PURCHASED_ON'|translate}}: {{order.deliverDate | FormattedDatePipe}} </p>
+               </div>
+               <div class="d-block w-100" *ngIf="(order.status === 'DELIVERED' || order.status === 'COMPLETED') && order.orderType === 'ORDER_ONLINE_SHIP_TO_HOME'">
+                <h5 class="text-black text-16 font-weight-600 mt-0 mb-1 d-flex align-items-center justify-content-start w-100">
+                   {{'DELIVERED_ON'|translate}} {{order?.deliverDate! | FormattedDatePipe }}
+                  <button (click)="seeProofofDelivery(order)" class="text-color-dark text-16 font-weight-600 px-2 py-1">
+                     {{'PROOF_OF_DELIVERY'|translate}}
+                  </button>
+                </h5>
+               </div>
+              <div class="d-block w-100" *ngIf="order.orderType !== 'ORDER_ONLINE_PICK_IN_STORE' && (order?.status == 'NEW' || order?.status == 'PENDING')">
+                <h5 class="text-black text-17 font-weight-600 mt-0 mb-1">{{ 'IN_PROCESS' | translate }}</h5>
+                <p class="m-0 p-0 text-black text-14">{{ 'OUR_TEAM_IS_WORKING_ON_SHIPPING' | translate }}</p>
+              </div>
+
+              <div class="d-block w-100" *ngIf="order.orderType === 'ORDER_ONLINE_PICK_IN_STORE' && (order?.status == 'NEW' || order?.status == 'PENDING')">
+                <h5 class="text-black text-17 font-weight-600 mt-0 mb-1">{{ 'IN_PROCESS' | translate }}</h5>
+                <p class="m-0 p-0 text-black text-14">{{ 'OUR_TEAM_IS_WORKING_ON_PREPARING_YOUR_ORDER' | translate }}</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="d-block w-100 px-3 pt-2 pb-3 bg-white">
+            <div class="d-block w-100"  *ngFor="let item of order?.orderDetails; let i = index">
+              <!-- [ngClass]="{ 'opacity-50 disabled-click': removeitemcondition}" -->
+              <div class="d-block w-100" >
+              <div class="row">
+              <div class="col-md-9 col-lg-9 col-sm-12 col-12" [ngClass]="{'opacity-50 disabled-click': (item.purchased !== null && item.purchased == false) ||
+              item.quantity <= 0 || (item.acceptedQuantity !== null && item.acceptedQuantity <= 0)
+             }">
+                 <!-- [ngClass]="{ 'bg-danger': removeitemcondition}" -->
+                <div class="d-block w-100 mb-lg-0 mb-md-0 mb-sm-0 mb-3" [ngClass]="{ 'bg-danger': (item.purchased !== null && item.purchased == false) ||
+                item.quantity <= 0 || (item.acceptedQuantity !== null && item.acceptedQuantity <= 0)}">
+                  <!-- Items Listings Starts Here -->
+                  <div class="d-block w-100">
+                    <div class="d-flex align-items-center px-1 py-1 justify-content-between w-100 mb-2">
+                      <div class="d-inline-block">
+                        <h5 class="text-black text-17 font-weight-600 m-0">
+                          {{'ITEM'|translate}}# {{i + 1}}
+                       </h5>
+                      </div>
+                      <div class="d-inline-block" *ngIf="order.businessOrderId.startsWith('B0-') && (item.backOrderExpectedDate && item.backOrderExpectedDate !== null)">
+                        <h5 class="text-black text-15 font-weight-500 m-0 border border-color-silver rounded-2 mt-2 bg-theme-light-color px-2 py-1">
+                          {{'EXPECTED_AFTER'|translate}} {{item.backOrderExpectedDate}}
+                       </h5>
+                      </div>
+                    </div>
+                    <!-- bg-danger-subtle  -->
+                    <!-- add the above class when the item is pending/not available -->
+                    <div class="d-block w-100 border rounded-2 py-2 px-2 mb-2"
+                    [ngClass]="{ 'border-danger': item.status !== null && item.status !== 'ACCEPTED' && order.status !== 'PICKED'}">
+                      <div class="row align-items-center">
+                        <div class="col-md-3 col-lg-2 col-sm-12 col-12">
+                          <div class="d-block mb-3 mb-lg-0 mb-md-0 mb-sm-0">
+                            <img class="w-100 h-130-px object-fit-contain"
+                            [src]="item?.product?.mainImageUrl"
+                            onerror= "this.src='./assets/img/default-product.png'" alt="{{'PRODUCT_IMAGE'|translate}}">
+                          </div>
+                        </div>
+                        <div class="col-md-9 col-lg-10 col-sm-9 col-12">
+                          <div class="row align-items-end">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-3">
+                              <h3 class="m-0 p-0 text-black text-16 font-weight-600">
+                                {{item?.product?.productName | titlecase}}
+                              </h3>
+                              <h5 class="mt-0 mb-1 text-black text-15 font-weight-500">   {{'QUANTITY'|translate}}: {{item.quantity}} </h5>
+                              <h5 *ngIf="item?.skuId !== null" class="mt-0 mb-1 text-black text-15 font-weight-500">   {{'SKU_ID'|translate}}: {{item.skuId}}  </h5>
+                              <h5 *ngIf="item?.status === 'UNAVAILABLE'" class="mt-0 mb-1 text-black text-15 font-weight-500">   {{'ACCEPTED_QUANTITY'|translate}}: 0 </h5>
+                              <h5 *ngIf="item?.status === 'UNAVAILABLE'" class="mt-0 mb-1 text-black text-15 font-weight-500">   {{'UNAVAILABLE_REASON'|translate}}: {{item.unavailableReason}} </h5>
+                              <h5 *ngIf="item?.status === 'PARTIALLY_ACCEPTED' || item?.status === 'BACK_ORDER'" class="mt-0 mb-1 text-black text-15 font-weight-500">   {{'ACCEPTED_QUANTITY'|translate}}: {{item.acceptedQuantity}} </h5>
+                              <h5 *ngIf="item?.status === 'PARTIALLY_ACCEPTED'" class="mt-0 mb-1 text-black text-15 font-weight-500">   {{'UNFULFILLED_QUANTITY'|translate}}: {{item.quantityDifference}}  </h5>
+                              <h5 *ngIf="item?.status === 'BACK_ORDER'" class="mt-0 mb-1 text-black text-15 font-weight-500">   {{'BACKORDER_QUANTITY'|translate}}: {{item.quantityDifference}}  </h5>
+                            </div>
+                            <div *ngIf="item?.product?.brandName && item?.product?.brandName !== 'null'" class="col-lg-3 col-md-3 col-sm-3 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-3">
+                              <h3 class="mt-0 mb-2 p-0 text-black text-16 font-weight-600">
+                                {{'BRAND'|translate}}
+                              </h3>
+                              <span *ngIf="item?.product?.brandName && item?.product?.brandName !== 'null'" class="bg-theme-light-color rounded-2 border border-color-silver text-black text-14 border border-color-silver rounded-2 px-3 py-1">
+                                {{item?.product?.brandName}}
+                              </span>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-12 mb-lg-0 mb-md-0 mb-sm-0 mb-3">
+                              <h3 class="mt-0 mb-2 p-0 text-black text-16 font-weight-600 text-capitalize">
+                                {{'LISTPRICE'|translate}}
+                              </h3>
+                              <span class="bg-theme-light-color rounded-2 border border-color-silver text-black text-14 border border-color-silver rounded-2 px-3 py-1">
+                              {{currency}}  {{item?.price}}
+                              </span>
+                            </div>
+                            <div *ngIf="item?.status === null && item?.status === 'ACCEPTED'" class="col-lg-3 col-md-3 col-sm-3 col-12">
+                              <button [routerLink]="['/', subdomain, 'product', item?.product?.url, item?.product?.id || item?.product?.productId]" class="bg-theme-dark-color px-3 py-2 rounded-3 text-14 text-white">
+                                {{'BUY_IT_AGAIN'|translate}}
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="item?.status !== null && item?.status !== 'ACCEPTED'" class="d-flex w-100 align-items-center justify-content-start bg-danger-subtle px-2 py-2 border border-color-silver rounded-2 mt-2">
+                        <i class="bi bi-exclamation-triangle-fill lh-tiny text-14 text-black ms-0 me-2 p-0"></i>
+                        <span class="text-14 font-weight-400">   {{'WE_APOLOGIZE_BUT_SOME_ITEMS_IN_YOUR_ORDER_NO_LONGER_AVAILABLE'|translate}}   </span>
+                      </div>
+                      <!-- Show these when the Sales Returns are Final -->
+                      <div *ngIf="item?.returnPolicyType?.toString() === 'SALES_ARE_FINAL'" class="d-flex w-100 align-items-center justify-content-start bg-danger-subtle px-2 py-2 border border-color-silver rounded-2 mt-2">
+                        <i class="bi bi-exclamation-triangle-fill lh-tiny text-14 text-black ms-0 me-2 p-0"></i>
+                        <span class="text-14 font-weight-400">   {{'NOTE_ITEMS_CANNOT_BE_RETURNED_SALES_ARE_FINAL'|translate}}   </span>
+                      </div>
+                      <!-- Show these when the Sales Returns are Final -->
+
+                      <!-- When the Item is Returned Initiated -->
+                      <div *ngIf="order.returnOrderStatus !== null && item.returnQuantity > 0 && item.quantity > 0 && item?.returnPolicyType?.toString() === 'SALES_RETURN_ALLOWED' &&
+                        (order.status === 'COMPLETED' || order.status === 'DELIVERED' || order.status === 'PURCHASED' || order.status === 'PICKED')"
+                        class="d-flex w-100 align-items-center justify-content-start bg-warning-subtle px-2 py-2 border border-color-silver rounded-2 mt-2">
+                        <i class="bi bi-exclamation-triangle-fill lh-tiny text-14 text-black ms-0 me-2 p-0"></i>
+                        <span class="text-14 font-weight-400 d-inline-block text-black">   {{'THIS_ITEM_IS_RETURN_INITIATED_WITH_THE_QUANTITY_OF'|translate}} {{item.returnQuantity}}  </span>
+                      </div>
+                      <!-- When the Item is Returned Initiated -->
+
+                       <!-- Show these when the Item Returned Policy -->
+                       <div *ngIf="item?.returnPolicyType?.toString() === 'SALES_RETURN_ALLOWED' && item.quantity > 0 && (order.status === 'COMPLETED' || order.status === 'DELIVERED' || order.status === 'PURCHASED' || order.status === 'PICKED')" class="d-flex w-100 align-items-center justify-content-start bg-danger-subtle px-2 py-2 border border-color-silver rounded-2 mt-2">
+                        <i class="bi bi-exclamation-triangle-fill lh-tiny text-14 text-black ms-0 me-2 p-0"></i>
+                        <span class="text-14 font-weight-400">   {{'RETURNS_MUST_BE_INITIATED_WITHIN'|translate}}   </span>
+                        <span class="text-14 font-weight-400 d-inline-block px-2">  {{ item.timePeriodReturn }} </span>
+                        <span class="text-14 font-weight-400">   {{'OF_DELIVERY_WTIH_A'|translate}}   </span>
+                        <span class="text-14 font-weight-400 d-inline-block px-2">  {{ item.gracePeriodReturn }} </span>
+                        <span class="text-14 font-weight-400">   {{'GRACE_PERIOD_TO_COMPLETE'|translate}}   </span>
+                      </div>
+
+                      <div *ngIf="item?.returnPolicyType?.toString() === 'SALES_RETURN_ALLOWED' && item.quantity > 0 && (order.status === 'COMPLETED' || order.status === 'DELIVERED' || order.status === 'PURCHASED' || order.status === 'PICKED')"
+                      class="d-flex w-100 align-items-center justify-content-start bg-danger-subtle px-2 py-2 border border-color-silver rounded-2 mt-2">
+                        <i class="bi bi-exclamation-triangle-fill lh-tiny text-14 text-black ms-0 me-2 p-0"></i>
+                        <span class="text-14 font-weight-400">   {{'RETURNS_MUST_BE_INITIATED_BEFORE'|translate}}   </span>
+                        <span class="text-14 font-weight-400 d-inline-block px-2">  {{ calculateTimePeriodDifference(item, order) | date }}, </span>
+
+                        <span *ngIf="differenceInDays >= 0">
+                          <span class="text-14 font-weight-400 d-inline-block px-2"> {{  item.gracePeriodReturn }} </span>
+                          <span class="text-14 font-weight-400">   {{'GRACE_PERIOD_TO_COMPLETE'|translate}}   </span>
+                        </span>
+                      </div>
+                      <!-- Show these when the Item Returned Policy -->
+
+                    </div>
+                  </div>
+                  <!-- Iems Litings Ends Here -->
+                </div>
+              </div>
+              <div class="col-md-3 col-lg-3 col-sm-12 col-12 ps-lg-4 ps-md-4 ps-sm-4" *ngIf="order?.status !== 'CANCELLED'">
+
+                <div class="d-block pt-4 mt-3">
+
+                  <!-- Show these Buttons when Partially Accepted & Order Type Ship to Home -->
+                  <div class="d-block w-100" *ngIf="order?.orderType === 'ORDER_ONLINE_SHIP_TO_HOME' && item?.status !== 'DELIVERED'">
+                  <button *ngIf="item?.status === 'BACK_ORDER' " class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2"
+                 (click)="actionOnPendingOrder(order, item.id, 'DECLINE_BACKORDER')">
+                    {{'GET'|translate}} {{item?.quantityDifference}} {{'ITEMS'|translate}}  {{'DECLINE_BACKORDER'|translate}}
+                 </button>
+                 <button *ngIf="item?.status === 'BACK_ORDER'" class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2"
+                 (click)="actionOnPendingOrder(order, item.id, 'ACCEPT_BACKORDER')">
+                    {{'GET'|translate}} {{item?.quantityDifference}} {{'ITEMS'|translate}}  {{'ACCEPT_BACKORDER'|translate}}
+                 </button>
+                 <button *ngIf="item?.status === 'PARTIALLY_ACCEPTED'" class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2"
+                  (click)="actionOnPendingOrder(order, item.id, 'ACCEPTED')">
+                  {{'GET'|translate}} {{item?.acceptedQuantity}} {{'ACCEPT_AVAILABLE_ITEMS'|translate}}
+                </button>
+                <button [disabled]="order?.orderDetails?.length! <= 1" *ngIf="(item?.status === 'PARTIALLY_ACCEPTED' || item?.status === 'BACK_ORDER' || item?.status === 'UNAVAILABLE')" class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2"
+                (click)="actionOnPendingOrder(order, item.id, 'DECLINED')">
+                   {{'REMOVE_THIS_ITEM'|translate}}
+                </button>
+                 </div>
+
+                 <!-- Show these Buttons when Partially Accepted & Order Type Pick in Store -->
+                 <div class="d-block w-100" *ngIf="order?.orderType === 'ORDER_ONLINE_PICK_IN_STORE'">
+                   <button *ngIf="item?.status === 'BACK_ORDER'"
+                  (click)="actionOnPendingOrder(order, item.id, 'DECLINE_BACKORDER')"
+                  class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                     {{'GET'|translate}} {{item?.quantityDifference}} {{'ITEMS'|translate}}  {{'DECLINE_BACKORDER'|translate}}
+                  </button>
+                  <button *ngIf="item?.status === 'BACK_ORDER'"
+                  (click)="actionOnPendingOrder(order, item.id, 'ACCEPT_BACKORDER')"
+                  class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                     {{'GET'|translate}} {{item?.quantityDifference}} {{'ITEMS'|translate}}  {{'ACCEPT_BACKORDER'|translate}}
+                  </button>
+                  <button *ngIf="item?.status === 'PARTIALLY_ACCEPTED'"
+                  (click)="actionOnPendingOrder(order, item.id, 'ACCEPTED')"
+                  class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                  {{'GET'|translate}} {{item?.acceptedQuantity}}  {{'ACCEPT_AVAILABLE_ITEMS'|translate}}
+                 </button>
+                 <button [disabled]="order?.orderDetails?.length! <= 1" *ngIf="(item?.status === 'PARTIALLY_ACCEPTED' || item?.status === 'BACK_ORDER' || item?.status === 'UNAVAILABLE')"
+                 (click)="actionOnPendingOrder(order, item.id, 'DECLINED')"
+                 class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                    {{'REMOVE_THIS_ITEM'|translate}}
+                 </button>
+                  </div>
+
+                  <!-- Show these Buttons when the Order Type Reserve Try in Store -->
+                 <div class="d-block w-100" *ngIf="order?.orderType === 'RESERVE_ONLINE_TRY_IN_STORE'">
+                  <button *ngIf="item?.status === 'BACK_ORDER'"
+                 (click)="actionOnPendingOrder(order, item.id, 'DECLINE_BACKORDER')"
+                 class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                    {{'GET'|translate}} {{item?.quantityDifference}} {{'ITEMS'|translate}}  {{'DECLINE_BACKORDER'|translate}}
+                 </button>
+                 <button *ngIf="item?.status === 'BACK_ORDER'"
+                 (click)="actionOnPendingOrder(order, item.id, 'ACCEPT_BACKORDER')"
+                 class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                    {{'GET'|translate}} {{item?.quantityDifference}} {{'ITEMS'|translate}}  {{'ACCEPT_BACKORDER'|translate}}
+                 </button>
+                 <button *ngIf="item?.status === 'PARTIALLY_ACCEPTED'"
+                 (click)="actionOnPendingOrder(order, item.id, 'ACCEPTED')"
+                 class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                 {{'GET'|translate}} {{item?.acceptedQuantity}}  {{'ACCEPT_AVAILABLE_ITEMS'|translate}}
+                </button>
+                <button [disabled]="order?.orderDetails?.length! <= 1" *ngIf="(item?.status === 'PARTIALLY_ACCEPTED' || item?.status === 'BACK_ORDER' || item?.status === 'UNAVAILABLE')"
+                (click)="actionOnPendingOrder(order, item.id, 'DECLINED')"
+                class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                   {{'REMOVE_THIS_ITEM'|translate}}
+                </button>
+                 </div>
+                 <!-- Show these Buttons when the order delivered -->
+                 <div class="d-block w-100" *ngIf="(getTracks(order).includes('DELIVERED') || getTracks(order).includes('PICKED')) && item.returnQuantity <= 0 && item.quantity > 0 && order.orderType !== 'RESERVE_ONLINE_TRY_IN_STORE'">
+
+                 <button *ngIf="!((item.purchased !== null && item.purchased == false) || item.quantity <= 0 || (item.acceptedQuantity !== null && item.acceptedQuantity <= 0))"
+                  (click)="editreviewmodal(item.product)" class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                  {{'WRITE_A_PRODUCT_REVIEW'|translate}}
+                 </button>
+                 </div>
+                 <!-- Ship to Home Status Buttons Ends Here -->
+
+                  <!-- Show these buttons when the order ready for pickup -->
+                  <div class="d-block w-100" *ngIf="order.status === 'READY_FOR_PICKUP' && order.orderType === 'ORDER_ONLINE_PICK_IN_STORE'">
+                    <button (click)="openOrderDetailsInNewTab(order)" class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                      {{'PICKUP_INFORMATION'|translate}}
+                     </button>
+                  </div>
+
+                  <!-- Show these buttons when the order picked up -->
+                  <div class="d-block w-100" *ngIf="getTracks(order).includes('PICKED') && order.orderType === 'ORDER_ONLINE_PICK_IN_STORE'">
+                     <button (click)="seeProofofPickup(order)" class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                      {{'PROOF_OF_PICKUP'|translate}}
+                    </button>
+                  </div>
+                 <!-- Pick in Store Buttons Ends Here -->
+
+                   <!-- Show these buttons when the order ready to try -->
+                   <div class="d-block w-100" *ngIf="order.status === 'READY_FOR_TRY' && order.orderType === 'RESERVE_ONLINE_TRY_IN_STORE'">
+                     <button (click)="openOrderDetailsInNewTab(order)" class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                      {{'PICKUP_INFORMATION'|translate}}
+                     </button>
+                  </div>
+
+                  <!-- Show these buttons when the order is store purchased-->
+                  <div class="d-block w-100" *ngIf="getTracks(order).includes('PURCHASED') && item.returnQuantity <= 0 && item.quantity > 0 && order.orderType === 'RESERVE_ONLINE_TRY_IN_STORE'">
+                      <button *ngIf="!((item.purchased !== null && item.purchased == false) || item.quantity <= 0 || (item.acceptedQuantity !== null && item.acceptedQuantity <= 0))"
+                       (click)="editreviewmodal(item.product)" class="bg-grey2 bg-hover-grey border border-color-silver font-weight-500 py-2 px-3 rounded-2 text-14 text-black text-center text-start w-100 mb-2">
+                      {{'WRITE_A_PRODUCT_REVIEW'|translate}}
+                     </button>
+                  </div>
+                 <!-- Reserve in Store Buttons Ends Here -->
+
+                </div>
+              </div>
+            </div>
+              </div>
+          </div>
+          </div>
+        </div>
+        <!-- Single Order Block Ends Here -->
+
+        </div>
+        <!-- New Orders Design Ends Here -->
+
+        <!-- No Orders Available Starts Here -->
+        <div *ngIf="noOrdersAvailable" class="d-block w-100 py-5 px-4">
+            <div class="d-block w-100 text-center">
+              <img class="h-150-px object-fit-contain mb-3" src="./assets/img/no-orders-available.jpg" alt="{{'NO_ORDERS_AVAILABLE'|translate}}">
+              <p class="text-15 text-black text-center m-0 p-0 w-100">  {{'NO_ORDERS_AVAILABLE'|translate}} </p>
+            </div>
+        </div>
+        <!-- No Orders Available Ends Here -->
+
+        <!-- Loading Animation Starts Here -->
+        <div class="d-block w-100 text-center" *ngIf="loadingOrders">
+          <img class="h-400-px h-250-px w-100 object-fit-contain mb-4" src="./assets/img/products-loading.jpg" alt="{{'ORDERS_ARE_LOADING'|translate}}">
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <div class="d-inline-block">
+              <img class="h-20-px w-auto spinner-border border-0" src="./assets/img/spinner-icon.png" >
+            </div>
+            <div class="d-inline-block ps-3">
+              <h4 class="text-black text-16 font-weight-500 m-0"> {{'ORDERS_ARE_LOADING'|translate}} </h4>
+            </div>
+          </div>
+        </div>
+        <!-- Loading Animation Ends Here -->
+
+    </div>
+</section>

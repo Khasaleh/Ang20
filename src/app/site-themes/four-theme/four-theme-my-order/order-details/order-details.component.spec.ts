@@ -11,8 +11,8 @@ describe('OrderDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrderDetailsComponent ]
-    })
+    declarations: [OrderDetailsComponent]
+})
     .compileComponents();
   }));
 

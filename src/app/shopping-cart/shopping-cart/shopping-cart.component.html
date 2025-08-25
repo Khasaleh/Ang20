@@ -1,0 +1,36 @@
+<div class="container main-container">
+  <div class="shopping-cart-container">
+    <h1 class="page-title">{{ 'shopping_cart' | translate }}</h1>
+    <div class="shopping-cart-content">
+      <mat-tab-group
+        class="shopping-cart-tabs"
+        (selectedIndexChange)="onTabChange($event)"
+      >
+        <mat-tab [label]="'cart' | translate">
+          <app-cart-items
+            [cartData]="cartData"
+            (cartUpdate)="getCartData()"
+          ></app-cart-items>
+        </mat-tab>
+        <mat-tab [label]="'quote' | translate">
+          <app-quote-items
+            [quoteData]="quoteData"
+            (quoteUpdate)="getQuoteData()"
+          ></app-quote-items>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+    <div class="shopping-cart-summary">
+      <div class="cart-summary-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="navigateToCheckout()"
+          [disabled]="!cartData?.items?.length"
+        >
+          {{ 'proceed_to_checkout' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

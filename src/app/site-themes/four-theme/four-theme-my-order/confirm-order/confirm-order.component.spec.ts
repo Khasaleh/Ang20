@@ -11,8 +11,8 @@ describe('ConfirmOrderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConfirmOrderComponent ]
-    })
+    declarations: [ConfirmOrderComponent]
+})
     .compileComponents();
   }));
 

@@ -1,0 +1,134 @@
+<section class="w-100 d-block popup-parent-rtl">
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-3 py-3">
+    <div class="d-inline-block">
+    <h3 class="text-black text-18 m-0 p-0 font-weight-600">     {{'UPDATE_PAYMENT_METHOD'|translate}} </h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-block w-100 py-4 px-3 position-relative">
+
+     <div *ngIf="isLoading" class="d-block w-100 py-5 position-absolute top-0 start-0 h-100 d-flex align-items-center justify-content-center bg-white-80 z-index-999">
+      <div class="d-block w-100 text-center">
+        <img class="mb-4 h-50-px w-auto spinner-border border-0" src="./assets/img/spinner-icon1.png" alt="{{'POS_TERMINAL_LOADING'|translate}}">
+        <h5 class="text-black text-14 font-weight-500 m-0 w-100">  {{'LOADING_PAYMENT_METHODS_PLEASE_WAIT' | translate}}  </h5>
+      </div>
+    </div>
+
+    <div *ngIf="isPaymentLoading"  class="d-block w-100 py-5 position-absolute top-0 start-0 h-100 d-flex align-items-center justify-content-center bg-white-80 z-index-999">
+      <div class="d-block w-100 text-center">
+        <img class="mb-4 h-50-px w-auto spinner-border border-0" src="./assets/img/spinner-icon1.png" alt="{{'POS_TERMINAL_LOADING'|translate}}">
+        <h5 class="text-black text-14 font-weight-500 m-0 w-100"> {{'INITIALIZING_PAYMENT' | translate}}   </h5>
+      </div>
+    </div>
+
+    
+    <div class="d-block w-100">
+
+      <mat-tab-group animationDuration="0ms" class="chat-setting-tabs">
+
+        <mat-tab >
+          <ng-template mat-tab-label>
+            <div class="d-block w-100 px-3 py-2 border border-color-silver rounded-top-3 text-center bg-theme-light-color border-bottom-0">
+              <span class="text-black text-15 mob-text-14 d-block w-100 font-weight-600">   {{'CREDITCARD'|translate}} </span>
+            </div>
+          </ng-template>
+          <div class="d-block w-100 py-3 px-2 border rounded-2 overflow-auto modern-scroll max-h-400-px">
+            <div class="d-flex px-2 flex-wrap w-100 align-items-center justify-content-start">
+
+              <div class="d-inline-block me-3">
+                <h3 class="text-black font-weight-600 text-18 m-0">
+                   {{'WE_ACCEPT'|translate}}
+                </h3>
+              </div>
+
+
+              <div class="d-inline-block me-3">
+                  <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-visa-icon.png">
+              </div>
+              <div class="d-inline-block me-3">
+                  <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-american-icon.png">
+              </div>
+              <div class="d-inline-block me-3">
+                  <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-mastercard-icon.jpg">
+              </div>
+              <div class="d-inline-block me-3">
+                  <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/card-discover-icon.png">
+              </div>
+              <div class="d-inline-block me-3">
+                  <img class="h-30-px w-auto object-fit-contain rounded-0" src="../../../assets/img/hsa-fsa-card.png">
+              </div>
+              <div class="d-inline-block me-3">
+                <span class="font-weight-600 text-14 text-black d-inline-block">   {{'AND_MANY_MORE'|translate}}    </span>
+              </div>
+
+          </div>
+            <div id="finix-form" #finixFormContainer></div>
+            <div class="d-flex flex-wrap align-items-center justify-content-between w-100">
+              <div class="d-inline-block">
+                      <div class="d-flex align-items-center justify-content-start">
+                        <i class="bi bi-file-lock-fill text-18 text-black no-min-height no-min-width lh-tiny me-2 p-0"></i>
+                          <span class="text-13 text-black d-inline-block">  {{'SECURE_PAYMENT_WITH_SSL_ENCRYPTION_INFO'|translate}}   </span>
+                      </div>
+              </div>
+
+              <div class="d-inline-block">
+
+                  <div class="d-flex align-items-center justify-content-start">
+                                           <span class="text-black text-14 font-weight-500 d-inline-block ps-3">
+                                              {{'POWERED_BY'|translate}} 
+                                            </span>
+                                            <span class="text-black text-14 font-weight-600 d-inline-block ">
+                                              Fazeal Pay
+                                            </span>
+                                          </div>
+
+              </div>
+          </div>
+         
+          </div>
+        </mat-tab>
+
+        <mat-tab *ngIf="isPayPalEnabled">
+          <ng-template mat-tab-label>
+            <div class="d-block w-100 px-3 py-2 border border-color-silver rounded-top-3 text-center bg-theme-light-color border-bottom-0">
+              <span class="text-black text-15 mob-text-14 d-block w-100 font-weight-600">  {{'PAYPAL'|translate}}  </span>
+            </div>
+          </ng-template>
+          <div class="d-block w-100 py-5 px-2 border rounded-2  overflow-auto modern-scroll max-h-400-px">
+            <div class="d-flex flex-column align-items-center justify-content-center w-100 text-center">
+             <img class="h-100-px mb-3" src="./assets/img/paypal-main-logo.png">
+             <button [disabled]="!paypalUrl" (click)="redirectToPaypal()" class="bg-theme-dark-color px-4 py-2 text-14 rounded-3 ms-3 text-white">
+                 {{'REDIRECTED_TO_PAYPAL'|translate}}
+             </button>
+            </div>
+           </div>
+        </mat-tab>
+
+        <mat-tab *ngIf="isCODEnabled">
+          <ng-template mat-tab-label>
+            <div class="d-block w-100 px-3 py-2 border border-color-silver rounded-top-3 text-center bg-theme-light-color border-bottom-0">
+              <span class="text-black text-15 mob-text-14 d-block w-100 font-weight-600">  {{'CASHONDELIVERY'|translate}}  </span>
+            </div>
+          </ng-template>
+          <div>
+            <div class="d-flex flex-column align-items-center justify-content-center w-100 text-center py-5 px-2 border rounded-2  overflow-auto modern-scroll max-h-400-px">
+              <img class="h-100-px mb-3" src="./assets/img/cod-main-logo.jpg">
+              <button [disabled]="firstTimeCalled" (click)="updatePaymentValidation('COD')" class="bg-theme-dark-color px-4 py-2 text-14 rounded-3 ms-3 text-white">
+                 {{'SELECT_CASH_ON_DELIVERY'|translate}}
+              </button>
+             </div>
+          </div>
+        </mat-tab>
+
+        </mat-tab-group>
+
+    </div>
+
+   
+
+  </div>
+</section>

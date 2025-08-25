@@ -1,0 +1,325 @@
+// Modern CSS Grid Utilities for Responsive Design
+
+// Base Grid Container
+.grid-container {
+  display: grid;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+// Responsive Grid Columns
+.grid-cols-1 {
+  grid-template-columns: repeat(1, 1fr);
+}
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.grid-cols-5 {
+  grid-template-columns: repeat(5, 1fr);
+}
+.grid-cols-6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+.grid-cols-12 {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+// Auto-fit Grid (for product listings)
+.grid-auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.grid-auto-fit-sm {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.grid-auto-fit-lg {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.grid-auto-fit-xl {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+// Auto-fill Grid (for galleries)
+.grid-auto-fill {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+// Responsive Breakpoints
+@media (max-width: 575.98px) {
+  .grid-cols-sm-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .grid-cols-sm-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-cols-sm-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-cols-sm-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid-cols-sm-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .grid-cols-sm-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .grid-auto-fit-sm {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .grid-cols-md-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .grid-cols-md-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-cols-md-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-cols-md-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid-cols-md-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .grid-cols-md-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .grid-auto-fit-md {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .grid-cols-lg-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .grid-cols-lg-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-cols-lg-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-cols-lg-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid-cols-lg-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .grid-cols-lg-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .grid-auto-fit-lg {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .grid-cols-xl-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .grid-cols-xl-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-cols-xl-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-cols-xl-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid-cols-xl-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .grid-cols-xl-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .grid-auto-fit-xl {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid-cols-xxl-1 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .grid-cols-xxl-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-cols-xxl-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .grid-cols-xxl-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .grid-cols-xxl-6 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .grid-cols-xxl-12 {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .grid-auto-fit-xxl {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+// Grid Gaps
+.gap-xs {
+  gap: var(--spacing-xs);
+}
+.gap-sm {
+  gap: var(--spacing-sm);
+}
+.gap-md {
+  gap: var(--spacing-md);
+}
+.gap-lg {
+  gap: var(--spacing-lg);
+}
+.gap-xl {
+  gap: var(--spacing-xl);
+}
+
+// Grid Areas
+.grid-areas-2 {
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+}
+
+.grid-areas-3 {
+  grid-template-areas:
+    "header header header"
+    "sidebar main aside"
+    "footer footer footer";
+}
+
+// Responsive Tables
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+@media (max-width: 767.98px) {
+  .responsive-table {
+    display: grid;
+    gap: var(--spacing-md);
+  }
+
+  .responsive-table thead {
+    display: none;
+  }
+
+  .responsive-table tbody {
+    display: grid;
+    gap: var(--spacing-md);
+  }
+
+  .responsive-table tr {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    background-color: var(--surface-color);
+  }
+
+  .responsive-table td {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .responsive-table td:last-child {
+    border-bottom: none;
+  }
+
+  .responsive-table td::before {
+    content: attr(data-label) ": ";
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+  }
+}
+
+// Product Grid Specific
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+@media (max-width: 575.98px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--spacing-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+  }
+}
+
+// Navigation Grid
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--touch-target-min), 1fr));
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+// Form Grid
+.form-grid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.form-grid-2 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .form-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-grid-3 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .form-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

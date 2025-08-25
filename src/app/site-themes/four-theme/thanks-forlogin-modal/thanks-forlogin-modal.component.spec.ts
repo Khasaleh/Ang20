@@ -8,8 +8,8 @@ describe('ThanksForloginModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ThanksForloginModalComponent ]
-    })
+    declarations: [ThanksForloginModalComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(ThanksForloginModalComponent);

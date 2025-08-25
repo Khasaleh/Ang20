@@ -1,0 +1,292 @@
+<section class="four_theme_footer">
+  <footer class="bg-theme-light-color four-footer-inner-container">
+      <div class="new-container1 mx-auto">
+
+        <!-- Desktop Footer Starts Here -->
+        <div class="d-lg-block d-md-block d-sm-block d-none w-100 overflow-hidden">
+          <div class="row">
+              <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mx-auto first_footer">
+                  <div class="w-100">
+                      <div class="row">
+                        <ng-container *ngFor="let menuSec of data.menu; let j = index">
+                          <div *ngIf="menuSec.item=='logo'" [style.color]="data.textColor" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 align-items-lg-start align-items-md-center align-items-sm-center align-items-start d-flex flex-column mb-lg-0 mb-md-5 mb-sm-5 mb-5 pb-lg-0 pb-md-4 pb-sm-4 pb-0">
+                            <ng-container *ngFor="let data of menuSec.list; let i = index">
+                              <div class="ps-4 pe-0 mb-2 mx-0 d-flex align-items-center justify-content-start w-100 text-start" *ngIf="i==0 && data">
+                                <button  routerLink="/{{subdomain}}" class="focus-visible focus-visible-rounded">
+                                  <img  [src]="data" class="object-fit-contain w-200-px h-80-px" alt="{{'LOGOIMAGETHEMEFOUR'|translate}}">
+                                </button>
+                                </div>
+                              <span *ngIf="i==1" class="text-16 mt-2 ps-4 font-weight-400 w-100 text-sm-center text-lg-start text-black">
+                                {{data | titlecase}}
+                              </span>
+                              <div  *ngIf="i==1" class="d-flex ps-4 align-items-center justify-content-start w-100 pt-3">
+                                <a *ngIf="socialLinks?.showYoutube" target="_blank" href="{{socialLinks?.youtubeAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-youtube text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showTwitter" target="_blank" href="{{socialLinks?.twitterAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-twitter-x text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showFacebook" target="_blank" href="{{socialLinks?.facebookAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-facebook text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showFazealSocial" target="_blank" href="{{socialLinks?.fazealSocialAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <img src="../../../assets/img/favicon.ico" class="h-18-px w-auto"
+                                    alt="{{'CUSTOMERS'|translate}}">
+                                </a>
+                                <a *ngIf="socialLinks?.showLinkedin" target="_blank" href="{{socialLinks?.linkedinAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-linkedin text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showInstagram" target="_blank" href="{{socialLinks?.instagramAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-instagram text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showPinterest" target="_blank" href="{{socialLinks?.pinterestAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-pinterest text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                </div>
+                            </ng-container>
+                          </div>
+
+                          <ng-container *ngIf="menuSec.item!='logo'">
+                            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-12 justify-content-md-center d-md-flex d-sm-flex d-flex justify-content-sm-center justify-content-start mb-lg-0 mb-md-3 mb-sm-3 mb-3">
+                              <ng-container *ngIf="!( (data.design === 2 && j === 1) || (data.design === 3 && j === 4)  || (data.design === 4 && j === 4) || (data.design === 4 && j === 5) )">
+                                <ul class="list-unstyled ps-md-4 ps-sm-0 ps-0 ps-lg-0">
+                                  <li class="border-0 mb-3">
+                                    <h4 class="text-16 font-weight-700 d-block w-100 m-0 text-black">{{menuSec.text |translate}}</h4>
+                                  </li>
+                                  <ng-container *ngIf="menuSec.item !== 'category' && menuSec.item !== 'account'">
+                                    <li class="border-0" *ngFor="let item of menuSec.list">
+                                      <button *ngIf="item == 'SIGNIN_ABOUTUS'" routerLink="/{{subdomain}}/about-us" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                      <button *ngIf="item == 'TERMS_CONDITIONS'" routerLink="/{{subdomain}}/terms-and-conditions" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                      <button *ngIf="item == 'END_USER_LICENSE_AGREEMENT'" routerLink="/{{subdomain}}/eula" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                      <button *ngIf="item == 'COOKIES_POLICY'" routerLink="/{{subdomain}}/cookies-policy" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                      <button *ngIf="item == 'RETURN_POLICY'" routerLink="/{{subdomain}}/return-policy" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                      <button *ngIf="item == 'TERMS_OF_USE'" routerLink="/{{subdomain}}/terms-of-use" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                    </li>
+                                  </ng-container>
+                                  <ng-container *ngIf="menuSec.item === 'category'">
+                                    <li class="border-0" *ngFor="let item of menuSec.list.slice(0, limit)">
+                                      <button routerLink="/{{subdomain}}/category/{{item.url}}/{{item.id}}" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item.catName |translate | titlecase }}
+                                      </button>
+                                    </li>
+                                    <li class="border-0" *ngIf="menuSec.list.length > limit">
+                                      <button (click)="loadMoreCategories()" class="text-13 focus-visible focus-visible-rounded d-inline-block border-bottom border-color-silver border-top-0 border-start-0 border-end-0 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{ 'VIEW_MORE' | translate }}
+                                      </button>
+                                    </li>
+                                  </ng-container>
+                                  <ng-container *ngIf="menuSec.item === 'account'">
+                                    <li class="border-0" *ngFor="let item of menuSec.list">
+                                      <button *ngIf="item == 'CONTACT_US'" routerLink="/{{subdomain}}/contact-us" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                      <button (click)="subscribeMarketing()" *ngIf="item == 'PICK_A_PLAN_SUBSCRIBE'" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                      <button (click)="unsubscribeMarketing()" *ngIf="item == 'UNSUBSCRIBE'" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                      <button *ngIf="item == 'ORDER_TRACKING_ONLY'" routerLink="/{{subdomain}}/track-order" class="text-14 focus-visible focus-visible-rounded font-weight-400 text-capitalize mb-1 py-1 px-0 text-black">
+                                        {{item |translate}}
+                                      </button>
+                                    </li>
+                                  </ng-container>
+                                </ul>
+                              </ng-container>
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                      </div>
+                  </div>
+              </div>
+
+
+          </div>
+        </div>
+        <!-- Desktop Footer Ends Here -->
+
+        <!-- Mobile Footer Starts Here -->
+        <div class="d-lg-none d-md-none d-sm-none d-block w-100 py-4">
+
+          <div class="d-block w-100" *ngFor="let menuSec of data.menu; let j = index">
+            <div *ngIf="menuSec.item=='logo' && data.design != 4" [style.color]="data.textColor" [ngClass]="{'order-last': data.design === 5}" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 align-items-lg-start align-items-md-center align-items-sm-center align-items-start d-flex flex-column px-0 pb-0 pt-4 mb-4">
+              <ng-container *ngFor="let data of menuSec.list; let i = index">
+                <div class="navbar-brand ps-4 pe-0 mb-2 mx-0 d-flex align-items-center justify-content-start w-100" *ngIf="i==0 && data">
+                  <button routerLink="/{{subdomain}}" class="focus-visible focus-visible-rounded">
+                  <img [src]="data" class="h-80-px" alt="{{'LOGOIMAGETHEMEFOUR'|translate}}">
+                  </button>
+                </div>
+                <span *ngIf="i==1" class="text-16 mt-2 font-weight-400 w-100 text-sm-center text-lg-start text-black">
+                  {{data}}
+                </span>
+                 <div  *ngIf="i==1" class="d-flex ps-4 align-items-center justify-content-start w-100 pt-3">
+                                <a *ngIf="socialLinks?.showYoutube" target="_blank" href="{{socialLinks?.youtubeAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-youtube text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showTwitter" target="_blank" href="{{socialLinks?.twitterAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-twitter-x text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showFacebook" target="_blank" href="{{socialLinks?.facebookAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-facebook text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showFazealSocial" target="_blank" href="{{socialLinks?.fazealSocialAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <img src="../../../assets/img/favicon.ico" class="h-18-px w-auto"
+                                    alt="{{'CUSTOMERS'|translate}}">
+                                </a>
+                                <a *ngIf="socialLinks?.showLinkedin" target="_blank" href="{{socialLinks?.linkedinAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-linkedin text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showInstagram" target="_blank" href="{{socialLinks?.instagramAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-instagram text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                <a *ngIf="socialLinks?.showPinterest" target="_blank" href="{{socialLinks?.pinterestAccount}}" class="d-flex align-items-center justify-content-center me-2 mb-1 focus-visible focus-visible-rounded">
+                                    <i class="bi bi-pinterest text-black text-18 no-min-height no-min-width lh-tiny"></i>
+                                </a>
+                                </div>
+              </ng-container>
+            </div>
+          </div>
+         <div class="d-block w-100">
+        <mat-accordion class="example-headers-align" multi="false">
+          <mat-expansion-panel [expanded]="true"
+            class="mat-elevation-z0 overflow-hidden mb-0 mt-0 rounded-0 mat-expansion-no-pad bg-transparent footer-expansion-panel border-bottom border-color-silver">
+            <mat-expansion-panel-header class="px-0 py-2 rounded-0 overflow-hidden">
+              <mat-panel-title>
+                <span class="font-weight-600 text-15 text-black"> {{'USEFULL_LINKS'|translate}} </span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="d-block w-100 pt-2 pb-5">
+              <ng-container *ngFor="let menuSec of data.menu; let j = index">
+              <ng-container *ngIf="menuSec.item === 'links'">
+                <div *ngFor="let item of menuSec.list">
+                  <button *ngIf="item == 'SIGNIN_ABOUTUS'" routerLink="/{{subdomain}}/about-us" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                  <button *ngIf="item == 'TERMS_CONDITIONS'" routerLink="/{{subdomain}}/terms-and-conditions" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                  <button *ngIf="item == 'END_USER_LICENSE_AGREEMENT'" routerLink="/{{subdomain}}/eula" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                  <button *ngIf="item == 'COOKIES_POLICY'" routerLink="/{{subdomain}}/cookies-policy" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                  <button *ngIf="item == 'RETURN_POLICY'" routerLink="/{{subdomain}}/return-policy" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                  <button *ngIf="item == 'TERMS_OF_USE'" routerLink="/{{subdomain}}/terms-of-use" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                </div>
+              </ng-container>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel [expanded]="false"
+            class="mat-elevation-z0 overflow-hidden rounded-0 mb-0 mt-0 mat-expansion-no-pad bg-transparent footer-expansion-panel  border-bottom border-color-silver">
+            <mat-expansion-panel-header class="px-0 py-2 rounded-0 overflow-hidden">
+              <mat-panel-title>
+                <span class="font-weight-600 text-15 text-black"> {{'CATEGORIES'|translate}} </span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="d-block w-100 pt-2 pb-5">
+              <ng-container  *ngFor="let menuSec of data.menu; let j = index">
+              <ng-container *ngIf="menuSec.item === 'category'">
+                <div *ngFor="let item of menuSec.list.slice(0, limit)">
+                  <button routerLink="/{{subdomain}}/category/{{item.url}}/{{item.id}}" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item.catName |translate}}
+                  </button>
+                </div>
+                <div class="border-0" *ngIf="menuSec.list.length > limit">
+                  <button (click)="loadMoreCategories()" class="text-13 d-inline-block border-bottom border-color-silver border-top-0 border-start-0 border-end-0 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{ 'VIEW_MORE' | translate }}
+                  </button>
+                </div>
+              </ng-container>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel [expanded]="false"
+            class="mat-elevation-z overflow-hidden rounded-0 mb-0 mt-0 mat-expansion-no-pad bg-transparent footer-expansion-panel  border-bottom border-color-silver">
+            <mat-expansion-panel-header class="px-0 py-2 rounded-0 overflow-hidden">
+              <mat-panel-title>
+                <span class="font-weight-600 text-15 text-black"> {{'MY_ACCOUNT'|translate}} </span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="d-block w-100 pt-2 pb-5">
+              <ng-container  *ngFor="let menuSec of data.menu; let j = index">
+              <ng-container *ngIf="menuSec.item === 'account'">
+                <div *ngFor="let item of menuSec.list">
+                  <button *ngIf="item == 'CONTACT_US'" routerLink="/{{subdomain}}/contact-us" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                  <button (click)="subscribeMarketing()" *ngIf="item == 'PICK_A_PLAN_SUBSCRIBE'" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                  <button (click)="unsubscribeMarketing()" *ngIf="item == 'UNSUBSCRIBE'" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                  <button *ngIf="item == 'ORDER_TRACKING_ONLY'" routerLink="/{{subdomain}}/track-order" class="text-14 font-weight-400 text-capitalize mb-1 py-1 px-0 text-black focus-visible focus-visible-rounded">
+                    {{item |translate}}
+                  </button>
+                </div>
+              </ng-container>
+              </ng-container>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        </div>
+        </div>
+        <!-- Mobile Footer Ends Here -->
+
+
+       <div class="d-block w-100 py-5 bg-theme-light-color">
+          <div class="row align-items-center mb-lg-3 mb-md-3 mb-sm-2 mb-0">
+              <div class="col-xxl-4 col-xl-4 col-lg-4 col-sm-12 col-12 col-md-4 d-flex justify-content-lg-start justify-content-md-center justify-content-sm-center justify-content-center text-black order-lg-1 order-md-1 order-sm-3 order-3">
+                  <p class="text-13 font-weight-400 mb-0 text-black" >{{data.copyright.text || '©Copyright 2025 Fazealbusiness'}} </p>
+              </div>
+              <div class="col-xxl-4 col-xl-4 col-lg-4 col-sm-12 col-12 col-md-4 d-flex justify-content-center order-lg-2 order-md-2 order-sm-2 order-2 my-lg-0 my-md-0 my-sm-3 my-3">
+                <p class="text-13 font-weight-400 mb-0 text-center">
+                <a target="_blank" href="{{landUrl}}" class="cursor-pointer text-13 font-weight-400 m-0 p-0 text-black focus-visible focus-visible-rounded">
+                   {{'POWRED_BY_FAZEAL'|translate}}
+                </a>
+                </p>
+            </div>
+              <div class="col-xxl-4 col-xl-4 col-lg-4 col-sm-12 col-12 col-md-4  mt-lg-0 mt-sm-3 mt-3 d-flex justify-content-lg-end justify-content-md-center justify-content-sm-center justify-content-center order-lg-3 order-md-3 order-sm-1 order-1">
+                <div class="d-flex flex-lg-nowrap flex-md-nowrap flex-sm-nowrap flex-wrap white-space-nowrap white-space-nmob-normal align-items-lg-center justify-content-lg-end align-items-md-end justify-content-lg-end align-items-sm-center align-items-center justify-content-center">
+                  <span class="d-inline-block text-black font-weight-500 text-13 me-2">
+                     {{'PAYMENTS'|translate}}
+                  </span>
+
+                <span class="d-flex align-items-center justify-content-start" *ngIf="isFazealPayEnabled">
+                  <img class="h-25-px w-auto object-fit-contain rounded-0 me-2" src="../../../assets/img/card-visa-icon.png">
+                  <img class="h-25-px w-auto object-fit-contain rounded-0 me-2" src="../../../assets/img/card-american-icon.png">
+                  <img class="h-25-px w-auto object-fit-contain rounded-0 me-2" src="../../../assets/img/card-mastercard-icon.jpg">
+                  <img class="h-25-px w-auto object-fit-contain rounded-0 me-2" src="../../../assets/img/card-discover-icon.png">
+                  <img class="h-25-px w-auto object-fit-contain rounded-0 me-2" src="../../../assets/img/hsa-fsa-card.png">
+                </span>
+                <span class="d-inline-block me-2" *ngIf="isPayPalEnabled">
+                  <img class="h-25-px m-0 object-fit-contain" src="../../../assets/img/pp-payment-logo.jpg" alt="{{'LOGOIMAGETHEMEFOUR'|translate}}">
+                </span>
+                <span class="d-inline-block me-2" *ngIf="isCODEnabled">
+                  <img class="h-25-px m-0 object-fit-contain" src="../../../assets/img/cod-payment-logo.png" alt="{{'LOGOIMAGETHEMEFOUR'|translate}}">
+                </span>
+                </div>
+              </div>
+          </div>
+      </div>
+      </div>
+  </footer>
+</section>

@@ -11,8 +11,8 @@ describe('ReturnRefundDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReturnRefundDetailsComponent ]
-    })
+    declarations: [ReturnRefundDetailsComponent]
+})
     .compileComponents();
   }));
 

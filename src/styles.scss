@@ -25,7 +25,7 @@ body {
 @import "./styles/mixins";
 @import "./styles/responsive";
 @import "./styles/table";
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/bootstrap";
 @import "../node_modules/flag-icons/css/flag-icons.min.css";
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
 @import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
@@ -2413,7 +2413,6 @@ button.mat-focus-indicator.mat-stroked-button.mat-button-base:hover {
 }
 
 /* Importing Bootstrap SCSS file. */
-@import '../node_modules/bootstrap/scss/bootstrap';
 
 
 .mat-toolbar.mat-primary {

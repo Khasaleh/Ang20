@@ -1,0 +1,123 @@
+<section class="py-5 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">      {{'REVIEWS'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 m-0 border-0">
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                        <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                          {{'HOME'|translate}}
+                          </button>
+                        <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off" aria-current="page">
+                        <b class="text-14 font-weight-400 cursor-default text-black">
+                          {{'REVIEWS'|translate}}
+                        </b>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+  </div>
+</section>
+<section *ngIf="order"  class="py-5 px-md-3 px-sm-0 px-0 plp_pr_section">
+    <div class="new-container1">
+        <div class="row">
+            <div class="col-md-12 mx-auto">
+                <div class="d-flex justify-content-between flex-md-column flex-lg-row flex-sm-column flex-column">
+                    <div class="product_content_area">
+                        <div class="w-100 border overflow-hidden rounded-3">
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <div class="searchbar_parent bg-color-F2F3F5 d-flex justify-content-start align-items-center py-3 px-4">
+                                        <div class="row w-100">
+                                            <div class="col-md-4 col-sm-12 col-12 d-flex flex-column justify-content-end">
+                                                <p class="text-15 font-weight-600 text-black mb-1 mob-text-13">{{'ORDER-SEC'|translate}} {{orderPrefix}}{{order.orderId}}{{orderSuffix}}</p>
+                                                <p class="text-14 font-weight-400 text-color-475467 mb-0 mob-text-12">{{'PLACEDON'|translate}} {{order.orderTime| date:'short'}}</p>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12 col-12 d-flex align-items-end">
+                                                <p class="text-14 font-weight-400 text-color-475467 mb-0 mob-text-12">{{'DELIVEREDON'|translate}} 16 jan 2023</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-md-4 p-sm-1 p-1">
+                                  <div class="row mb-3" *ngFor="let item of order.orderDetails">
+                                    <div class="col-md-12 max-w-100 overflow-x-auto">
+                                        <table class="table order_table">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="border-0">
+                                                        <div class="border rounded-2 w-100-px h-100-px d-flex align-items-center justify-content-center">
+                                                            <img [src]="awsUrl+item.product.mainImageUrl" class="product-thumbnail-size1 w-100 object-fit-contain object-position-center"
+                                                            alt="{{'ICONIMAGES'|translate}}">
+                                                        </div>
+                                                    </td>
+                                                    <td class="border-0">
+                                                        <p class="text-15 font-weight-500 text-black mb-1 mob-text-13 ">{{item.product.productName | titlecase}}</p>
+                                                    </td>
+                                                    <td class="border-0">
+                                                        <p class="text-15 font-weight-400 text-black mb-1 mob-text-13 ">{{'O_M_QTY'|translate}}</p>
+                                                        <p class="text-14 font-weight-400 text-color-475467 mb-3 text-center mob-text-12 ">{{item.quantity}}</p>
+                                                    </td>
+                                                    <td class="border-0">
+                                                        <p class="text-15 font-weight-400 text-black mb-1 mob-text-13 ">{{'PRICE'|translate}}</p>
+                                                        <p class="text-14 font-weight-400 text-color-475467 mb-3 text-center mob-text- ">{{currency}}{{item.price}}</p>
+                                                    </td>
+                                                    <td class="border-0">
+                                                        <button type="button" class="rounded-2 text-black text-14 mob-text-12 font-weight-400 bg-color-F2F3F5 px-2 py-2">{{order.status}}</button>
+                                                    </td>
+                                                    <td *ngIf="order.status == 'DELIVERED' || order.status == 'PICKED'" class="border-0">
+                                                        <button *ngIf="item.action == 'ADD'" type="button" class="rounded-2 text-black bg-white text-15 mob-text-13 font-weight-400 px-2 py-2 border-1-black white-space-nowrap" (click)="addreviewmodal(item)" >{{'WRITE-A-REVIEWS'|translate}}</button>
+                                                        <button *ngIf="item.action == 'EDIT'" type="button" class="rounded-2 text-black bg-white text-15 mob-text-13 font-weight-400 px-2 py-2 border-1-black white-space-nowrap" (click)="editreviewmodal(item)" >{{'EDIT-A-REVIEWS'|translate}}</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <div class="row mb-3 parent_row_step_placeanorder">
+                                    <div class="col-lg-10 col-md-10 col-sm-12 col-12 mx-auto">
+                                    <mat-stepper labelPosition="bottom">
+                                        <mat-step label="{{'ORDER-RECIEVED'|translate}}" [editable]="false" state="done" >
+                                        <div class="w-100 h-100">  {{'ORDER-RECIEVED'|translate}} </div>
+                                        </mat-step>
+                                        <mat-step label="{{'CONFIRMATION'|translate}}" [editable]="false" state="done">
+                                        <div class="w-100 h-100"> </div>
+                                        </mat-step>
+                                        <mat-step label="{{'SHIPED'|translate}}" [editable]="false" state="done">
+                                        <div class="w-100">
+                                             {{'SHIPPED'|translate}}
+                                        </div>
+                                        </mat-step>
+                                        <mat-step label="{{'DELIVERY'|translate}}" [editable]="false" state="done">
+                                        <div class="w-100 h-100">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-10">
+                                                    <div class="searchbar_parent rounded-3 border py-4 px-3 bg-color-F2F3F5 d-flex flex-column align-items-center-content-center">
+                                                        <p class="text-15 font-weight-400 text-black mb-2 text-center mob-text-13">  {{'YOUR_PACKAGE_HAS_BEEN_DELIVERED_THANKYOU'|translate}} {{storeName}}</p>
+                                                        <p class="text-center mb-0"><a href="#" class="text-15 font-weight-400 mob-text-13">  {{'VIEWMORE'|translate}} </a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </mat-step>
+                                        <mat-step label="{{'WRITE_REVIEWS'|translate}}" [editable]="false" state="done">
+                                            <div class="w-100 h-100">  {{'WRITE_REVIEWS'|translate}} </div>
+                                        </mat-step>
+                                    </mat-stepper>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

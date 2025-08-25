@@ -1,0 +1,108 @@
+<section class="w-100">
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-3 py-3">
+    <div class="d-inline-block">
+      <h3 *ngIf="action == 'EDIT'" class="mb-0 text-18 font-weight-500 text-black mob-text-14">{{'EDITREVIEWS'|translate}}</h3>
+      <h3 *ngIf="action == 'ADD'" class="mb-0 text-18 font-weight-500 text-black mob-text-14">{{'ADD_REVIEW'|translate}}</h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+    <div class="w-100 custom-height-layout-1 overflow-y-auto modern-scroll overflow-x-hidden px-3 pt-5">
+        <div *ngIf="item" class="row mb-3">
+            <div class="col-md-12">
+                <div class="d-flex position-relative">
+                    <div class="flex-shrink-0 rounded-2 border-1-BBC2CD">
+                        <img class="w-107-px h-107-px" [src]="awsUrl+item.mainImageUrl" alt="{{'PRODUCTS'|translate}}" />
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-16 font-weight-600 text-black">{{item.productName | titlecase}}</h3>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="item.brandName !== 'null'">
+                            <div class="col-md-12">
+                                <h6 class="text-14 font-weight-400 text-color-999EA8">  {{item.brandName}} </h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="text-15 font-weight-400 text-black">{{item.categoryL1.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="w-100">
+                    <div class="row mb-5">
+                        <div class="col-md-12 d-flex justify-content-center align-items-center rating_star_popup">
+                            <ngb-rating [max]="5" [(ngModel)]="rating" [readonly]="false"></ngb-rating>
+                        </div>
+                    </div>
+                    <mat-error *ngIf="ratingRequired"> {{'RATING_REQUIRED'|translate}} </mat-error>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="position-relative">
+                                <textarea maxlength="200" [(ngModel)]="comment" class="form-control border input-focus-none-checkout" rows="5"></textarea>
+                                <span class="position-absolute words_counter text-15 font-weight-400 text-lightblack mob-text-12">{{comment?.length}} / 200</span>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-error *ngIf="commentRequired"> {{'COMMENT_REQUIRED'|translate}} </mat-error>
+                    <div class="row mb-3">
+                      <div class="col-md-12">
+                          <div>
+                              <label for="exampleFormControlInput2" class="form-label text-black font-weight-400 text-16 mob-text-12">{{'YOUR_NAME'|translate}}</label>
+                              <input [(ngModel)]="userName" readonly type="text" class="form-control h-50-px input-focus-none-checkout" id="exampleFormControlInput2" />
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row mb-5">
+                        <div class="col-md-10 col-lg-10 col-sm-10 col-11 mx-auto">
+                            <div class="border px-2 position-relative rounded-3 py-4 bg-four-theme-lightgrey d-flex justify-content-center align-items-center flex-md-row flex-sm-column flex-column">
+                                <input type="file" class="opacity-0 position-absolute top-0 end-0 w-100 h-100 z-index-999" (change)="uploadReviewImage($event)">
+                                <div>
+                                    <img src="../../../assets/img/items/imageupload.svg" width="52px" height="52px"
+                                        alt="{{'TOPBANNER'|translate}}">
+                                </div>
+                                <div class="mx-3">
+                                    <p class="mb-0 text-12 font-weight-400 mob-text-11 text-md-start text-sm-start text-center"><span class="text-14 font-weight-600 mob-text-12 text-color-6941C6">{{'UPLOAD_YOUR'|translate}}</span><span class="textcolorgrey text-12 mob-text-12 font-weight-400"> {{'DRAG_DROP'|translate}}</span></p>
+                                    <p class="mb-0 text-12 font-weight-400 textcolorgrey mob-text-11 text-md-start text-sm-start text-center">{{'IMAGEFORMAT'|translate}}</p>
+                                </div>
+                                <div>
+                                    <img [src]="image" class="rounded-circle" width="52px" height="52px"
+                                        alt="{{'TOPBANNER'|translate}}">
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-sm-center justify-content-between mt-2">
+                                <span class="text-13 font-weight-600 text-lightgrey me-2 white-space-nowrap">{{'NOTE'|translate}}</span><span class="me-2 white-space-nowrap text-lightgrey text-12 font-weight-400">{{'UPTOIMAGEGES'|translate}}</span><span class="text-12 white-space-nowrap text-lightgrey mob-text-12 font-weight-400">{{'MAXMB'|translate}}</span>
+                            </div>
+                        </div>
+                    </div> 
+
+                    <div class="row mb-5" *ngIf="reply && reply !== null">
+                      <div class="col-md-12 d-flex justify-content-center">
+                          <div class="d-flex align-items-sm-center align-items-start flex-sm-row flex-column mx-auto justify-content-sm-start justify-content-center">
+                              <span class="text-13 font-weight-400 text-black mob-text-11 mb-sm-0 mb-2">{{'SELLER_REPLY'|translate}}</span>
+                              <span class="text-13 font-weight-400 text-black mob-text-11">{{reply}}</span>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-block w-100 px-3 py-3">
+      <div class="d-flex w-100 align-items-center justify-content-end">
+        <button type="button" class="bg-theme-light-color border border-color-silver text-black text-15 lh-lg font-weight-600 px-4 py-1 rounded-2" mat-dialog-close>{{'CANCLE'|translate}}</button>
+        <button *ngIf="action == 'ADD'" type="button" [disabled]="disableSubmitButton" (click)="onSubmit()" class="bg-theme-dark-color text-white lh-lg border border-color-silver text-15 font-weight-600 px-4 py-1 rounded-2 ms-3">{{'ADD'|translate}}</button>
+        <button *ngIf="action == 'EDIT'" type="button" [disabled]="disableSubmitButton" (click)="onSubmit()" class="bg-theme-dark-color text-white lh-lg border border-color-silver text-15 font-weight-600 px-4 py-1 rounded-2 ms-3 ">{{'UPDATE'|translate}}</button>
+      </div>
+      </div>
+  </section>

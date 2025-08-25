@@ -8,8 +8,8 @@ describe('FourThemeCheckoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FourThemeCheckoutComponent ]
-    })
+    declarations: [FourThemeCheckoutComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(FourThemeCheckoutComponent);

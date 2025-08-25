@@ -1,0 +1,132 @@
+<section class="py-3 bg-color-F2F4F7">
+    <div class="new-container1">
+      <div class="d-block w-100 mb-2">
+        <h3 class="text-black font-weight-700 text-22 m-0 p-0">   {{'RETURNREFUND'|translate}}  </h3>
+      </div>
+      <div class="row">
+          <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 m-0 border-0">
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                        <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                          {{'HOME'|translate}}
+                          </button>
+                        <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                      <button routerLink="../../my-order" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                        {{'ORDERS'|translate}}
+                        </button>
+                      <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                  </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off" aria-current="page">
+                        <b class="text-14 font-weight-400 cursor-default text-black">
+                          {{'RETURNREFUND'|translate}}
+                        </b>
+                    </li>
+                </ol>
+            </nav>
+          </div>
+      </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="new-container1" *ngIf="order">
+        <div class="d-block w-100 mb-5 pb-3">
+            <div class="d-block w-100 mb-4 pb-2">
+                <h4 class="font-weight-700 text-22 m-0 text-black">   {{'ORDER_DETAILS'|translate}} </h4>
+            </div>
+            <div class="d-block w-100">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-12">
+                    <div class="d-block w-100 bg-grey2 px-3 py-4 border rounded-2">
+                        <h4 class="font-weight-600 text-18 mb-2 mt-0 text-black">   {{'ORDER_ID'|translate}}  </h4>
+                        <p class="text-16 m-0 text-black"> {{order?.businessOrderId}} </p>
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-12">
+                    <div class="d-block w-100  bg-grey2 px-3 py-4 border rounded-2">
+                            <h4 class="font-weight-600 text-18 mb-2 mt-0 text-black">   {{'PLACEDON'|translate}}  </h4>
+                            <p class="text-16 m-0 text-black"> {{order.orderTime | FormattedDatePipe }} </p>
+                    </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-12">
+                     <div class="d-block w-100  bg-grey2 px-3 py-4 border rounded-2">
+                                <h4 class="font-weight-600 text-18 mb-2 mt-0 text-black">   {{'DELIVEREDON'|translate}}  </h4>
+                                <p class="text-16 m-0 text-black"> {{order.deliverDate | FormattedDatePipe }} </p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-block w-100 mb-5">
+            <div class="d-block w-100 mb-4 pb-2">
+                <h4 class="font-weight-700 text-22 m-0 text-black">  {{'HOWCANWEHELPYOU'|translate}} </h4>
+            </div>
+            <div class="d-block w-100">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-12">
+                        <div class="d-flex align-items-center justify-content-start w-100 h-100 border border-color-silver rounded-3 bg-grey2 px-3 py-4 cursor-pointer" (click)="openReturnOrder(order)">
+                            <div class="me-3 d-inline-block min-width-clear">
+                                <span class="w-58-px h-58-px mob-w-35-px mob-h-35-px rounded-circle bg-lightgreen d-flex align-items-center justify-content-center">
+                                    <img src="../../../assets/img/items/truck-02.png"
+                                    alt="{{'TOPBANNER'|translate}}" class="w-30-px h-30px mob-20-px mob-h-20-px">
+                                </span>
+                            </div>
+                            <div class="d-inline-block w-100">
+                                <h4 class="text-18 font-weight-600 text-black mb-sm-3 mb-1 mob-text-12">{{'I-WANT-RETURN-RODUCT'|translate}}</h4>
+                                <p class="text-15 font-weight-400 text-black mb-0 mob-text-12"> You can select this option if you received the product but are not satisfied with it. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-2 col-12 align-self-center">
+                        <div class="d-block w-100 text-center">
+                            <h3 class="text-black font-weight-600 text-center m-0 text-22 text-uppercase">   {{'OR_ONLY'|translate}} </h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-5 col-sm-65 col-12">
+                        <div class="d-flex align-items-center justify-content-start w-100 h-100 border border-color-silver rounded-3 bg-grey2 px-3 py-4 cursor-pointer" >
+                            <div class="me-3 d-inline-block min-width-clear">
+                                <span class="w-58-px h-58-px mob-w-35-px mob-h-35-px rounded-circle bg-color-FECDD6 d-flex align-items-center justify-content-center">
+                                    <img src="../../../assets/img/items/package-x.png"
+                                    alt="{{'TOPBANNER'|translate}}" class="w-30-px h-30px mob-20-px mob-h-20-px">
+                                </span>
+                            </div>
+                            <div class="d-inline-block w-100">
+                                <h4 class="text-18 font-weight-600 text-black mb-sm-3 mb-1 mob-text-12">{{'RECIEVED-THE-PRODUCT'|translate}}</h4>
+                                <p class="text-15 font-weight-400 text-black mb-0 mob-text-12"> Please select the tracking information below. </p>
+                                <button (click)="openTrackPackage(order)" class="bg-btn-second-bg px-3 py-2 text-14 font-weight-500 text-white rounded-2 mt-2 bg-0BA5EC">
+                                Track Package
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="noOrdersAvailable" class="d-block w-100 py-5 px-4">
+      <div class="d-block w-100 text-center">
+        <img class="h-150-px object-fit-contain mb-3" src="./assets/img/no-orders-available.jpg" alt="{{'NO_ORDERS_AVAILABLE'|translate}}">
+        <p class="text-15 text-black text-center m-0 p-0 w-100">  {{'NO_ORDERS_AVAILABLE'|translate}} </p>
+      </div>
+  </div>
+  <!-- No Orders Available Ends Here -->
+
+  <!-- Loading Animation Starts Here -->
+  <div class="d-block w-100 text-center" *ngIf="loadingOrders">
+    <img class="h-400-px h-250-px w-100 object-fit-contain mb-4" src="./assets/img/products-loading.jpg" alt="{{'ORDERS_ARE_LOADING'|translate}}">
+    <div class="d-flex align-items-center justify-content-center w-100">
+      <div class="d-inline-block">
+        <img class="h-20-px w-auto spinner-border border-0" src="./assets/img/spinner-icon.png" >
+      </div>
+      <div class="d-inline-block ps-3">
+        <h4 class="text-black text-16 font-weight-500 m-0"> {{'ORDERS_ARE_LOADING'|translate}} </h4>
+      </div>
+    </div>
+  </div>
+</section>

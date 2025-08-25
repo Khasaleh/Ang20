@@ -1,0 +1,46 @@
+
+<ng-container>
+<section class="plp_page mb-2">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">
+        <span class="text-black font-weight-600 text-22 text-capitalize" *ngIf="product && product.categoryL1"> 
+           {{product.categoryL1.name | titlecase}} 
+          </span>
+        </h3>
+    </div>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-transparent border-0 p-0 m-0"  [ngClass]="{'flex-column': data.breadcrumbsDesign=='verticle'}">
+          <li class="breadcrumb-item breadcrumb-slash-off">
+            <button routerLink="/{{subdomain}}/home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+              {{'HOME'|translate}}
+              </button>
+            <span class="d-inline-block text-grey text-16 px-2"> / </span>
+          </li>
+          <li *ngFor="let path of categoryPath" class="breadcrumb-item breadcrumb-slash-off" aria-current="page"   [ngClass]="{'ps-0': data.breadcrumbsDesign=='verticle'}">
+            <b routerLink="/{{subdomain}}/category/{{path?.url}}/{{path?.id}}" class="text-14 font-weight-400 cursor-pointer text-black text-capitalize">
+                {{path.name | titlecase}}
+            </b>
+            <span class="d-inline-block text-grey text-16 px-2"> / </span>
+        </li>
+        <li *ngIf="product && product.categoryL1" class="breadcrumb-item breadcrumb-slash-off" aria-current="page"   [ngClass]="{'ps-0': data.breadcrumbsDesign=='verticle'}">
+          <b routerLink="/{{subdomain}}/category/{{product.categoryL1?.url}}/{{product.categoryL1?.id}}" class="text-14 font-weight-400 cursor-pointer text-black text-capitalize">
+              {{product.categoryL1.name | titlecase}}
+          </b>
+          <span class="d-inline-block text-grey text-16 px-2"> / </span>
+      </li>
+      <li *ngIf="product && product.categoryL2 && !hideL2" class="breadcrumb-item breadcrumb-slash-off" aria-current="page"   [ngClass]="{'ps-0': data.breadcrumbsDesign=='verticle'}">
+        <b routerLink="/{{subdomain}}/category/{{product.categoryL2?.url}}/{{product.categoryL2?.id}}" class="text-14 font-weight-400 cursor-pointer text-black text-capitalize">
+            {{product.categoryL2.name | titlecase}}
+        </b>
+        <span class="d-inline-block text-grey text-16 px-2"> / </span>
+      </li>
+      <li *ngIf="product && product.categoryL3 && !hideL3" class="breadcrumb-item breadcrumb-slash-off" aria-current="page"   [ngClass]="{'ps-0': data.breadcrumbsDesign=='verticle'}">
+        <b routerLink="/{{subdomain}}/category/{{product.categoryL3?.url}}/{{product.categoryL3?.id}}" class="text-14 font-weight-400 cursor-pointer text-black text-capitalize">
+            {{product.categoryL3.name | titlecase}}
+        </b>
+        <span class="d-inline-block text-grey text-16 px-2"> / </span>
+      </li>
+      </ol>
+  </nav>
+</section>
+</ng-container>

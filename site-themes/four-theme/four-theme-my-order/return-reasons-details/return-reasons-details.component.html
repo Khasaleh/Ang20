@@ -1,0 +1,25 @@
+<section class="w-100 d-block popup-parent-rtl">
+  <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-3 py-3">
+    <div class="d-inline-block">
+    <h3 class="text-black text-18 m-0 p-0 font-weight-600">   {{'SEE_RETURN_DETAILS' | translate}}  </h3>
+    </div>
+    <div class="d-inline-block">
+      <button mat-dialog-close class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+        <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-block w-100 py-4 px-3">
+
+    <div class="d-flex w-100 align-items-center justify-content-start border-bottom border-color-silver py-2" *ngFor="let prod of order?.orderDetails">
+      <div class="d-inline-block min-width-clear">
+        <img class="w-100-px h-100-px object-fit-cover rounded-2 border border-color-silver" [src]="awsUrl+prod?.product?.mainImageUrl"
+         onerror= "this.src='./assets/img/default-product.png'">
+      </div>
+      <div class="d-inline-block w-100 ps-2">
+        <h5 class="text-15 font-weight-600 mt-0 mb-1"> {{prod?.productName | titlecase}} </h5>
+        <p class="text-14 font-weight-400 mt-0 mb-1"> Return Reason:  {{prod?.returnReason}} </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,91 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">   {{'RETURNDETAIL'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 m-0 border-0">
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                        <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                          {{'HOME'|translate}}
+                          </button>
+                        <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                      <button routerLink="../my-order" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                        {{'ORDERS'|translate}}
+                        </button>
+                      <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                  </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off" aria-current="page">
+                        <b class="text-14 font-weight-400 cursor-default text-black">
+                          {{'RETURNDETAIL'|translate}}
+                        </b>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+  </div>
+</section>
+<section class="py-5 plp_pr_section">
+    <div class="new-container1">
+      <div class="w-100">
+        <div class="w-100 border overflow-hidden rounded-3 h-100 px-3 pt-5 pb-3">
+            <div class="row mb-5 justify-content-center">
+                <div class="col-md-8 text-center">
+                    <div class="d-flex align-items-center rounded-3 bg-color-12B76A px-4 py-4 justify-content-center">
+                        <p class="text-24 font-weight-500 text-white mob-text-14 mb-0">{{'YOUR_RETURN_PKG'|translate}}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-12">
+                    <div class="border p-md-4 p-sm-2 p-2 rounded-3 order_detail_refund_steppe">
+                        <mat-stepper labelPosition="bottom">
+                            <mat-step label="{{'DROPOFFPENDING'|translate}}" [editable]="false" state="done">
+                            </mat-step>
+                            <mat-step label="{{'WAREHOUOSE'|translate}}" [editable]="false" state="done">
+                            </mat-step>
+                            <mat-step label="{{'QUALITY_CHECK'|translate}}" [editable]="false" state="done">
+                            </mat-step>
+                            <mat-step label="{{'RETURN_RESULT'|translate}}" [editable]="false" state="done">
+                            </mat-step>
+                        </mat-stepper>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-8">
+                    <p class="text-16 text-center font-weight-500 text-black mob-text-12">{{'PLEASEPACKTHEPRODUCTCENTERWITHIN'|translate}}</p>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-6 text-center">
+                    <span class="text-32 font-weight-500 text-black mob-text-14">3d :  23h  :  59m.</span>
+                </div>
+            </div>
+
+            <div class="row mb-5 justify-content-center">
+                <div class="col-md-8">
+                    <div class="d-flex align-items-center rounded-3 bg-lightgreen px-3 py-4">
+                        <p class="text-15 font-weight-400 text-black mob-text-12 text-center mb-0">{{'PLEASEENSURE_DESC'|translate}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 d-flex justify-content-center">
+                    <button type="button" mat-button (click)="printmodal()"
+                        class="border-0 rounded-2 text-white bg-green-four-theme next_btn_return_order px-5 py-2 text-16 mob-text-12 font-weight-600">
+                        {{'RETURNSHIPPINGLABEL'|translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>

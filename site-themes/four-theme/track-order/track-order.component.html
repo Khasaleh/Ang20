@@ -1,0 +1,90 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">   {{'TRACK_ORDER'|translate}} </h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12"> 
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 m-0 border-0 d-flex align-items-center justify-content-start">
+                    <li class="breadcrumb-item breadcrumb-slash-off d-flex align-items-center justify-content-start">
+                        <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                          {{'HOME'|translate}}
+                          </button>
+                        <span class="d-inline-block text-grey text-13 px-2"> / </span>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off p-0" aria-current="page">
+                        <button routerLink="../my-order" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                            {{'ORDERS'|translate}}
+                            </button>
+                        <span class="d-inline-block text-grey text-13 px-2"> / </span>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off p-0" aria-current="page">
+                        <b class="text-14 font-weight-400 cursor-default text-black text-capitalize">
+                            {{'TRACK_ORDER'|translate}}
+                        </b>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+  </div>
+</section>
+<section>
+    <div class="new-container1 py-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-8 col-sm-12 col-12 mx-auto">
+                <div class="card px-3 pt-4 pb-5">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <label
+                                    class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'ORDERNUMBER'|translate}}</label>
+                                <input type="text" [(ngModel)]="businessOrderId"
+                                    class="border h-44-px rounded-2 px-2 input-focus-none w-100" />
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <label
+                                    class="form-label mb-2 form-label text-14 mob-text-12 font-weight-400 text-black">{{'EMAILADDRESSFROMORDER'|translate}}</label>
+                                <input type="text" [(ngModel)]="email"
+                                    class="border h-44-px rounded-2 px-2 input-focus-none w-100" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <button type="button" [disabled]="!businessOrderId || !email" (click)="getOrderTracking()"
+                                    class="border-0 w-100 rounded-3 bg-theme-dark-color text-color-w text-first-light-color py-2 text-center text-16 font-weight-400 mob-text-14">{{'TRACK_ORDER'|translate}}</button>
+                            </div>
+                        </div>
+
+                        <!-- If Not Logged In Starts Here -->
+                        <div class="d-block w-100" *ngIf="!user">
+                        <div class="row mb-3" >
+                            <div class="col-md-12">
+                                <p
+                                    class="text-14 font-weight-500 text-black mb-0 text-center">
+                                    {{'SIGNIN_OR'|translate}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button
+                                type="button"
+                                class="border-0 w-100 rounded-3 bg-color-475467 text-white py-2 text-center text-16 font-weight-400 mob-text-14"
+                                (click)="openUserProfileDrawerAndDropdown()">
+                                {{ 'SIGNINVIEWORDERHISTORY' | translate }}
+                              </button>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- If Not Logged In Ends Here -->
+ 
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

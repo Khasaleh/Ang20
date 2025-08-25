@@ -1,0 +1,60 @@
+<div class="d-block w-100 border border-color-silver rounded-3">
+  <div class="d-block w-100 px-3 py-3 bg-theme-light-color border-bottom border-color-silver">
+    <div class="d-flex  w-100 align-items-center justify-content-between flex-wrap">
+      <div class="d-block w-100">
+        <div class="d-flex w-100 align-items-center justify-content-betwen">
+          <span class="font-weight-600 text-20 text-capitalize d-inline-block">
+            {{address.addressDescription}}
+          </span>
+          <span class="bg-white border border-color-silver d-inline-block font-weight-400 ms-2 px-3 py-2 rounded-pill text-13 text-black" *ngIf="address?.defaultShipping && !address?.defaultBilling">
+            {{'DEFAULT_SHIPPING'|translate}}
+          </span>
+          <span class="bg-white border border-color-silver d-inline-block font-weight-400 ms-2 px-3 py-2 rounded-pill text-13 text-black"
+           *ngIf="address?.defaultShipping && address?.defaultBilling">
+           {{'DEFAULT_SHIPPING'|translate}} &   {{'DEFAULT_BILLING'|translate}}
+          </span>
+          <span class="bg-white border border-color-silver d-inline-block font-weight-400 ms-2 px-3 py-2 rounded-pill text-13 text-black" *ngIf="address?.defaultBilling && !address?.defaultShipping">
+            {{'DEFAULT_BILLING'|translate}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex align-items-center justify-content-start w-100 py-4 px-3">
+    <div class="d-inline-block min-width-clear">
+      <mat-icon class="m-0 p-0 text-32 text-black no-min-height no-min-width"> person_pin_circle</mat-icon>
+    </div>
+    <div class="d-inline-block w-100 ps-3">
+    <h5 class="mt-0 mb-2 text-14 text-black w-100">
+      {{address?.streetNumber}} {{address?.addressLine1 != "undefined" ? address?.addressLine1: ''}}
+      {{ ', ' + address?.addressLine2 != "undefined" ? address?.addressLine2: ''}}
+      {{address?.city != "undefined" ? address?.city: ''}} {{address?.state != "undefined" ? address?.state: ''}}
+       {{address?.zipCode != "undefined" ? address?.zipCode: ''}}
+      {{address?.country != "undefined" ? address?.country: ''}}
+    </h5>
+    </div>
+  </div>
+  <div class="d-flex w-100 align-items-center justify-content-between bg-theme-light-color py-2 px-3">
+    <div class="d-inline-block" *ngIf="user.userType !== 'FAZEAL_REGISTERED'">
+    <button (click)="deleteUserAddress(address.addressId)" *ngIf="!(address?.defaultShipping || address?.defaultBilling)" class="d-flex align-items-center justify-content-start text-14 text-black">
+      <mat-icon class="ms-0 me-2 mt-0 mb-0 p-0 text-black text-16 no-min-height no-min-width">delete</mat-icon>
+      {{'DELETE'| translate}}
+    </button>
+    </div>
+    <div class="d-inline-block" *ngIf="user.userType !== 'FAZEAL_REGISTERED'">
+
+      <div class="d-flex align-items-center justify-content-start">
+        <button *ngIf="user.userType !== 'FAZEAL_REGISTERED'" (click)="editAddressPopup(address)" class="d-flex align-items-center justify-content-start text-14 text-black">
+          <mat-icon class="ms-0 me-2 mt-0 mb-0 p-0 text-black text-16 no-min-height no-min-width">edit</mat-icon>
+          {{'EDIT'| translate}}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="d-block w-100 text-end mt-3" *ngIf="user.userType !== 'FAZEAL_REGISTERED'">
+  <button (click)="addAddressPopup()" class="text-color-6941C6 text-14 font-weight-normal m-0 p-0">
+       {{'ADD_MORE_ADDRESS'| translate}}
+  </button>
+</div>

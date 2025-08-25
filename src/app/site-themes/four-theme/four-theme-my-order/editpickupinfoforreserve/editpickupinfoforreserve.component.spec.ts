@@ -11,8 +11,8 @@ describe('EditpickupinfoforreserveComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditpickupinfoforreserveComponent ]
-    })
+    declarations: [EditpickupinfoforreserveComponent]
+})
     .compileComponents();
   }));
 

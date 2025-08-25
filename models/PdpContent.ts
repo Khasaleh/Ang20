@@ -1,0 +1,45 @@
+export class PdpContent {
+  businessDetailsEntityId!: number;
+  cartButtonRedis!: string;
+  classicDesign!: string;
+  customerReviewsDesign!: string;
+  customerReviewsRowCount!: number;
+  customerReviewsSliderHeading!: string;
+  gridProductCount!: number;
+  id!: number;
+  pdpLayout!: string;
+  productInfoDesign!: string;
+  relatedProductSliderStyle!: string;
+  bestSellerSliderHeading!: string;
+  showAvailability!: boolean;
+  showCustomerReviews!: boolean;
+  showProductDescription!: boolean;
+  showProductInfo!: boolean;
+  showProductSpecifications!: boolean;
+  showProductType!: boolean;
+  showRating!: boolean;
+  showRelatedProducts!: boolean;
+  showReviews!: boolean;
+  showSKU!: boolean;
+  showVarients!: boolean;
+  showWarranty!: boolean;
+  showWishlist!: boolean;
+  breadcrumbsDesign!: string
+  showProductPrice!: boolean
+  showAddToCart!: boolean
+  showColor!: boolean
+  showSize!: boolean
+  showBestSellingProducts!: boolean
+  showRecentlyViewedProducts!: boolean
+  themeName!: string;
+  themeColor!: string;
+  showBestSellingHeading!: boolean;
+  bestSellingHeading!: string;
+  bestSellingSlider!: string ;
+  showRelatedProductsHeading!: boolean;
+  relatedProductsHeading!: string;
+  showRecentlyViewedBrowseHistory!: boolean;
+  recentlyViewedSlider!:  string;
+  recentlyViewedHeading!: string;
+  showRecentlyViewedHeading!: boolean;
+}

@@ -1,0 +1,124 @@
+<!-- Other User Message Starts Here -->
+<div
+  class="single-chat-message sender-message mt-4 d-flex flex-row align-items-start justify-content-start reciever-message position-relative">
+  <div class="reciever-msg-img">
+    <img class="rounded-circle me-2 w-40-px h-40-px"
+      [src]="awsUrl + (employee?.profilePhoto || messageData.profilePhoto)"
+      onerror="this.src='../../assets/img/default-profile-image.jpg'" alt="{{'USER_IMAGE'|translate}}">
+  </div>
+  <div class="sender-msg-box d-block m-0 rounded-3 bg-white position-relative">
+    <p class="text-14 text-black mb-1"> <b class="text-capitalize text-black font-weight-medium me-2">
+        {{employee?.firstName}} {{employee?.lastName}} {{!!!messageData.firstName? messageData.senderName:''}} </b>
+      <span class="text-muted text-12">
+        <span *ngIf="messageData.updatedTime">
+          {{'UPDATED' | translate}}
+        </span>
+        {{messageData.createdAt | date:'shortTime'}}
+      </span>
+      <!-- Plain Text Msg Starts Here -->
+    <div class="d-block w-100">
+      <div *ngIf="!!messageData.repliedMessage"> {{'REPLY_ON' | translate}}:
+        <app-attachement-preview *ngIf="!!messageData.repliedMessage"
+          [attachment]="messageData.repliedMessage"></app-attachement-preview>
+      </div>
+      <app-text-show-more-less [text]="messageData.text"></app-text-show-more-less>
+      <div *ngIf="messageData && messageData.localPaths  && messageData.localPaths.length > 0"
+        class="attachment-container">
+        <ng-container *ngFor="let attachment of messageData.localPaths">
+          <div *ngIf="attachment?.type === 'image'">
+            <img class="h-150-px object-fit-cover border border-color-silver rounded-2"
+              [src]="awsUrl+attachment?.localPath" alt="Attached Image">
+          </div>
+          <div *ngIf="attachment?.type === 'video'">
+            <video class="w-100 h-150-px object-fit-cover border border-color-silver rounded-2" controls>
+              <source [src]="awsUrl+attachment?.localPath" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div *ngIf="attachment?.type === 'document'">
+            <a class="attached-document" [href]="awsUrl+attachment?.localPath"
+              target="_blank">{{'DOWN_DOC'|translate}}</a>
+          </div>
+          <div *ngIf="attachment?.type === 'audio'">
+            <audio controls>
+              <source [src]="awsUrl+attachment?.localPath" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <!-- Plain Text Msg Ends Here -->
+    <!-- Message Reactions Starts Here -->
+    <div *ngIf="messageData.messageLike && messageData.messageLike.length > 0"
+      class="chat-msg-react-show position-absolute end-0 me-2 py-1 px-2 rounded-3 d-flex cursor-pointer bg-white">
+      <i *ngIf="messageData.messageLike[0].type === 'LIKE'">
+        <img src="./assets/img/like-icon-blue-bg.svg" width="25px" height="25px" alt="{{ 'LIKE_REACT' | translate }}">
+      </i>
+      <i *ngIf="messageData.messageLike[0].type === 'WOW'">
+        <img src="./assets/img/wow-icon-new.svg" width="25px" height="25px" alt="{{ 'WOW_REACT' | translate }}">
+      </i>
+      <i *ngIf="messageData.messageLike[0].type === 'ANGRY'">
+        <img src="./assets/img/angry-icon.svg" width="25px" height="25px" alt="{{ 'ANGRY_REACT' | translate }}">
+      </i>
+      <i *ngIf="messageData.messageLike[0].type === 'HEART'">
+        <img src="./assets/img/heart-icon-new.svg" width="25px" height="25px" alt="{{ 'HEART_REACT' | translate }}">
+      </i>
+      <i *ngIf="messageData.messageLike[0].type === 'SAD'">
+        <img src="./assets/img/wow-icon2.svg" width="25px" height="25px" alt="{{ 'SAD_REACT' | translate }}">
+      </i>
+      <i *ngIf="messageData.messageLike[0].type === 'HAPPY'">
+        <img src="./assets/img/smile-icon.svg" width="25px" height="25px" alt="{{ 'HAPPY_REACT' | translate }}">
+      </i>
+      <i *ngIf="messageData.messageLike[0].type === 'HAHA'">
+        <img src="./assets/img/laugh-icon.svg" width="25px" height="25px" alt="{{ 'LAUGH_REACT' | translate }}">
+      </i>
+    </div>
+    <!-- Message Reactions Ends Here -->
+    <!-- Chat Msg Actions Starts Here -->
+    <div class="chat-opt-reactions position-absolute w-auto top-0 end-0 mt-3 me-2">
+      <button class="no-min-width no-min-height p-0 m-0" [matMenuTriggerFor]="chatoptmenu">
+        <mat-icon class="m-0 no-min-height no-min-width text-21 text-muted">more_vert</mat-icon>
+      </button>
+      <mat-menu #chatoptmenu class="shadow bg-white rounded-3 pt-1 pb-1 no-min-height" xPosition="before">
+        <div (click)="$event.stopPropagation()" class="border-0 w-100 overflow-hidden rounded-3 bg-white">
+          <button (click)="replyToMessage()"
+            class="d-flex bg-hover-blue align-items-center pt-2 pb-2 ps-3 pe-3 w-100 text-black">
+            <img class="filter-invert-img me-2" width="20px" src="./assets/img/chatopt-icon1.svg"
+              alt="{{'REPLY'|translate}}">
+            {{'REPLY'|translate}}
+          </button>
+        </div>
+      </mat-menu>
+    </div>
+    <!-- Chat Msg Actions Ends Here -->
+    <!-- User Reaction Options Starts Here -->
+    <div class="chat-msg-reactions flex-row bg-white position-absolute start-0 bg-white rounded-5 py-1 px-2">
+      <button (click)="reactOnMessage('LIKE')">
+        <img src="../../assets/img/like-icon-blue-bg.svg" width="25px" height="25px"
+          alt="{{ 'POST_EMOJIES' | translate }}">
+      </button>
+      <button (click)="reactOnMessage('HAPPY')">
+        <img src="../../assets/img/smile-icon.svg" width="25px" height="25px" alt="{{ 'POST_EMOJIES' | translate }}">
+      </button>
+      <button (click)="reactOnMessage('HAHA')">
+        <img src="./assets/img/laugh-icon.svg" width="25px" height="25px" alt="{{ 'POST_EMOJIES' | translate }}">
+      </button>
+      <button (click)="reactOnMessage('HEART')">
+        <img src="../../assets/img/heart-icon-new.svg" width="25px" height="25px"
+          alt="{{ 'POST_EMOJIES' | translate }}">
+      </button>
+      <button (click)="reactOnMessage('WOW')">
+        <img src="../../assets/img/wow-icon-new.svg" width="25px" height="25px" alt="{{ 'POST_EMOJIES' | translate }}">
+      </button>
+      <button (click)="reactOnMessage('SAD')">
+        <img src="../../assets/img/wow-icon2.svg" width="25px" height="25px" alt="{{ 'POST_EMOJIES' | translate }}">
+      </button>
+      <button (click)="reactOnMessage('ANGRY')">
+        <img src="../../assets/img/angry-icon.svg" width="25px" height="25px" alt="{{ 'POST_EMOJIES' | translate }}">
+      </button>
+    </div>
+    <!-- User Reaction Options  Ends Here -->
+  </div>
+</div>
+<!-- Other User Message Ends Here -->

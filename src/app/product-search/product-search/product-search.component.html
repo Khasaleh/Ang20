@@ -1,0 +1,51 @@
+<div class="container main-container">
+  <div class="product-search-container">
+    <h1 class="page-title">{{ pageTitle }}</h1>
+    <div class="product-search-header">
+      <div class="product-search-header-left">
+        <span class="product-count">
+          {{ searchResults?.total_count }} {{ 'items' | translate }}
+        </span>
+      </div>
+      <div class="product-search-header-right">
+        <button mat-icon-button (click)="toggleFilter()" class="filter-toggle">
+          <mat-icon>filter_list</mat-icon>
+        </button>
+        <mat-tab-group
+          class="view-mode-tabs"
+          (selectedIndexChange)="onViewChange($event === 0 ? 'grid' : 'list')"
+        >
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>grid_view</mat-icon>
+            </ng-template>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <mat-icon>view_list</mat-icon>
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+    <div class="product-search-content">
+      <div class="product-search-filters" [class.show]="showFilter">
+        <app-product-filters
+          [filters]="searchResults?.filters"
+        ></app-product-filters>
+      </div>
+      <div class="product-search-results">
+        <div [ngSwitch]="currentView">
+          <app-product-grid
+            *ngSwitchCase="'grid'"
+            [products]="searchResults?.products"
+          ></app-product-grid>
+          <app-product-list
+            *ngSwitchCase="'list'"
+            [products]="searchResults?.products"
+          ></app-product-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

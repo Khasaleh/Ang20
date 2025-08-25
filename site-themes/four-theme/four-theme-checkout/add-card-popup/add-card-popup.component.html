@@ -1,0 +1,113 @@
+<section class="d-block w-100 popup-parent-rtl">
+  <div class="d-block w-100 px-3 py-2 border-bottom border-color-silver">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <div class="d-inline-block">
+        <h3 class="text-black text-18 m-0 p-0 font-weight-600">  {{'ADD_CARD'|translate}} </h3>
+      </div>
+      <div class="d-inline-block">
+        <button mat-dialog-close
+          class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+          <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="px-4 py-4">
+    <div class="row">
+
+      <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="row  mb-3">
+
+          <div class="col-md-6 col-lg-6 col-sm-12 col-12">
+            <div class="d-block w-100 position-relative">
+              <mat-form-field appearance="fill" class="w-100 field-style2">
+                <mat-label class="text-muted text-13">   {{'CARD_HOLDER_NAME'|translate}}  </mat-label>
+                <input matInput type="text" [(ngModel)]="cardHolderName" class="form-control bg-white text-black text-15 h-30-px" />
+              </mat-form-field>
+              <p class="text-13 text-black m-0"> {{'PLAN_CARD_FULL_NAME'|translate}}   </p>
+             </div>
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12 pt-1" *ngIf="cardNameValidation">
+            <p class="red m-0 text-13 d-block w-100"> {{cardNameValidation|translate}} </p>
+            </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-2">
+        <div class="d-block w-100 position-relative">
+          <mat-form-field appearance="fill" class="w-100 field-style2">
+            <mat-label class="text-muted text-13">   {{'CARDNUMBER'|translate}}  </mat-label>
+            <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px"
+            [(ngModel)]="cardNumber" maxlength="19" pattern="^(\d{4}\s?){1,4}\d{1,4}\s?$" (input)="formatCardNumber($event)" />
+          </mat-form-field>
+           <img matSuffix width="60" class="w-58-px h-auto position-absolute top-0 mt-2 me-2 end-0"
+           [src]="cardType && cardType.toUpperCase() === 'VISA' ? './assets/img/visa-icon.svg' :
+              cardType && cardType.toUpperCase() === 'MASTERCARD' ? './assets/img/master.png' :
+              cardType && cardType.toUpperCase() === 'AMEX' ? './assets/img/a_express.png' :
+              cardType && cardType.toUpperCase() === 'DISCOVER' ? './assets/img/discover.png' :
+              cardType && cardType.toUpperCase() === 'DINERS' ? './assets/img/diners-club.svg' :
+              cardType && cardType.toUpperCase() === 'JCB' ? './assets/img/jcb.png' :
+              cardType && cardType.toUpperCase() === 'CHINA_UNION_PAY' ? './assets/img/chinaunionpay.png' :
+              cardType && cardType.toUpperCase() === 'ELO' ? './assets/img/elo.png' : './assets/img/visa-icon.svg'" alt="{{'YOUR_CARD_TYPE'|translate}}">
+        </div>
+      </div>
+      <mat-error  class="mt-0 mb-1" *ngIf="invalidCardNumber">{{'INVALID_CARD_NUMBER'|translate}}</mat-error>
+
+      <div class="col-md-6 col-lg-6 col-sm-6 col-12 mb-2">
+        <div class="d-block w-100">
+          <mat-form-field appearance="fill" class="w-100 field-style-date">
+            <mat-label class="text-muted text-13">  {{'PLAN_CARD_EXPIRATION_DATE'|translate}} </mat-label>
+            <input matInput class="form-control bg-white text-black text-15 h-30-px"
+            placeholder="MM/YYYY" [(ngModel)]="expiryDate" pattern="^(0[1-9]|1[0-2])\/(20\d{2})$"
+           (input)="onExpirationDateInputChange($event)" maxlength="7" #expiryfield="ngModel" minlength="7" />
+          </mat-form-field>
+          <mat-error class="pt-2 text-13" *ngIf="!expirationDateNotValid || (expiryfield.invalid && expiryfield.touched)">
+            {{'INVALID_EXP_DATE'|translate}}</mat-error>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-6 col-sm-6 col-12 mb-2">
+        <div class="d-block w-100">
+          <mat-form-field appearance="fill" class="w-100 field-style2">
+            <mat-label class="text-muted text-13"> {{'PLAN_CARD_CVVCVC'|translate}} </mat-label>
+            <input matInput type="text" [(ngModel)]="cvv" pattern="[0-9]{3,4}"  maxlength="4"
+             class="form-control bg-white text-black text-15 h-27-px" />
+           </mat-form-field>
+           <mat-error class="text-13" *ngIf="cvvNotValid">{{'INVALID_CVV'|translate}}</mat-error>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-3">
+        <div class="d-flex align-items-center justify-content-start">
+          <mat-checkbox [(ngModel)]="isDefault">
+            <span class="text-13 text-black px-2 d-inline-block">  {{'USE_THIS_CARD_FOR_FUTUER'|translate}}   </span>
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-3">
+        <div class="d-flex align-items-center justify-content-start">
+          <i class="bi bi-file-lock-fill text-16 text-black no-min-height no-min-width lh-tiny me-2 p-0"></i>
+            <span class="text-13 text-black d-inline-block">  {{'SECURE_PAYMENT_WITH_SSL_ENCRYPTION_INFO'|translate}}   </span>
+        </div>
+      </div>
+
+
+
+    </div>
+    <mat-error *ngIf="ccErrorMessage"> {{ccErrorMessage | translate}} </mat-error>
+    <mat-error style="color: 'green'" *ngIf="message"> {{message}} </mat-error>
+
+    <div class="d-block w-100 pt-3">
+
+
+      <div class="d-flex align-items-center justify-content-end">
+        <button [disabled]="paymentButton" (click)="addPayment()"  class="bg-theme-dark-color px-4 py-2 text-14 rounded-3 ms-3 text-white">
+          {{'ADD_ANOTHER_CARD'|translate}}
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>

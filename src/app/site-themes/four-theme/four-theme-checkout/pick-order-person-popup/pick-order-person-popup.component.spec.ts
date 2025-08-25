@@ -11,8 +11,8 @@ describe('PickOrderPersonPopupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PickOrderPersonPopupComponent ]
-    })
+    declarations: [PickOrderPersonPopupComponent]
+})
     .compileComponents();
   }));
 

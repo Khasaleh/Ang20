@@ -1,0 +1,132 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0"> {{'POINTS_EARNINGS'|translate}} </h3>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent p-0 m-0 border-0">
+            <li class="breadcrumb-item breadcrumb-slash-off">
+              <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                {{'HOME'|translate}}
+              </button>
+              <span class="d-inline-block text-grey text-16 px-2"> / </span>
+            </li>
+            <li class="breadcrumb-item breadcrumb-slash-off" aria-current="page">
+              <b class="text-14 font-weight-400 cursor-default text-black">
+                {{'POINTS_EARNINGS'|translate}}
+              </b>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="py-5">
+  <div class="new-container1">
+    <div class="d-flex align-items-center justify-content-start w-100 bg-coin-2 position-relative border border-color-b39a10 mb-5 rounded-2 px-4 py-2">
+      <div class="d-flex w-100 align-items-center justify-content-start">
+      <div class="d-inline-block me-3">
+        <h5 class="text-16 font-weight-400 m-0 p-0 d-block w-100">  {{'YOUR_POINTS'|translate}} </h5>
+      </div>
+      <div class="d-inline-block me-3">
+        <div class="d-flex align-items-center justify-content-start w-100 px-2 py-2">
+          <span class="text-20 font-weight-500 m-0 px-3 rounded-2 py-1 d-inline-block bg-792E0D text-EFEF33">
+            619
+           </span>
+        </div>
+      </div>
+      </div>
+    </div>
+    <mat-tab-group animationDuration="0ms" class="chat-setting-tabs">
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div
+            class="d-block w-100 px-4 py-3 border border-color-silver rounded-top-3 text-center bg-theme-light-color border-bottom-0">
+            <span class="text-black text-15 mob-text-14 d-block w-100 font-weight-600"> {{'GIFT_CARDS'|translate}}
+            </span>
+          </div>
+        </ng-template>
+        <div class="d-block w-100 py-5 px-4 rounded-bottom-3 border border-color-silver">
+          <div class="row">
+
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12 mb-4">
+               <app-redeem-voucher-box></app-redeem-voucher-box>
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <div
+            class="d-block w-100 px-4 py-3 border border-color-silver rounded-top-3 text-center bg-theme-light-color border-bottom-0">
+            <span class="text-black text-15 mob-text-14 d-block w-100 font-weight-600"> {{'GIFT_PRODUCTS'|translate}}
+            </span>
+          </div>
+        </ng-template>
+        <div class="d-block w-100 py-5 px-4 rounded-bottom-3 border border-color-silver">
+          <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+              <app-redeem-point-product></app-redeem-point-product>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+              <app-redeem-point-product></app-redeem-point-product>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+              <app-redeem-point-product></app-redeem-point-product>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
+              <app-redeem-point-product></app-redeem-point-product>
+            </div>
+
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+
+  </div>
+</section>
+
+
+<section class="bg-theme-dark-color py-5">
+<div class="new-container1">
+  <div class="row justify-content-center">
+    <div class="col-lg-11 col-md-11 col-sm-12 col-12">
+      <div class="d-block w-100">
+        <div class="row align-items-center">
+          <div class="col-lg-7 col-md-7 col-sm-7 col-12">
+            <div class="d-block w-100 mb-lg-0 mb-md-0 mb-sm-0 mb-4">
+              <h4 class="mt-0 mb-2 text-color-w text-28 mob-text-22 font-weight-700 p-0">    {{'GET_OUR_UPDATES'|translate}} </h4>
+              <p class="m-0 p-0 text-14 text-color-w">   {{'STAY_UPTO_DATE_WITH_LATEST_NEWS'|translate}} </p>
+            </div>
+          </div>
+          <div class="col-lg-5 col-md-5 col-sm-5 col-12">
+          <form class="d-block w-100">
+            <div class="d-flex w-100 flex-lg-row flex-md-row flex-sm-row flex-column">
+              <div class="d-inline-block w-100">
+                <mat-form-field appearance="fill" class="w-100 field-style2 rounded-2 overflow-hidden">
+                  <mat-label class="text-muted text-13 text-capitalize"> {{ 'EMAILADDRESS'| translate }} </mat-label>
+                    <input matInput type="email" class="form-control text-black text-15 h-30-px"/>
+                </mat-form-field>
+              </div>
+              <div class="d-inline-block min-width-clear px-lg-2 px-md-2 px-sm-2 px-0 mt-lg-0 mt-md-0 mt-sm-0 mt-2">
+                <button class="bg-color-b text-15 px-4 py-2 lh-lg text-white rounded-2">
+                  {{'PICK_A_PLAN_SUBSCRIBE'|translate}}
+                </button>
+                </div>
+            </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
