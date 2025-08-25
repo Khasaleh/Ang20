@@ -1,6 +1,6 @@
-@import "./responsive";
-@import "./mixins";
-@import "./colors";
+@import './responsive';
+@import './mixins';
+@import './colors';
 
 /*header footer css start*/
 .container {
@@ -14,164 +14,165 @@
 }
 
 .header-wrap {
-  a {
-    img {
-      max-width: 120px;
-      width: 100%;
-      margin: 0px 5px 0px 0px;
-    }
-  }
-  a.logotxt {
-    font-size: 40px;
-    color: $default !important;
-    display: flex;
-    line-height: normal;
-    text-decoration: none;
-    align-items: center;
-    letter-spacing: 0.4px;
-  }
-  display: flex;
-  width: 100%;
-  max-width: 100%;
-  justify-content: space-between;
-  padding: 10px 13px 10px !important;
-  background: $white;
-  overflow: initial;
-  max-width: 1920px !important;
-  margin: 0 auto;
-  .links {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    ul {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      display: inline-flex;
-      li {
-        font-size: small;
-        padding: 0px 2px 0px 0px;
-        align-items: center;
-        display: flex;
-        button.username {
-          padding: 0;
-          min-width: 28px;
+	a {
+		img {
+			max-width: 120px;
+			width: 100%;
+			margin: 0px 5px 0px 0px;
+		}
+	}
+	a.logotxt {
+		font-size: 40px;
+		color: $default !important;
+		display: flex;
+		line-height: normal;
+		text-decoration: none;
+		align-items: center;
+		letter-spacing: 0.4px;
+	}
+	display: flex;
+	width: 100%;
+	max-width: 100%;
+	justify-content: space-between;
+	padding: 10px 13px 10px !important;
+	background: $white;
+	overflow: initial;
+	max-width: 1920px !important;
+	margin: 0 auto;
+	.links {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		display: flex;
+		align-items: center;
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			display: inline-flex;
+			li {
+				font-size: small;
+				padding: 0px 2px 0px 0px;
+				align-items: center;
+				display: flex;
+				button.username {
 
-          background: white;
-          line-height: normal;
-          height: 30px;
-          width: 30px;
-          img {
-            width: 24px;
-            border-radius: 30px;
-          }
-        }
-        a {
-          font-size: 18px;
-          font-weight: 500;
-          font-family: "Myriad Pro";
-          letter-spacing: 0.2px;
-          min-width: 30px;
-          height: 30px;
-          line-height: normal;
-          padding: 0 5px;
-          span.mat-button-wrapper {
-            color: $default;
-          }
-        }
-      }
-      .mat-form-field-wrapper {
-        padding: 0px !important;
-      }
-    }
-  }
-  button {
-    span.mat-button-wrapper {
-      display: flex;
-      height: 30px;
-      width: 30px;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-  a.icon {
-    display: none;
-  }
+					padding: 0;
+					min-width: 28px;
+
+					background: white;
+					line-height: normal;
+					height: 30px;
+					width: 30px;
+					img {
+						width: 24px;
+						border-radius: 30px;
+					}
+				}
+				a {
+					font-size: 18px;
+					font-weight: 500;
+					font-family: "Myriad Pro";
+					letter-spacing: 0.2px;
+					min-width: 30px;
+					height: 30px;
+					line-height: normal;
+					padding: 0 5px;
+					span.mat-button-wrapper {
+						color: $default;
+					}
+				}
+			}
+			.mat-form-field-wrapper {
+				padding: 0px !important;
+			}
+		}
+	}
+	button {
+		span.mat-button-wrapper {
+			display: flex;
+			height: 30px;
+			width: 30px;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	a.icon {
+		display: none;
+	}
 }
 .footer-static {
-  display: flex;
-  width: 100%;
-  max-width: 100%;
-  justify-content: space-between;
-  padding: 10px 13px 10px !important;
-  background: $white;
-  overflow: initial;
-  padding: 6px 15px 10px;
-  .links {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    ul {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      display: inline-flex;
-      li {
-        font-size: small;
-        padding: 0px 15px 0px 0px;
-        align-items: center;
-        display: flex;
-        a {
-          font-size: 15px;
-          font-weight: 500;
-          font-family: "Myriad Pro";
-          letter-spacing: 0.2px;
-        }
-      }
-    }
-  }
-  .links.links.sociallinks {
-    a {
-      align-items: center;
-      display: flex;
-      color: $default !important;
-    }
-  }
+	display: flex;
+	width: 100%;
+	max-width: 100%;
+	justify-content: space-between;
+	padding: 10px 13px 10px !important;
+	background: $white;
+	overflow: initial;
+	padding: 6px 15px 10px;
+	.links {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		display: flex;
+		align-items: center;
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			display: inline-flex;
+			li {
+				font-size: small;
+				padding: 0px 15px 0px 0px;
+				align-items: center;
+				display: flex;
+				a {
+					font-size: 15px;
+					font-weight: 500;
+					font-family: "Myriad Pro";
+					letter-spacing: 0.2px;
+				}
+			}
+		}
+	}
+	.links.links.sociallinks {
+		a {
+			align-items: center;
+			display: flex;
+			color: $default !important;
+		}
+	}
 }
 .field-icon {
-  float: right;
-  margin-top: -31px;
-  position: relative;
-  z-index: 2;
-  right: 13px;
+	float: right;
+	margin-top: -31px;
+	position: relative;
+	z-index: 2;
+	right: 13px;
 }
 .nowrap {
-  flex-wrap: nowrap !important;
+	flex-wrap: nowrap !important;
 }
 .header {
-  background: $white;
+	background: $white;
 }
 footer {
-  background: $white;
+	background: $white;
 }
 .center-content {
-  height: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
-  display: flex;
-  width: 100%;
-  justify-content: center;
+	height: 100%;
+	max-width: 1920px;
+	margin: 0 auto;
+	display: flex;
+	width: 100%;
+	justify-content: center;
 }
 .mat-select-panel {
-  position: relative;
-  top: 38px;
+	position: relative;
+	top: 38px;
 }
 img.media-object {
-  max-width: 61px;
+	max-width: 61px;
 }
 
 @media only screen and (max-width: 1023px) {
@@ -193,7 +194,9 @@ img.media-object {
   }
 
   .dashboard-main .sidemenu-sidenav {
+
     display: none !important;
+
   }
 
   .dashboard-main .sidemenu-sidenav {
@@ -397,7 +400,7 @@ img.media-object {
 }
 /*footer start*/
 .footer {
-  bottom: 0;
+   bottom: 0;
   width: 100%;
   height: auto;
   min-height: 35px;

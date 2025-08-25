@@ -1,0 +1,346 @@
+<ng-container *ngIf="data && product">
+  <div class="bg-white">
+<section class="four-theme-product-info">
+  <div class="new-container1">
+      <div class="row">
+          <div class="col-md-12">
+            <mat-tab-group
+            animationDuration="0ms"
+            class="pdp-description-tabs"
+            [ngClass]="{
+              'theme1-product-tabs': themeName === 'FourthTheme' || themeName === 'RetailTheme2',
+              'theme3-product-tabs': themeName === 'RetailTheme3' || themeName === 'RetailTheme8',
+              'theme4-product-tabs': themeName === 'RetailTheme4',
+              'theme5-product-tabs': themeName === 'RetailTheme5',
+              'theme6-product-tabs': themeName === 'RetailTheme6',
+              'theme7-product-tabs': themeName === 'RetailTheme7',
+              'theme9-product-tabs': themeName === 'RetailTheme9',
+              'theme10-product-tabs': themeName === 'RetailTheme10',
+              'theme11-product-tabs': themeName === 'RetailTheme11',
+              'theme12-product-tabs': themeName === 'RetailTheme12',
+              'theme13-product-tabs': themeName === 'RetailTheme13',
+              'theme14-product-tabs': themeName === 'RetailTheme14',
+              'theme15-product-tabs': themeName === 'RetailTheme15',
+              'theme16-product-tabs': themeName === 'RetailTheme16',
+              'theme17-product-tabs': themeName === 'RetailTheme17',
+              'vertical': data.productInfoDesign === 'ROWS'
+            }"
+          >
+                  <mat-tab label="{{'DESCRIPTION'|translate}}">
+                      <div class="content_detail_page_tab py-4 px-3">
+                          <div class="text-16 font-weight-400 mob-text-12 product-description-html-tag" [innerHTML]="sanitizedDescription">
+                          </div>
+                      </div>
+                  </mat-tab>
+                  <mat-tab label="{{'SIZE_AND_DIMENSION'|translate}}">
+                      <div class="content_detail_page_tab py-4 px-lg-3 px-md-3 px-sm-2 px-0">
+
+                        <div class="d-flex justify-content-center align-items-center w-100">
+                          <div class="d-block w-100 max-w-700-px">
+
+                            <div class="d-block w-100"  *ngIf="product?.mainSelectedProductAttributes?.length == 0">
+
+                              <table class="w-100">
+                                <tbody>
+     
+                                  <tr>
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'PACKAGE_SIZE'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border">
+                                      <span class="d-block w-100 text-black font-weight-400 text-14">
+                                        L: {{product.packageSizeLength}},
+                                         W: {{product.packageSizeWidth}}, 
+                                         H: {{product.packageSizeHeight}}
+                                      </span>
+                                    </td>
+                                  </tr> 
+
+                                  <tr>
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'SIZE_UNITS'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border">
+                                      <span class="d-block w-100 text-black font-weight-400 text-14">
+                                        {{product?.sizeUnit | titlecase}}
+                                      </span>
+                                    </td>
+                                  </tr> 
+
+                                  <tr>
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'PACKAGE_WEIGHT'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border">
+                                      <span class="d-block w-100 text-black font-weight-400 text-14">
+                                        {{product.productWeights}} 
+                                      </span>
+                                    </td>
+                                  </tr> 
+
+
+                                  <tr>
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'WEIGHT_UNITS'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border">
+                                      <span class="d-block w-100 text-black font-weight-400 text-14">
+                                        {{product.weightUnit | titlecase}}
+                                      </span>
+                                    </td>
+                                  </tr> 
+
+                                  <tr *ngIf="product?.productDimentions">
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'INVENTORY_OTHER_DIMENSIONS'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border"> 
+                                      <div class="text-16 font-weight-400 mob-text-12 product-description-html-tag" [innerHTML]="product.productDimentions ">
+                                      </div>
+                                    </td>
+                                  </tr> 
+    
+                                </tbody>
+                              </table>
+
+                            </div>
+
+                            <div class="d-block w-100" *ngIf="product.mainSelectedProductAttributes.length > 0">
+
+                              <table class="w-100">
+                                <tbody>
+     
+                                  <tr>
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'PACKAGE_SIZE'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border">
+                                      <span class="d-block w-100 text-black font-weight-400 text-14">
+                                        L: {{mainSku.packageSizeLength}}, 
+                                        W: {{mainSku.packageSizeWidth}}, 
+                                        H: {{mainSku.packageSizeHeight}}
+                                      </span>
+                                    </td>
+                                  </tr> 
+
+                                  <tr>
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'SIZE_UNITS'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border">
+                                      <span class="d-block w-100 text-black font-weight-400 text-14">
+                                        {{product?.sizeUnit | titlecase}}
+                                      </span>
+                                    </td>
+                                  </tr> 
+
+                                  <tr>
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'PACKAGE_WEIGHT'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border">
+                                      <span class="d-block w-100 text-black font-weight-400 text-14">
+                                        {{mainSku.packageWeight }}
+                                      </span>
+                                    </td>
+                                  </tr> 
+
+                                  <tr>
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'WEIGHT_UNITS'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border">
+                                      <span class="d-block w-100 text-black font-weight-400 text-14">
+                                        {{product.weightUnit | titlecase}}
+                                      </span>
+                                    </td>
+                                  </tr> 
+                                  <tr *ngIf="product?.productDimentions">
+                                    <td class="bg-grey2 px-3 py-3 border"> 
+                                      <span class="d-block w-100 text-black font-weight-500 text-14">
+                                        {{'INVENTORY_OTHER_DIMENSIONS'|translate}}
+                                      </span>
+                                    </td>
+                                    <td class="bg-white px-3 py-3 border"> 
+                                      <div class="text-16 font-weight-400 mob-text-12 product-description-html-tag" [innerHTML]="product.productDimentions ">
+                                      </div>
+                                    </td>
+                                  </tr> 
+    
+                                </tbody>
+                              </table>
+
+                            </div>
+
+                         
+
+                          </div>
+                        </div>  
+ 
+                          <div class="d-block w-100 pt-2" *ngIf="!product?.productDimentions && product?.sizeChartImageUrl">
+                            <h3 class="text-black font-weight-400 text-14 py-3 m-0 text-center font-weight-400">  {{'CHECK_SIZE_CHART'|translate}} </h3>
+                          </div>
+                      </div>
+
+                  </mat-tab>
+                  <mat-tab label="{{'SIGNIN_FEATURES'|translate}}">
+                      <div class="content_detail_page_tab py-4 px-lg-3 px-md-3 px-sm-2 px-0">
+                        <div class="d-flex justify-content-center align-items-center w-100">
+                          <div class="d-block w-100 max-w-700-px">
+                          <table class="w-100">
+                            <tbody>
+                              <ng-container *ngFor="let spec of product.productSpecificationDTOS">
+                              <tr *ngIf="spec.value && spec.value.length > 0">
+                                <td class="bg-grey2 px-3 py-3 border"> 
+                                  <span class="d-block w-100 text-black font-weight-500 text-14">
+                                    {{spec.name | titlecase}}
+                                  </span>
+                                </td>
+                                <td class="bg-white px-3 py-3 border">
+                                  <span class="d-block w-100 text-black font-weight-400 text-14">
+                                    {{spec.value | titlecase}}
+                                  </span>
+                                </td>
+                              </tr>
+                              </ng-container>
+                              <tr >
+                                <td class="bg-grey2 px-3 py-3 border"> 
+                                  <span class="d-block w-100 text-black font-weight-500 text-14 text-capitalize">
+                                    {{'RETURN_POLICY' |translate}} 
+                                  </span>
+                                </td>
+                                <td class="bg-white px-3 py-3 border">
+                                  <span class="d-block w-100 text-black font-weight-400 text-14">
+                                    {{ product?.returnType | translate }}
+                                  </span>
+                                </td>
+                              </tr>
+
+                              <tr *ngIf="product?.returnType === 'SALES_RETURN_ALLOWED'">
+                                <td class="bg-grey2 px-3 py-3 border"> 
+                                  <span class="d-block w-100 text-black font-weight-500 text-14">
+                                    {{'RESTOCKING_FEES'|translate}}
+                                  </span>
+                                </td>
+                                <td class="bg-white px-3 py-3 border">
+                                  <span class="d-block w-100 text-black font-weight-400 text-14">
+                                    {{ product?.returnFee }} 
+                                  </span>
+                                </td>
+                              </tr>
+
+                              <tr *ngIf="product?.returnType === 'SALES_RETURN_ALLOWED'">
+                                <td class="bg-grey2 px-3 py-3 border"> 
+                                  <span class="d-block w-100 text-black font-weight-500 text-14">
+                                    {{'RESTOCKING_FEES_TYPE'|translate}}
+                                  </span>
+                                </td>
+                                <td class="bg-white px-3 py-3 border">
+                                  <span class="d-block w-100 text-black font-weight-400 text-14">
+                                    {{ product?.returnFeeType |translate }} 
+                                  </span>
+                                </td>
+                              </tr>
+
+                            </tbody>
+                          </table>
+                          </div>
+                        </div>  
+                      </div>
+                  </mat-tab>
+                  <mat-tab *ngIf="product.sizeChartImageUrl" label="{{'SIZE_CHART'|translate}}">
+                    <div class="content_detail_page_tab py-lg-2 py-md-2 py-sm-1 py-1 px-lg-2 px-md-2 px-sm-1 px-1">
+                        <img [src]="awsUrl+product.sizeChartImageUrl" class="w-100 h-400-px mob-h-350-px object-fit-contain">
+                    </div>
+            </mat-tab>
+                <mat-tab label="{{'PRICE_HISTORY'|translate}}">
+                    <div class="content_detail_page_tab py-4 px-3">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12 mb-lg-0 mb-md-3 mb-sm-3 mb-3">
+                                <div class="chart w-100">
+                                    <!-- New UI Chart Starts Here -->
+                                    <canvas baseChart
+                                    [data]="chartData"
+                                    [type]="chartType"
+                                    [options]="chartOptions">
+                                    </canvas>
+                                    <!-- New UI Chart Ends Here -->
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                                <div class="w-100 table-responsive overflow-x-auto rounded-3 border">
+                                    <table class="w-100 table mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th class="bg-color-BBC2CD white-space-nowrap rounded-0 text-center">
+                                                    <span class="text-15 font-weight-400 text-black">{{'MONTH'|translate}}</span>
+                                                </th>
+                                                <th class="bg-color-BBC2CD white-space-nowrap rounded-0 text-center">
+                                                    <span class="text-15 font-weight-400 text-black">{{'OLDPRICE'|translate}}</span>
+                                                </th>
+                                                <th class="bg-color-BBC2CD white-space-nowrap rounded-0 text-center">
+                                                    <span class="text-15 font-weight-400 text-black">{{'NEWPRICE'|translate}}</span>
+                                                </th>
+                                                <th class="bg-color-BBC2CD white-space-nowrap rounded-0 text-center">
+                                                    <span class="text-15 font-weight-400 text-black">{{'PERCENTAGE'|translate}}</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let price of product.priceHistory">
+                                                <td class="white-space-nowrap rounded-0 text-center">
+                                                    <span class="text-15 font-weight-400 text-black">{{price.month|translate}}</span>
+                                                </td>
+                                                <td class="white-space- rounded-0 text-center" *ngIf="price.oldPrice">
+                                                    <span class="text-15 font-weight-400 text-black">{{price.oldPrice}}</span>
+                                                </td>
+                                                <td class="white-space- rounded-0 text-center" *ngIf="!price.oldPrice">
+                                                  <span class="text-15 font-weight-400 text-black">-</span>
+                                               </td>
+                                                <td class="white-space-nowrap rounded-0 text-center">
+                                                    <span class="text-15 font-weight-400 text-black">{{price.price}}</span>
+                                                </td>
+                                                <td class="white-space-nowrap rounded-0 text-center">
+                                                    <span class="text-15 font-weight-400 text-black text-center">
+                                                        {{ calculatePercentage(price.oldPrice, price.price) }}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+              </mat-tab-group>
+          </div>
+      </div>
+  </div>
+</section>
+    <app-four-releated-products [data]="data?.showRelatedProducts" [categoryId]="product?.categoryId" [pageType]= "'pdp-page'"></app-four-releated-products>
+    <app-four-best-selling-products  [data]="data?.showBestSellingProducts" [categoryId]="product?.categoryId" [pageType]= "'pdpbestseller-page'"></app-four-best-selling-products>
+    <section id="reviews-sec">
+    <app-four-product-details-customer-reviews  [data]="data" *ngIf="data?.showCustomerReviews"></app-four-product-details-customer-reviews>
+    </section>
+    <app-four-recently-viewed [data]="data?.showRecentlyViewedProducts" [categoryId]="product?.categoryId" [pageType]= "'pdprecent-page'"  [activeTheme]='activeTheme'></app-four-recently-viewed>
+  </div>
+</ng-container>

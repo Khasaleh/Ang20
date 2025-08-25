@@ -1,0 +1,130 @@
+<section class="d-block w-100 popup-parent-rtl">
+  <div class="d-block w-100 px-4 py-3 bg-theme-light-color">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <div class="d-inline-block">
+        <h3 class="text-black text-18 m-0 p-0 font-weight-600"> {{'BILLING_ADDRESS'|translate}} </h3>
+      </div>
+      <div class="d-inline-block">
+        <button mat-dialog-close
+          class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+          <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="px-4 py-4">
+    <div class="row">
+       <div class="row align-items-center mb-3">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0">  {{'ADDRESS_DESCRIPTION'|translate}} </h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+          <mat-form-field appearance="fill" class="w-100 field-style2"> 
+            <input matInput type="text" [(ngModel)]="addressDesc" class="form-control bg-white text-black text-15 h-30-px" />
+          </mat-form-field>
+      </div>
+     </div> 
+        <div class="row align-items-center mb-3">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0">  {{'ADD_LOCATION_STREET_NUMBER'|translate}} </h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+        <mat-form-field appearance="fill" class="w-100 field-style2"> 
+            <input matInput type="text" [(ngModel)]="streetNumber" class="form-control bg-white text-black text-15 h-30-px" />
+          </mat-form-field>
+      </div>
+     </div>
+       <div class="row align-items-center mb-3">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0">   {{'ADDRESS_LINE_1'|translate}}  </h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+        <mat-form-field appearance="fill" class="w-100 field-style2"> 
+            <input matInput type="text" [(ngModel)]="route" class="form-control bg-white text-black text-15 h-30-px" />
+          </mat-form-field>
+      </div>
+     </div>
+       <div class="row align-items-center mb-3">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0">   {{'ADDRESS_LINE_2'|translate}} </h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+        <mat-form-field appearance="fill" class="w-100 field-style2"> 
+            <input matInput type="text" [(ngModel)]="addressLine2" class="form-control bg-white text-black text-15 h-30-px" />
+          </mat-form-field>
+      </div>
+     </div>
+        <div class="row align-items-center mb-3">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0 text-capitalize">{{ 'OS_COUNTRY' | translate }}</h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+        <ng-select [maxSelectedItems]="1"
+        [appendTo]="'body'"
+        class="subscription-selection-field1 pt-1 pb-0 field-style-less border-1-B3B3B3 rounded-2 w-205-px"
+        [ngModel]="selectedCountry"
+        (change)="onCountryChange($event)" >
+      <ng-option *ngFor="let country of countries" [value]="country.id">
+        {{ country.countryKey | translate }}
+      </ng-option>
+    </ng-select>
+      </div>
+    </div>
+    <div class="row align-items-center mb-3">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0">{{ 'OS_STATE' | translate }}</h5>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+        <ng-select [maxSelectedItems]="1"
+        [appendTo]="'body'"
+        class="subscription-selection-field1 pt-1 pb-0 field-style-less border-1-B3B3B3 rounded-2"
+        [ngModel]="selectedState"
+        (change)="onStateChange($event)" [disabled]="!states.length">
+      <ng-option *ngFor="let state of states" [value]="state.id">
+        {{ state.name }}
+      </ng-option>
+    </ng-select>
+      </div>
+    </div>
+    <div class="row align-items-center mb-3">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0">{{ 'CITY' | translate }}</h5>
+      </div>  
+      <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+        <ng-select [maxSelectedItems]="1"
+        [appendTo]="'body'"
+        class="subscription-selection-field1 pt-1 pb-0 field-style-less border-1-B3B3B3 rounded-2"
+        [ngModel]="selectedCity"
+        (change)="onCityChange($event)" [disabled]="!states.length">
+      <ng-option *ngFor="let city of cities" [value]="city">
+        {{ city.name }}
+      </ng-option>
+    </ng-select>
+      </div>
+    </div>
+      <div class="row align-items-center mb-3">
+      <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+        <h5 class="text-14 text-end d-block m-0 text-capitalize"> {{'POSTAL_OR_ZIP_CODE'|translate}} </h5>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+          <mat-form-field appearance="fill" class="w-100 field-style2">
+            <mat-label class="text-muted text-13"> {{'POSTAL_OR_ZIP_CODE'|translate}} </mat-label>
+            <input matInput type="text" [(ngModel)]="zipCode" class="form-control bg-white text-black text-15 h-30-px" />
+          </mat-form-field>
+      </div>
+    </div>
+    </div>
+    <div class="d-flex flex-wrap align-items-center rounded-3 mt-3 border border-color-silver ps-3 pe-3 pt-2 pb-2 bg-grey1">
+      <mat-checkbox class="checkbox-style2 text-black" [(ngModel)]="defaultBillingOnCreateAddress">  {{'DEFAULT_BILLING'|translate}} </mat-checkbox>
+      <mat-checkbox class="checkbox-style2 text-black" [(ngModel)]="defaultShippingOnCreateAddress">  {{'DEFAULT_SHIPPING'|translate}} </mat-checkbox>
+    </div>
+    <div class="d-flex w-100 align-items-center justify-content-end pt-3">
+      <button mat-dialog-close class="bg-theme-light-color text-black px-4 py-2 text-14 rounded-3">
+        {{'CANCEL'|translate}}
+      </button>
+      <button [disabled]="addressButton" (click)="saveUserAddress()" class="bg-theme-dark-color px-4 py-2 text-14 rounded-3 ms-3 text-white">
+        {{'SAVE'|translate}}
+      </button>
+    </div>
+  </div>
+</section>

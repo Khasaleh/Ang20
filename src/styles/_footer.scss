@@ -1,61 +1,62 @@
 .footer-static {
-  @include flexbox();
-  width: 100%;
-  max-width: 100%;
-  @include justify-content(space-between);
-  padding: 6px 15px 10px;
-  background: $white;
-  overflow: initial;
-  border-bottom: solid 1px $white-1;
-  box-shadow: 0 1px 3px $grey-5;
-
-  .links {
-    padding: 0;
-    margin: 0;
-    list-style: none;
     @include flexbox();
-    @include align-items(center);
-
-    ul {
+    width: 100%;
+    max-width: 100%;
+    @include justify-content(space-between);
+    padding: 6px 15px 10px;
+    background: $white;
+    overflow: initial;
+    border-bottom: solid 1px $white-1;
+    box-shadow: 0 1px 3px $grey-5;
+  
+    .links {
       padding: 0;
       margin: 0;
       list-style: none;
-      display: inline-flex;
-
-      li {
-        font-size: small;
-        padding: 0px 15px 0px 0px;
-        @include align-items(center);
-        @include flexbox();
-
+      @include flexbox();
+      @include align-items(center);
+  
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: inline-flex;
+  
+        li {
+          font-size: small;
+          padding: 0px 15px 0px 0px;
+          @include align-items(center);
+          @include flexbox();
+  
+          a {
+            font-size: 14px;
+            font-weight: 500;
+            font-family: "Myriad Pro";
+            letter-spacing: 0.2px;
+          }
+        }
+      }
+      .sociallinks {
         a {
-          font-size: 14px;
-          font-weight: 500;
-          font-family: "Myriad Pro";
-          letter-spacing: 0.2px;
+          @include align-items(center);
+          @include flexbox();
+          color: $default !important;
         }
       }
     }
-    .sociallinks {
-      a {
-        @include align-items(center);
-        @include flexbox();
-        color: $default !important;
-      }
-    }
-  }
 }
 
-@media (max-width: $msv-breakpoint-l-max) {
-  .footer-static {
-    @include flex-wrap(wrap);
-    padding: 0 10px !important;
-    @include justify-content(center);
 
-    .center-content {
-      .links {
-        padding-bottom: 6px !important;
-      }
+@media (max-width:$msv-breakpoint-l-max) {
+    .footer-static {
+        @include flex-wrap(wrap);
+        padding: 0 10px !important;
+        @include justify-content(center);
+        
+        .center-content{
+            .links {
+                padding-bottom: 6px !important;
+            }
+        } 
     }
-  }
 }

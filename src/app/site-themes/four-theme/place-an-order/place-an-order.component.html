@@ -1,0 +1,70 @@
+<section class="bg-grey1 d-flex align-items-center py-lg-0 py-md-0 py-sm-3 py-3 px-lg-0 px-md-0 px-sm-2 px-2 min-h-100-vh">
+  <div class="new-container1">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-12 mx-auto rounded-2">
+        <div class="w-100 align-items-center">
+          <div class="row align-items-center">
+            <div class="col-md-6 col-md-6 col-sm-12 col-12">
+              <div class="d-block w-100 text-center">
+                <h4 class="text-25 text-black font-weight-500 text-color-dark m-0">  {{'HEY_YOU'|translate}} 🥳 </h4>
+                <h2 class="text-55 mob-text-40 text-color-dark font-weight-900 my-2 text-uppercase">   {{'THANK_YOU'|translate}}  </h2>
+                <h5 class="text-black text-18 mt-0 mb-3">   {{'FOR_YOUR_ORDER'|translate}}  </h5>
+
+                <div class="row justify-content-center mb-3">
+                  <div class="col-lg-10 col-md-10 col-sm-12 col-12">
+                    <div class="d-block w-100 bg-grey2 px-3 py-3 rounded-2 border">
+                      <h5 class="text-black font-weight-500 text-14 m-0 p-0">
+                         {{'IF_YOUR_ORDER_IS_RESERVED_IN_STORE_OR_SET_FOR_PICKUP'|translate}}  
+                        <button class="text-0083EA font-weight-600 text-14 px-1 py-0" (click)="viewStoreLocation()">    {{'STORELOCATION'|translate}}  </button>   {{'AND'|translate}} 
+                        <button (click)="viewStoreHours()" class="text-0083EA font-weight-600 text-14 px-1 py-0">  {{'OPERATING_HOURS'|translate}}    </button>
+                           {{'BEFORE_VISTING'|translate}} 
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+                
+
+                <p *ngIf="!orderResponse?.businessOrderId" class="text-15 font-weight-400 text-black text-center mob-text-14 px-sm-0 px-2">
+                   {{'YOUR_ORDER'|translate}} {{'HAS_BEEN_SUCCESSFULLY_PLACED_OUR_SALES_TEAM'|translate}}
+                </p>
+                <p *ngIf="orderResponse?.businessOrderId" class="text-15 font-weight-400 text-black text-center mob-text-12 px-sm-0 px-2"> {{'YOUR_ORDER'|translate}}     {{'IS_PLACED_KEEP_AN_EYE_OUT_FOR_UPDATES'|translate}} </p>
+                <div class="row justify-content-center">
+                  <div class="col-lg-8 col-md-8 col-sm-10 col-12">
+                    <div class="d-flex position-relative w-100 rounded-2 border border-color-silver bg-white justify-content-start align-items-center h-40-px overflow-hidden">
+                      <h5 class="text-black m-0 px-2 py-2 mt-1 w-100 text-start font-weight-600 text-16"> {{'ORDER_ID'|translate}}: {{orderResponse?.businessOrderId}} </h5>
+                      <button (click)="copyOrderId()" class="min-width-clear bg-theme-light-color position-absolute top-0 end-0 h-40-px px-3">
+                        <i class="bi bi-copy lh-tiny text-20 text-black"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex w-100 flex-wrap align-items-center justify-content-center pt-2">
+                 <span class="d-inline-block text-black">   {{'IF_YOU_HAVE_ANY_QUESTIONS_IN_MEANTIME_FEEL_FREE_TO'|translate}}  </span>
+                   <button class="font-weight-600 text-color-dark text-capitalize px-2 py-0">
+                     {{'CHAT'|translate}}
+                  </button>
+                </div>
+                <div class="d-block w-100 mb-3">
+                  <h5 class="text-black text-center text-14 w-100 mt-3 mb-2 w-100">  {{'SIGNIN_OR'|translate}} </h5>
+                  <button [routerLink]="['../contact-us']" class="font-weight-600 text-color-dark text-capitalize px-2 py-0">
+                      {{'CONTACT_US'|translate}}
+                  </button> 
+                </div>
+                <div class="d-block w-100">
+                  <button [routerLink]="['../home']" class="font-weight-600 text-black text-13 text-capitalize px-2 py-0">
+                     Back to Home
+                  </button> 
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-md-6 col-sm-12 col-12">
+              <div class="d-block w-100 text-center mw-100">
+                <img src="../../../assets/img/thankyou-order.png" class="h-400-px object-fit-contain object-position-center mw-100"  alt="{{'ICONIMAGES'|translate}}">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

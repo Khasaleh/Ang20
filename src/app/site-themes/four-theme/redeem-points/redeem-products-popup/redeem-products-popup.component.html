@@ -1,0 +1,642 @@
+<!-- Product Quickview Starts Here -->
+<section class="d-block bg-white popup-parent-rtl position-relative overflow-auto modern-scroll w-100 pdp-quickview-wrapper redeem-product-size1"
+  *ngIf="showQuickView">
+  <button mat-dialog-close
+    class="d-flex align-items-center justify-content-center p-1 z-index-1 position-absolute bg-theme-light-color rounded-circle top-0 end-0 me-3 mt-3">
+    <mat-icon class="text-black text-20 m-0 p-0 no-min-height no-min-width">close</mat-icon>
+  </button>
+
+  <div class="row m-0">
+
+    <!-- Product Images Starts Here -->
+    <div class=" col-sm-12 col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+      <div class="d-block w-100 pdp-quick-imageview px-2 py-2">
+        <div class="d-block w-100">
+          <div class="row mx-0">
+            <!-- <div    class="col-md-3 col-lg-3 col-sm-3 col-3 d-block cursor-pointer ps-0 pe-4  pb-3">
+              <div class="d-flex align-items-center justify-content-center w-100">
+                <button *ngIf="product.images.length > 4" class="w-30-px z-index-1 top-0 mt-1 h-30-px p-1 d-flex align-items-center justify-content-center" (click)="scrollToTop()">
+                  <mat-icon class="m-0 p-0 text-24 text-black no-min-height no-min-width">keyboard_arrow_up</mat-icon>
+                </button>
+              </div>
+              <div #scrollContainer class="d-block w-100 product-slideimage-quickview overflow-hidden">
+              <img (click)="onImageClick(i, image)" [ngClass]="{'border-color-black': i === selectedImageIndex}"
+                *ngFor="let image of product.images; let i = index" (click)="product.mainImageUrl = image"
+                onerror="this.src='./assets/img/default-product.png'" [src]="awsUrl+image"
+                alt="{{'PRODUCT_IMAGE'|translate}}"
+                class="d-block w-100 h-90-px mb-2 object-fit-contain border rounded-2 py-2 border-color-silver">
+                </div>
+                <div class="d-flex align-items-center justify-content-center w-100">
+                  <button *ngIf="product.images.length > 4" class="w-30-px z-index-1 top-0 mt-1 h-30-px p-1 d-flex align-items-center justify-content-center" (click)="scrollToBottom()">
+                    <mat-icon class="m-0 p-0 text-24 text-black no-min-height no-min-width">keyboard_arrow_down</mat-icon>
+                  </button>
+                </div>
+            </div> -->
+            <div class="col-lg-9 col-md-9 col-sm-9 col-9">
+              <!-- <ng-img-magnifier class="image-magnifier" thumbImage='./assets/img/default-product.png'
+                fullImage='./assets/img/default-product.png' top=10 right=0 lensWidth=150 lensHeight=150 resultWidth=80
+                resultHeight=60 imgWidth=500 imgHeight=500>
+              </ng-img-magnifier> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Product Images Ends Here -->
+
+    <!-- Product Details Starts Here -->
+    <div class="col-sm-12 col-12 col-xxl-6 col-xl-6 col-lg-6 col-md-6 p-0">
+      <div class="d-block w-100 pdp-quick-imageview overflow-auto pt-3 px-lg-0 px-md-0 px-3 modern-scroll">
+        <div class="d-block w-100 mb-2">
+          <h2 class="text-25 font-weight-600 m-0 text-black mob-text-20 pe-lg-5 pe-md-5 pe-0 text-capitalize">
+            Jordan Limited Edition White Sneakers
+          </h2>
+        </div>
+        <!-- <div class="d-block w-100">
+          <ul class="list-unstyled">
+            <li class="border-0">
+              <span class="text-lightgrey text-14 font-weight-400">  {{'SKU'|translate}}:</span>
+              <span *ngIf="!selectedMainSku && !selectedSku"
+                class="text-black text-14 font-weight-400 ms-1">{{product.id}}</span>
+              <span *ngIf="selectedMainSku && !selectedSku"
+                class="text-black text-14 font-weight-400 ms-1">{{selectedMainSku.skuId}}</span>
+              <span *ngIf="selectedSku" class="text-black text-14 font-weight-400 ms-1">{{selectedSku.skuId}}</span>
+            </li>
+            <li class="border-0">
+              <span class="text-lightgrey text-14 font-weight-400"> {{'AVAILABILITY'|translate}} : </span>
+              <span class="text-black text-14 font-weight-400 ms-1">{{product.quantity}} {{'INSTOCK'|translate}} </span>
+            </li>
+            <li class="border-0">
+              <span class="text-lightgrey text-14 font-weight-400"> {{'PRODUCTTYPE'|translate}} : </span>
+              <span class="text-black text-14 font-weight-400 ms-1">{{product.categoryName | titlecase}}</span>
+            </li>
+            <ng-container *ngFor="let promo of this.product.catalogPromotionProduct">
+              <li class="border-0">
+                <span class="text-lightgrey text-14 font-weight-400"> {{'PROMOTION'|translate}} : </span>
+                <span
+                  class="mb-2 text-12 font-weight-400 text-color-w rounded-2 px-2 py-1 text-center text-first-light-color bg-theme-dark-color text">{{promo.name}}</span>
+              </li>
+            </ng-container>
+            <li class="border-0" *ngIf="!selectedMainSku && !selectedSku && product.salePrice">
+              <span class="text-lightgrey text-14 font-weight-400"> {{'DISCOUNT_T'|translate}} : </span>
+              <span class="text-color-dark text-14 font-weight-400 ms-1"> {{currency}}{{product.price -
+                product.salePrice| number:'1.0-2'}}</span>
+            </li>
+            <li class="border-0" *ngIf="selectedMainSku && !selectedSku && selectedMainSku.salePrice">
+              <span class="text-lightgrey text-14 font-weight-400"> {{'DISCOUNT_T'|translate}} : </span>
+              <span class="text-color-dark text-14 font-weight-400 ms-1"> {{currency}}{{selectedMainSku.price -
+                selectedMainSku.salePrice| number:'1.0-2'}}</span>
+            </li>
+            <li class="border-0" *ngIf="selectedSku && selectedSku.salePrice">
+              <span class="text-lightgrey text-14 font-weight-400"> {{'DISCOUNT_T'|translate}} : </span>
+              <span class="text-color-dark text-14 font-weight-400 ms-1">{{currency}}{{selectedSku.price -
+                selectedSku.salePrice| number:'1.0-2'}}</span>
+            </li>
+          </ul>
+        </div> -->
+        <!-- <div class="d-block w-100 pt-3 border-top border-color-silver"
+          *ngIf="product && product.mainAttributeDtos.length > 0">
+          <div class="row mx-0 mb-3">
+            <div class="col-md-12">
+              <div class="d-block">
+                <div class="col-md-12 border-bottom px-0">
+                  <h5 class="text-16 font-weight-500 text-black text-capitalize">
+                    {{product.mainAttributeDtos[0].attributeDTO.attributeName}}</h5>
+                  <div *ngIf="product.mainAttributeDtos[0].attributeDTO.attributeName.toLowerCase().includes('color')"
+                    class="d-flex list-unstyled flex-wrap color_list">
+                    <div class="container_colors me-1 mb-2" *ngFor="let sku of product.mainAttributeDtos">
+                      <div class="round w-100" (click)="selectedColorAttribute(sku, '')">
+                        <input type="hidden" id="{{sku.attributeDTO.attributeValueId}}" [checked]="sku.isShowEdit" />
+                        <label class="position-static" for="{{sku.attributeDTO.attributeValueId}}"
+                          [style.backgroundColor]="sku.attributeDTO.attributeValue"
+                          [ngClass]="{'product-intro__size-radio_active': sku.isShowEdit}"></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div *ngIf="!product.mainAttributeDtos[0].attributeDTO.attributeName.toLowerCase().includes('color')"
+                    class="d-flex list-unstyled flex-wrap ">
+                    <div style="border-radius: 30px;"
+                      class="container_colors product-intro__size-radio-spopover rounded-3 h-auto me-2 mb-2 w-auto px-3 size_item bg-white border d-flex align-items-center justify-content-center"
+                      *ngFor="let sku of product.mainAttributeDtos"
+                      [ngClass]="{'product-intro__size-radio_active': sku.skuId == selectedMainSku.skuId}">
+                      <div class="w-100 d-flex align-items-center justify-content-start" (click)="selectedColorAttribute(sku, '')">
+                        <input class="w-0-px h-0-px overflow-hidden d-none" type="checkbox" id="{{sku.attributeDTO.attributeValueId}}" />
+                        <label class="position-static w-100 h-auto py-2 text-black text-15 font-weight-500"
+                          for="{{sku.attributeDTO.attributeValueId}}">{{sku.attributeDTO.attributeValue}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  *ngIf="selectedMainSku && selectedMainSku.productVarientDTOs.length > 0 && selectedMainSku.productVarientDTOs[0].productAttributeDTOs.length > 0"
+                  class="mt-3">
+                  <h5 class="text-16 font-weight-500 text-black text-capitalize">
+                    {{selectedMainSku.productVarientDTOs[0].productAttributeDTOs[0].attributeName}}</h5>
+                  <div class="d-flex list-unstyled flex-wrap ">
+                    <div style="border-radius: 30px;"
+                      class="container_colors product-intro__size-radio-spopover rounded-3 h-auto me-2 mb-2 size_item w-auto px-3 bg-white border border-color-silver d-flex align-items-center justify-content-center"
+                      *ngFor="let attr of selectedMainSku.productVarientDTOs"
+                      [ngClass]="{'product-intro__size-radio_active-new': attr.skuId == selectedSku.skuId}"
+                      (click)="selectedOtherAttribute(attr)">
+                      <div class="w-100 d-flex align-items-center justify-content-start">
+                        <input class="w-0-px h-0-px overflow-hidden d-none" type="checkbox" id="{{attr.productAttributeDTOs[0].attributeValue}}" />
+                        <label class="position-static w-100 h-auto py-2 text-black text-15 font-weight-500"
+                          for="{{attr.productAttributeDTOs[0].attributeValue}}">{{attr.productAttributeDTOs[0].attributeValue}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  *ngIf="selectedMainSku && selectedMainSku.productVarientDTOs.length > 0 && selectedMainSku.productVarientDTOs[0].productAttributeDTOs.length > 1"
+                  class="mt-3">
+                  <h5 class="text-16 font-weight-500 text-black text-capitalize">
+                    {{selectedMainSku.productVarientDTOs[0].productAttributeDTOs[1].attributeName}}</h5>
+                  <div class="d-flex list-unstyled flex-wrap">
+                    <div style="border-radius: 30px;"
+                      class="container_colors product-intro__size-radio-spopover rounded-3 h-auto me-2 mb-2 size_item w-auto px-3 bg-white border border-color-silver d-flex align-items-center justify-content-center"
+                      *ngFor="let attr of selectedMainSku.productVarientDTOs"
+                      [ngClass]="{'product-intro__size-radio_active-new': attr.skuId == selectedSku.skuId}"
+                      (click)="selectedOtherAttribute(attr)">
+                      <div class="w-100 d-flex align-items-center justify-content-start">
+                        <input class="w-0-px h-0-px overflow-hidden d-none" type="checkbox" id="{{attr.productAttributeDTOs[1].attributeValue}}" />
+                        <label class="position-static w-100 h-auto py-2 text-black text-15 font-weight-500"
+                          for="{{attr.productAttributeDTOs[1].attributeValue}}">{{attr.productAttributeDTOs[1].attributeValue}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="d-block w-100 mb-2">
+          <div class="d-block w-100">
+            <div class="d-block w-100 border-top border-color-silver pt-3 pe-3">
+              <div class="d-block w-100">
+                <h5 class="text-16 font-weight-600 text-black">
+                  {{'CL_SMALL_DESCRIPTION'|translate}}
+                </h5>
+                <p class="text-16 font-weight-400 text-black mob-text-12">
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-block w-100 mb-5 pb-2">
+          <div class="d-block w-100 pe-4">
+            <div class="d-block w-100 py-2 px-3 border border-color-silver bg-color-si rounded-2">
+              <div class="d-flex align-items-center w-100">
+                <h5 class="text-16 font-weight-500 text-black m-0">
+                  {{'POINTS'|translate}}
+                  <b class="text-16 font-weight-600 d-inline-block">  1600 </b>
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-block position-absolute start-0 bottom-0 z-index-1 bg-white w-100 rounded-2">
+          <div class="d-flex justify-content-start w-100  px-3 py-2 border border-color-silver bg-white shadow-lg">
+            <div class="ms-3 w-100">
+              <button type="button" (click)="redeemtoDelivery()"
+                class="bg-theme-dark-color w-100 justify-content-center rounded-2 px-lg-4 px-md-3 px-ms-3 px-4 py-3 h-100 d-flex align-items-center">
+                <span class="text-16 font-weight-600 text-color-w text-first-light-color mob-text-16">
+                  {{'REDEEM_POINTS'|translate}}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Product Details Ends Here -->
+  </div>
+</section>
+<!-- Product Quickview Ends Here -->
+
+<!-- Physical Delivery Starts Here -->
+<section *ngIf="showDelivery" class="d-block bg-white w-100 popup-parent-rtl redeem-product-size2">
+  <div class="d-block w-100">
+    <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-4 py-3">
+      <div class="d-inline-block">
+        <div class="d-flex align-items-center justify-content-start">
+          <div class="d-inline-block me-2">
+            <button (click)="backtoQuickView()" class="p-0 bg-transparent border-0">
+              <mat-icon class="text-20 no-min-height text-black m-0 p-0">arrow_backward</mat-icon>
+            </button>
+          </div>
+          <div class="d-inline-block">
+            <h3 class="text-black text-18 m-0 p-0 font-weight-600"> {{'PHYSICAL_DELIVERY'|translate}} </h3>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block">
+        <button mat-dialog-close
+          class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+          <mat-icon class="m-0 p-0 no-min-height no-min-width text-20 text-black">close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="d-block w-100 py-4 px-4 custom-vertical-height1 modern-scroll overflow-auto">
+      <div class="d-block w-100 mb-4">
+        <p class="text-black text-16 m-0 p-0">
+          {{'PLEASE_SELECT_OR_ADD_THE_ADDRESS_WHERE_YOU_WANT_TO_DELIVERY'|translate}} </p>
+      </div>
+      <div class="d-block w-100">
+        <div class="d-block w-100">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+              <mat-radio-group [(ngModel)]="selectAddress">
+                <mat-radio-button class="bg-color-si border border-color-silver rounded-2 d-block w-100 px-3 py-4"
+                  value="Address1">
+                  <div class="d-block w-100 ps-4">
+                    <div class="d-block w-100 mb-2">
+                      <h4 class="text-16 font-weight-600 m-0 p-0 text-black"> Shipping Address </h4>
+                    </div>
+                    <div class="d-block w-100 mb-3">
+                      <p class="text-14 text-black m-0 p-0"> UAF-123 , Street A/3 <br /> Oakland Apartments London Uk
+                      </p>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-start w-100">
+                      <div class="d-flex align-items-center justify-content-start me-3">
+                        <i
+                          class="bi bi-phone lh-tiny text-16 me-2 p-0 text-black border border-color-silver p-1 rounded-circle"></i>
+                        <span class="text-14 text-black d-inline-block"> +11-4456-990 </span>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-start me-3">
+                        <i
+                          class="bi bi-phone lh-tiny text-16 me-2 p-0 text-black border border-color-silver p-1 rounded-circle"></i>
+                        <span class="text-14 text-black d-inline-block"> +11-4456-990 </span>
+                      </div>
+                    </div>
+                  </div>
+                </mat-radio-button>
+                <mat-radio-button value="addAddress" class="px-3 py-4">
+                  <span class="text-15 text-black d-inline-block ps-2 font-weight-600"> {{'ADDADDRESS'|translate}}
+                  </span>
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="selectAddress === 'addAddress'" class="d-block w-100 mb-4">
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="d-block w-100  bg-theme-light-color px-3 py-3 rounded-2 border border-color-silver">
+                <div class="row">
+
+                  <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-2">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2">
+                        <mat-label class="text-muted text-13"> {{'ADDRESS_DESCRIPTION'|translate}} </mat-label>
+                        <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-8 col-lg-8 col-sm-8 col-12 mb-2">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2">
+                        <mat-label class="text-muted text-13"> {{'ENTER_YOUR_ADDRESS'|translate}} </mat-label>
+                        <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 col-lg-4 col-sm-4 col-12 mb-2">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2">
+                        <mat-label class="text-muted text-13"> {{'ADD_LOCATION_STREET_NUMBER'|translate}} </mat-label>
+                        <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-2">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2">
+                        <mat-label class="text-muted text-13"> {{'ADDRESS_LINE_1'|translate}} </mat-label>
+                        <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-2">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2">
+                        <mat-label class="text-muted text-13"> {{'ADDRESS_LINE_2'|translate}} </mat-label>
+                        <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 col-lg-12 col-sm-12 col-12 mb-2">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2">
+                        <mat-label class="text-muted text-13"> {{'COUNTRY_OR_REGION'|translate}} </mat-label>
+                        <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 col-lg-4 col-sm-4 col-12 mb-2">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2">
+                        <mat-label class="text-muted text-13"> {{'CITY'|translate}} </mat-label>
+                        <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 col-lg-4 col-sm-4 col-12 mb-2">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2">
+                        <mat-label class="text-muted text-13"> {{'STATE_OR_PROVINCE'|translate}} </mat-label>
+                        <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 col-lg-4 col-sm-4 col-12 mb-2">
+                    <div class="d-block w-100">
+                      <mat-form-field appearance="fill" class="w-100 field-style2">
+                        <mat-label class="text-muted text-13"> {{'POSTAL_OR_ZIP_CODE'|translate}} </mat-label>
+                        <input matInput type="text" class="form-control bg-white text-black text-15 h-30-px" />
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="d-flex w-100 align-items-center justify-content-end pt-3">
+                  <button class="bg-theme-dark-color px-4 py-2 text-14 rounded-3 ms-3 text-white">
+                    {{'ADDADDRESS'|translate}}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-end w-100">
+          <button mat-dialog-close class="bg-theme-light-color text-black text-14 px-3 py-2 m-0  rounded-2">
+            {{'CANCEL'|translate}}
+          </button>
+          <button (click)="redeemtoGiftProduct()"
+            class="bg-theme-dark-color text-white text-14 px-4 py-2 m-0 bg-theme-dark-color rounded-2 ms-3">
+            {{'SELECT_ADDRESS'|translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Enter Email Address Ends Here -->
+  </div>
+</section>
+<!-- Physical Delivery Ends Here -->
+
+<!-- Redeem Gift Product Starts Here -->
+<section *ngIf="showRedeemGift" class="d-block bg-white w-100 popup-parent-rtl redeem-product-size3">
+  <div class="d-block w-100">
+    <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-4 py-3">
+      <div class="d-inline-block">
+        <div class="d-flex align-items-center justify-content-start">
+          <div class="d-inline-block me-2">
+            <button (click)="backtoQuickView()" class="p-0 bg-transparent border-0">
+              <mat-icon class="text-20 no-min-height text-black m-0 p-0">arrow_backward</mat-icon>
+            </button>
+          </div>
+          <div class="d-inline-block">
+            <h3 class="text-black text-18 m-0 p-0 font-weight-600"> {{'REDEEM_GIFT_POINTS'|translate}} </h3>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block">
+        <button mat-dialog-close
+          class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+          <mat-icon class="m-0 p-0 no-min-height no-min-width text-20 text-black">close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="d-block w-100 px-4 py-4 custom-vertical-height1 modern-scroll overflow-auto">
+      <div class="d-block w-100 mb-4">
+        <div class="d-block w-100 mb-2">
+          <h3 class="text-black m-0 font-weight-600"> {{'YOUR_GIFT_PRODUCT'|translate}} </h3>
+        </div>
+        <div class="border border-color-silver rounded-2 d-block w-100 px-3 py-4">
+          <div class="row align-items-center">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+              <div class="d-flex w-100 align-items-center justify-content-start">
+                <div class="d-inline-block">
+                  <img class="h-100-px w-auto object-fit-contain rounded-2 border border-color-silver"
+                    src="./assets/img/default-product.png" alt="{{'PRODUCT_IMAGE'|translate}}">
+                </div>
+                <div class="d-inline-block ps-4">
+                  <h4 class="text-black font-weght-700 mt-0 mb-3 text-16"> Nike Pegasus 39 Men's Road Running Shoes
+                  </h4>
+                  <p class="text-black text-14 font-weight-400"> Blue / 10 </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+              <div
+                class="d-flex align-items-center justify-content-lg-end justify-content-md-end justify-content-start">
+                <div class="d-block bg-theme-light-color border border-dark-color rounded-2 px-3 py-2">
+                  <span class="text-black text-16 font-weight-500 pe-3"> {{'POINTS'|translate}} </span>
+                  <span class="text-black text-16 font-weight-700"> 1328 </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-block w-100 mb-4">
+        <div class="border border-color-silver bg-coin-2 position-relative py-3 px-2 rounded-2 rounded-2 d-block w-100">
+          <div class="row align-items-center">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+              <div class="d-block w-100 text-center">
+                <h5 class="text-black text-15 font-weight-400  mt-0 mb-2"> {{'YOUR_AVAILABLE_POINTS'|translate}} </h5>
+                <h3 class="text-black text-17 font-weight-700 m-0"> 1328 </h3>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+              <div class="d-block w-100 text-center">
+                <h5 class="text-black text-15 font-weight-400  mt-0 mb-2"> {{'REDEEMING_GIFT_POINTS'|translate}} </h5>
+                <h3 class="text-black text-17 font-weight-700 m-0"> 997 </h3>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+              <div class="d-block w-100 text-center">
+                <h5 class="text-black text-15 font-weight-400 mt-0 mb-2"> {{'REMAINING_POINTS'|translate}} </h5>
+                <h3 class="text-black text-17 font-weight-700 m-0"> 59 </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-block w-100 mb-4">
+        <div class="d-block w-100 mb-2">
+          <h3 class="text-black m-0 font-weight-600"> {{'YOUR_ADDRESS'|translate}} </h3>
+        </div>
+        <div class="bg-color-si border border-color-silver rounded-2 d-block w-100 px-3 py-4">
+          <div class="d-block w-100 ps-4">
+            <div class="d-block w-100 mb-2">
+              <h4 class="text-16 font-weight-600 m-0 p-0 text-black"> Shipping Address </h4>
+            </div>
+            <div class="d-block w-100 mb-3">
+              <p class="text-14 text-black m-0 p-0"> UAF-123 , Street A/3 <br /> Oakland Apartments London Uk </p>
+            </div>
+            <div class="d-flex align-items-center justify-content-start w-100">
+              <div class="d-flex align-items-center justify-content-start me-3">
+                <i
+                  class="bi bi-phone lh-tiny text-16 me-2 p-0 text-black border border-color-silver p-1 rounded-circle"></i>
+                <span class="text-14 text-black d-inline-block"> +11-4456-990 </span>
+              </div>
+              <div class="d-flex align-items-center justify-content-start me-3">
+                <i
+                  class="bi bi-phone lh-tiny text-16 me-2 p-0 text-black border border-color-silver p-1 rounded-circle"></i>
+                <span class="text-14 text-black d-inline-block"> +11-4456-990 </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="d-block w-100">
+        <div class="d-flex w-100 align-items-center justify-content-start">
+          <mat-checkbox class="me-2">
+          </mat-checkbox>
+          <button class="text-black font-weight-600 text-14 py-2">
+            {{'SIGNUP_AGGREMENTS_TERMSANDCONDITIONS'|translate}}
+          </button>
+        </div>
+
+      </div>
+      <div class="d-flex align-items-center justify-content-end w-100">
+        <button mat-dialog-close class="bg-theme-light-color text-black text-14 px-4 py-2 m-0  rounded-2">
+          {{'CANCEL'|translate}}
+        </button>
+        <button (click)="redeemtoGiftValidate()"
+          class="bg-theme-dark-color text-white text-14 px-4 py-2 m-0 bg-theme-dark-color rounded-2 ms-3">
+          {{'REDEEM_NOW'|translate}}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Redeem Gift Product Ends Here -->
+
+
+<!-- Redeem Gift Validation Starts Here -->
+<section *ngIf="RedeemGiftValidation" class="d-block bg-white w-100 popup-parent-rtl redeem-product-size3">
+  <div class="d-block w-100">
+    <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-4 py-3">
+      <div class="d-inline-block">
+        <div class="d-flex align-items-center justify-content-start">
+          <div class="d-inline-block me-2">
+            <button (click)="backtoGiftProduct()" class="p-0 bg-transparent border-0">
+              <mat-icon class="text-20 no-min-height text-black m-0 p-0">arrow_backward</mat-icon>
+            </button>
+          </div>
+          <div class="d-inline-block">
+            <h3 class="text-black text-18 m-0 p-0 font-weight-600"> {{'REDEEM_GIFT_POINTS'|translate}} </h3>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block">
+        <button mat-dialog-close
+          class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+          <mat-icon class="m-0 p-0 no-min-height no-min-width text-20 text-black">close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="d-block w-100 px-4 py-4 custom-vertical-height1 modern-scroll overflow-auto">
+      <div class="row justify-content-center">
+        <div class="col-lg-9 col-sm-8 col-md-10 col-11">
+          <div class="d-block w-100 mb-4">
+            <div class="d-block w-100 mb-4 text-center">
+              <h3 class="text-black mt-0 mb-2 font-weight-600">{{'VERIFY_YOUR_IDENTITY'|translate}}   </h3>
+              <p class="text-black text-14 m-0 p-0"> {{'PLEASE_CHECK_THE_EMAIL_ADDRES_DURING_SIGNUP'|translate}} </p>
+            </div>
+            <div class="d-block w-100 py-2">
+              <div class="d-block w-100">
+                <div class="d-block w-100  mb-3 text-center">
+                  <div class="row justify-content-center">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                      <div class="d-block w-100 mb-3">
+                        <h4 class="text-black text-16 font-weight-600 mt-0 mb-2 text-capitalize"> {{'WRITE_YOUR_OTP'|translate}}     </h4>
+                      </div>
+                      <div class="d-block w-100 mb-2">
+                        <ng-container *ngFor="let index of [1, 2, 3, 4, 5, 6]">
+                          <mat-form-field appearance="fill" class="otp-design-field-single mx-1">
+                            <input max="9" min="0" type="text"
+                              class="text-30 text-center font-weight-700 inpu_type_number_errow_non text-center"
+                              placeholder="0" matInput (input)="onMobileOtpCodeChange($event, index)"
+                              formControlName="phoneOtpNumber" maxlength="1">
+                          </mat-form-field>
+                        </ng-container>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-between mb-4 w-100">
+                        <div class="d-inline-block">
+                          <p class="text-13 text-danger m-0 p-0 text-start"> Error validation </p>
+                        </div>
+                        <div class="d-inline-block">
+                          <span class="text-13 text-black font-weight-600">
+                            1:00
+                          </span>
+                        </div>
+                      </div>
+                      <div class="d-block w-100">
+                        <button (click)="redeemGiftotpValidate()"  class="bg-theme-dark-color text-white text-15 px-2 py-2 lh-lg m-0 p-0 w-100 bg-theme-dark-color rounded-2">
+                           {{'SUBMIT_OTP'|translate}}
+                        </button>
+                      </div>
+                      <div class="d-flex w-100 align-items-center justify-content-center">
+                        <button class="px-3 py-2 lh-lg text-18 text-black border-bottom border-color-black">
+                           <b class="text-black text-15 font-weight-500">   {{'RESEND_OTP'|translate}}  </b>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Redeem Gift Validation Ends Here -->
+
+
+<!-- Redeem Gifts Successfull Starts Here -->
+<section *ngIf="RedeemGiftSuccessfull" class="d-block bg-white w-100 popup-parent-rtl redeem-product-size3">
+  <div class="d-block w-100">
+    <div class="d-flex w-100 align-items-center justify-content-between border-bottom  border-color-silver px-4 py-3">
+      <div class="d-inline-block">
+        <div class="d-flex align-items-center justify-content-start">
+          <div class="d-inline-block w-100">
+            <h3 class="text-black text-18 m-0 p-0 font-weight-600"> {{'REDEEM_GIFT_POINTS'|translate}} </h3>
+          </div>
+        </div>
+      </div>
+      <div class="d-inline-block">
+        <button mat-dialog-close
+          class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+          <mat-icon class="m-0 p-0 no-min-height no-min-width text-20 text-black">close</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div class="d-block w-100 px-4 py-5 custom-vertical-height1 modern-scroll overflow-auto">
+      <div class="d-block w-100 text-center mb-4 mt-3">
+        <img class="h-100-px w-auto"  src="./assets/img/gift-box.png" alt="{{'PRODUCT_IMAGE'|translate}}">
+      </div>
+      <div class="row justify-content-center mb-3">
+        <div class="col-lg-10 col-md-12 col-sm-10 col-12">
+          <div class="d-block w-100 text-center bg-color-ECFDF3 rounded-2 py-4 px-3">
+            <h4 class="text-black font-weight-600 text-16 mt-0 mb-3"> {{'THANKYOU_FOR_REDEEMING_GIFT_POINTS'|translate}}   </h4>
+            <p class="text-black text-14 font-weight-400 m-0"> {{'YOUR_GIFT_WILL_BE_DELIVERED'|translate}}   </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Redeem Gifts Successfull Ends Here -->

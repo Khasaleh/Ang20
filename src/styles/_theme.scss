@@ -1,0 +1,1125 @@
+// /*theme styles*/
+// $pink-color-one: #fde0ca;
+$pink-color-two: #6E70AC;
+// $pink-color-three: #F06112;
+
+$themeColors: (
+  default:(
+    'background': #f5f5f5,
+    'color': #3162b5
+  ),
+  pink:(
+    'background': #fde0ca,
+    'color': #6E70AC
+  ),
+  green:(
+    'backgroundGradient': linear-gradient(
+      to bottom,
+      #00945f,
+      #00c18c,
+      #00c18c,
+      #00c18c,
+      #00c18c
+    ),
+    'background': #00c18c,
+    'color': #f51243
+  ),
+  darkblue:(
+    'backgroundGradient': linear-gradient(
+      to bottom,
+      #003da7,
+      #003da6,
+      #003da6,
+      #003da6,
+      #003da6
+    ),
+    'background': #003da6,
+    'color': #6E70AC
+  ),
+  orange:(
+    'backgroundGradient': linear-gradient(
+      to bottom,
+      #c04a00,
+      #fe8f49,
+      #fe8f49,
+      #fe8f49,
+      #fe8f49
+    ),
+    'background': #fe8f49,
+    'color': #F06112
+  ),
+  lightblue:(
+    'backgroundGradient': linear-gradient(
+      to bottom,
+      #001689,
+      #3684d6,
+      #3684d6,
+      #3684d6,
+      #3684d6
+    ),
+    'background': #3684d6,
+    'color': #3785D7
+  ),
+);
+
+
+@mixin theme($themecolor) {
+  $color-map: map-get($themeColors,$themecolor);
+
+  body {
+    &.#{$themecolor} {
+      .mat-sidenav-container {
+        background-color: map-get($color-map, 'background');
+
+        .c-dashboard {
+          .tabWraper {
+            padding: 0px 13px 0;
+
+            .tabsection {
+              button {
+                color: $white;
+
+                img {
+                  fill: $white;
+                  filter: invert(100%) sepia(100%) saturate(100%)
+                    hue-rotate(160deg) brightness(100%) contrast(100%);
+                }
+
+                &:hover {
+                  background-color: $white;
+                  color: map-get($color-map, 'color') !important;
+                  border-radius: 0;
+
+                  img {
+                    fill: map-get($color-map, 'color');
+                    filter: invert(48%) sepia(79%) saturate(2476%)
+                      hue-rotate(323deg) brightness(118%) contrast(119%) !important;
+                  }
+                }
+              }
+            }
+          }
+
+          .moremenubtn {
+            color: $white !important;
+            border-color:  map-get($color-map, 'color') !important;
+            background-color:  map-get($color-map, 'color') !important;
+
+            &:hover {
+              span,
+              .mat-icon {
+                color: map-get($color-map, 'color') !important;
+              }
+            }
+
+            &[aria-controls="mat-menu-panel-1"] {
+              background-color: map-get($color-map, 'color') !important;
+              border-color: map-get($color-map, 'color') !important;
+            }
+          }
+
+          .select-dashboard {
+            background-color: $white;
+          }
+
+          .header-wrap {
+            .links {
+              ul {
+                li {
+                  button {
+                    &:hover {
+                      color: map-get($color-map, 'color') !important;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .btn-primary {
+          background-color: map-get($color-map, 'color') !important;
+          border: 1px solid map-get($color-map, 'color') !important;
+          color: $white !important;
+
+          span,
+          a,
+          .mat-icon {
+            color: $white;
+          }
+
+          &:hover {
+            color: map-get($color-map, 'color') !important;
+            background-color: $white !important;
+
+            span,
+            a,
+            .mat-icon {
+              color: map-get($color-map, 'color') !important;
+            }
+
+            img {
+              filter: invert(60%) sepia(93%) saturate(135%) hue-rotate(101deg)
+                brightness(100%) contrast(60%);
+            }
+          }
+
+          img {
+            fill: $white;
+            filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(160deg)
+              brightness(100%) contrast(100%);
+          }
+        }
+
+        .btn-icon,
+        .setting-button {
+          &:hover {
+            color: map-get($color-map, 'color') !important;
+            border-color: map-get($color-map, 'color') !important;
+
+            img {
+              fill: $white !important;
+              filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(323deg)
+                brightness(118%) contrast(119%) !important;
+            }
+          }
+        }
+
+        .eventicon {
+          fill: $white !important;
+        }
+
+        .c-all-images {
+          .showimagescontent {
+            button.editbuttion {
+              &:hover {
+                color: map-get($color-map, 'color') !important;
+              }
+            }
+          }
+        }
+
+        .c-chat-comp {
+          .phase-active {
+            background-color: map-get($color-map, 'color') !important;
+          }
+
+          .chat-item.chat-right .chat-details .chat-text {
+            background-color: map-get($color-map, 'color') !important;
+          }
+        }
+      }
+    }
+  }
+}
+@include theme(green);
+@include theme(pink);
+@include theme(default);
+@include theme(darkblue);
+@include theme(orange);
+@include theme(lightblue);
+
+
+
+// Pine Green Theme CSS Starts Here
+.theme-color-PINE_GREEN {
+  .border-light-color{
+    border-color:#d3ffe3 !important;
+  }
+  .bg-color-si,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme1-product-tabs .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after, 
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#1A765F !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover ,
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next {
+    background:#d3ffe3 !important
+  } 
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span {
+    color:#1A765F !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before{
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active ,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .wdp-ribbon-border,
+  .radio_column_visa.active ,
+  .radio_column_shipping.active {
+     border-color:#1A765F !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#1A765F !important;
+      }
+    }
+  }
+}
+// Pine Green Theme CSS Ends Here
+
+// Poppy Theme CSS Starts Here
+.theme-color-POPPY {
+  .border-light-color{
+    border-color:#ffe0e0 !important;
+  }
+  .bg-color-si, 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme1-product-tabs .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#DA3F3F !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next {
+    background:#ffe0e0 !important
+  }
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span {
+    color:#DA3F3F !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#DA3F3F !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#DA3F3F !important;
+      }
+    }
+  }
+}
+// Poppy Theme CSS Ends Here
+
+// YLNMN Theme CSS Starts Here
+.theme-color-YLNMN_BLUE {
+  .border-light-color{
+    border-color:#d5e3ff !important;
+  }
+  .bg-color-si , 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#264888 !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next{
+    background:#d5e3ff !important
+  }
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span {
+    color:#264888 !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label  {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#264888 !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#264888 !important;
+      }
+    }
+  }
+}
+// YLNMN Theme CSS Ends Here
+
+// Magenta Theme CSS Starts Here
+.theme-color-MAGENTA {
+  .border-light-color{
+    border-color:#ffd2e8 !important;
+  }
+  .bg-color-si , 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#FE218B !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next {
+    background:#ffd2e8 !important
+  } 
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span{
+    color:#FE218B !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active ,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#FE218B !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#FE218B !important;
+      }
+    }
+  }
+}
+// Magenta Theme CSS Ends Here
+
+// Harvest Gold Theme CSS Starts Here
+.theme-color-HARVEST_GOLD {
+  .border-light-color{
+    border-color:#fff1d6 !important;
+  }
+  .bg-color-si , 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#E39701 !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next {
+    background:#fff1d6 !important
+  } 
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span {
+    color:#E39701 !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active ,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#E39701 !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#E39701 !important;
+      }
+    }
+  }
+}
+// Harvest Gold Theme CSS Ends Here
+
+// Reseda Green Theme CSS Starts Here
+.theme-color-RESEDA_GREEN {
+  .border-light-color{
+    border-color:#f1ffed !important;
+  }
+  .bg-color-si , 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#71816D !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next {
+    background:#f1ffed !important
+  } 
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span {
+    color:#71816D !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label  {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active ,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#71816D !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#71816D !important;
+      }
+    }
+  }
+}
+// Reseda Green Theme CSS Ends Here
+
+// Plum Theme CSS Starts Here
+.theme-color-PLUM {
+  .border-light-color{
+    border-color:#ffdcfc !important;
+  }
+  .bg-color-si , 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#9B5094 !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next {
+    background:#ffdcfc !important
+  } 
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span {
+    color:#9B5094 !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active ,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#9B5094 !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#9B5094 !important;
+      }
+    }
+  }
+}
+// Plum Theme CSS Ends Here
+
+// Cool Grey CSS Starts Here
+.theme-color-COOL_GRAY {
+  .border-light-color{
+    border-color:#e8e4ff !important;
+  }
+  .bg-color-si , 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#6f6a8a !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next {
+    background:#e8e4ff !important
+  } 
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span {
+    color:#9A94BC !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active ,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#9A94BC !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#9A94BC !important;
+      }
+    }
+  }
+}
+// Cool Grey CSS Ends Here
+
+// Mint Green CSS Starts Here
+.theme-color-MINT_GREEN {
+  .border-light-color{
+    border-color:#e1fff7 !important;
+  }
+   .bg-color-si , 
+   .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#669f80 !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next {
+    background:#e1fff7 !important
+  } 
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span {
+    color:#669f80 !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active ,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#669f80 !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#669f80 !important;
+      }
+    }
+  }
+}
+// Mint Green CSS Ends Here
+
+// China Rose CSS Starts Here
+.theme-color-CHINA_ROSE{
+  .border-light-color{
+    border-color:#fff0f3 !important;
+  }
+  .bg-color-si , 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#b56576 !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next {
+    background:#fff0f3 !important
+  } 
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span{
+    color:#b56576 !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active ,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#b56576 !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#b56576 !important;
+      }
+    }
+  }
+}
+// China Rose CSS Ends Here
+
+// Duke Blue CSS Starts Here
+.theme-color-DUKE_BLUE {
+  .border-light-color{
+    border-color:#eadeff !important;
+  }
+  .bg-color-si , 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#390099 !important
+  }
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next{
+    background:#eadeff !important
+  }
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span {
+    color:#390099 !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#390099 !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#390099 !important;
+      }
+    }
+  }
+}
+// Duke Blue CSS ends Here
+
+// Deep Skyblue CSS Starts Here
+.theme-color-DEEP_SKY_BLUE {
+  .border-light-color{
+    border-color:#d3f4ff !important;
+  }
+  .bg-color-si , 
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-body-wrapper {
+    background:#ededed !important;
+  }
+  .bg-theme-dark-color,
+  .bg-theme-dark-color-hover:hover,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active,
+  .pdp-description-tabs.theme4-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active,
+  .attribute-bg-black-color-white,
+  .container_radio .checkmark:after,
+  .slider-dots-style .owl-dots .owl-dot.active span {
+    background:#00b7f4 !important
+  } 
+  .bg-theme-light-color,
+  .bg-theme-light-color-hover:hover , 
+  .slider-left-right-arrows .owl-nav .owl-prev,
+  .slider-left-right-arrows .owl-nav .owl-next{
+    background:#d3f4ff !important
+  }
+  .text-color-dark,
+  .pdp-description-tabs.theme6-product-tabs .mat-mdc-tab-header .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme5-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme14-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .rating-star-theme-color span{
+    color:#00BBF9 !important
+  }
+  .text-color-w,
+  .pdp-description-tabs.theme1-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme4-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mdc-tab--active .mdc-tab__text-label {
+    color:#ffffff !important;
+  }
+  .text-color-b , .breadcrumb-item:before {
+    color:#000000 !important;
+  }
+  .bg-color-b {
+    background:#000000 !important;
+  }
+  
+  .border-dark-color ,
+  .border-dark-color-hover:hover , 
+  .pdp-description-tabs.theme3-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme7-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label,
+  .pdp-description-tabs.theme13-product-tabs  .mat-mdc-tab-header  .mat-mdc-tab-labels .mat-mdc-tab.mdc-tab--active ,
+  .wdp-ribbon-two:before,
+  .addshippingaddress_panel     .mat-expansion-panel-body ,
+  .container_radio input:checked ~ .checkmark ,
+  .billling_tab_ads .mat-mdc-tab-header .mat-tab-label-container .mat-tab-label[aria-selected=true], 
+  .radio_column.active ,
+  .radio_column_another_step.active ,
+  .radio_column_payment.active ,
+  .radio_column_visa.active ,
+  .wdp-ribbon-border,
+  .radio_column_shipping.active {
+     border-color:#00BBF9 !important;
+  }
+  .radio_column,
+  .radio_column_another_step,
+  .radio_column_payment,
+  .radio_column_visa,
+  .radio_column_shipping{
+    &.active{
+     .container_radio input:checked ~ .checkmark {
+      border-color:#00BBF9 !important;
+      }
+    }
+  }
+}
+// Deep Skyblue CSS Ends Here
+
+ 

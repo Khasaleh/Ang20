@@ -1,0 +1,2490 @@
+  <!-- Master Theme Starts Here -->
+  <div *ngIf="activeTheme == 'FourthTheme'" class="d-block w-100 h-100 product-hover-style1 rounded-2 position-relative ">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+            <button *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+              <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+              {{'QUICKVIEW'|translate}}
+              </button>
+              <button *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                {{'QUICKVIEW'|translate}}
+              </button>
+          </div>
+          <div class="d-flex align-items-center justify-content-end position-absolute top-0 end-0 mt-1 me-1">
+            <button *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center rounded-circle border border-color-silver ms-2 px-2 py-2 bg-white">
+              <i class="bi bi-heart text-18 text-black no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center rounded-circle border border-color-silver ms-2 px-2 py-2 bg-white">
+              <i class="bi bi-heart-fill text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+          </div>
+
+
+
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" (click)="navigateTOProduct()">
+          <div class="d-block w-100 mb-2">
+            <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize">  {{ getProductName() | titlecase }} </h3>
+          </div>
+          <div class="d-flex align-items-center justify-content-start flex-wrap w-100 mb-2">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+             <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+          </div>
+          <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-flex align-items-center justify-content-start w-100">
+            <div class="d-flex align-items-center justify-content-start">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Master Theme Ends Here -->
+
+  <!-- Retail Theme 2 Starts Here -->
+  <div *ngIf="activeTheme == 'RetailTheme2'" class="d-block w-100 h-100 product-hover-style1 product-box-theme2 hover-parent-wrapper rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image border-0 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="position-absolute hover-inner top-0 end-0 px-2 py-2">
+            <!-- Quickview Btn Starts Here -->
+            <div class="d-block mb-2">
+            <button matTooltipPosition="left" matTooltip="{{'QUICKVIEW'| translate}}" *ngIf="isQuickView"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" (click)="pdppopup(product?.id ?? product?.productId)"  class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 p-2 bg-white rounded-circle">
+              <i class="bi bi-eye-fill text-color-dark text-20 lh-tiny no-min-height no-min-width"></i>
+            </button>
+            </div>
+            <!-- Quickview Btn Ends Here -->
+            <!-- Wishlsit Btn Starts Here -->
+            <div class="d-block">
+              <button matTooltipPosition="left" matTooltip="{{'WISHLIST'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="w-100 d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 p-2 bg-white rounded-circle">
+                <i class="bi bi-shuffle text-20 text-black no-min-height no-min-width lh-tiny m-0 p-0"></i>
+              </button>
+              <button matTooltipPosition="left" matTooltip="{{'WISHLIST'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="w-100 d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 p-2 bg-white rounded-circle">
+                <i class="bi bi-heart-fill text-20 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+              </button>
+            </div>
+             <!-- Wishlsit Btn Ends Here -->
+          </div>
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" (click)="navigateTOProduct()">
+          <div class="d-block w-100 mb-2 text-center">
+            <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize"> {{ getProductName() | titlecase }} </h3>
+          </div>
+          <div class="d-flex align-items-center justify-content-center flex-wrap w-100 mb-2">
+             <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-block w-100">
+            <div class="d-flex align-items-center justify-content-center w-100">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 2 Ends Here -->
+
+  <!-- Retail Theme 3 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme3'" class="d-block w-100 h-100 product-hover-style1 product-box-theme2 hover-parent-wrapper rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image border-0 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+            <button *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+              <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+              {{'QUICKVIEW'|translate}}
+              </button>
+              <button *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                {{'QUICKVIEW'|translate}}
+              </button>
+          </div>
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" >
+          <div class="d-block w-100 mb-2 text-start">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-inline-block w-100" (click)="navigateTOProduct()">
+                <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize"> {{ getProductName() | titlecase }} </h3>
+              </div>
+              <div class="d-inline-block min-width-clear">
+            <div class="d-block">
+              <button matTooltipPosition="left" matTooltip="{{'WISHLIST'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="w-100 d-flex align-items-center justify-content-center text-15 font-weight-500 p-2 bg-white rounded-circle">
+                <i class="bi bi-heart text-20 text-black no-min-height no-min-width lh-tiny m-0 p-0"></i>
+              </button>
+              <button matTooltipPosition="left" matTooltip="{{'WISHLIST'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="w-100 d-flex align-items-center justify-content-center text-15 font-weight-500 p-2 bg-white rounded-circle">
+                <i class="bi bi-heart-fill text-20 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+              </button>
+            </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-start flex-wrap w-100 mb-2" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-block w-100" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start w-100">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 3 Ends Here -->
+
+  <!-- Retail Theme 4 Starts Here -->
+  <div *ngIf="activeTheme == 'RetailTheme4'" class="d-block w-100 h-100 product-hover-style1 product-box-theme4 hover-parent-wrapper rounded-2 position-relative border border-style-light h-100">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="align-items-center bg-theme-dark-color d-flex font-weight-500 justify-content-center ms-1 mt-1 ng-star-inserted position-absolute py-1 rounded-2 sale-round-tag start-0 text-14 text-black text-color-w text-italic top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image border-0 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 product-box-img w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="w-auto position-absolute top-40 z-index-99 theme-4-product-actions">
+            <div class="d-block">
+              <div class="d-block mb-2">
+                <button matTooltipPosition="left" matTooltip="{{'QUICKVIEW'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-dark-color rounded-start-pill">
+                  <i class="bi bi-bag-plus-fill text-white text-20 lh-tiny no-min-height no-min-width"></i>
+                  </button>
+                  <button matTooltipPosition="left" matTooltip="{{'QUICKVIEW'| translate}}"
+                  matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-dark-color rounded-start-pill">
+                    <i class="bi bi-bag-plus-fill text-white text-20 lh-tiny no-min-height no-min-width"></i>
+                  </button>
+              </div>
+              <div class="d-block">
+                <button matTooltipPosition="left" matTooltip="{{'WISHLIST'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-dark-color text-white rounded-start-pill">
+                  <i class="bi bi-heart text-20 text-white no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                </button>
+                <button matTooltipPosition="left" matTooltip="{{'WISHLIST'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="w-100 d-flex align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-dark-color text-white rounded-start-pill">
+                  <i class="bi bi-heart-fill text-20 text-white no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" >
+          <!-- Review Stars Starts Here -->
+          <div class="d-block w-100 pb-2" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start w-100">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+          <!-- Review Stars Ends Here -->
+          <!-- Product Name Starts Here -->
+          <div class="d-block w-100 mb-2 text-start">
+            <div class="d-flex align-items-center justify-content-between w-100">
+              <div class="d-inline-block w-100" (click)="navigateTOProduct()">
+                <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize">  {{ getProductName() | titlecase }}</h3>
+              </div>
+            </div>
+          </div>
+          <!-- Product Name Ends Here -->
+          <!-- Product Pricings Starts Here -->
+          <div class="d-flex align-items-center justify-content-start w-100 mb-2" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+          <!-- Product Pricings Ends Here -->
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 4 Ends Here -->
+
+   <!-- Retail Theme 5 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme5'" class="d-block w-100 h-100 product-box-theme5 hover-parent-wrapper border rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+        <span  *ngIf="product?.salePrice" class="wdp-ribbon bg-theme-dark-color text-white text-14 wdp-ribbon-two py-1 px-3 ms-4 mt-2 position-absolute top-0 start-0 z-index-99">
+          {{'SALE'|translate}}
+        </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image border-0 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <!-- Product Action Buttons Starts Here -->
+          <div class="d-block position-absolute bottom-0 pb-3 w-100">
+            <div class="d-flex align-items-center justify-content-center">
+
+              <div class="d-inline-block product-box-theme5-actions px-2">
+                <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off align-items-center justify-content-center px-3 py-2 bg-theme-dark-color rounded-2">
+                  <i class="bi bi-bag-plus-fill text-18 text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                  </button>
+                  <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+                  matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off align-items-center justify-content-center px-3 py-2 bg-theme-dark-color rounded-2">
+                    <i class="bi bi-bag-plus-fill text-18 text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                  </button>
+              </div>
+              <div class="d-inline-block product-box-theme5-actions px-2">
+                <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center px-3 py-2 bg-theme-dark-color rounded-2">
+                  <i class="bi bi-heart text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                </button>
+                <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center px-3 py-2 bg-theme-dark-color rounded-2">
+                  <i class="bi bi-heart-fill text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                </button>
+              </div>
+
+
+            </div>
+          </div>
+           <!-- Product Action Buttons Ends Here -->
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" >
+          <div class="d-block w-100 mb-2 text-start">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-inline-block w-100" (click)="navigateTOProduct()">
+                <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize">  {{ getProductName() | titlecase }} </h3>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-start w-100 mb-2" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-block w-100" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start w-100">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 5 Ends Here -->
+
+   <!-- Retail Theme 6 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme6'" class="d-block w-100 h-100 product-hover-style6 h-100 bg-grey2 product-box-theme6 hover-parent-wrapper rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card bg-grey2 pt-5">
+        <!-- Product Name & Sale Tag Starts Here -->
+        <div class="d-flex w-100 justify-content-between align-items-center z-index-99 px-3 py-3 position-absolute top-0 start-0">
+          <div class="d-inline-block w-100" (click)="navigateTOProduct()">
+            <h3 class="text-black m-0 font-weight-600 text-14 mob-text-14 text-capitalize">
+              {{ (getProductName() | titlecase).length > 35 ? (getProductName() | titlecase | slice:0:35) + '...' : (getProductName() | titlecase) }}
+            </h3>
+          </div>
+          <div *ngIf="product?.salePrice" class="d-inline-block min-width-clear">
+            <span  class="bg-black end-0 font-weight-400 me-1 mt-1 d-inline-block px-3 py-1 rounded-pill text-13 text-white top-0 z-index-1">
+              {{'SALE'|translate}}
+            </span>
+          </div>
+        </div>
+        <!-- Product Name & Sale Tag Ends Here -->
+        <!-- Product Image & Actions Starts Here -->
+        <div class="plp_pr_image bg-grey2 py-1 border-0 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-block position-absolute bottom-0 pb-3 w-100">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="d-inline-block product-box-theme6-actions1 px-2">
+                <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="bg-white quick-view-mobile-off border border-color-silver rounded-circle w-45-px h-45-px d-flex align-items-center justify-content-center">
+                  <i class="bi bi-bag-plus-fill text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                  </button>
+                  <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+                  matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="bg-white quick-view-mobile-off border border-color-silver rounded-circle w-45-px h-45-px d-flex align-items-center justify-content-center">
+                    <i class="bi bi-bag-plus-fill text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                  </button>
+              </div>
+              <div class="d-inline-block product-box-theme6-actions2 px-2">
+                <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="bg-white border border-color-silver rounded-circle w-45-px h-45-px d-flex align-items-center justify-content-center">
+                  <i class="bi bi-heart text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                </button>
+                <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="bg-white border border-color-silver rounded-circle w-45-px h-45-px d-flex align-items-center justify-content-center">
+                  <i class="bi bi-heart-fill text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                </button>
+              </div>
+              <div class="d-inline-block product-box-theme6-actions3 px-2">
+                <button (click)="navigateTOProduct()" matTooltipPosition="above" matTooltip="{{'VIEW_IMG'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" class="bg-white border border-color-silver rounded-circle w-45-px h-45-px d-flex align-items-center justify-content-center">
+                  <i class="bi bi-eye-fill text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Product Image & Actions Ends Here -->
+        <!-- Product Price & Reviews Starts Here -->
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl px-2 pb-2" >
+          <div class="d-flex flex-wrap w-100 align-items-center justify-content-between">
+            <div class="d-flex align-items-center justify-content-start">
+              <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+                <!-- <div class="d-inline-block me-2">
+                  <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+                </div> -->
+                <div class="d-inline-block me-3">
+                  <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                  <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                    <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                      {{'PRICES_VARY_PER_ITEM'|translate}}
+                  </h5>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+                <!-- <div class="d-inline-block me-2">
+                  <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+                </div> -->
+                <div class="d-inline-block me-3">
+                  <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                  <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                    <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                      {{'PRICES_VARY_PER_ITEM'|translate}}
+                  </h5>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+                <div class="d-inline-block">
+                  <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+                <div class="d-inline-block me-2">
+                  <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+                </div>
+                <div class="d-inline-block">
+                  <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+                <div class="d-inline-block">
+                  <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+                <div class="d-inline-block me-2">
+                  <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+                </div>
+                <div class="d-inline-block">
+                  <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+                </div>
+              </div>
+               <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+            </div>
+            <div class="d-inline-block min-width-clear">
+              <div class="d-flex align-items-center justify-content-start w-100">
+                <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+                matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+                <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Product Price & Reviews Ends Here -->
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 6 Ends Here -->
+
+   <!-- Retail Theme 7 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme7'" class="d-block w-100 h-100 product-box-theme7 hover-parent-wrapper rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100 bg-grey2 position-relative overflow-hidden">
+      <span *ngIf="product?.salePrice"  class="wdp-ribbon wdp-ribbon-six position-absolute w-90-px h-90-px top-0 start-0 py-2 text-center rounded-2 bg-theme-dark-color">
+        <span class="wdp-ribbon-inner-wrap">
+          <span class="wdp-ribbon-border"></span>
+          <span class="wdp-ribbon-text text-white font-weight-400 text-15 text-start ps-3"> {{'SALE'|translate}} </span>
+        </span>
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image border-0 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" >
+          <div class="d-block w-100 mb-3 text-start">
+            <div class="d-flex align-items-center justify-content-start w-100 mb-3">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-start w-100">
+              <div class="d-inline-block w-100" (click)="navigateTOProduct()">
+                <h3 class="text-black m-0 font-weight-600 text-16 mob-text-14 text-capitalize"> {{ getProductName() | titlecase }} </h3>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-start w-100 mb-2" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+        </div>
+      </div>
+      <div class="position-absolute hover-child-wrapper bottom-0 pb-3 px-4 start-0 w-100 h-100 bg-white-80 d-flex flex-column align-items-center justify-content-center">
+        <div class="d-block w-100 py-1">
+          <button *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="w-100 quick-view-mobile-off text-capitalize d-flex align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-light-color rounded-pill border border-dark-color">
+            <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+            {{'QUICKVIEW'|translate}}
+            </button>
+            <button *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="w-100 quick-view-mobile-off text-capitalize d-flex align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-light-color rounded-pill border border-dark-color">
+              <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+              {{'QUICKVIEW'|translate}}
+            </button>
+        </div>
+        <div class="d-block w-100 py-1">
+          <button (click)="navigateTOProduct()" class="w-100 text-capitalize d-flex align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-black rounded-pill text-white">
+            <i class="bi bi-box-seam-fill text-white text-18 lh-tiny no-min-height no-min-width me-2"></i>
+            {{'VIEW_DETAILS'|translate}}
+          </button>
+        </div>
+        <div class="d-block w-100 py-1">
+          <button *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="w-100 text-capitalize d-flex align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-dark-color rounded-pill text-white">
+            <i class="bi bi-heart text-white text-18 lh-tiny no-min-height no-min-width me-2"></i>
+            {{'ADD_TO_WISHLIST'|translate}}
+          </button>
+          <button *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="w-100 text-capitalize d-flex align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-dark-color rounded-pill text-white">
+            <i class="bi bi-heart-fill text-white text-18 lh-tiny no-min-height no-min-width me-2"></i>
+            {{'ADD_TO_WISHLIST'|translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 7 Ends Here -->
+
+   <!-- Retail Theme 8 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme8'" class="d-block w-100 h-100 product-box-theme8 border-color-silver border border-dark-color-hover hover-parent-wrapper rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="bg-theme-dark-color end-0 font-weight-500 me-1 mt-1 position-absolute px-3 py-1 rounded-1 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image parent-hover-transit border-0 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="child-block-transit transition-all opacity-0 visibility-hidden position-absolute bottom-0 start-0 pb-3 w-100 h-100 bg-black-90">
+            <div class="d-flex align-items-center justify-content-center w-100 h-100">
+
+              <div class="d-inline-block px-2">
+                <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off align-items-center justify-content-center w-50-px h-50-px bg-theme-dark-color rounded-circle">
+                  <i class="bi bi-bag-plus-fill text-18 text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                  </button>
+                  <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+                  matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off align-items-center justify-content-center w-50-px h-50-px bg-theme-dark-color rounded-circle">
+                    <i class="bi bi-bag-plus-fill text-18 text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                  </button>
+              </div>
+              <div class="d-inline-block px-2">
+                <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center w-50-px h-50-px bg-theme-dark-color rounded-circle">
+                  <i class="bi bi-heart text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                </button>
+                <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center w-50-px h-50-px bg-theme-dark-color rounded-circle">
+                  <i class="bi bi-heart-fill text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                </button>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" >
+          <div class="d-block w-100 mb-2 text-center">
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="d-inline-block w-100 text-center" (click)="navigateTOProduct()">
+                <h3 class="text-black m-0 font-weight-700 text-16 mob-text-15 text-capitalize">  {{ getProductName() | titlecase }} </h3>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center w-100 mb-2" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-block w-100" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-center w-100">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 8 Ends Here -->
+
+   <!-- Retail Theme 9 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme9'" class="d-block w-100 h-100 product-hover-style1 product-box-theme9 hover-parent-wrapper rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image border-0 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+            <button *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-theme-light-color text-black bg-theme-dark-color-hover text-white-hover rounded-3">
+              <i class="bi bi-bag-plus-fill text-18 lh-tiny no-min-height no-min-width me-2"></i>
+              {{'QUICKVIEW'|translate}}
+              </button>
+              <button *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-theme-light-color text-black bg-theme-dark-color-hover text-white-hover rounded-3">
+                <i class="bi bi-bag-plus-fill text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                {{'QUICKVIEW'|translate}}
+              </button>
+          </div>
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" >
+          <div class="d-block w-100 mb-2 text-start">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-inline-block w-100" (click)="navigateTOProduct()">
+                <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize">  {{ getProductName() | titlecase }} </h3>
+              </div>
+              <div class="d-inline-block min-width-clear">
+            <div class="d-block">
+              <button matTooltipPosition="left" matTooltip="{{'WISHLIST'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="w-100 d-flex align-items-center justify-content-center text-15 font-weight-500 p-2 bg-white rounded-circle">
+                <i class="bi bi-heart text-20 text-black no-min-height no-min-width lh-tiny m-0 p-0"></i>
+              </button>
+              <button matTooltipPosition="left" matTooltip="{{'WISHLIST'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="w-100 d-flex align-items-center justify-content-center text-15 font-weight-500 p-2 bg-white rounded-circle">
+                <i class="bi bi-heart-fill text-20 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+              </button>
+            </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-start flex-wrap w-100 mb-2" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-block w-100" (click)="navigateTOProduct()">
+            <div class="d-flex align-items-center justify-content-start w-100">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 9 Ends Here -->
+
+   <!-- Retail Theme 10 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme10'" class="d-block w-100 h-100 product-hover-style1 product-box-theme10 parent-hover-slide rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image border-0 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative overflow-hidden">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-flex align-items-center child-slide-transit position-absolute bottom-0 start-0 justify-content-center w-100 bg-black-90">
+            <div class="d-inline-block me-2">
+              <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off align-items-center justify-content-center py-3">
+                <i class="bi bi-bag-plus-fill text-16 text-white text-15 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                <span class="d-inline-block font-weight-500 text-14 ps-2 text-white">
+                  {{'QUICKVIEW'| translate}}
+                </span>
+                </button>
+                <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off align-items-center justify-content-center py-3">
+                  <i class="bi bi-bag-plus-fill text-16 text-white text-15 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                  <span class="d-inline-block font-weight-500 text-14 ps-2 text-white">
+                    {{'QUICKVIEW'| translate}}
+                  </span>
+                </button>
+            </div>
+            <div class="d-inline-block">
+              <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center py-3">
+                <i class="bi bi-heart text-white text-15 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                <span class="d-inline-block font-weight-500 text-14 ps-2 text-white">
+                  {{'WISHLIST'| translate}}
+                </span>
+              </button>
+              <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center py-3">
+                <i class="bi bi-heart-fill text-white text-15 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+                <span class="d-inline-block font-weight-500 text-14 ps-2 text-white">
+                  {{'WISHLIST'| translate}}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" >
+          <div class="d-block w-100 mb-2 text-start">
+              <div class="d-inline-block w-100" (click)="navigateTOProduct()">
+                <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize">
+                  {{ (getProductName() | titlecase).length > 35 ? (getProductName() | titlecase | slice:0:35) + '...' : (getProductName() | titlecase) }}
+
+                  </h3>
+              </div>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-between w-100"  (click)="navigateTOProduct()">
+              <div class="d-flex flex-wrap align-items-center">
+                <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+                  <!-- <div class="d-inline-block me-2">
+                    <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+                  </div> -->
+                  <div class="d-inline-block me-3">
+                    <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                    <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                      <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                        {{'PRICES_VARY_PER_ITEM'|translate}}
+                    </h5>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+                  <!-- <div class="d-inline-block me-2">
+                    <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+                  </div> -->
+                  <div class="d-inline-block me-3">
+                    <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                    <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                      <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                        {{'PRICES_VARY_PER_ITEM'|translate}}
+                    </h5>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+                  <div class="d-inline-block">
+                    <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+                  <div class="d-inline-block me-2">
+                    <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+                  </div>
+                  <div class="d-inline-block">
+                    <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+                  <div class="d-inline-block">
+                    <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+                  <div class="d-inline-block me-2">
+                    <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+                  </div>
+                  <div class="d-inline-block">
+                    <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+                  </div>
+                </div>
+                 <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+              </div>
+              <div class="d-inline-block">
+                <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+                matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+                <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 10 Ends Here -->
+
+  <!-- Retail Theme 11 Starts Here -->
+  <div *ngIf="activeTheme == 'RetailTheme11'" class="d-block w-100 h-100 parent-hover-transit  product-hover-style1 border rounded-2 position-relative">
+  <div class="text-decoration-none d-block w-100">
+  <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+  {{'SALE'|translate}}
+  </span>
+  <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+  <div class="plp_pr_image border-0 bg-grey2 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+  <a class="text-decoration-none d-block w-100">
+  <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+  </a>
+  <div class="d-inline-block position-absolute top-0 end-0 mt-2 me-2">
+    <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+    matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center w-38-px h-38-px bg-white rounded-circle">
+      <i class="bi bi-heart text-black text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+    </button>
+    <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+    matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center w-38-px h-38-px bg-white rounded-circle">
+      <i class="bi bi-heart-fill text-black text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+    </button>
+  </div>
+  </div>
+  <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl  position-relative" >
+    <div class="child-block-transit d-lg-block d-md-block d-sm-none d-none bg-white transition-all opacity-0 visibility-hidden position-absolute bottom-0 start-0 w-100 h-100">
+      <div class="d-flex w-100 h-100 align-items-center justify-content-center">
+        <button *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off align-items-center justify-content-center px-3 py-2 bg-black border border-color-silver rounded-2">
+          <i class="bi bi-bag-plus-fill text-18 text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+          <span class="d-inline-block text-white font-weight-500 ms-2 text-14">
+           {{'SEE_QUICKVIEW'| translate}}
+          </span>
+      </button>
+          <button *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off align-items-center justify-content-center px-3 py-2 bg-black border border-color-silver rounded-2">
+            <i class="bi bi-bag-plus-fill text-18 text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            <span class="d-inline-block text-white font-weight-500 ms-2 text-14">
+               {{'SEE_QUICKVIEW'| translate}}
+            </span>
+          </button>
+      </div>
+    </div>
+    <div class="d-block w-100 mb-2 text-start">
+    <div class="d-flex align-items-center justify-content-center w-100">
+      <div class="d-inline-block w-100" (click)="navigateTOProduct()">
+        <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize text-center">
+          {{ (getProductName() | titlecase).length > 35 ? (getProductName() | titlecase | slice:0:35) + '...' : (getProductName() | titlecase) }}
+         </h3>
+      </div>
+    </div>
+    </div>
+    <div class="d-flex align-items-center justify-content-center w-100 mb-2" (click)="navigateTOProduct()">
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+        <!-- <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div> -->
+        <div class="d-inline-block me-3">
+          <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+          <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+            <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+              {{'PRICES_VARY_PER_ITEM'|translate}}
+          </h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+        <!-- <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div> -->
+        <div class="d-inline-block me-3">
+          <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+          <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+            <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+              {{'PRICES_VARY_PER_ITEM'|translate}}
+          </h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+        <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div>
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+        <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div>
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+       <!-- Soldout Tag Starts Here -->
+       <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+        <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+     </div>
+     <!-- Soldout Tag Ends Here -->
+    </div>
+    <div class="d-block w-100" (click)="navigateTOProduct()">
+    <div class="d-flex align-items-center justify-content-center w-100">
+      <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+      matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+      <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+    </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+  <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+  <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+  </div>
+  </div>
+  <!-- Retail Theme 11 Ends Here -->
+
+  <!-- Retail Theme 12 Starts Here -->
+  <div *ngIf="activeTheme == 'RetailTheme12'" class="d-block w-100 h-100 product-box-theme5 rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+    <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+    {{'SALE'|translate}}
+    </span>
+    <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+    <div class="plp_pr_image border-0 bg-grey2 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+    <a class="text-decoration-none d-block w-100">
+    <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+    </a>
+     <!-- Product Action Buttons Starts Here -->
+     <div class="d-block position-absolute bottom-0 w-100">
+      <div class="d-flex align-items-start justify-content-start flex-wrap">
+        <div class="d-inline-block product-box-theme5-actions me-2">
+          <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+          matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off align-items-center justify-content-center px-3 py-2 bg-white border border-color-silver rounded-2">
+            <i class="bi bi-bag-plus-fill text-18 text-black text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off align-items-center justify-content-center px-3 py-2 bg-white border border-color-silver rounded-2">
+              <i class="bi bi-bag-plus-fill text-18 text-black text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+        </div>
+        <div class="d-inline-block product-box-theme5-actions me-2">
+          <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+          matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center px-3 py-2 bg-white border border-color-silver rounded-2">
+            <i class="bi bi-heart text-black text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+          </button>
+          <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+          matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center px-3 py-2 bg-white border border-color-silver rounded-2">
+            <i class="bi bi-heart-fill text-black text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+     <!-- Product Action Buttons Ends Here -->
+    </div>
+    <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" >
+      <div class="d-block w-100" (click)="navigateTOProduct()">
+        <div class="d-flex align-items-center justify-content-center w-100">
+          <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+          matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+          <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+        </div>
+        </div>
+    <div class="d-block w-100 mb-2 text-center">
+    <div class="d-flex align-items-center justify-content-center">
+      <div class="d-inline-block w-100" (click)="navigateTOProduct()">
+        <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize text-center">  {{ getProductName() | titlecase }}</h3>
+      </div>
+    </div>
+
+    </div>
+    <div class="d-flex align-items-center justify-content-center w-100 mb-2 text-center" (click)="navigateTOProduct()">
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+        <!-- <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div> -->
+        <div class="d-inline-block me-3">
+          <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+          <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+            <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+              {{'PRICES_VARY_PER_ITEM'|translate}}
+          </h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+        <!-- <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div> -->
+        <div class="d-inline-block me-3">
+          <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+          <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+            <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+              {{'PRICES_VARY_PER_ITEM'|translate}}
+          </h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+        <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div>
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+        <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div>
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+       <!-- Soldout Tag Starts Here -->
+       <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+        <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+     </div>
+     <!-- Soldout Tag Ends Here -->
+    </div>
+
+    </div>
+    </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+    <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+    <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 12 Ends Here -->
+
+  <!-- Retail Theme 13 Starts Here -->
+  <div *ngIf="activeTheme == 'RetailTheme13'" class="d-block w-100 h-100 product-hover-style1 rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+    <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+    <div class="d-block w-100 mb-1" (click)="navigateTOProduct()">
+        <div class="d-flex align-items-center justify-content-start w-100">
+          <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+          matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+          <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+        </div>
+    </div>
+    <div class="d-block w-100" (click)="navigateTOProduct()">
+        <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize h-36-px d-lg-block d-md-block d-sm-block d-none">
+          {{ (getProductName() | titlecase).length > 35 ? (getProductName() | titlecase | slice:0:35) + '...' : (getProductName() | titlecase) }}
+         </h3>
+          <h3 class="text-black m-0 font-weight-600 text-14 mob-text-14 text-capitalize h-36-px d-lg-none d-md-none d-sm-none d-block">
+          {{ (getProductName() | titlecase).length > 20 ? (getProductName() | titlecase | slice:0:20) + '...' : (getProductName() | titlecase) }}
+         </h3>
+    </div>
+    <div class="plp_pr_image border-0 bg-grey2 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+        </span>
+      <a class="text-decoration-none d-block w-100">
+    <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+    </a>
+    </div>
+    <div class="d-flex align-items-center justify-content-between w-100 py-3 px-2 cursor-pointer popup-parent-rtl" >
+    <div class="d-flex align-items-center flex-wrap mb-2" (click)="navigateTOProduct()">
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+        <!-- <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div> -->
+        <div class="d-inline-block me-3">
+          <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+          <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+            <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+              {{'PRICES_VARY_PER_ITEM'|translate}}
+          </h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+        <!-- <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div> -->
+        <div class="d-inline-block me-3">
+          <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+          <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+            <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+              {{'PRICES_VARY_PER_ITEM'|translate}}
+          </h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+        <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div>
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+      <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+        <div class="d-inline-block me-2">
+          <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+        </div>
+        <div class="d-inline-block">
+          <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+        </div>
+      </div>
+       <!-- Soldout Tag Starts Here -->
+       <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+        <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+     </div>
+     <!-- Soldout Tag Ends Here -->
+    </div>
+    <div class="d-inline-block">
+      <div class="d-flex align-items-center justify-content-end">
+        <div class="d-inline-block me-2">
+          <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+          matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off align-items-center justify-content-center w-38-px h-38-px rounded-circle bg-black">
+            <i class="bi bi-bag-plus-fill text-16 text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"  *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off align-items-center justify-content-center  w-38-px h-38-px rounded-circle bg-black">
+              <i class="bi bi-bag-plus-fill text-16 text-white text-18 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+        </div>
+        <div class="d-inline-block">
+          <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+          matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center  w-38-px h-38-px rounded-circle bg-theme-dark-color">
+            <i class="bi bi-heart text-white text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+          </button>
+          <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+          matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center  w-38-px h-38-px rounded-circle bg-theme-dark-color">
+            <i class="bi bi-heart-fill text-white text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+    </div>
+    </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+    <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+    <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 13 Ends Here -->
+
+   <!-- Retail Theme 14 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme14'" class="d-block w-100 h-100 product-hover-style1 border border-color-silver border-dark-color-hover rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+    <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+      <div class="plp_pr_image border-0 bg-grey2 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+        <span *ngIf="product?.salePrice" class="bg-theme-dark-color start-0 font-weight-400 ms-1 mt-1 position-absolute px-1 py-1 rounded-2 text-14 text-white top-0 z-index-1">
+          {{'SALE'|translate}}
+          </span>
+          <div class="position-absolute top-0 end-0 me-2 mt-2">
+            <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center  w-38-px h-38-px rounded-circle bg-white">
+              <i class="bi bi-heart text-black text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center  w-38-px h-38-px rounded-circle bg-theme-dark-color">
+              <i class="bi bi-heart-fill text-white text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+          </div>
+        <a class="text-decoration-none d-block w-100">
+      <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+      </a>
+      <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+        <button *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+          <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+          {{'QUICKVIEW'|translate}}
+          </button>
+          <button *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+            <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+            {{'QUICKVIEW'|translate}}
+          </button>
+      </div>
+      </div>
+      <div class="d-block w-100 bg-white text-center py-2" (click)="navigateTOProduct()">
+        <div class="d-block w-100 mb-1 border-top border-color-silver" (click)="navigateTOProduct()">
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+            matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+            <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+          </div>
+          <div class="d-block w-100 my-2">
+            <h3 class="text-black m-0 font-weight-500 text-15 mob-text-14 text-center text-capitalize h-36-px">
+              {{ (getProductName() | titlecase).length > 35 ? (getProductName() | titlecase | slice:0:35) + '...' : (getProductName() | titlecase) }}
+              </h3>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-center w-100">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+    <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+    <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 14 Ends Here -->
+
+   <!-- Retail Theme 15 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme15'" class="d-block w-100 h-100 product-hover-style1 rounded-2 position-relative ">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image bg-grey2 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-none align-items-center justify-content-center w-100 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+            <button *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-dark-color rounded-0 text-white">
+              <i class="bi bi-bag-plus-fill text-white text-18 lh-tiny no-min-height no-min-width me-2"></i>
+              {{'QUICKVIEW'|translate}}
+              </button>
+              <button *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center text-15 font-weight-500 px-3 py-2 bg-theme-dark-color rounded-0 text-white">
+                <i class="bi bi-bag-plus-fill text-white text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                {{'QUICKVIEW'|translate}}
+              </button>
+          </div>
+          <div class="d-flex align-items-center justify-content-end position-absolute top-0 end-0 mt-1 me-1">
+              <button *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center rounded-circle border border-color-silver ms-2 px-2 py-2 bg-white">
+              <i class="bi bi-heart text-18 text-black no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center rounded-circle border border-color-silver ms-2 px-2 py-2 bg-white">
+              <i class="bi bi-heart-fill text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+          </div>
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" (click)="navigateTOProduct()">
+          <div class="d-block w-100 mb-2">
+            <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize text-center">  {{ getProductName() | titlecase }} </h3>
+          </div>
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <div class="d-flex align-items-center justify-content-center w-100">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-center w-100 text-center mb-2">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 15 Ends Here -->
+
+  <!-- Retail Theme 16 Starts Here -->
+  <div *ngIf="activeTheme == 'RetailTheme16'" class="d-block w-100 h-100 product-hover-style1 border border-color-silver border-dark-color-hover rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100 parent-hover-transit">
+    <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+      <div class="plp_pr_image border-0 bg-grey2 h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+        <span *ngIf="product?.salePrice" class="bg-theme-dark-color start-0 font-weight-400 ms-1 mt-1 position-absolute px-1 py-1 rounded-2 text-14 text-white top-0 z-index-1">
+          {{'SALE'|translate}}
+          </span>
+          <div class="position-absolute child-block-transit opacity-0 visibility-hidden top-0 end-0 me-2 mt-2">
+            <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+            *ngIf="!product?.addedToWishlist"
+            [disabled]="firstTimeCalled"
+            (click)="addItemToFovarite(product)"
+            class="d-flex align-items-center justify-content-center  w-38-px h-38-px rounded-circle bg-white mb-2">
+              <i class="bi bi-heart text-black text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+            *ngIf="product?.addedToWishlist"
+            [disabled]="firstTimeCalled"
+            (click)="removeItemFromFovarite(product)"
+            class="d-flex align-items-center justify-content-center  w-38-px h-38-px rounded-circle bg-theme-dark-color mb-2">
+              <i class="bi bi-heart-fill text-white text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+
+            <button
+            matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+             *ngIf="!product?.productId && isQuickView"
+             (click)="pdppopup(product?.id)"
+             class="w-38-px h-38-px quick-view-mobile-off d-flex align-items-center justify-content-center rounded-circle text-15 font-weight-500 bg-white rounded-3 mb-2">
+              <i class="bi bi-eye-fill text-black text-18 lh-tiny no-min-height no-min-width m-0"></i>
+              </button>
+              <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+               *ngIf="product?.productId && isQuickView"
+               (click)="pdppopup(product?.productId)"
+               class="w-38-px h-38-px quick-view-mobile-off d-flex align-items-center justify-content-center rounded-circle text-15 font-weight-500 bg-white rounded-3 mb-2">
+                <i class="bi bi-eye-fill text-black text-18 lh-tiny no-min-height no-min-width m-0"></i>
+
+              </button>
+          </div>
+        <a class="text-decoration-none d-block w-100">
+      <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+      </a>
+      </div>
+      <div class="d-block w-100 bg-white text-center py-2" (click)="navigateTOProduct()">
+        <div class="d-block w-100 mb-1 pt-2 border-top border-color-silver" (click)="navigateTOProduct()">
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+            matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+            <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+          </div>
+          <div class="d-block w-100 my-2">
+            <h3 class="text-black m-0 font-weight-500 text-15 mob-text-14 text-center text-capitalize h-36-px">
+              {{ (getProductName() | titlecase).length > 35 ? (getProductName() | titlecase | slice:0:35) + '...' : (getProductName() | titlecase) }}
+               </h3>
+          </div>
+          <div class="d-flex flex-wrap align-items-center justify-content-center w-100">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+            <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+         </div>
+         <!-- Soldout Tag Ends Here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+    <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+    <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 16 Ends Here -->
+
+  <!-- Retail Theme 17 Starts Here -->
+  <div *ngIf="activeTheme == 'RetailTheme17'" class="d-block w-100 h-100 product-hover-style1 border border-color-silver border-dark-color-hover rounded-2 position-relative">
+    <div class="text-decoration-none d-block w-100">
+      <div class="d-block w-100 position-relative">
+        <span *ngIf="product?.salePrice" class="bg-theme-dark-color start-0 font-weight-400 ms-1 mt-1 position-absolute px-3 py-1 rounded-custom2 text-14 text-white top-0 z-index-1">
+          {{'SALE'|translate}}
+          </span>
+        <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+      </div>
+      <div class="d-block w-100 px-2">
+        <div (click)="navigateTOProduct()" class="d-block w-100 my-2">
+          <h3 class="text-black m-0 font-weight-500 text-14 mob-text-13 text-capitalize h-36-px">
+            {{ (getProductName() | titlecase).length > 35 ? (getProductName() | titlecase | slice:0:35) + '...' : (getProductName() | titlecase) }}
+             </h3>
+        </div>
+        <div (click)="navigateTOProduct()" class="d-flex flex-wrap align-items-center justify-content-start w-100">
+          <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+            <!-- <div class="d-inline-block me-2">
+              <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+            </div> -->
+            <div class="d-inline-block me-3">
+              <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+              <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-12 text-12 text-color-912018">
+                <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-12 me-2 no-min-height no-min-width"></i>
+                  {{'PRICES_VARY_PER_ITEM'|translate}}
+              </h5>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+            <!-- <div class="d-inline-block me-2">
+              <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+            </div> -->
+            <div class="d-inline-block me-3">
+              <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+              <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                  {{'PRICES_VARY_PER_ITEM'|translate}}
+              </h5>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+            <div class="d-inline-block">
+              <h5 class="text-16 mob-text-14 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+            <div class="d-inline-block me-2">
+              <h5 class="text-14 mob-text-4 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+            </div>
+            <div class="d-inline-block">
+              <h5 class="text-16 mob-text-14 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+            <div class="d-inline-block">
+              <h5 class="text-16 mob-text-14 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+            </div>
+          </div>
+          <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+            <div class="d-inline-block me-2">
+              <h5 class="text-14 mob-text-14 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+            </div>
+            <div class="d-inline-block">
+              <h5 class="text-16 mob-text-14 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+            </div>
+          </div>
+           <!-- Soldout Tag Starts Here -->
+        <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+          <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white text-12">    {{'SOLDOUT'|translate}}  </span>
+       </div>
+       <!-- Soldout Tag Ends Here -->
+        </div>
+
+        <div class="d-flex align-items-center justify-content-start w-100">
+          <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+          matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+          <span class="d-inline-block text-black text-12 ms-2"> {{ getReviewCount() }} </span>
+        </div>
+
+
+        <div class="d-flex w-100 align-items-center justify-content-start pb-2">
+
+          <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center  w-38-px h-38-px border border-color-silver bg-white">
+              <i class="bi bi-heart text-black text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center  w-38-px h-38-px border border-color-silver bg-theme-dark-color">
+              <i class="bi bi-heart-fill text-white text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+
+            <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+            *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off ms-2 align-items-center justify-content-center border border-color-silver text-15 font-weight-500 w-38-px h-38-px bg-white">
+              <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width"></i>
+              </button>
+              <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+               *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off ms-2 align-items-center justify-content-center border border-color-silver text-15 font-weight-500 w-38-px h-38-px bg-white">
+                <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width"></i>
+              </button>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+    <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+    <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 17 Ends Here -->
+
+   <!-- Retail Theme 18 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme18'" class="d-block w-100 h-100 product-hover-style1 rounded-2 position-relative ">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+            <button *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+              <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+              {{'QUICKVIEW'|translate}}
+              </button>
+              <button *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                {{'QUICKVIEW'|translate}}
+              </button>
+          </div>
+          <div class="d-flex align-items-center justify-content-end position-absolute top-0 end-0 mt-1 me-1">
+            <button *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center rounded-circle border border-color-silver ms-2 px-2 py-2 bg-white">
+              <i class="bi bi-heart text-18 text-black no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center rounded-circle border border-color-silver ms-2 px-2 py-2 bg-white">
+              <i class="bi bi-heart-fill text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+          </div>
+
+
+
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl"  (click)="navigateTOProduct()">
+          <div class="d-block w-100 mb-2">
+            <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize">  {{ getProductName() | titlecase }} </h3>
+          </div>
+          <div class="d-flex align-items-center justify-content-start flex-wrap w-100 mb-2">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+             <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+          </div>
+          <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-flex align-items-center justify-content-start w-100">
+            <div class="d-flex align-items-center justify-content-start">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 18 Ends Here -->
+
+  <!-- Retail Theme 19 Starts Here -->
+  <div *ngIf="activeTheme == 'RetailTheme19'" class="d-block w-100 h-100 product-hover-style1 rounded-2 position-relative ">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-none align-items-center justify-content-center w-100 px-2 py-0 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+
+            <div class="d-flex align-items-center justify-content-center bg-white shadow-lg rounded-2 mb-3">
+                          <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center  w-45-px h-38-px border border-color-silver bg-white">
+              <i class="bi bi-heart text-black text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+              <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center  w-45-px h-38-px border border-color-silver bg-theme-dark-color">
+                <i class="bi bi-heart-fill text-white text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+              </button>
+
+              <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+              *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off align-items-center justify-content-center border border-color-silver text-15 font-weight-500 w-45-px h-38-px bg-white">
+                <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width"></i>
+                </button>
+                <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+                matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+                 *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off align-items-center justify-content-center border border-color-silver text-15 font-weight-500 w-45-px h-38-px bg-white">
+                  <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width"></i>
+                </button>
+            </div>
+
+          </div>
+
+
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl" (click)="navigateTOProduct()">
+          <div class="d-block w-100 mb-2 text-center">
+            <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize"> {{ getProductName() | titlecase }} </h3>
+          </div>
+          <div class="d-flex align-items-center justify-content-center flex-wrap w-100 mb-2">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+             <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+          </div>
+          <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <div class="d-flex align-items-center justify-content-start">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 19 Ends Here -->
+
+   <!-- Retail Theme 20 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme20'" class="d-block w-100 h-100 product-hover-style1 rounded-2 position-relative ">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-none align-items-center justify-content-center w-100 px-2 py-2 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+            <button *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+              <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+              {{'QUICKVIEW'|translate}}
+              </button>
+              <button *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="w-100 quick-view-mobile-off d-flex align-items-center justify-content-center border border-color-silver text-15 font-weight-500 px-3 py-2 bg-white rounded-3">
+                <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width me-2"></i>
+                {{'QUICKVIEW'|translate}}
+              </button>
+          </div>
+          <div class="d-flex align-items-center justify-content-end position-absolute top-0 end-0 mt-1 me-1">
+            <button *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center rounded-circle border border-color-silver ms-2 px-2 py-2 bg-white">
+              <i class="bi bi-heart text-18 text-black no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center rounded-circle border border-color-silver ms-2 px-2 py-2 bg-white">
+              <i class="bi bi-heart-fill text-18 text-color-dark no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+          </div>
+
+
+
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl"  (click)="navigateTOProduct()">
+          <div class="d-block w-100 mb-2">
+            <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize">  {{ getProductName() | titlecase }} </h3>
+          </div>
+          <div class="d-flex align-items-center justify-content-start flex-wrap w-100 mb-2">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+             <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+          </div>
+          <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-flex align-items-center justify-content-start w-100">
+            <div class="d-flex align-items-center justify-content-start">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 20 Ends Here -->
+
+   <!-- Retail Theme 21 Starts Here -->
+   <div *ngIf="activeTheme == 'RetailTheme21'" class="d-block w-100 h-100 product-hover-style1 rounded-2 position-relative ">
+    <div class="text-decoration-none d-block w-100">
+      <span *ngIf="product?.salePrice" class="text-italic bg-theme-dark-color start-0 font-weight-500 ms-1 mt-1 position-absolute px-3 py-1 rounded-2 text-14 text-black text-first-light-color text-color-w top-0 z-index-1">
+        {{'SALE'|translate}}
+      </span>
+      <div class="card border-0 overflow-hidden new_pr_card plp_pr_card">
+        <div class="plp_pr_image h-auto d-flex align-items-center justify-content-center rounded-2 position-relative">
+          <a class="text-decoration-none d-block w-100">
+            <img [src]="product?.mainImageUrl" class="product-thumbnail-size3 w-100 object-fit-contain object-position-center" onerror="this.src='./assets/img/default-product.png'" alt="{{'SHOPBYCATEGORY'|translate}}">
+          </a>
+          <div class="d-none align-items-center justify-content-center w-100 px-2 py-0 position-absolute bottom-0 start-0 product-quickview-btn z-index-1">
+            <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="!product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="addItemToFovarite(product)" class="d-flex align-items-center justify-content-center  w-45-px h-38-px border border-color-silver bg-white">
+              <i class="bi bi-heart text-black text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+            <button matTooltipPosition="above" matTooltip="{{'WISHLIST'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2" *ngIf="product?.addedToWishlist" [disabled]="firstTimeCalled" (click)="removeItemFromFovarite(product)" class="d-flex align-items-center justify-content-center  w-45-px h-38-px border border-color-silver bg-theme-dark-color">
+              <i class="bi bi-heart-fill text-white text-16 no-min-height no-min-width lh-tiny m-0 p-0"></i>
+            </button>
+
+            <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+            matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+            *ngIf="!product?.productId && isQuickView" (click)="pdppopup(product?.id)" class="d-flex quick-view-mobile-off align-items-center justify-content-center border border-color-silver text-15 font-weight-500 w-45-px h-38-px bg-white">
+              <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width"></i>
+              </button>
+              <button matTooltipPosition="above" matTooltip="{{'QUICKVIEW'| translate}}"
+              matTooltipClass="bg-theme-dark-color text-white text-14 shadow rounded-2"
+               *ngIf="product?.productId && isQuickView"  (click)="pdppopup(product?.productId)" class="d-flex quick-view-mobile-off align-items-center justify-content-center border border-color-silver text-15 font-weight-500 w-45-px h-38-px bg-white">
+                <i class="bi bi-bag-plus-fill text-black text-18 lh-tiny no-min-height no-min-width"></i>
+              </button>
+          </div>
+
+
+        </div>
+        <div class="d-block w-100 py-3 px-2 cursor-pointer popup-parent-rtl"   (click)="navigateTOProduct()">
+          <div class="d-block w-100 mb-2 text-center">
+            <h3 class="text-black m-0 font-weight-600 text-15 mob-text-14 text-capitalize"> {{ getProductName() | titlecase }} </h3>
+          </div>
+          <div class="d-flex align-items-center justify-content-center flex-wrap w-100 mb-2">
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.variablePrice">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.priceVary">
+              <!-- <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div> -->
+              <div class="d-inline-block me-3">
+                <!-- <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}} </h5> -->
+                <h5 class="align-items-center d-flex font-weight-600 justify-content-start m-0 mob-text-13 text-13 text-color-912018">
+                  <i class="bi bi-info-circle-fill lh-tiny text-color-912018 text-13 me-2 no-min-height no-min-width"></i>
+                    {{'PRICES_VARY_PER_ITEM'|translate}}
+                </h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center" *ngIf="product?.salePrice && !product?.minPrice && !product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.salePrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-start" *ngIf="!product?.salePrice && !product?.minPrice && !product?.maxPrice && ((product?.priceVary == false || product?.priceVary == null) && (product?.variablePrice == false || product?.variablePrice == null))">
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-black m-0">{{currency}}{{product?.price | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center" *ngIf=" product?.minPrice >= 0 && product?.maxPrice">
+              <div class="d-inline-block me-2">
+                <h5 class="text-16 mob-text-15 font-weight-400 text-lightgrey m-0"><s>{{currency}}{{product?.price | number:'1.2-2'}}</s></h5>
+              </div>
+              <div class="d-inline-block">
+                <h5 class="text-18 mob-text-16 font-weight-600 text-danger m-0">{{currency}}{{product?.minPrice | number:'1.2-2'}}-{{currency}}{{product?.maxPrice | number:'1.2-2'}}</h5>
+              </div>
+            </div>
+             <!-- Soldout Tag Starts Here -->
+          <div class="d-flex align-items-center justify-content-center" *ngIf="product?.inStock == false">
+             <span class="bg-danger ms-2 px-2 py-1 d-inline-block rounded-2 text-white">    {{'SOLDOUT'|translate}}  </span>
+          </div>
+          <!-- Soldout Tag Ends Here -->
+          </div>
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <div class="d-flex align-items-center justify-content-start">
+              <ngb-rating matTooltip="{{this.product?.averageRating?.toFixed(1)}} {{'OUT_OF_5_STARS'|translate}}"  matTooltipPosition="below"
+              matTooltipClass="bg-black text-white text-12 bg-rating-tt" class="rating-star" [max]="5" [rate]="this.product?.averageRating" [readonly]="true"></ngb-rating>
+              <span class="d-inline-block text-black text-14 ms-2"> {{ getReviewCount() }} </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex px-2 py-0 align-items-center justify-content-center bg-theme-light-color rounded-2 w-100" *ngFor="let prom of product.catalogPromotionProduct">
+      <img class="h-27-px scale-reverse w-auto" src="./assets/img/speaker-icon.png">
+      <h5 class="w-auto text-black font-weight-500 text-center text-13 pt-2"> {{prom?.name}} </h5>
+    </div>
+  </div>
+  <!-- Retail Theme 21 Ends Here -->
+

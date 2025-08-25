@@ -138,12 +138,8 @@
               }
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"
@@ -248,11 +244,8 @@
               "optimization": true
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "sourceMap": true,
-              "extractLicenses": false,
-              "vendorChunk": true
+              "sourceMap": true
             }
           },
           "defaultConfiguration": "production"

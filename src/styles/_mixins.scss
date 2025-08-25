@@ -1,33 +1,16 @@
-@mixin linear-gradient($color1, $color2) {
+@mixin linear-gradient($color1, $color2){
   background: $color1; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(
-    0deg,
-    $color1,
-    $color2
-  ); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(
-    0deg,
-    $color1,
-    $color2
-  ); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(
-    0deg,
-    $color1,
-    $color2
-  ); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(0deg, $color1, $color2); /* Standard syntax */
+  background: -webkit-linear-gradient(0deg, $color1 , $color2); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(0deg, $color1, $color2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(0deg, $color1, $color2); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(0deg, $color1 , $color2); /* Standard syntax */
 }
 
-@mixin dimension($width, $height) {
+@mixin dimension($width,$height) {
   width: $width;
   height: $height;
 }
-@mixin absolute(
-  $left: initial,
-  $right: initial,
-  $top: initial,
-  $bottom: initial
-) {
+@mixin absolute($left: initial,$right: initial,$top: initial,$bottom: initial) {
   position: absolute;
   left: $left;
   right: $right;
@@ -108,7 +91,7 @@
 
 // Flex shrink
 // - applies to: flex item shrink factor
-// <number>
+// <number> 
 @mixin flex-shrink($shrink) {
   -webkit-flex-shrink: $shrink;
   -moz-flex-shrink: $shrink;
@@ -119,7 +102,7 @@
 // Flex basis
 // - the initial main size of the flex item
 // - applies to: flex itemsnitial main size of the flex item
-// <width>
+// <width> 
 @mixin flex-basis($width) {
   -webkit-flex-basis: $width;
   -moz-flex-basis: $width;
@@ -129,7 +112,7 @@
 
 // Axis Alignment
 // - applies to: flex containers
-// flex-start | flex-end | center | space-between | space-around
+// flex-start | flex-end | center | space-between | space-around 
 @mixin justify-content($justify) {
   -webkit-justify-content: $justify;
   -moz-justify-content: $justify;
@@ -140,7 +123,7 @@
 
 // Packing Flex Lines
 // - applies to: multi-line flex containers
-// flex-start | flex-end | center | space-between | space-around | stretch
+// flex-start | flex-end | center | space-between | space-around | stretch 
 @mixin align-content($align) {
   -webkit-align-content: $align;
   -moz-align-content: $align;
@@ -150,7 +133,7 @@
 
 // Cross-axis Alignment
 // - applies to: flex containers
-// flex-start | flex-end | center | baseline | stretch
+// flex-start | flex-end | center | baseline | stretch 
 @mixin align-items($align) {
   -webkit-align-items: $align;
   -moz-align-items: $align;
@@ -160,7 +143,7 @@
 
 // Cross-axis Alignment
 // - applies to: flex items
-// auto | flex-start | flex-end | center | baseline | stretch
+// auto | flex-start | flex-end | center | baseline | stretch 
 @mixin align-self($align) {
   -webkit-align-self: $align;
   -moz-align-self: $align;
@@ -225,35 +208,45 @@
 
 @mixin for-size($size) {
   @if $size==phone-only {
-    @media (max-width: 767px) {
-      @content;
-    }
-  } @else if $size==small-phone-only {
-    @media (max-width: 480px) {
-      @content;
-    }
-  } @else if $size==tablet-portrait-up {
-    @media (min-width: 576px) {
-      @content;
-    }
-  } @else if $size==tablet-only {
-    @media (min-width: 768px) and (max-width: 1024px) {
-      @content;
-    }
-  } @else if $size==desktop-up {
-    @media (min-width: 1200px) {
-      @content;
-    }
-  } @else if $size==big-desktop-up {
-    @media (min-width: 1800px) {
-      @content;
-    }
+      @media (max-width: 767px) {
+          @content;
+      }
+  }
+
+  @else if $size==small-phone-only {
+      @media (max-width: 480px) {
+          @content;
+      }
+  }
+
+  @else if $size==tablet-portrait-up {
+      @media (min-width: 576px) {
+          @content;
+      }
+  }
+
+  @else if $size==tablet-only {
+      @media (min-width: 768px) and (max-width: 1024px) {
+          @content;
+      }
+  }
+
+  @else if $size==desktop-up {
+      @media (min-width: 1200px) {
+          @content;
+      }
+  }
+
+  @else if $size==big-desktop-up {
+      @media (min-width: 1800px) {
+          @content;
+      }
   }
 }
 
-@mixin direction($dir) {
-  html[dir="#{$dir}"] & {
-    @content;
+@mixin direction ($dir) {
+  html[dir=#{$dir}] & {
+      @content;
   }
 }
 
@@ -269,3 +262,5 @@
     }
   }
 }
+
+

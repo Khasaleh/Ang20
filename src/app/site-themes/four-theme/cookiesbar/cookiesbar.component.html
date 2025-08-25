@@ -1,0 +1,26 @@
+<section *ngIf="cookiesData?.enabled && browserCookies == null" class="d-block w-100 bg-white pt-3 pb-2 px-3 shadow-lg border-top border-color-silver">
+<div class="new-container1">
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-12">
+    <div class="d-block text-lg-start text-md-start text-sm-start text-center mb-lg-0 mb-md-0 mb-sm-0 mb-2">
+      <h3 class="text-black font-weight-600 m-0 text-20 mob-text-14">  {{'WE_VALUE_YOUR_PRIVACY'|translate}} </h3>
+    </div>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-6 col-12">
+      <div class="d-block text-lg-start text-md-start text-sm-start text-center mb-lg-0 mb-md-0 mb-sm-0 mb-2">
+        <p class="text-black text-14 mob-text-12 m-0 font-weight-400">    {{cookiesData?.bannerText}}   </p>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-3 col-12">
+      <div class="d-flex align-items-start justify-content-lg-start justify-content-md-start justify-content-sm-start justify-content-center">
+      <button (click)="saveCookies()" class="bg-theme-dark-color px-3 py-2 text-white rounded-2 text-13 mt-0 mb-2">
+         {{'ACCEPT_ALL'|translate}}
+      </button>
+      <button *ngIf="cookiesData?.enabledCloseButton" (click)="hideCookiesBar()" class="bg-theme-light-color d-flex align-items-start justify-content-center ms-2 border border-color-silver px-2 py-2 text-black rounded-2 text-13 m-0">
+        <mat-icon class="text-black text-15 no-min-height no-min-width m-0 p-0">close</mat-icon>
+       </button>
+     </div>
+    </div>
+  </div>
+</div>
+</section>

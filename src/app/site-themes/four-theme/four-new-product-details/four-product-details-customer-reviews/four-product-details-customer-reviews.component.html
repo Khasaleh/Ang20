@@ -1,0 +1,79 @@
+<ng-container  *ngIf="data && data?.showCustomerReviews">
+  <hr class="my-4">
+  <section class="product-details-customer-reviews" >
+     <h1 class="text-20 font-weight-600 text-black text-center pb-3" *ngIf="data?.showReviews">   {{data?.customerReviewsSliderHeading}}  </h1>
+     <div class="new-container1">
+        <div class="row"  [ngClass]="{'flex-row-reverse': data?.customerReviewsDesign=='TM_ELEGANCE'}">
+           <div class="col-md-4"  [ngClass]="{'justify-content-end': data?.customerReviewsDesign=='TM_ELEGANCE'}">
+              <div class="d-flex gap-2 align-items-center my-4">
+                 <ngb-rating class="rating-star" [max]="5" [rate]="avg" [readonly]="true"></ngb-rating>
+                 <span class="text-14 text-black font-weight-400">{{avg.toFixed(1)}} <span class="text-success">{{productReviews?.length}}     {{'REVIEWS_ONLY'|translate}}  </span></span>
+              </div>
+              <div class="d-flex flex-column">
+                 <section class="align-content-center align-items-center d-flex mb-2">
+                    <span class="me-3 font-weight-400 text-14">5   {{'STAR'|translate}}  </span>
+                    <mat-progress-bar class="w-50 h-20-px progress-bar-rating" [mode]="mode" [value]="fiveStars" [bufferValue]="bufferValue">
+                    </mat-progress-bar>
+                    <span class="ms-3 font-weight-400 text-14">{{fiveStars.toFixed(0)}}%</span>
+                 </section>
+                 <section class="align-content-center align-items-center d-flex mb-2">
+                    <span class="me-3 font-weight-400 text-14">4   {{'STAR'|translate}}  </span>
+                    <mat-progress-bar class="w-50 h-20-px progress-bar-rating" [mode]="mode" [value]="fourStars" [bufferValue]="bufferValue">
+                    </mat-progress-bar>
+                    <span class="ms-3 font-weight-400 text-14">{{fourStars.toFixed(0)}}%</span>
+                 </section>
+                 <section class="align-content-center align-items-center d-flex mb-2">
+                    <span class="me-3 font-weight-400 text-14">3   {{'STAR'|translate}}  </span>
+                    <mat-progress-bar class="w-50 h-20-px progress-bar-rating" [mode]="mode" [value]="threeStars" [bufferValue]="bufferValue">
+                    </mat-progress-bar>
+                    <span class="ms-3 font-weight-400 text-14">{{threeStars.toFixed(0)}}%</span>
+                 </section>
+                 <section class="align-content-center align-items-center d-flex mb-2">
+                    <span class="me-3 font-weight-400 text-14">2   {{'STAR'|translate}}  </span>
+                    <mat-progress-bar class="w-50 h-20-px progress-bar-rating" [mode]="mode" [value]="twoStars" [bufferValue]="bufferValue">
+                    </mat-progress-bar>
+                    <span class="ms-3 font-weight-400 text-14">{{twoStars.toFixed(0)}}%</span>
+                 </section>
+                 <section class="align-content-center align-items-center d-flex mb-2">
+                    <span class="me-3 font-weight-400 text-14">1   {{'STAR'|translate}}  </span>
+                    <mat-progress-bar class="w-50 h-20-px progress-bar-rating" [mode]="mode" [value]="oneStars" [bufferValue]="bufferValue">
+                    </mat-progress-bar>
+                    <span class="ms-3 font-weight-400 text-14">{{oneStars.toFixed(0)}}%</span>
+                 </section>
+              </div>
+           </div>
+           <div class="col-md-8" >
+              <div class="customer-rating-box mb-3" *ngFor="let review of productReviews">
+                 <div class="d-flex gap-2 align-items-center py-2">
+                    <span class="text-15 text-black font-weight-500">{{review?.userName}}</span>
+                 </div>
+                 <img (click)="reviewImageView(awsUrl + review?.imageUrl)" *ngIf="review?.imageUrl" class="img-fluid w-50-px h-50-px round cursor-pointer"
+                 onerror="this.src='./assets/img/default-profile-image.jpg'"
+                 [src]=" awsUrl + review?.imageUrl" alt="profile-img">
+                 <div class="d-flex gap-3 flex-column w-100">
+                    <ngb-rating class="rating-star" [max]="5" [rate]="review.rating" [readonly]="true"></ngb-rating>
+                    <p class="text-14 text-black font-weight-400 ">{{review?.comment}}</p>
+                 </div>
+                 <div class="d-flex gap-3 flex-column w-100" *ngIf="review?.reply !== null">
+                  <p class="text-14 text-black font-weight-400 ">{{'SELLER_REPLY'|translate}}:  {{review?.reply}}</p>
+               </div>
+                 <div *ngIf="user" class="d-flex align-items-center justify-content-start w-100 mt-2">
+                  <button (click)="agreeOnReview(review?.id)" class="d-flex align-items-center justify-content-center me-3">
+                     <i class="bi bi-hand-thumbs-up lh-tiny no-min-height no-min-width me-2 text-0083EA text-15 mt-1"></i>
+                     <span class="d-inline-block pt-1"> {{review?.agreeCount}} </span>
+                     <span class="d-inline-block text-0083EA text-13 font-weight-500 px-2">  {{'AGREE'|translate}} </span>
+                  </button>
+                  <button (click)="disagreeOnReview(review?.id)" class="d-flex align-items-center justify-content-center me-3">
+                     <i class="bi bi-hand-thumbs-down lh-tiny no-min-height no-min-width me-2 text-danger text-15 mt-1"></i>
+                     <span class="d-inline-block pt-1"> {{review?.disagreeCount}} </span>
+                     <span class="d-inline-block text-danger text-13 font-weight-500 px-2">  {{'DISAGREE'|translate}} </span>
+                  </button>
+                   </div>
+              </div>
+              <hr class="mt-4 mb-2">
+              <button [disabled]="getAllDisabled" class="text-black text-15 font-weight-600" (click)="getAllReviews()">{{'VIEW_ALL_REVIEWS'|translate}}</button>
+           </div>
+        </div>
+     </div>
+  </section>
+</ng-container>

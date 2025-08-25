@@ -1,0 +1,13 @@
+<div class="d-block w-100 h-100 position-relative overflow-hidden touch-container">
+  <button mat-dialog-close class="position-absolute top-0 end-0 mt-2 me-2 z-index-10">
+    <i class="bi bi-x-circle-fill text-18 text-black"></i>
+  </button>
+
+  <div class="zoom-wrapper">
+    <img 
+       #imgRef
+      [src]="data.imageUrl"
+      onerror="this.src='./assets/img/default-product.png'"  
+      class="zoom-img" />
+  </div>
+</div>

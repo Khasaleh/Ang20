@@ -1,0 +1,60 @@
+<section class="py-3 plp_page bg-color-F2F4F7">
+  <div class="new-container1">
+    <div class="d-block w-100 mb-2">
+      <h3 class="text-black font-weight-600 text-20 m-0 p-0">{{'MY_WISHLIST'|translate}}</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent p-0 m-0 border-0">
+                    <li class="breadcrumb-item breadcrumb-slash-off">
+                        <button routerLink="../home" class="text-14 p-0 font-weight-400 cursor-pointer text-black">
+                          {{'HOME'|translate}}
+                          </button>
+                        <span class="d-inline-block text-grey text-16 px-2"> / </span>
+                    </li>
+                    <li class="breadcrumb-item breadcrumb-slash-off" aria-current="page">
+                        <b class="text-14 font-weight-400 cursor-default text-black">
+                          {{'MY_WISHLIST'|translate}}
+                        </b>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+  </div>
+</section>
+<section class="py-5 plp_pr_section">
+  <div class="new-container1">
+
+    <div *ngIf="!isLoading && wishlists.length > 0" class="d-block w-100">
+      <div class="row">
+        <div class="col-md-4 col-lg-3 col-sm-6 col-6 col-xl-3 mb-4" *ngFor="let wish of wishlists">
+          <app-product-box  [activeTheme]="activeTheme" [product]="wish.productResponse" [isQuickView]="AlwaysShow"></app-product-box>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Loading Animation Starts Here -->
+    <div class="d-block w-100 text-center" *ngIf="isLoading">
+      <img class="h-400-px h-250-px w-100 object-fit-contain mb-4" src="./assets/img/products-loading.jpg" alt="{{'PRODUCTS_ARE_LOADING'|translate}}">
+      <div class="d-flex align-items-center justify-content-center w-100">
+        <div class="d-inline-block">
+          <img class="h-20-px w-auto spinner-border border-0" src="./assets/img/spinner-icon.png" >
+        </div>
+        <div class="d-inline-block ps-3">
+          <h4 class="text-black text-16 font-weight-500 m-0"> {{'PRODUCTS_ARE_LOADING'|translate}} </h4>
+        </div>
+      </div>
+    </div>
+    <!-- Products Loading Animation Ends Here -->
+
+    <!-- When no Wishlist Available Starts Here -->
+      <div *ngIf="!isLoading && wishlists.length == 0" class="d-block w-100 text-center py-5">
+        <img class="h-150-px w-100 object-fit-contain mb-3" src="./assets/img/no-products-availabled.png" alt="{{'PRODUCTS_ARE_LOADING'|translate}}">
+        <h5 class="text-black text-15 mt-3 mb-0">   {{'THERE_IS_NO_PRODUCTS_AVAILABLE'|translate}}  </h5>
+      </div>
+    <!-- When no Wishlist Availble Ends Here -->
+
+  </div>
+</section>

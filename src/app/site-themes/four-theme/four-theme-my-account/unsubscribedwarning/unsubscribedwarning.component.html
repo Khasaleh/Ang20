@@ -1,0 +1,33 @@
+<section class="d-block w-100 popup-parent-rtl">
+  <div class="d-block w-100 px-4 py-3 bg-theme-light-color">
+    <div class="d-flex w-100 align-items-center justify-content-between">
+      <div class="d-inline-block">
+        <h3 class="text-black text-18 m-0 p-0 font-weight-600 text-capitalize">  {{'UNSUBSCRIBE'|translate}} </h3>
+      </div>
+      <div class="d-inline-block">
+        <button mat-dialog-close
+          class="bg-color-ECECEC d-flex align-items-center justify-content-center p-1 rounded-circle outline-none">
+          <mat-icon class="m-0 p-0 no-min-height no-min-width text-22 text-black">close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="px-4 py-4">
+    <div class="d-flex w-100 align-items-center justify-content-start mb-3">
+      <div class="d-inline-block">
+      <img  src='./assets/img/warning-exclamation.png' class="w-90-px h-auto">
+      </div>
+      <div class="d-inline-block ps-3">
+        <p class="text-15 text-black m-0 p-0">  {{'ARE_YOU_SURE_WANT_TO_UNSUBSCRIBE'|translate}} </p>
+      </div>
+    </div>
+    <div class="d-flex w-100 align-items-center justify-content-center">
+      <button (click)="unsubscribe()" class="px-5 py-2 text-14 bg-danger rounded-3 mx-1 text-white">
+       {{'YES'|translate}}
+      </button>
+      <button mat-dialog-close class="px-4 py-2 text-14 bg-theme-light-color rounded-3 mx-1 text-black">
+        {{'CANCEL'|translate}}
+      </button>
+    </div>
+  </div>
+</section>

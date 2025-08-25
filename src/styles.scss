@@ -10,26 +10,7 @@ body {
   font-family: 'Inter', "Helvetica Neue", sans-serif !important;
 }
 
-
-@import "./themescss/classicthemestyle";
-@import "./themescss/default_theme";
-@import "~@ng-select/ng-select/themes/material.theme.css";
-@import "~bootstrap-icons/font/bootstrap-icons.css";
-@import "./styles/externalStyle";
-@import "./styles/header";
-@import "./styles/footer";
-@import "./styles/general";
-@import "./styles/button";
-@import "./styles/colors";
-@import "./styles/theme";
-@import "./styles/mixins";
-@import "./styles/responsive";
-@import "./styles/table";
-@import "~bootstrap/scss/bootstrap";
-@import "../node_modules/flag-icons/css/flag-icons.min.css";
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
-@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
-@import '~swiper/swiper-bundle.min.css';
+ 
 h1 {
   font-size: 24px !important;
 }
